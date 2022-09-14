@@ -1,7 +1,7 @@
 <div class="body">
     <div class="login">
         <mat-spinner *ngIf="loading" class="spinner" diameter="150"></mat-spinner>
-        <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="ingresar()">
+        <form *ngIf="!loading" [formGroup]="form">
             <img src="./assets/img/user.png" alt="user.png">
         <h2>Iniciar Sesión</h2>
         <mat-form-field class="ancho" appearance="fill">
@@ -14,7 +14,7 @@
                 <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
         </mat-form-field>
         <br>
-        <button class="ancho boton" type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Ingresar</button>
+        <button class="ancho boton" (click)="ingresar()" mat-raised-button color="primary" [disabled]="form.invalid">Ingresar</button>
         </form>
     </div>
 </div>

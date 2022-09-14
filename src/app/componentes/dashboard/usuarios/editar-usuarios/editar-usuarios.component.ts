@@ -1,3 +1,4 @@
+import { ConfirmacionEditarComponent } from './../confirmacion-editar/confirmacion-editar.component';
 import { Usuarios } from './../../../../interfaces/usuarios';
 import { ApiService } from './../../../../servicios/api.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Roles } from 'src/app/interfaces/roles';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuariosEditar } from 'src/app/interfaces/usuarioeditar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-editar-usuarios',
@@ -33,7 +35,13 @@ export class EditarUsuariosComponent implements OnInit {
     last_session : ''
   }; 
 
-  constructor(private api: ApiService ,private fb: FormBuilder, private router: Router, private activerouter: ActivatedRoute) {
+  constructor(
+    private api: ApiService ,
+    private fb: FormBuilder, 
+    private router: Router, 
+    private activerouter: ActivatedRoute, 
+    public dialog: MatDialog
+    ) {
 
     this.form = this.fb.group({
       cedula: ['', Validators.required],
@@ -94,8 +102,12 @@ export class EditarUsuariosComponent implements OnInit {
       rol: this.form.value.rol,
       is_active: this.form.value.is_active,
     }
-    this.api.putUsuario(Number(usuarioid),usuario).subscribe((data) => {
-      this.regresarUsuarios()
+    const dialogref = this.dialog.open(ConfirmacionEditarComponent,{
+      width:'350px',
+      data: usuario
     });
+    dialogref.afterClosed().subscribe(res =>{
+      console.log(res)
+    })
   }
 }

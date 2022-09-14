@@ -2,8 +2,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from './../../../../servicios/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Roles } from 'src/app/interfaces/roles';
-import { UsuariosCrear } from 'src/app/interfaces/usuariocrear';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmacionCrearComponent } from '../confirmacion-crear/confirmacion-crear.component';
 
 @Component({
   selector: 'app-crear-usuarios',
@@ -14,7 +15,7 @@ export class CrearUsuariosComponent implements OnInit {
 
   roles: Roles[] = [];
   form: FormGroup
-  constructor(private api: ApiService, private router: Router, private fb: FormBuilder) { 
+  constructor(private api: ApiService, private router: Router, private fb: FormBuilder, public dialog: MatDialog) { 
     this.form = this.fb.group({
       cedula: ['', Validators.required],
       username: ['', Validators.required],
@@ -34,6 +35,21 @@ export class CrearUsuariosComponent implements OnInit {
     this.cargarRoles();
   }
 
+  crearUsuario():void{
+    if(this.form.valid){
+      const dialogref = this.dialog.open(ConfirmacionCrearComponent,{
+        width:'350px',
+        data: this.form
+      });
+      dialogref.afterClosed().subscribe(res =>{
+        console.log(res)
+      })
+    }else{
+      alert('Formulario invalido');
+    }    
+    
+  }
+
   cargarRoles(){
     this.api.getRoles().subscribe((data) => {
       this.roles = data;
@@ -41,28 +57,6 @@ export class CrearUsuariosComponent implements OnInit {
   }
   regresarUsuarios(){
     this.router.navigate(['/dashboard/usuarios']);
-  }
-
-  crearUsuario(){
-    const usuario: UsuariosCrear = {
-      cedula: this.form.value.cedula,
-      username: this.form.value.username,
-      names: this.form.value.names,
-      surnames: this.form.value.surnames,
-      email: this.form.value.email,
-      password: this.form.value.password,
-      phone: this.form.value.phone,
-      sex: this.form.value.sex,
-      address: this.form.value.address,
-      rol: this.form.value.rol,
-      is_active: this.form.value.is_active
-    }
-    this.api.postUsuarios(usuario).subscribe({
-      next: (res) => {
-        alert("Usuario creado exitosamente");
-        this.regresarUsuarios();
-      }
-    })
   }
 
 }

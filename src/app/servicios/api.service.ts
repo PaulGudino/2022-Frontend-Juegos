@@ -1,11 +1,13 @@
 import { UsuariosCrear } from './../interfaces/usuariocrear';
 import { Usuarios } from './../interfaces/usuarios';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Menu } from '../interfaces/menu';
 import { Roles } from '../interfaces/roles';
 import { UsuariosEditar } from '../interfaces/usuarioeditar';
+import { catchError } from 'rxjs/operators';
+import { throwError as observableThrowError} from 'rxjs';
 
 
 @Injectable({
@@ -43,6 +45,7 @@ export class ApiService {
   getRoles():Observable<Roles[]>{
     return this.http.get<Roles[]>(this.url+'api/rol/');
   }
+
 
 
 

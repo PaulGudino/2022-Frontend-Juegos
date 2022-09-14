@@ -1,3 +1,4 @@
+import { ConfirmacionEliminarComponent } from './confirmacion-eliminar/confirmacion-eliminar.component';
 import { ApiService } from './../../../servicios/api.service';
 import { Usuarios } from './../../../interfaces/usuarios';
 import { Component, OnInit } from '@angular/core';
@@ -7,10 +8,7 @@ import { ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-
-
-
-
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuarios',
@@ -25,7 +23,12 @@ export class UsuariosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor(private api: ApiService, private snackBar: MatSnackBar, private router: Router) { }
+  constructor(
+    private api: ApiService, 
+    private snackBar: MatSnackBar, 
+    private router: Router,
+    public dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
@@ -48,16 +51,6 @@ export class UsuariosComponent implements OnInit {
     }
   }
   
-  eliminarUsuario(id:number){
-    this.api.deleteUsuario(id).subscribe((data) => {
-      this.cargarUsuarios();
-      this.snackBar.open('Usuario eliminado', '', {
-        duration: 1500,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-      });
-    });
-  }
   editarUsuario(id:number){
     this.router.navigate(['dashboard/usuarios/editar', id]);
   }
@@ -68,5 +61,16 @@ export class UsuariosComponent implements OnInit {
 
   visualizarUsuario(id:number){
     this.router.navigate(['dashboard/usuarios/visualizar', id]);
+  }
+
+  eliminarUsuario(id:number):void{
+    const dialogref = this.dialog.open(ConfirmacionEliminarComponent,{
+      width:'350px',
+      data: id
+    });
+    dialogref.afterClosed().subscribe(res =>{
+      console.log(res)
+      this.cargarUsuarios();
+    })
   }
 }

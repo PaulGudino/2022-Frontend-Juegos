@@ -10,6 +10,9 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { CrearUsuariosComponent } from './usuarios/crear-usuarios/crear-usuarios.component';
 import { EditarUsuariosComponent } from './usuarios/editar-usuarios/editar-usuarios.component';
 import { VisualizarUsuariosComponent } from './usuarios/visualizar-usuarios/visualizar-usuarios.component';
+import { ConfirmacionCrearComponent } from './usuarios/confirmacion-crear/confirmacion-crear.component';
+import { ConfirmacionEditarComponent } from './usuarios/confirmacion-editar/confirmacion-editar.component';
+import { ConfirmacionEliminarComponent } from './usuarios/confirmacion-eliminar/confirmacion-eliminar.component';
 
 
 @NgModule({
@@ -21,6 +24,9 @@ import { VisualizarUsuariosComponent } from './usuarios/visualizar-usuarios/visu
     CrearUsuariosComponent,
     EditarUsuariosComponent,
     VisualizarUsuariosComponent,
+    ConfirmacionCrearComponent,
+    ConfirmacionEditarComponent,
+    ConfirmacionEliminarComponent,
   ],
   imports: [
     SharedModule,
