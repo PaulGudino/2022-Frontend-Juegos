@@ -65,7 +65,7 @@ export class UsuariosComponent implements OnInit {
 
   eliminarUsuario(id:number):void{
     const dialogref = this.dialog.open(ConfirmacionEliminarComponent,{
-      width:'350px',
+      width:'50%',
       data: id
     });
     dialogref.afterClosed().subscribe(res =>{

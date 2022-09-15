@@ -30,6 +30,10 @@ export class ApiService {
     return this.http.get<Usuarios>(this.url+'api/user/'+id);
   }
 
+  getRolbyName(name:string):Observable<Roles>{
+    return this.http.get<Roles>(this.url+'api/rolfilter/?name='+name);
+  }
+
   postUsuarios(user: UsuariosCrear){
     return this.http.post(this.url+'api/create/user/', user);
   }

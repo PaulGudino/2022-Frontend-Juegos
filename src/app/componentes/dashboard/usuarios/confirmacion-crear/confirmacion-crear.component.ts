@@ -1,5 +1,6 @@
+import { MensajesErrorComponent } from './../mensajes-error/mensajes-error.component';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { UsuariosCrear } from 'src/app/interfaces/usuariocrear';
 import { ApiService } from './../../../../servicios/api.service';
@@ -13,11 +14,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ConfirmacionCrearComponent implements OnInit {
 
+  mensaje_error_lista: string[]=[];
   constructor(
     private api: ApiService,
     private snackBar: MatSnackBar,
     private router: Router,
     public dialogRef: MatDialogRef<ConfirmacionCrearComponent>,
+    public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public form: FormGroup
   ) {}
 
@@ -55,10 +58,25 @@ export class ConfirmacionCrearComponent implements OnInit {
     }
     this.api.postUsuarios(usuario).subscribe({
       next: (res) => {
+        console.log(res)
         this.cerrar()
         this.regresarUsuarios();
         this.exito();
+      },
+      error: (res)=>{
+        for(let message in res.error){
+          this.mensaje_error_lista.push(res.error[message][0])
+        }
+        this.cerrar()
+        this.mensajes_errores(this.mensaje_error_lista)
+        this.mensaje_error_lista=[]
       }
     })
+  }
+  mensajes_errores(mensajes: string[]){
+    const dialogref = this.dialog.open(MensajesErrorComponent,{
+      width:'50%',
+      data: mensajes
+    });
   }
 }

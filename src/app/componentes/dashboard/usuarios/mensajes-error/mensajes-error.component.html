@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Algo salio mal !!!!</h1>
+<div mat-dialog-content *ngFor="let msg of errores">
+    <h2>{{msg}}</h2><br>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cerrar()" color="warn">Cerrar</button>
+</div>
+

@@ -5,6 +5,7 @@ import { Roles } from 'src/app/interfaces/roles';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmacionCrearComponent } from '../confirmacion-crear/confirmacion-crear.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-crear-usuarios',
@@ -15,7 +16,13 @@ export class CrearUsuariosComponent implements OnInit {
 
   roles: Roles[] = [];
   form: FormGroup
-  constructor(private api: ApiService, private router: Router, private fb: FormBuilder, public dialog: MatDialog) { 
+  constructor(
+    private api: ApiService, 
+    private router: Router, 
+    private fb: FormBuilder, 
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    ) { 
     this.form = this.fb.group({
       cedula: ['', Validators.required],
       username: ['', Validators.required],
@@ -38,14 +45,14 @@ export class CrearUsuariosComponent implements OnInit {
   crearUsuario():void{
     if(this.form.valid){
       const dialogref = this.dialog.open(ConfirmacionCrearComponent,{
-        width:'350px',
+        width:'50%',
         data: this.form
       });
       dialogref.afterClosed().subscribe(res =>{
         console.log(res)
       })
     }else{
-      alert('Formulario invalido');
+      this.error();
     }    
     
   }
@@ -59,4 +66,11 @@ export class CrearUsuariosComponent implements OnInit {
     this.router.navigate(['/dashboard/usuarios']);
   }
 
+  error(){
+    this.snackBar.open('Llene el formulario correctamente', '', {
+      duration: 2500,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom'
+    })
+  }
 }

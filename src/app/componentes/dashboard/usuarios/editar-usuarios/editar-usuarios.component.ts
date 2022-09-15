@@ -7,6 +7,7 @@ import { Roles } from 'src/app/interfaces/roles';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuariosEditar } from 'src/app/interfaces/usuarioeditar';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editar-usuarios',
@@ -17,6 +18,7 @@ export class EditarUsuariosComponent implements OnInit {
 
   form: FormGroup;
   roles: Roles[] = [];
+  idrol:number=0;
   usuarioget: Usuarios ={
     id: 0,
     cedula : '',
@@ -40,7 +42,8 @@ export class EditarUsuariosComponent implements OnInit {
     private fb: FormBuilder, 
     private router: Router, 
     private activerouter: ActivatedRoute, 
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
     ) {
 
     this.form = this.fb.group({
@@ -58,6 +61,8 @@ export class EditarUsuariosComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.api.getRolbyName("Prueba").subscribe(
+      (data)=> { console.log(data)})
 
     let usuarioid = this.activerouter.snapshot.paramMap.get('id');
     this.cargarRoles();
@@ -71,8 +76,14 @@ export class EditarUsuariosComponent implements OnInit {
       this.form.controls['phone'].setValue(this.usuarioget.phone);
       this.form.controls['sex'].setValue(this.usuarioget.sex);
       this.form.controls['address'].setValue(this.usuarioget.address);
-      this.form.controls['rol'].setValue(this.usuarioget.rol);
-      this.form.controls['is_active'].setValue(this.usuarioget.is_active)
+      //Hacer api roles por nombre
+      for(let id in this.roles){
+        if(this.roles[id].name == this.usuarioget.rol){
+          this.form.controls['rol'].setValue(this.roles[id].id.toString());
+        }
+      }
+      //
+      this.form.controls['is_active'].setValue(this.usuarioget.is_active.toString())
     });
   }
 
@@ -102,12 +113,24 @@ export class EditarUsuariosComponent implements OnInit {
       rol: this.form.value.rol,
       is_active: this.form.value.is_active,
     }
-    const dialogref = this.dialog.open(ConfirmacionEditarComponent,{
-      width:'350px',
-      data: usuario
-    });
-    dialogref.afterClosed().subscribe(res =>{
-      console.log(res)
+    if(this.form.valid){
+      const dialogref = this.dialog.open(ConfirmacionEditarComponent,{
+        width:'50%',
+        data: usuario
+      });
+      dialogref.afterClosed().subscribe(res =>{
+        console.log(res)
+      })
+    }else{
+      this.error();
+    }
+    
+  }
+  error(){
+    this.snackBar.open('Llene el formulario correctamente', '', {
+      duration: 2500,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom'
     })
   }
 }
