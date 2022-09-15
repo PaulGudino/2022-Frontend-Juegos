@@ -18,7 +18,7 @@ export class EditarUsuariosComponent implements OnInit {
 
   form: FormGroup;
   roles: Roles[] = [];
-  idrol:number=0;
+  id_rol: number = 0;
   usuarioget: Usuarios ={
     id: 0,
     cedula : '',
@@ -61,9 +61,7 @@ export class EditarUsuariosComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.api.getRolbyName("Prueba").subscribe(
-      (data)=> { console.log(data)})
-
+    
     let usuarioid = this.activerouter.snapshot.paramMap.get('id');
     this.cargarRoles();
     this.api.getUsuarioId(Number(usuarioid)).subscribe((data) => {
@@ -76,13 +74,10 @@ export class EditarUsuariosComponent implements OnInit {
       this.form.controls['phone'].setValue(this.usuarioget.phone);
       this.form.controls['sex'].setValue(this.usuarioget.sex);
       this.form.controls['address'].setValue(this.usuarioget.address);
-      //Hacer api roles por nombre
-      for(let id in this.roles){
-        if(this.roles[id].name == this.usuarioget.rol){
-          this.form.controls['rol'].setValue(this.roles[id].id.toString());
-        }
-      }
-      //
+      this.api.getRolbyName(this.usuarioget.rol).subscribe(
+        (data)=> { 
+          this.form.controls['rol'].setValue(data[0].id.toString());
+        })
       this.form.controls['is_active'].setValue(this.usuarioget.is_active.toString())
     });
   }

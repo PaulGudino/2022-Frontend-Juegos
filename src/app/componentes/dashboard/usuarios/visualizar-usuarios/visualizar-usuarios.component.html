@@ -60,7 +60,12 @@
         <div class="datos">
             <mat-label>Estado</mat-label>
             <br>
-            <mat-list-item role="listitem">{{usuarioget.is_active}}</mat-list-item>
+            <div *ngIf="usuarioget.is_active; else inactivo">
+                <mat-list-item role="listitem">Activo</mat-list-item>
+            </div>
+            <ng-template #inactivo>
+                <mat-list-item role="listitem">Inactivo</mat-list-item>
+            </ng-template>
         </div>
     </div>
     <div class="container">
