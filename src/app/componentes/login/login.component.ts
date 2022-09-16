@@ -1,11 +1,13 @@
-import { Observable } from 'rxjs';
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthInterceptor } from 'src/app/interceptores/auth.interceptor';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { PuenteDatosService } from 'src/app/servicios/puente-datos.service';
+import { AuthService } from 'src/app/servicios/auth/auth.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
+import { MensajesErrorComponent } from '../dashboard/mensajes-error/mensajes-error.component';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,6 @@ export class LoginComponent implements OnInit {
 
   ocultar = true;
   loading = false;
-
   
   form: FormGroup;
   constructor(
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private auth: AuthService,
-    private puente: PuenteDatosService
+    private puente: PuenteDatosService,
+    public dialog: MatDialog,
     ){ 
 
     this.form = this.fb.group({
@@ -46,7 +48,8 @@ export class LoginComponent implements OnInit {
         this.puente.setuser_id(res.user.id);
         this.puente.setuser_permisos(res.permisos);
         this.fakeloadin();
-      }, error => {
+      }, res => {
+        console.log(res);
         this.error();
         this.form.reset();
       }
@@ -67,6 +70,11 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     }, 500);
   }
-  
+  mensajes_errores(mensajes: string[]){
+    const dialogref = this.dialog.open(MensajesErrorComponent,{
+      width:'50%',
+      data: mensajes
+    });
+  }
 }
 

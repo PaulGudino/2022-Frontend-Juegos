@@ -12,6 +12,8 @@ export interface ID{
 export class PuenteDatosService {
   usuario_id: number = 0;
   usuario_permisos: any = [];
+  // url = 'http://localhost:8000/';
+  url = 'https://juegos.pythonanywhere.com/';
   constructor(
 
   ) { }
@@ -27,6 +29,8 @@ export class PuenteDatosService {
   setuser_permisos(permisos: any){
     this.usuario_permisos = permisos;
   }
-
+  geturl(): string{
+    return this.url;
+  }
 
 }

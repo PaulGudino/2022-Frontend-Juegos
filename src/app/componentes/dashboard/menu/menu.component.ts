@@ -1,9 +1,9 @@
 import { Menu } from './../../../interfaces/menu';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../servicios/api.service';
+import { ApiService } from '../../../servicios/usuarios/api.service';
 import { Router } from '@angular/router';
-import { PuenteDatosService } from 'src/app/servicios/puente-datos.service';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
+import { AuthService } from 'src/app/servicios/auth/auth.service';
 
 
 @Component({

@@ -1,11 +1,11 @@
 import { ConfirmacionEditarComponent } from './../confirmacion-editar/confirmacion-editar.component';
-import { Usuarios } from './../../../../interfaces/usuarios';
-import { ApiService } from './../../../../servicios/api.service';
+import { Usuarios } from '../../../../interfaces/usuarios/usuarios';
+import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Roles } from 'src/app/interfaces/roles';
+import { Roles } from 'src/app/interfaces/roles/roles';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsuariosEditar } from 'src/app/interfaces/usuarioeditar';
+import { UsuariosEditar } from 'src/app/interfaces/usuarios/usuarioeditar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

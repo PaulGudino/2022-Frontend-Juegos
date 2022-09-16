@@ -1,7 +1,7 @@
-import { ApiService } from './../../../servicios/api.service';
+import { Usuarios } from '../../../interfaces/usuarios/usuarios';
+import { ApiService } from '../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PuenteDatosService } from 'src/app/servicios/puente-datos.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
   selector: 'app-inicio',
@@ -10,7 +10,23 @@ import { PuenteDatosService } from 'src/app/servicios/puente-datos.service';
 })
 export class InicioComponent implements OnInit {
 
-  nombre: string = '';
+  usuarioget: Usuarios ={
+    id: 0,
+    cedula : '',
+    names : '',
+    surnames : '',
+    username : '',
+    email : '',
+    phone : '',
+    password : '',
+    sex : '',
+    address : '',
+    rol : '',
+    is_active : true,
+    created : '',
+    modified : '',
+    last_session : ''
+  }; 
   constructor(
     private api: ApiService,
     private puente: PuenteDatosService
@@ -19,6 +35,13 @@ export class InicioComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    this.obtenerUsuario();
   }
-
+  obtenerUsuario(){
+    const id = this.puente.getuser_id();
+    this.api.getUsuarioId(id).subscribe(
+      (data) => {
+        this.usuarioget = data;
+      })
+  }
 }

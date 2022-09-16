@@ -1,7 +1,7 @@
-import { Logout } from './../interfaces/logout';
+import { Logout } from '../../interfaces/auth/logout';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Login } from '../interfaces/login';
+import { Login } from '../../interfaces/auth/login';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { Login } from '../interfaces/login';
 export class AuthService {
 
   url = 'https://juegos.pythonanywhere.com/';
+  // url = 'http://localhost:8000/';
   constructor(private http: HttpClient) { }
 
   Login(login: Login){

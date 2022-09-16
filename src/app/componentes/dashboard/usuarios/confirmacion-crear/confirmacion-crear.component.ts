@@ -1,9 +1,9 @@
-import { MensajesErrorComponent } from './../mensajes-error/mensajes-error.component';
+import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
-import { UsuariosCrear } from 'src/app/interfaces/usuariocrear';
-import { ApiService } from './../../../../servicios/api.service';
+import { UsuariosCrear } from 'src/app/interfaces/usuarios/usuariocrear';
+import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

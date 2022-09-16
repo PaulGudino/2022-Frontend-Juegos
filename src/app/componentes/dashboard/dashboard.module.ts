@@ -13,8 +13,10 @@ import { VisualizarUsuariosComponent } from './usuarios/visualizar-usuarios/visu
 import { ConfirmacionCrearComponent } from './usuarios/confirmacion-crear/confirmacion-crear.component';
 import { ConfirmacionEditarComponent } from './usuarios/confirmacion-editar/confirmacion-editar.component';
 import { ConfirmacionEliminarComponent } from './usuarios/confirmacion-eliminar/confirmacion-eliminar.component';
-import { MensajesErrorComponent } from './usuarios/mensajes-error/mensajes-error.component';
+import { MensajesErrorComponent } from './mensajes-error/mensajes-error.component';
 import { RolesComponent } from './roles/roles.component';
+import { RolesCrearComponent } from './roles/roles-crear/roles-crear.component';
+import { RolesConfirmarCrearComponent } from './roles/roles-confirmar-crear/roles-confirmar-crear.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { RolesComponent } from './roles/roles.component';
     ConfirmacionEliminarComponent,
     MensajesErrorComponent,
     RolesComponent,
+    RolesCrearComponent,
+    RolesConfirmarCrearComponent,
   ],
   imports: [
     SharedModule,

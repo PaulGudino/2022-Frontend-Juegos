@@ -1,6 +1,6 @@
 import { ConfirmacionEliminarComponent } from './confirmacion-eliminar/confirmacion-eliminar.component';
-import { ApiService } from './../../../servicios/api.service';
-import { Usuarios } from './../../../interfaces/usuarios';
+import { ApiService } from '../../../servicios/usuarios/api.service';
+import { Usuarios } from '../../../interfaces/usuarios/usuarios';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';

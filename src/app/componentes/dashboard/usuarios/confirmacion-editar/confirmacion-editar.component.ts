@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA,MatDialog } from '@angular/material/dialog';
-import { ApiService } from './../../../../servicios/api.service';
+import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UsuariosEditar } from 'src/app/interfaces/usuarioeditar';
-import { MensajesErrorComponent } from './../mensajes-error/mensajes-error.component';
+import { UsuariosEditar } from 'src/app/interfaces/usuarios/usuarioeditar';
+import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
 
 @Component({
   selector: 'app-confirmacion-editar',

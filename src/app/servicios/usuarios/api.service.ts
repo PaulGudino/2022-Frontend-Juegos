@@ -1,11 +1,12 @@
-import { UsuariosCrear } from './../interfaces/usuariocrear';
-import { Usuarios } from './../interfaces/usuarios';
+import { UsuariosCrear } from '../../interfaces/usuarios/usuariocrear';
+import { Usuarios } from '../../interfaces/usuarios/usuarios';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Menu } from '../interfaces/menu';
-import { Roles } from '../interfaces/roles';
-import { UsuariosEditar } from '../interfaces/usuarioeditar';
+import { Menu } from '../../interfaces/menu';
+import { Roles } from '../../interfaces/roles/roles';
+import { UsuariosEditar } from '../../interfaces/usuarios/usuarioeditar';
+import { RolesCrear } from '../../interfaces/roles/rolescrear';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ import { UsuariosEditar } from '../interfaces/usuarioeditar';
 export class ApiService {
 
   url = 'https://juegos.pythonanywhere.com/';
+  // url = 'http://localhost:8000/';
+
   constructor(private http: HttpClient) { }
 
   getMenu():Observable<Menu[]>{
@@ -46,6 +49,7 @@ export class ApiService {
   getRoles():Observable<Roles[]>{
     return this.http.get<Roles[]>(this.url+'api/rol/');
   }
+
 
 
 

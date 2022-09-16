@@ -7,6 +7,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { CrearUsuariosComponent } from './usuarios/crear-usuarios/crear-usuarios.component';
 import { VisualizarUsuariosComponent } from './usuarios/visualizar-usuarios/visualizar-usuarios.component';
 import { RolesComponent } from './roles/roles.component';
+import { RolesCrearComponent } from './roles/roles-crear/roles-crear.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'usuarios/editar/:id', component: EditarUsuariosComponent},
     {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent},
     {path: 'roles', component: RolesComponent},
+    {path: 'roles/crear', component: RolesCrearComponent},
   ]},
 ];
 

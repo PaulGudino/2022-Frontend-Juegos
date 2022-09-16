@@ -1,11 +1,11 @@
-import { Roles } from 'src/app/interfaces/roles';
+import { Roles } from 'src/app/interfaces/roles/roles';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/servicios/api.service';
+import { ApiService } from 'src/app/servicios/usuarios/api.service';
 
 @Component({
   selector: 'app-roles',
@@ -48,10 +48,10 @@ export class RolesComponent implements OnInit {
     alert('Editar rol');
   }
   agregarRol(){
-    alert('Agregar rol');
+    this.router.navigate(['dashboard/roles/crear']);
   }
   visualizarRol(id:number){
-    alert('Visualizar rol');
+    alert('Permisos del rol');
   }
   eliminarRol(id:number){
     alert('Eliminar rol');

@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ApiService } from './../../../../servicios/api.service';
+import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UsuariosEditar } from 'src/app/interfaces/usuarioeditar';
+import { UsuariosEditar } from 'src/app/interfaces/usuarios/usuarioeditar';
 
 
 @Component({

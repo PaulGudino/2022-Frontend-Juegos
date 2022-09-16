@@ -1,7 +1,7 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from './../../../../servicios/api.service';
+import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
-import { Roles } from 'src/app/interfaces/roles';
+import { Roles } from 'src/app/interfaces/roles/roles';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmacionCrearComponent } from '../confirmacion-crear/confirmacion-crear.component';
