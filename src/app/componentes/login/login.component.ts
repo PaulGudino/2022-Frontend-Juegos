@@ -1,7 +1,11 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthInterceptor } from 'src/app/interceptores/auth.interceptor';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { PuenteDatosService } from 'src/app/servicios/puente-datos.service';
 
 @Component({
   selector: 'app-login',
@@ -13,17 +17,21 @@ export class LoginComponent implements OnInit {
   ocultar = true;
   loading = false;
 
+  
   form: FormGroup;
   constructor(
     private fb: FormBuilder, 
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private auth: AuthService,
+    private puente: PuenteDatosService
     ){ 
 
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+
   }
 
   ngOnInit(): void {
@@ -32,16 +40,21 @@ export class LoginComponent implements OnInit {
   ingresar(){
     const username = this.form.value.username;
     const password = this.form.value.password;
-    if(username == 'admin' && password == 'admin'){
-      this.fakeloadin();
-    } else {
-      this.error();
-      this.form.reset();
-    }
+    this.auth.Login({username, password}).subscribe(
+      (res: any) => {
+        AuthInterceptor.accessToken = res.token;
+        this.puente.setuser_id(res.user.id);
+        this.puente.setuser_permisos(res.permisos);
+        this.fakeloadin();
+      }, error => {
+        this.error();
+        this.form.reset();
+      }
+    );
   }
 
   error(){
-    this.snackBar.open('Usuario o contraseña ingresado son incorrectos', '', {
+    this.snackBar.open('Usuario o contraseña ingresados son incorrectos', '', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'

@@ -1,0 +1,70 @@
+<mat-toolbar>
+    <span>{{Titulo}}</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+<div class="container">
+    <button mat-raised-button (click)="agregarRol()">Agregar Rol</button>
+</div>
+
+<div class="container mat-elevation-z8">
+    <mat-form-field appearance="standard">
+        <mat-label class="buscador">Buscar</mat-label>
+        <input class="buscador" matInput (keyup)="aplicarFiltro($event)" placeholder="Ej. Administrador" autocomplete="off" #input>
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="dataSource" matSort>
+    
+        <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.id}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Nombre">
+            <th  mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Descripción">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.description}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+            <td mat-cell *matCellDef="let fila">
+                <div *ngIf="fila.is_active ; else inactivo">
+                    <mat-icon class="color_verde">circle</mat-icon>
+                </div>
+                <ng-template #inactivo>
+                    <div>
+                        <mat-icon color="warn">circle</mat-icon>
+                    </div>
+                </ng-template>
+            </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Acciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let fila">
+                <button mat-icon-button (click)="visualizarRol(fila.id)" color="primary" matTooltip="Visualizar">
+                <mat-icon>remove_red_eye</mat-icon>
+                </button>
+                <button mat-icon-button (click)="editarRol(fila.id)" color="primary" matTooltip="Editar">
+                <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="eliminarRol(fila.id)" color="warn" matTooltip="Eliminar">
+                <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"
+        </td>
+        </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users">
+    </mat-paginator>
+</div>

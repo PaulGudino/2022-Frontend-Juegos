@@ -12,7 +12,7 @@ import { UsuariosEditar } from '../interfaces/usuarioeditar';
 })
 export class ApiService {
 
-  url = 'http://localhost:8000/';
+  url = 'https://juegos.pythonanywhere.com/';
   constructor(private http: HttpClient) { }
 
   getMenu():Observable<Menu[]>{

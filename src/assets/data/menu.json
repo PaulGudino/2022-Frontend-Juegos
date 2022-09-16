@@ -8,5 +8,10 @@
         "nombre": "Usuarios",
         "icono": "person",
         "ruta": "/dashboard/usuarios"
+    },
+    {
+        "nombre": "Roles",
+        "icono": "view_timeline",
+        "ruta": "/dashboard/roles"
     }
 ]

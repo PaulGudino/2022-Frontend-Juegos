@@ -6,7 +6,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -25,7 +24,6 @@ export class UsuariosComponent implements OnInit {
 
   constructor(
     private api: ApiService, 
-    private snackBar: MatSnackBar, 
     private router: Router,
     public dialog: MatDialog
     ) { }

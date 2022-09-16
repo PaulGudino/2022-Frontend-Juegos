@@ -1,4 +1,7 @@
+import { ApiService } from './../../../servicios/api.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PuenteDatosService } from 'src/app/servicios/puente-datos.service';
 
 @Component({
   selector: 'app-inicio',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  nombre: string = '';
+  constructor(
+    private api: ApiService,
+    private puente: PuenteDatosService
+    ) {
+      
+     }
 
   ngOnInit(): void {
   }

@@ -14,6 +14,7 @@ import { ConfirmacionCrearComponent } from './usuarios/confirmacion-crear/confir
 import { ConfirmacionEditarComponent } from './usuarios/confirmacion-editar/confirmacion-editar.component';
 import { ConfirmacionEliminarComponent } from './usuarios/confirmacion-eliminar/confirmacion-eliminar.component';
 import { MensajesErrorComponent } from './usuarios/mensajes-error/mensajes-error.component';
+import { RolesComponent } from './roles/roles.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { MensajesErrorComponent } from './usuarios/mensajes-error/mensajes-error
     ConfirmacionEditarComponent,
     ConfirmacionEliminarComponent,
     MensajesErrorComponent,
+    RolesComponent,
   ],
   imports: [
     SharedModule,

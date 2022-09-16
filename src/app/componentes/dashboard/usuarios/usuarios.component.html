@@ -9,7 +9,7 @@
 <div class="container mat-elevation-z8">
     <mat-form-field appearance="standard">
         <mat-label class="buscador">Buscar</mat-label>
-        <input class="buscador" matInput (keyup)="aplicarFiltro($event)" placeholder="Ej. administrador" autocomplete="off" #input>
+        <input class="buscador" matInput (keyup)="aplicarFiltro($event)" placeholder="Ej. Administrador" autocomplete="off" #input>
     </mat-form-field>
     
     <table mat-table [dataSource]="dataSource" matSort>
