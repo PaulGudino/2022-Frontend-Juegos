@@ -1,3 +1,4 @@
+import { RolesConfirmarEliminarComponent } from './roles-confirmar-eliminar/roles-confirmar-eliminar.component';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -15,7 +16,7 @@ import { ApiService } from 'src/app/servicios/usuarios/api.service';
 export class RolesComponent implements OnInit {
 
   Titulo = 'Roles';
-  displayedColumns: string[] = ['ID', 'Nombre', 'Descripción', 'Estado', 'Acciones']
+  displayedColumns: string[] = ['id', 'name', 'description', 'is_active', 'Acciones']
   dataSource !: MatTableDataSource<Roles>;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -45,7 +46,7 @@ export class RolesComponent implements OnInit {
     });
   }
   editarRol(id:number){
-    alert('Editar rol');
+    this.router.navigate(['dashboard/roles/editar', id]);
   }
   agregarRol(){
     this.router.navigate(['dashboard/roles/crear']);
@@ -54,6 +55,14 @@ export class RolesComponent implements OnInit {
     alert('Permisos del rol');
   }
   eliminarRol(id:number){
-    alert('Eliminar rol');
+    const dialogref = this.dialog.open(RolesConfirmarEliminarComponent,{
+      width:'50%',
+      data: id
+    });
+    dialogref.afterClosed().subscribe(res =>{
+      console.log(res)
+      this.cargarRoles();
+    })
   }
+  
 }

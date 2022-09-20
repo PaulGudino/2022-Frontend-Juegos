@@ -1,7 +1,7 @@
 import { Usuarios } from '../../../interfaces/usuarios/usuarios';
 import { ApiService } from '../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
-import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
+// import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
   selector: 'app-inicio',
@@ -29,7 +29,7 @@ export class InicioComponent implements OnInit {
   }; 
   constructor(
     private api: ApiService,
-    private puente: PuenteDatosService
+    // private puente: PuenteDatosService
     ) {
       
      }
@@ -38,10 +38,16 @@ export class InicioComponent implements OnInit {
     this.obtenerUsuario();
   }
   obtenerUsuario(){
-    const id = this.puente.getuser_id();
-    this.api.getUsuarioId(id).subscribe(
-      (data) => {
-        this.usuarioget = data;
-      })
+    // const id = this.puente.getuser_id();
+    const id = localStorage.getItem('user_id');
+    // JSON.parse(); para convetir a objeto lo del localstorage
+    if (id) {
+      this.api.getUsuarioId(Number(id)).subscribe(
+        res => {
+          this.usuarioget = res;
+        },
+        err => console.log(err)
+      );
+    }
   }
 }

@@ -4,7 +4,7 @@ import { ApiService } from '../../../servicios/usuarios/api.service';
 import { Router } from '@angular/router';
 import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
-
+import { AuthInterceptor } from 'src/app/interceptores/auth.interceptor';
 
 @Component({
   selector: 'app-menu',
@@ -35,13 +35,17 @@ export class MenuComponent implements OnInit {
     });
   }
   logout(){
-    const id = this.puente.getuser_id();
-    this.auth.Logout({id}).subscribe(
-      (res: any) => {
-        this.router.navigate(['/login']);
-      }, error => {
-        console.log(error);
-      }
-    );
+    const id_salir = localStorage.getItem('user_id');
+    const id = Number(id_salir);
+    if (id) {
+      this.auth.Logout({id}).subscribe(
+        res => {
+          this.router.navigate(['/login']);
+          AuthInterceptor.accessToken = '';
+          localStorage.clear();
+        },
+        err => console.log(err)
+      );
+    }
   }
 }

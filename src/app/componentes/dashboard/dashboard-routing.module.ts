@@ -1,3 +1,4 @@
+import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
 import { EditarUsuariosComponent } from './usuarios/editar-usuarios/editar-usuarios.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NgModule } from '@angular/core';
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent},
     {path: 'roles', component: RolesComponent},
     {path: 'roles/crear', component: RolesCrearComponent},
+    {path: 'roles/editar/:id', component: RolesEditarComponent},
   ]},
 ];
 

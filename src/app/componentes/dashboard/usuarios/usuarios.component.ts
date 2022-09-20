@@ -17,8 +17,10 @@ import { MatDialog } from '@angular/material/dialog';
 export class UsuariosComponent implements OnInit {
 
   Titulo = 'Usuarios';
-  displayedColumns: string[] = ['ID', 'Nombres', 'Apellidos', 'Correo', 'Teléfono', 'Sexo', 'Rol', 'Estado', 'Acciones']
+  displayedColumns: string[] = ['cedula', 'names', 'surnames', 'email', 'phone', 'sex', 'rol', 'is_active', 'Acciones']
   dataSource !: MatTableDataSource<Usuarios>;
+  user_id = Number(localStorage.getItem('user_id'));
+
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 

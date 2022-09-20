@@ -1,3 +1,4 @@
+import { UsuariosFiltradobyRol } from './../../interfaces/usuarios/usuariofilterbyRol';
 import { UsuariosCrear } from '../../interfaces/usuarios/usuariocrear';
 import { Usuarios } from '../../interfaces/usuarios/usuarios';
 import { Injectable } from '@angular/core';
@@ -7,16 +8,16 @@ import { Menu } from '../../interfaces/menu';
 import { Roles } from '../../interfaces/roles/roles';
 import { UsuariosEditar } from '../../interfaces/usuarios/usuarioeditar';
 import { RolesCrear } from '../../interfaces/roles/rolescrear';
+import { PuenteDatosService } from '../comunicacio_componentes/puente-datos.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  url = 'https://juegos.pythonanywhere.com/';
-  // url = 'http://localhost:8000/';
+  url = this.puente.geturl();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private puente: PuenteDatosService) { }
 
   getMenu():Observable<Menu[]>{
     return this.http.get<Menu[]>('/assets/data/menu.json');
@@ -49,9 +50,9 @@ export class ApiService {
   getRoles():Observable<Roles[]>{
     return this.http.get<Roles[]>(this.url+'api/rol/');
   }
-
-
-
+  getfilteUsuariobyRol(id:number):Observable<UsuariosFiltradobyRol[]>{
+    return this.http.get<UsuariosFiltradobyRol[]>(this.url+'api/userfilter/?rol='+id);
+  }
 
 
 

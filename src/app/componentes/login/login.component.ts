@@ -44,9 +44,12 @@ export class LoginComponent implements OnInit {
     const password = this.form.value.password;
     this.auth.Login({username, password}).subscribe(
       (res: any) => {
-        AuthInterceptor.accessToken = res.token;
-        this.puente.setuser_id(res.user.id);
-        this.puente.setuser_permisos(res.permisos);
+        localStorage.setItem('Saludo', 'Bienvenido');
+        AuthInterceptor.accessToken = res.token;     
+        // this.puente.setuser_id(res.user.id);
+        localStorage.setItem('user_id', res.user.id);
+        localStorage.setItem('permisos', JSON.stringify(res.permisos));
+        // this.puente.setuser_permisos(res.permisos);
         this.fakeloadin();
       }, res => {
         console.log(res);

@@ -17,6 +17,9 @@ import { MensajesErrorComponent } from './mensajes-error/mensajes-error.componen
 import { RolesComponent } from './roles/roles.component';
 import { RolesCrearComponent } from './roles/roles-crear/roles-crear.component';
 import { RolesConfirmarCrearComponent } from './roles/roles-confirmar-crear/roles-confirmar-crear.component';
+import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
+import { RolesConfirmarEditarComponent } from './roles/roles-confirmar-editar/roles-confirmar-editar.component';
+import { RolesConfirmarEliminarComponent } from './roles/roles-confirmar-eliminar/roles-confirmar-eliminar.component';
 
 
 @NgModule({
@@ -35,6 +38,9 @@ import { RolesConfirmarCrearComponent } from './roles/roles-confirmar-crear/role
     RolesComponent,
     RolesCrearComponent,
     RolesConfirmarCrearComponent,
+    RolesEditarComponent,
+    RolesConfirmarEditarComponent,
+    RolesConfirmarEliminarComponent,
   ],
   imports: [
     SharedModule,

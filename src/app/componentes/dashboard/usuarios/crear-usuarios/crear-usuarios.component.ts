@@ -15,7 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CrearUsuariosComponent implements OnInit {
 
   roles: Roles[] = [];
-  form: FormGroup
+  form: FormGroup;
+  ocultar = true;
   constructor(
     private api: ApiService, 
     private router: Router, 

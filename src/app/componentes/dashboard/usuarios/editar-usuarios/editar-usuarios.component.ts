@@ -3,11 +3,11 @@ import { Usuarios } from '../../../../interfaces/usuarios/usuarios';
 import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Roles } from 'src/app/interfaces/roles/roles';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuariosEditar } from 'src/app/interfaces/usuarios/usuarioeditar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Roles } from 'src/app/interfaces/roles/roles';
 
 @Component({
   selector: 'app-editar-usuarios',
