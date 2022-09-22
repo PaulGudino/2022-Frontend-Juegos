@@ -21,6 +21,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -43,7 +44,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSortModule,
     MatSelectModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
   ],
   exports: [
     CommonModule,
@@ -64,7 +66,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSortModule,
     MatSelectModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
   ]
 })
 export class SharedModule { }

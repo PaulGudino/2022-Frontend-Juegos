@@ -51,8 +51,8 @@ export class RolesComponent implements OnInit {
   agregarRol(){
     this.router.navigate(['dashboard/roles/crear']);
   }
-  visualizarRol(id:number){
-    alert('Permisos del rol');
+  permisosRol(id:number){
+    this.router.navigate(['dashboard/roles/permisos', id]);
   }
   eliminarRol(id:number){
     const dialogref = this.dialog.open(RolesConfirmarEliminarComponent,{

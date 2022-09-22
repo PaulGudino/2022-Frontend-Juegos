@@ -20,6 +20,8 @@ import { RolesConfirmarCrearComponent } from './roles/roles-confirmar-crear/role
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
 import { RolesConfirmarEditarComponent } from './roles/roles-confirmar-editar/roles-confirmar-editar.component';
 import { RolesConfirmarEliminarComponent } from './roles/roles-confirmar-eliminar/roles-confirmar-eliminar.component';
+import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
+import { PermisosConfirmarComponent } from './permisos/permisos-confirmar/permisos-confirmar.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { RolesConfirmarEliminarComponent } from './roles/roles-confirmar-elimina
     RolesEditarComponent,
     RolesConfirmarEditarComponent,
     RolesConfirmarEliminarComponent,
+    PermisosRolesComponent,
+    PermisosConfirmarComponent,
   ],
   imports: [
     SharedModule,

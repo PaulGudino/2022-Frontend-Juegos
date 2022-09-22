@@ -1,3 +1,4 @@
+import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
 import { EditarUsuariosComponent } from './usuarios/editar-usuarios/editar-usuarios.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path: 'roles', component: RolesComponent},
     {path: 'roles/crear', component: RolesCrearComponent},
     {path: 'roles/editar/:id', component: RolesEditarComponent},
+    {path: 'roles/permisos/:id', component: PermisosRolesComponent},
   ]},
 ];
 

@@ -1,0 +1,48 @@
+<mat-toolbar>
+    <span>Rol: {{rol}}</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+<mat-card class="card">
+    <div class="parent">
+        <div class="div1">
+            <div class="container_vistas">
+                <h1>Vistas Disponibles</h1>
+                <h2>Usuarios</h2>
+                <h2>Roles</h2>
+            </div>     
+        </div>
+        <div class="div2"> 
+            <div class="container">
+                <div> <label class="label">Crear</label></div>
+                <div> <label class="label">Visualizar</label></div>
+                <div> <label class="label">Editar</label></div>
+                <div> <label class="label">Eliminar</label></div>
+            </div>
+        </div>
+        <div class="div3"> 
+            <div>
+                <form [formGroup]="form" novalidate>
+                    <div class="container">
+                        <div *ngFor="let permiso of Lista_permisos; let i=index">
+                            <label class="label espaciado">
+                                <input type="checkbox" id="{{permiso.id}}" (change)="onCheckboxChange($event)" [value]="permiso.id" />{{permiso.name}}
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container_botones">
+        <button (click)="regresarRoles()" mat-raised-button color="warn">
+            <mat-icon>close</mat-icon>
+            Cancelar
+        </button>
+        
+        <button mat-raised-button color="primary" (click)="guardarPermisos()">
+            <mat-icon>done</mat-icon>
+            Guardar
+        </button>
+    </div>
+</mat-card>
