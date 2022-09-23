@@ -24,9 +24,19 @@
                 <form [formGroup]="form" novalidate>
                     <div class="container">
                         <div *ngFor="let permiso of Lista_permisos; let i=index">
-                            <label class="label espaciado">
-                                <input type="checkbox" id="{{permiso.id}}" (change)="onCheckboxChange($event)" [value]="permiso.id" />{{permiso.name}}
-                            </label>
+                            <!-- <label class="label espaciado container_checkbox">
+                                <input type="checkbox" id="{{permiso.id}}" (change)="onCheckboxChange($event)" [value]="permiso.id" />
+                                <div>
+                                    <label for="{{permiso.id}}"></label>
+                                  </div>
+                            </label> -->
+                                <div class="espaciado">
+                                  <div class="button r" id="button-3">
+                                    <input class="checkbox" type="checkbox" id="{{permiso.id}}" (change)="onCheckboxChange($event)" [value]="permiso.id" />
+                                    <div class="knobs"></div>
+                                    <div class="layer"></div>
+                                  </div>
+                                </div>
                         </div>
                     </div>
                 </form>
