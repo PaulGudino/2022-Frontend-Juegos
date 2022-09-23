@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
@@ -69,8 +70,8 @@ export class UsuariosComponent implements OnInit {
     this.router.navigate(['dashboard/usuarios/visualizar', id]);
   }
 
-  eliminarUsuario(id:number):void{
-    this.Permisoeliminar();
+  async eliminarUsuario(id:number){
+    await this.Permisoeliminar();
     if(this.permisos.length > 0){
       const dialogref = this.dialog.open(ConfirmacionEliminarComponent,{
         width:'50%',
@@ -87,10 +88,7 @@ export class UsuariosComponent implements OnInit {
   async Permisoeliminar(){
     let rol_id = Number(localStorage.getItem('rol_id'));
     let permiso_id = 4;
-    (await this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id)).subscribe(
-      async (data: any) => {
-        this.permisos = data;
-      }
-    );
+    const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
+    this.permisos = promesa;
   }
 }

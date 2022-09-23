@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 
@@ -18,32 +18,19 @@ export class UsuarioverGuard implements CanActivate {
     private snackbar : SnackbarService,
   ) { }
   
-  canActivate(
+  async canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-      this.VistaPermitida();
-      if (this.permitido) {
+    state: RouterStateSnapshot): Promise<boolean> {
+      
+      let rol = Number(localStorage.getItem('rol_id'));
+      const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol, this.Permiso_id));
+      if (promesa.length > 0) {
         return true;
-      }else{
-        this.snackbar.mensaje('No tienes permisos para ver usuarios');
-        this.router.navigate(['/dashboard/usuarios']);
+  
+      } else {
+        this.snackbar.mensaje('No tienes permisos para crear usuarios');
         return false;
       }
-  }
-  
-  VistaPermitida(){
-    let rol = Number(localStorage.getItem('rol_id'));
-    this.permisos_api.getPermisosbyRolandPermission(rol, this.Permiso_id).subscribe(
-      async (data) => {
-        if (data.length > 0) {
-          this.permitido = true;
-          console.log('Permitido');
-        } else {
-          this.permitido = false;
-        }
-      }
-    );
-  }
+    }
 
 }

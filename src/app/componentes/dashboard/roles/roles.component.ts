@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/servicios/usuarios/api.service';
 import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-roles',
@@ -60,8 +61,8 @@ export class RolesComponent implements OnInit {
   permisosRol(id:number){
     this.router.navigate(['dashboard/roles/permisos', id]);
   }
-  eliminarRol(id:number){
-    this.Permisoeliminar();
+  async eliminarRol(id:number){
+    await this.Permisoeliminar();
     if(this.permisos.length > 0){
       const dialogref = this.dialog.open(RolesConfirmarEliminarComponent,{
         width:'50%',
@@ -78,10 +79,7 @@ export class RolesComponent implements OnInit {
   async Permisoeliminar(){
     let rol_id = Number(localStorage.getItem('rol_id'));
     let permiso_id = 8;
-    (await this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id)).subscribe(
-      async (data: any) => {
-        this.permisos = data;
-      }
-    );
+    const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
+    this.permisos = promesa;
   }
 }
