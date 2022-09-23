@@ -11,17 +11,26 @@ import { VisualizarUsuariosComponent } from './usuarios/visualizar-usuarios/visu
 import { RolesComponent } from './roles/roles.component';
 import { RolesCrearComponent } from './roles/roles-crear/roles-crear.component';
 
+//Guardianes
+
+import { UsuarioscrearGuard } from 'src/app/guardianes/usuarios/crear/usuarioscrear.guard';
+import { UsuarioeditarGuard } from './../../guardianes/usuarios/editar/usuarioeditar.guard';
+import { UsuarioverGuard } from './../../guardianes/usuarios/ver/usuariover.guard';
+import { RolesverGuard } from './../../guardianes/roles/ver/rolesver.guard';
+import { RoleseditarGuard } from './../../guardianes/roles/editar/roleseditar.guard';
+import { RolescrearGuard } from './../../guardianes/roles/crear/rolescrear.guard';
+
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: '', component: InicioComponent},
     {path: 'usuarios', component: UsuariosComponent},
-    {path: 'usuarios/crear', component: CrearUsuariosComponent},
-    {path: 'usuarios/editar/:id', component: EditarUsuariosComponent},
-    {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent},
+    {path: 'usuarios/crear', component: CrearUsuariosComponent, canActivate: [UsuarioscrearGuard]},
+    {path: 'usuarios/editar/:id', component: EditarUsuariosComponent, canActivate: [UsuarioeditarGuard]},
+    {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent, canActivate: [UsuarioverGuard]},
     {path: 'roles', component: RolesComponent},
-    {path: 'roles/crear', component: RolesCrearComponent},
-    {path: 'roles/editar/:id', component: RolesEditarComponent},
-    {path: 'roles/permisos/:id', component: PermisosRolesComponent},
+    {path: 'roles/crear', component: RolesCrearComponent, canActivate: [RolescrearGuard]},
+    {path: 'roles/editar/:id', component: RolesEditarComponent, canActivate: [RoleseditarGuard]},
+    {path: 'roles/permisos/:id', component: PermisosRolesComponent, canActivate: [RolesverGuard]},
   ]},
 ];
 

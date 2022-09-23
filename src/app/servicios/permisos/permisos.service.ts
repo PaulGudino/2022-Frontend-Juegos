@@ -30,4 +30,7 @@ export class PermisosService {
   deletePermissionRol(id:number){
     return this.http.delete(this.url+'api/rolpermission/'+id);
   }
+  getPermisosbyRolandPermission(id:number, id2:number):Observable<PermisosbyRol[]>{
+    return this.http.get<PermisosbyRol[]>(this.url+'api/rolpermissionfilter/?rol='+id+'&permission='+id2);
+  }
 }

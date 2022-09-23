@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
         AuthInterceptor.accessToken = res.token;     
         // this.puente.setuser_id(res.user.id);
         localStorage.setItem('user_id', res.user.id);
-        localStorage.setItem('permisos', JSON.stringify(res.permisos));
+        localStorage.setItem('rol_id', res.rol);
+        localStorage.setItem('token', res.token);
         // this.puente.setuser_permisos(res.permisos);
         this.fakeloadin();
       }, res => {

@@ -8,6 +8,8 @@ import { ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
+import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -20,6 +22,7 @@ export class UsuariosComponent implements OnInit {
   displayedColumns: string[] = ['cedula', 'names', 'surnames', 'email', 'phone', 'sex', 'rol', 'is_active', 'Acciones']
   dataSource !: MatTableDataSource<Usuarios>;
   user_id = Number(localStorage.getItem('user_id'));
+  permisos:any = [];
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -27,7 +30,10 @@ export class UsuariosComponent implements OnInit {
   constructor(
     private api: ApiService, 
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private permisos_api: PermisosService,
+    private snackbar: SnackbarService
+
     ) { }
 
   ngOnInit(): void {
@@ -64,13 +70,27 @@ export class UsuariosComponent implements OnInit {
   }
 
   eliminarUsuario(id:number):void{
-    const dialogref = this.dialog.open(ConfirmacionEliminarComponent,{
-      width:'50%',
-      data: id
-    });
-    dialogref.afterClosed().subscribe(res =>{
-      console.log(res)
-      this.cargarUsuarios();
-    })
+    this.Permisoeliminar();
+    if(this.permisos.length > 0){
+      const dialogref = this.dialog.open(ConfirmacionEliminarComponent,{
+        width:'50%',
+        data: id
+      });
+      dialogref.afterClosed().subscribe(res =>{
+        console.log(res)
+        this.cargarUsuarios();
+      })
+    }else{
+      this.snackbar.mensaje('No tiene permisos para eliminar usuarios');
+    }
+  }
+  async Permisoeliminar(){
+    let rol_id = Number(localStorage.getItem('rol_id'));
+    let permiso_id = 4;
+    (await this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id)).subscribe(
+      async (data: any) => {
+        this.permisos = data;
+      }
+    );
   }
 }

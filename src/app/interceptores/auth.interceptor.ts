@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(catchError((err: HttpErrorResponse) =>{
             if (err.status === 401 && !this.refresh) {
                 this.refresh = true;
-                return this.http.post('http://localhost:8000/token/refresh/', {}, {withCredentials: true}).pipe(
+                return this.http.post('https://juegos.pythonanywhere.com/token/refresh/', {}, {withCredentials: true}).pipe(
                     switchMap((data: any) => {
                         AuthInterceptor.accessToken = data.accessToken;
                         const req = request.clone({
