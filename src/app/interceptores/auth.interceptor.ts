@@ -10,21 +10,26 @@ import {
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    static accessToken = '';
+    static accessToken = localStorage.getItem('token');
     refresh = false;
 
     constructor(private http: HttpClient) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const req = request.clone({
-            setHeaders: {
-                Authorization: `Bearer ${AuthInterceptor.accessToken}`
-            }
-        });
+
+        let req = request;
+        
+        if (AuthInterceptor.accessToken) {
+            req = request.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${AuthInterceptor.accessToken}`
+                }
+            });
+        }
         return next.handle(req).pipe(catchError((err: HttpErrorResponse) =>{
             if (err.status === 401 && !this.refresh) {
                 this.refresh = true;
-                return this.http.post('http://localhost:8000/token/refresh/', {}, {withCredentials: true}).pipe(
+                return this.http.post('https://juegos.pythonanywhere.com/token/refresh/', {}, {withCredentials: true}).pipe(
                     switchMap((data: any) => {
                         AuthInterceptor.accessToken = data.accessToken;
                         const req = request.clone({
