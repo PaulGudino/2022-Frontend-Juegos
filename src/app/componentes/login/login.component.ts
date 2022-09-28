@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthInterceptor } from 'src/app/interceptores/auth.interceptor';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
-import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { MensajesErrorComponent } from '../dashboard/mensajes-error/mensajes-error.component';
 
 @Component({
@@ -25,7 +24,6 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private auth: AuthService,
-    private puente: PuenteDatosService,
     public dialog: MatDialog,
     ){ 
 
@@ -51,8 +49,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.token);
         // this.puente.setuser_permisos(res.permisos);
         this.fakeloadin();
-      }, res => {
-        console.log(res);
+      }, err => {
+        console.log(err);
         this.error();
         this.form.reset();
       }

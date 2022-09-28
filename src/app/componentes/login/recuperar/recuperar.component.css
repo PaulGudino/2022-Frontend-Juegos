@@ -1,30 +1,21 @@
 .body{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     height: 100%;
     align-items: center;
+    
 }
-
-.login{
+.ancho{
+    width: 100%;
+}
+.recuperar{
     width: 100%;
     max-width: 350px;
     text-align: center;
 }
 
-.login img{
+.recuperar img{
     width: 50%;
-}
-
-.ancho{
-    width: 100%;
-}
-
-.boton{
-    height: 50px;
-}
-
-.spinner{
-    margin: 0 auto;
 }
 a{
     font-size: 1rem;

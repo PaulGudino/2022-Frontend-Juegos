@@ -7,15 +7,19 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptores/auth.interceptor';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 import { LoginComponent } from './componentes/login/login.component';
+import { RecuperarComponent } from './componentes/login/recuperar/recuperar.component';
+import { ResetComponent } from './componentes/login/reset/reset/reset.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RecuperarComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,8 @@ import { LoginComponent } from './componentes/login/login.component';
       provide: HTTP_INTERCEPTORS, 
       useClass: AuthInterceptor, 
       multi: true
-    }
+    },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
