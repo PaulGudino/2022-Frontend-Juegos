@@ -1,7 +1,7 @@
 import { Usuarios } from '../../../interfaces/usuarios/usuarios';
 import { ApiService } from '../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
-// import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -29,7 +29,7 @@ export class InicioComponent implements OnInit {
   }; 
   constructor(
     private api: ApiService,
-    // private puente: PuenteDatosService
+    private router: Router
     ) {
       
      }
@@ -49,5 +49,8 @@ export class InicioComponent implements OnInit {
         err => console.log(err)
       );
     }
+  }
+  cambiarContrasenia(){
+    this.router.navigate(['/dashboard/cambiar-contraseña']);
   }
 }

@@ -50,7 +50,11 @@ export class ConfirmacionEditarComponent implements OnInit {
         this.exito();
       },
       error: (res)=>{
-        console.log(res.error)
+        for(let message in res.error){
+          this.mensaje_error_lista.push(res.error[message])
+        }
+        this.mensajes_errores(this.mensaje_error_lista)
+        this.mensaje_error_lista=[];
       } 
     });
   }

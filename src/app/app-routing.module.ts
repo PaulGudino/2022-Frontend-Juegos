@@ -9,7 +9,7 @@ import { ResetComponent } from './componentes/login/reset/reset/reset.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'recuperar', component: RecuperarComponent },
-  { path: 'reset-contraseña', component: ResetComponent },
+  { path: 'reset-contraseña', component: ResetComponent },  
   { path: 'dashboard', loadChildren: () => import('./componentes/dashboard/dashboard.module').then(m => m.DashboardModule), 
   canActivate: [InicioGuard] },
   { path: '**', redirectTo: 'login' }

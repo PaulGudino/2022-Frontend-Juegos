@@ -22,6 +22,8 @@ import { RolesConfirmarEditarComponent } from './roles/roles-confirmar-editar/ro
 import { RolesConfirmarEliminarComponent } from './roles/roles-confirmar-eliminar/roles-confirmar-eliminar.component';
 import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
 import { PermisosConfirmarComponent } from './permisos/permisos-confirmar/permisos-confirmar.component';
+import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
+import { ConfirmarCambiarContraseniaComponent } from './inicio/confirmar-cambiar-Contrasenia/confirmar-cambiar-contrasenia/confirmar-cambiar-contrasenia.component';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { PermisosConfirmarComponent } from './permisos/permisos-confirmar/permis
     RolesConfirmarEliminarComponent,
     PermisosRolesComponent,
     PermisosConfirmarComponent,
+    CambiarContraseniaComponent,
+    ConfirmarCambiarContraseniaComponent,
   ],
   imports: [
     SharedModule,

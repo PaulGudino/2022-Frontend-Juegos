@@ -19,10 +19,13 @@ import { UsuarioverGuard } from './../../guardianes/usuarios/ver/usuariover.guar
 import { RolesverGuard } from './../../guardianes/roles/ver/rolesver.guard';
 import { RoleseditarGuard } from './../../guardianes/roles/editar/roleseditar.guard';
 import { RolescrearGuard } from './../../guardianes/roles/crear/rolescrear.guard';
+import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
+
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: '', component: InicioComponent},
+    { path: 'cambiar-contraseña', component: CambiarContraseniaComponent },
     {path: 'usuarios', component: UsuariosComponent},
     {path: 'usuarios/crear', component: CrearUsuariosComponent, canActivate: [UsuarioscrearGuard]},
     {path: 'usuarios/editar/:id', component: EditarUsuariosComponent, canActivate: [UsuarioeditarGuard]},

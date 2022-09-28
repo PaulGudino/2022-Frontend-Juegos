@@ -17,7 +17,7 @@
         <button class="ancho boton" (click)="ingresar()" mat-raised-button color="primary" [disabled]="form.invalid">Ingresar</button>
         </form>
         <br>
-        <div class="ancho">
+        <div *ngIf="!loading" class="ancho">
             <a routerLink="/recuperar">Olvidaste tu contraseña ?</a>
         </div>
     </div>

@@ -1,3 +1,4 @@
+import { CambiarContraseña } from './../../interfaces/usuarios/cambiarContraseña';
 import { UsuariosFiltradobyRol } from './../../interfaces/usuarios/usuariofilterbyRol';
 import { UsuariosCrear } from '../../interfaces/usuarios/usuariocrear';
 import { Usuarios } from '../../interfaces/usuarios/usuarios';
@@ -7,7 +8,6 @@ import { Observable } from 'rxjs';
 import { Menu } from '../../interfaces/menu';
 import { Roles } from '../../interfaces/roles/roles';
 import { UsuariosEditar } from '../../interfaces/usuarios/usuarioeditar';
-import { RolesCrear } from '../../interfaces/roles/rolescrear';
 import { PuenteDatosService } from '../comunicacio_componentes/puente-datos.service';
 
 @Injectable({
@@ -53,14 +53,9 @@ export class ApiService {
   getfilteUsuariobyRol(id:number):Observable<UsuariosFiltradobyRol[]>{
     return this.http.get<UsuariosFiltradobyRol[]>(this.url+'api/userfilter/?rol='+id);
   }
-
-
-
-
-
-
-
-
+  postCambiarContraseña(id:number, cambio: CambiarContraseña){
+    return this.http.post(this.url+'api/user/'+id+'/change_password/', cambio);
+  }
 
 
 

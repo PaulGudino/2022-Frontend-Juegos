@@ -44,7 +44,6 @@ export class ResetComponent implements OnInit {
         this.router.navigate(['login']);
       }
       , err => {
-        console.log(err.error)
         for(let message in err.error){
           this.mensaje_error_lista.push(err.error[message])
         }
