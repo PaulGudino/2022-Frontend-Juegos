@@ -4,11 +4,11 @@
         <form *ngIf="!loading" [formGroup]="form">
             <img src="./assets/img/user.png" alt="user.png">
         <h2>Iniciar Sesión</h2>
-        <mat-form-field class="ancho" appearance="fill">
+        <mat-form-field class="ancho" >
             <mat-label>Usuario</mat-label>
             <input matInput autocomplete="off" formControlName="username">
         </mat-form-field>
-        <mat-form-field class = "ancho" appearance="fill">
+        <mat-form-field class = "ancho" >
             <mat-label>Contaseña</mat-label>
             <input matInput placeholder="Contraseña" autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
                 <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>

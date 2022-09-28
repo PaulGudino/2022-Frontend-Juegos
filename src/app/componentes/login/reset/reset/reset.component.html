@@ -3,17 +3,17 @@
         <form [formGroup]="form">
             <img src="./assets/img/candado.png" alt="promo.png">
         <h2>Resetear Contraseña</h2>
-        <mat-form-field class="ancho" appearance="fill">
+        <mat-form-field class="ancho">
             <mat-label>Email</mat-label>
             <input matInput autocomplete="off" formControlName="email">
         </mat-form-field>
-        <mat-form-field class="ancho" appearance="fill">
+        <mat-form-field class="ancho" >
             <mat-label>Código</mat-label>
             <input matInput autocomplete="off" onkeypress='return event.charCode >= 48 && event.charCode <= 57' formControlName="code">
         </mat-form-field>
-        <mat-form-field class = "ancho" appearance="fill">
-            <mat-label>Contaseña</mat-label>
-            <input matInput placeholder="Contraseña" minlength="8" autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
+        <mat-form-field class = "ancho" >
+            <mat-label>Nueva Contraseña</mat-label>
+            <input matInput placeholder="Nueva Contraseña" minlength="8" autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
                 <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
         </mat-form-field>
         <br>
