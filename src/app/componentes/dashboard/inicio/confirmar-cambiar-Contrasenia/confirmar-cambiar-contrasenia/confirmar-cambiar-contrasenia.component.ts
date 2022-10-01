@@ -35,6 +35,7 @@ export class ConfirmarCambiarContraseniaComponent implements OnInit {
       res => {
         this.snackBar.mensaje('Contraseña cambiada correctamente');
         this.router.navigate(['/dashboard']);
+        this.cerrar();
       },
       err => {
         for(let message in err.error){
@@ -42,6 +43,7 @@ export class ConfirmarCambiarContraseniaComponent implements OnInit {
         }
         this.mensajes_errores(this.mensaje_error_lista)
         this.mensaje_error_lista=[];
+        this.cerrar();
       }
     )
   }

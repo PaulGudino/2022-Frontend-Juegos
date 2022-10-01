@@ -16,7 +16,6 @@ import { MensajesErrorComponent } from '../dashboard/mensajes-error/mensajes-err
 export class LoginComponent implements OnInit {
 
   ocultar = true;
-  loading = false;
   
   form: FormGroup;
   constructor(
@@ -43,12 +42,10 @@ export class LoginComponent implements OnInit {
     this.auth.Login({username, password}).subscribe(
       (res: any) => {
         AuthInterceptor.accessToken = res.token;     
-        // this.puente.setuser_id(res.user.id);
         localStorage.setItem('user_id', res.user.id);
         localStorage.setItem('rol_id', res.rol);
         localStorage.setItem('token', res.token);
-        // this.puente.setuser_permisos(res.permisos);
-        this.fakeloadin();
+        this.router.navigate(['/dashboard']);
       }, err => {
         console.log(err);
         this.error();
@@ -65,12 +62,6 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  fakeloadin(){
-    this.loading = true;
-    setTimeout(() => {
-      this.router.navigate(['/dashboard']);
-    }, 500);
-  }
   mensajes_errores(mensajes: string[]){
     const dialogref = this.dialog.open(MensajesErrorComponent,{
       width:'50%',

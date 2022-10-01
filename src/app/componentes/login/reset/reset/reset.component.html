@@ -13,7 +13,7 @@
         </mat-form-field>
         <mat-form-field class = "ancho" >
             <mat-label>Nueva Contraseña</mat-label>
-            <input matInput placeholder="Nueva Contraseña" minlength="8" autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
+            <input matInput placeholder="Mínimo 8 caracteres" minlength="8" autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
                 <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
         </mat-form-field>
         <br>

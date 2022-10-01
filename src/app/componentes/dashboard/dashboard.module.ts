@@ -24,6 +24,7 @@ import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles
 import { PermisosConfirmarComponent } from './permisos/permisos-confirmar/permisos-confirmar.component';
 import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
 import { ConfirmarCambiarContraseniaComponent } from './inicio/confirmar-cambiar-Contrasenia/confirmar-cambiar-contrasenia/confirmar-cambiar-contrasenia.component';
+import { ComponentesCompartidosModule } from 'src/app/componentes-compartidos/componentes-compartidos/componentes-compartidos.module';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { ConfirmarCambiarContraseniaComponent } from './inicio/confirmar-cambiar
     SharedModule,
     CommonModule,
     DashboardRoutingModule,
+    ComponentesCompartidosModule
   ]
 })
 export class DashboardModule { }

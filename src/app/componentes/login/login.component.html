@@ -1,7 +1,6 @@
 <div class="body">
     <div class="login">
-        <mat-spinner *ngIf="loading" class="spinner" diameter="150"></mat-spinner>
-        <form *ngIf="!loading" [formGroup]="form">
+        <form [formGroup]="form">
             <img src="./assets/img/user.png" alt="user.png">
         <h2>Iniciar Sesión</h2>
         <mat-form-field class="ancho" >
@@ -17,7 +16,7 @@
         <button class="ancho boton" (click)="ingresar()" mat-raised-button color="primary" [disabled]="form.invalid">Ingresar</button>
         </form>
         <br>
-        <div *ngIf="!loading" class="ancho">
+        <div class="ancho">
             <a routerLink="/recuperar">Olvidaste tu contraseña ?</a>
         </div>
     </div>
