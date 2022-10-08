@@ -11,15 +11,9 @@ table {
 .buscador {
     margin-left: 25px;
 }
-.color_verde{
-    color: #4CAF50;
-}
 .example-spacer {
     flex: 1 1 auto;
   }
-th{
-    width: 20%;
-}
-.color_amarillo{
-    color: #FFC107;
+.ancho_columna{
+    width: 17%;
 }

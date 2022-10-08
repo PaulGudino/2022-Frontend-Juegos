@@ -54,7 +54,6 @@ export class ConfirmacionCrearComponent implements OnInit {
       sex: this.form.value.sex,
       address: this.form.value.address,
       rol: this.form.value.rol,
-      is_active: this.form.value.is_active
     }
     this.api.postUsuarios(usuario).subscribe({
       next: (res) => {

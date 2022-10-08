@@ -9,5 +9,4 @@ export interface UsuariosEditar{
     sex : string,
     address : string,
     rol : string,
-    is_active : boolean,
 }

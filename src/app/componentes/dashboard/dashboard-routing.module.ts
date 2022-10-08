@@ -20,6 +20,7 @@ import { RolesverGuard } from './../../guardianes/roles/ver/rolesver.guard';
 import { RoleseditarGuard } from './../../guardianes/roles/editar/roleseditar.guard';
 import { RolescrearGuard } from './../../guardianes/roles/crear/rolescrear.guard';
 import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
+import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usuarios-eliminados/usuarios-eliminados.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
     {path: 'usuarios/crear', component: CrearUsuariosComponent, canActivate: [UsuarioscrearGuard]},
     {path: 'usuarios/editar/:id', component: EditarUsuariosComponent, canActivate: [UsuarioeditarGuard]},
     {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent, canActivate: [UsuarioverGuard]},
+    {path: 'usuarios/eliminados', component: UsuariosEliminadosComponent},
     {path: 'roles', component: RolesComponent},
     {path: 'roles/crear', component: RolesCrearComponent, canActivate: [RolescrearGuard]},
     {path: 'roles/editar/:id', component: RolesEditarComponent, canActivate: [RoleseditarGuard]},
