@@ -13,5 +13,10 @@
         "nombre": "Roles",
         "icono": "view_timeline",
         "ruta": "/dashboard/roles"
+    },
+    {
+        "nombre": "Clientes",
+        "icono": "group",
+        "ruta": "/dashboard/clients"
     }
 ]

@@ -26,6 +26,7 @@ import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambia
 import { ConfirmarCambiarContraseniaComponent } from './inicio/confirmar-cambiar-Contrasenia/confirmar-cambiar-contrasenia/confirmar-cambiar-contrasenia.component';
 import { ComponentesCompartidosModule } from 'src/app/componentes-compartidos/componentes-compartidos/componentes-compartidos.module';
 import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usuarios-eliminados/usuarios-eliminados.component';
+import { ClientsComponent } from './clients/clients.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usua
     CambiarContraseniaComponent,
     ConfirmarCambiarContraseniaComponent,
     UsuariosEliminadosComponent,
+    ClientsComponent,
   ],
   imports: [
     SharedModule,
