@@ -1,0 +1,72 @@
+<!-- Toolbar -->
+
+<mat-toolbar>
+    <span>Nuevo Cliente</span>
+</mat-toolbar>
+
+<!-- Form -->
+
+<form [formGroup]="formGroup">
+
+    <!-- ID Input -->
+
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Cédula</mat-label>
+            <input matInput #input autocomplete="off" formControlName="id" type="text" required
+            placeholder="0957303423" maxlength="10" minlength="10">
+            <mat-hint align="end">
+                {{input.value?.length || 0}}/10
+            </mat-hint>
+            <mat-error *ngIf="formGroup.controls['id'].hasError('required')" >
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </p>
+
+    <!-- Names Input -->
+
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombres</mat-label>
+            <input matInput autocomplete="off" formControlName="names" type="text" required
+            placeholder="Nicolás Andrés">
+            <mat-hint>Primer y segundo nombre</mat-hint>
+            <mat-error *ngIf="formGroup.controls['names'].hasError('required')" >
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </p>
+
+    <!-- Surnames Input -->
+    
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Apellidos</mat-label>
+            <input matInput autocomplete="off" formControlName="surnames" type="text" required
+            placeholder="Plaza Iñiguez">
+            <mat-hint>Apellido paterno y materno</mat-hint>
+            <mat-error *ngIf="formGroup.controls['surnames'].hasError('required')" >
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </p>
+
+    <!-- Email Input -->
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput placeholder="usuario@dominio.com" formControlName="email" type="email" required
+            placeholder="usuario@dominio.com">
+            <mat-error *ngIf="formGroup.controls['email'].hasError('required')">
+                Campo requerido
+            </mat-error> 
+            <mat-error *ngIf="formGroup.controls['email'].hasError('email')">
+                Ingresa un correo válido
+             </mat-error>
+        </mat-form-field>
+    </p>
+
+    <button mat-raised-button color="primary"> Añadir </button>
+
+</form>

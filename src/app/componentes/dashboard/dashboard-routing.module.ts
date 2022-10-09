@@ -22,6 +22,7 @@ import { RolescrearGuard } from './../../guardianes/roles/crear/rolescrear.guard
 import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
 import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usuarios-eliminados/usuarios-eliminados.component';
 import { ClientsComponent } from './clients/clients.component';
+import { CreateClientComponent } from './clients/create-client/create-client.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,8 @@ const routes: Routes = [
     {path: 'roles/crear', component: RolesCrearComponent, canActivate: [RolescrearGuard]},
     {path: 'roles/editar/:id', component: RolesEditarComponent, canActivate: [RoleseditarGuard]},
     {path: 'roles/permisos/:id', component: PermisosRolesComponent, canActivate: [RolesverGuard]},
-    {path: 'clients', component : ClientsComponent}
+    {path: 'clientes', component : ClientsComponent},
+    {path: 'clientes/crear', component: CreateClientComponent}
   ]},
 ];
 
