@@ -48,6 +48,9 @@ export interface ClientData {
 })
 export class ClientsComponent implements AfterViewInit{
 
+  singularName : string = 'Cliente';
+  pluralName : string = 'Clientes';
+
   displayedColumns : string[] = [
     'id',
     'name',

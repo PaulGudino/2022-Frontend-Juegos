@@ -3,14 +3,14 @@
 <!-- Toolbar -->
 
 <mat-toolbar>
-  <span>Clientes</span>
+  <span>{{singularName}}</span>
 </mat-toolbar>
 
 <!-- Buttons -->
 
 <div>
   <button mat-raised-button (click)="toClientCreation()">
-    Añadir Cliente
+    Añadir {{singularName}}
   </button>
 </div>
 
