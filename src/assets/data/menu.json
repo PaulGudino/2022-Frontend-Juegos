@@ -18,5 +18,10 @@
         "nombre": "Clientes",
         "icono": "group",
         "ruta": "/dashboard/clients"
+    },
+    {
+        "nombre": "Premios",
+        "icono": "card_giftcard",
+        "ruta": "/dashboard/awards"
     }
 ]

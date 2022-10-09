@@ -27,6 +27,7 @@ import { ConfirmarCambiarContraseniaComponent } from './inicio/confirmar-cambiar
 import { ComponentesCompartidosModule } from 'src/app/componentes-compartidos/componentes-compartidos/componentes-compartidos.module';
 import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usuarios-eliminados/usuarios-eliminados.component';
 import { ClientsComponent } from './clients/clients.component';
+import { AwardsComponent } from './awards/awards.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { ClientsComponent } from './clients/clients.component';
     ConfirmarCambiarContraseniaComponent,
     UsuariosEliminadosComponent,
     ClientsComponent,
+    AwardsComponent,
   ],
   imports: [
     SharedModule,
