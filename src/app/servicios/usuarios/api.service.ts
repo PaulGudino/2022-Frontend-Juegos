@@ -24,7 +24,11 @@ export class ApiService {
   }
 
   getUsuarios():Observable<Usuarios[]>{
-    return this.http.get<Usuarios[]>(this.url+'api/user/');
+    return this.http.get<Usuarios[]>(this.url+'api/userfilteriseliminated/?is_active=true');
+  }
+
+  getUsuariosEliminados():Observable<Usuarios[]>{
+    return this.http.get<Usuarios[]>(this.url+'api/userfilteriseliminated/?is_active=false');
   }
 
   getUsuarioId(id:number):Observable<Usuarios>{
@@ -51,12 +55,13 @@ export class ApiService {
     return this.http.get<Roles[]>(this.url+'api/rol/');
   }
   getfilteUsuariobyRol(id:number):Observable<UsuariosFiltradobyRol[]>{
-    return this.http.get<UsuariosFiltradobyRol[]>(this.url+'api/userfilter/?rol='+id);
+    return this.http.get<UsuariosFiltradobyRol[]>(this.url+'api/userfilterrol/?rol='+id);
   }
   postCambiarContraseña(id:number, cambio: CambiarContraseña){
     return this.http.post(this.url+'api/user/'+id+'/change_password/', cambio);
   }
-
-
+  postCambiarisActivate(id:number){
+    return this.http.post(this.url+'api/user/'+id+'/activate_user/', null);
+  }
 
 }

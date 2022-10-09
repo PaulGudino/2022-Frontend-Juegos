@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+}
+.container{
+    margin: 20px;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+.buscador {
+    margin-left: 25px;
+}
+.color_verde{
+    color: #4CAF50;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.ancho_columna{
+    width: 17%;
+}
+

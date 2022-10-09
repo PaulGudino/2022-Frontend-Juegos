@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+}
+.container{
+    margin-top: 20px;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+.buscador {
+    margin-left: 25px;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.ancho_columna{
+    width: 17%;
+}

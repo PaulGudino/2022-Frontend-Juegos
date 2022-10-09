@@ -9,5 +9,4 @@ export interface UsuariosCrear{
     sex : string,
     address : string,
     rol : string,
-    is_active : boolean,
 }

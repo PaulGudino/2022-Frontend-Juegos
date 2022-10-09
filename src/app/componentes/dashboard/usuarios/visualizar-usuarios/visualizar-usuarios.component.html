@@ -2,90 +2,92 @@
     <span>Visualizar datos del Usuario</span>
     <span class="example-spacer"></span>
 </mat-toolbar>
-<mat-card class="card">
-    <div class="container">
-        <div class="datos">
-            <mat-label>Cédula</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.cedula}}</mat-list-item>
-        </div>
-        <div class="datos">
-            <mat-label>Usuario</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.username}}</mat-list-item>
-        </div>
-    </div>
-    <div class="container">
-        <div class="datos">
-            <mat-label>Nombres</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.names}}</mat-list-item>
-        </div>
-        <div class="datos">
-            <mat-label>Apellidos</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.surnames}}</mat-list-item>
-        </div>
-    </div>
-    <div class="container">
-        <div class="datos">
-            <mat-label>Email</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.email}}</mat-list-item>
-        </div>
-        <div class="datos">
-            <mat-label>Teléfono</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.phone}}</mat-list-item>
-        </div>
-    </div>
-    <div class="container">
-        <div class="datos">
-            <mat-label>Sexo</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.sex}}</mat-list-item>
-        </div>
-        <div class="datos">
-            <mat-label>Dirección</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.address}}</mat-list-item>
-        </div>
-    </div>
-    <div class="container">
-        <div class="datos">
-            <mat-label>Rol</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.rol}}</mat-list-item>
-        </div>
-        <div class="datos">
-            <mat-label>Estado</mat-label>
-            <br>
-            <div *ngIf="usuarioget.is_active; else inactivo">
-                <mat-list-item role="listitem">Activo</mat-list-item>
+<div class="container_card">
+    <mat-card class="card">
+        <div class="container">
+            <div class="datos">
+                <mat-label>Cédula</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.cedula}}</mat-list-item>
             </div>
-            <ng-template #inactivo>
-                <mat-list-item role="listitem">Inactivo</mat-list-item>
-            </ng-template>
+            <div class="datos">
+                <mat-label>Usuario</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.username}}</mat-list-item>
+            </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="datos">
-            <mat-label>Fecha de Creación</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.created}}</mat-list-item>
+        <div class="container">
+            <div class="datos">
+                <mat-label>Nombres</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.names}}</mat-list-item>
+            </div>
+            <div class="datos">
+                <mat-label>Apellidos</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.surnames}}</mat-list-item>
+            </div>
         </div>
-        <div class="datos">
-            <mat-label>Última modificación</mat-label>
-            <br>
-            <mat-list-item role="listitem">{{usuarioget.modified}}</mat-list-item>
+        <div class="container">
+            <div class="datos">
+                <mat-label>Email</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.email}}</mat-list-item>
+            </div>
+            <div class="datos">
+                <mat-label>Teléfono</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.phone}}</mat-list-item>
+            </div>
         </div>
-    </div>
-    <div class="container_botones">
-        <button (click)="regresarUsuarios()" mat-raised-button color="warn">
-            <mat-icon>close</mat-icon>
-            Salir
-        </button>
-    </div>
-</mat-card>
+        <div class="container">
+            <div class="datos">
+                <mat-label>Sexo</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.sex}}</mat-list-item>
+            </div>
+            <div class="datos">
+                <mat-label>Dirección</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.address}}</mat-list-item>
+            </div>
+        </div>
+        <div class="container">
+            <div class="datos">
+                <mat-label>Rol</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.rol}}</mat-list-item>
+            </div>
+            <div class="datos">
+                <mat-label>Estado</mat-label>
+                <br>
+                <div *ngIf="usuarioget.is_active; else inactivo">
+                    <mat-list-item role="listitem">Activo</mat-list-item>
+                </div>
+                <ng-template #inactivo>
+                    <mat-list-item role="listitem">Inactivo</mat-list-item>
+                </ng-template>
+            </div>
+        </div>
+        <div class="container">
+            <div class="datos">
+                <mat-label>Fecha de Creación</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.created}}</mat-list-item>
+            </div>
+            <div class="datos">
+                <mat-label>Última modificación</mat-label>
+                <br>
+                <mat-list-item role="listitem">{{usuarioget.modified}}</mat-list-item>
+            </div>
+        </div>
+        <div class="container_botones">
+            <button (click)="regresarUsuarios()" mat-raised-button color="warn">
+                <mat-icon>close</mat-icon>
+                Salir
+            </button>
+        </div>
+    </mat-card>
+</div>
     
 

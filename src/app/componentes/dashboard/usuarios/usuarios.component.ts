@@ -20,7 +20,7 @@ import { lastValueFrom } from 'rxjs';
 export class UsuariosComponent implements OnInit {
 
   Titulo = 'Usuarios';
-  displayedColumns: string[] = ['cedula', 'names', 'surnames', 'email', 'phone', 'sex', 'rol', 'is_active', 'Acciones']
+  displayedColumns: string[] = ['cedula', 'names', 'surnames', 'email', 'phone', 'sex', 'rol', 'Acciones']
   dataSource !: MatTableDataSource<Usuarios>;
   user_id = Number(localStorage.getItem('user_id'));
   permisos:any = [];
@@ -90,5 +90,8 @@ export class UsuariosComponent implements OnInit {
     let permiso_id = 4;
     const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
     this.permisos = promesa;
+  }
+  usuariosEliminados(){
+    this.router.navigate(['dashboard/usuarios/eliminados']);
   }
 }

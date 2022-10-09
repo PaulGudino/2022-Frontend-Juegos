@@ -2,7 +2,7 @@ table {
     width: 100%;
 }
 .container{
-    margin: 20px;
+    margin-top: 20px;
 }
 .mat-form-field {
     font-size: 14px;
@@ -11,13 +11,14 @@ table {
 .buscador {
     margin-left: 25px;
 }
-.color_verde{
-    color: #4CAF50;
-}
 .example-spacer {
     flex: 1 1 auto;
   }
 .ancho_columna{
     width: 17%;
+}
+.espacio_botones{
+    display: flex;
+    justify-content: space-between;
 }
 

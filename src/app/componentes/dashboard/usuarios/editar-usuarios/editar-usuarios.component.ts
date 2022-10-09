@@ -106,7 +106,6 @@ export class EditarUsuariosComponent implements OnInit {
       sex: this.form.value.sex,
       address: this.form.value.address,
       rol: this.form.value.rol,
-      is_active: this.form.value.is_active,
     }
     if(this.form.valid){
       const dialogref = this.dialog.open(ConfirmacionEditarComponent,{

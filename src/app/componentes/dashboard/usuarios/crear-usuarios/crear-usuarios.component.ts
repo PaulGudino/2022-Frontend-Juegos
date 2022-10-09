@@ -35,7 +35,6 @@ export class CrearUsuariosComponent implements OnInit {
       sex: ['', Validators.required],
       address: ['', Validators.required],
       rol: ['', Validators.required],
-      is_active: ['', Validators.required],
   })
   }
 
