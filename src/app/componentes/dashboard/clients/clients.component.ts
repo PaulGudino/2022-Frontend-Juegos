@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 /**
  * Reference taken from https://material.angular.io/components/table/examples
@@ -47,6 +48,9 @@ export interface ClientData {
 })
 export class ClientsComponent implements AfterViewInit{
 
+  singularName : string = 'Cliente';
+  pluralName : string = 'Clientes';
+
   displayedColumns : string[] = [
     'id',
     'name',
@@ -59,7 +63,10 @@ export class ClientsComponent implements AfterViewInit{
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor() {
+  constructor(
+    // Atributes of the user component
+    private router : Router,
+  ) {
     // Create 100 Clients
     const clients = Array.from( { length : 100 }, (_, k) => createNewClient(k + 1) );
 
@@ -80,6 +87,11 @@ export class ClientsComponent implements AfterViewInit{
       this.dataSource.paginator.firstPage();
     }
   }
+
+  toClientCreation() {
+    this.router.navigate(['dashboard/clientes/crear']);
+  }
+
 }
 
 function createNewClient(id : number) : ClientData {

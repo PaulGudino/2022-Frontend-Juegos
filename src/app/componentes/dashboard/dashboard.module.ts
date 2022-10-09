@@ -28,6 +28,8 @@ import { ComponentesCompartidosModule } from 'src/app/componentes-compartidos/co
 import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usuarios-eliminados/usuarios-eliminados.component';
 import { ClientsComponent } from './clients/clients.component';
 import { AwardsComponent } from './awards/awards.component';
+import { CreateClientComponent } from './clients/create-client/create-client.component';
+
 
 
 @NgModule({
@@ -56,6 +58,7 @@ import { AwardsComponent } from './awards/awards.component';
     UsuariosEliminadosComponent,
     ClientsComponent,
     AwardsComponent,
+    CreateClientComponent,
   ],
   imports: [
     SharedModule,

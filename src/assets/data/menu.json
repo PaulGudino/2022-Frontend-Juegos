@@ -17,11 +17,15 @@
     {
         "nombre": "Clientes",
         "icono": "group",
+<<<<<<< HEAD
         "ruta": "/dashboard/clients"
     },
     {
         "nombre": "Premios",
         "icono": "card_giftcard",
         "ruta": "/dashboard/awards"
+=======
+        "ruta": "/dashboard/clientes"
+>>>>>>> a5b6c29ee3b889bfc2d4048b7c2f089da216432e
     }
 ]
