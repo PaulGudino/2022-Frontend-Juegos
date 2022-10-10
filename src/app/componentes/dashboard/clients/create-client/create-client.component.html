@@ -18,7 +18,7 @@
             placeholder="0957303423" maxlength="10" minlength="10"
             onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             <mat-hint align="end">
-                {{input.value?.length || 0}}/10
+                {{input.value.length || 0}}/10
             </mat-hint>
             <mat-error *ngIf="formGroup.controls['id'].hasError('required')" >
                 Campo requerido
