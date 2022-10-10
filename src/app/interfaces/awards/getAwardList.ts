@@ -5,10 +5,12 @@ export interface getAwardList{
     imagen : string;
     initial_stock : number;
     current_stock : number;
-    prizes_awared : number;
+    prizes_awarded : number;
     is_active : boolean;
-    category : string;
-    juego : string;
+    created : string;
+    modified : string;
     user_register : string;
     user_modify : string;
+    category : string;
+    juego : string;
 }

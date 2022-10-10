@@ -24,6 +24,7 @@ import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usua
 import { ClientsComponent } from './clients/clients.component';
 import { AwardsComponent } from './awards/awards.component';
 import { CreateClientComponent } from './clients/create-client/create-client.component';
+import { ViewAwardsComponent } from './awards/view-awards/view-awards.component';
 
 
 const routes: Routes = [
@@ -41,7 +42,8 @@ const routes: Routes = [
     {path: 'roles/permisos/:id', component: PermisosRolesComponent, canActivate: [RolesverGuard]},
     {path: 'clientes', component : ClientsComponent},
     {path: 'clientes/crear', component: CreateClientComponent},
-    {path: 'awards', component : AwardsComponent}
+    {path: 'premios', component : AwardsComponent},
+    {path: 'premios/visualizar/:id', component: ViewAwardsComponent},
   ]},
 ];
 

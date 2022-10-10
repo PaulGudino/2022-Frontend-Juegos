@@ -1,0 +1,106 @@
+<mat-toolbar>
+    <span>Visualizar premio</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+<div class="container_card">
+    <mat-card class="card">
+        <div class="container_flex">
+            <div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Nombre</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.name}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Descripción</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.description}}</mat-list-item>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Stock Inicial</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.initial_stock}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Stock Actual</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.current_stock}}</mat-list-item>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Ganados</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.prizes_awarded}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Estado</mat-label>
+                        <br>
+                        <div *ngIf="premioget.is_active; else inactivo">
+                            <mat-list-item role="listitem">Activo</mat-list-item>
+                        </div>
+                        <ng-template #inactivo>
+                            <mat-list-item role="listitem">Inactivo</mat-list-item>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Fecha de Creación</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.created}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Última Modificación</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.modified}}</mat-list-item>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Usuario que registro el premio</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.user_register}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Último usuario en modificar el premio</mat-label>
+                        <br>
+                        <div *ngIf="premioget.user_modify ; else sinmodificar">
+                            <mat-list-item role="listitem">{{premioget.user_modify}}</mat-list-item>
+                        </div>
+                        <ng-template #sinmodificar>
+                            <mat-list-item role="listitem">{{premioget.user_register}}</mat-list-item>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Categoría</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.category}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>EL premio pertenece al juego</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{premioget.juego}}</mat-list-item>
+                    </div>
+                </div>
+            </div>
+            <div class="container_img">
+                <img src="{{premioget.imagen}}" alt="">
+            </div>
+        </div>
+        
+        <div class="container_botones">
+            <button (click)="regresarPremios()" mat-raised-button color="warn">
+                <mat-icon>close</mat-icon>
+                Salir
+            </button>
+        </div>
+    </mat-card>
+</div>
+    
+

@@ -1,1 +1,93 @@
-<p>awards works!</p>
+<mat-toolbar>
+    <span>{{Titulo}}</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+<div class="container">
+    <button mat-raised-button (click)="agregarPremios()">Agregar Rol</button>
+</div>
+
+<div class="container mat-elevation-z8">
+    <mat-form-field appearance="standard">
+        <mat-label class="buscador">Buscar</mat-label>
+        <input class="buscador" matInput (keyup)="aplicarFiltro($event)" placeholder="Ej. Administrador" autocomplete="off" #input>
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="dataSource" matSort>
+    
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.id}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+            <th  mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="initial_stock">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock Incial </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.initial_stock}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="current_stock">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock Actual </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.current_stock}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="prizes_awarded">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Premios Ganados </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.prizes_awarded}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="juego">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Juego </th>
+            <td mat-cell *matCellDef="let fila"> {{fila.juego}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="is_active">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+            <td mat-cell *matCellDef="let fila">
+                <div *ngIf="fila.is_active ; else inactivo">
+                    <mat-icon class="color_verde">circle</mat-icon>
+                </div>
+                <ng-template #inactivo>
+                    <div>
+                        <mat-icon color="warn">circle</mat-icon>
+                    </div>
+                </ng-template>
+            </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Acciones" >
+            <th mat-header-cell *matHeaderCellDef ></th>
+            <td mat-cell *matCellDef="let fila">
+                <div *ngIf="fila.id != 1">
+                    <button mat-icon-button (click)="verPremios(fila.id)" color="primary" matTooltip="Visualizar">
+                    <mat-icon>remove_red_eye</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="editarPremios(fila.id)" color="primary" matTooltip="Editar">
+                    <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="eliminarPremios(fila.id)" color="warn" matTooltip="Eliminar">
+                    <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"
+        </td>
+        </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users">
+    </mat-paginator>
+</div>
+

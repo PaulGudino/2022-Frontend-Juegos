@@ -16,7 +16,12 @@ export class AwardsService {
 
   url = this.puente.geturl();
 
+  
+
   getAward():Observable<getAwardList[]>{
-    return this.http.get<getAwardList[]>(this.url+'api/award/');
+    return this.http.get<getAwardList[]>(this.url+'api/premios/');
+  }
+  getAwardbyId(id: number):Observable<getAwardList>{
+    return this.http.get<getAwardList>(this.url+'api/premios/'+id);
   }
 }
