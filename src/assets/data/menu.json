@@ -17,7 +17,7 @@
     {
         "nombre": "Clientes",
         "icono": "group",
-        "ruta": "/dashboard/clients"
+        "ruta": "/dashboard/clientes"
     },
     {
         "nombre": "Premios",
