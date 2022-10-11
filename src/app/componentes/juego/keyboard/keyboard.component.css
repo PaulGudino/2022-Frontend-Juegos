@@ -1,0 +1,14 @@
+.btn{
+  background-color: gray;
+  border-radius: 15px;
+  padding: 0.4rem 0.5rem;
+}
+.keyboard-container{
+  display: flex;
+  flex-direction: column;
+  gap:0.8rem;
+  width:11rem;
+}
+.keyboard-row{
+  gap:0.5rem
+}
