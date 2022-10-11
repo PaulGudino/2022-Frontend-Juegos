@@ -34,7 +34,7 @@ export class AwardsComponent implements OnInit {
     this.cargarPremios();
   }
   agregarPremios(){
-    alert("Agregar Premios");
+    this.router.navigate(['/dashboard/premios/crear']);
   }
   aplicarFiltro(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

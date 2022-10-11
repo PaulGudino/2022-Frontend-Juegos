@@ -24,4 +24,7 @@ export class AwardsService {
   getAwardbyId(id: number):Observable<getAwardList>{
     return this.http.get<getAwardList>(this.url+'api/premios/'+id);
   }
+  prueba(imagen : any){
+    return this.http.post(this.url+'api/imagenesjuegos/',imagen);
+  }
 }
