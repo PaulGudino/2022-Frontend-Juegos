@@ -1,0 +1,30 @@
+<div class="scan_container p-0 m-0">
+  <app-publicity></app-publicity>
+  <div class="scan_menu-container">
+    <figure class="menu-container_img-container">
+      <img class ="menu-container_img" src="../../../assets/comandato.png" alt="company-logo">
+    </figure>
+    <h2 class = "scan_title" *ngIf="titleScanState">{{title}}</h2>
+    <h2 class = "scan_title" *ngIf="selectedInputCode">Ingrese el codigo</h2>
+    <p *ngIf="selectedInputCode" class="explication-text">
+      {{explication}}
+    </p>
+    <figure *ngIf="selectedInputCode" class="menu-container_scan-img-container">
+      <img class ="menu-container_scan-img" src="../../../assets/scan-image.png" alt="scan-logo">
+    </figure>
+    <input type="text" #codeInput = "ngModel" [(ngModel)] = "code">
+    <app-keyboard></app-keyboard>
+    <app-generic-button
+    title="Continuar"
+    fontSize="1rem"
+    styledPadding="0.5rem 1rem"
+    ></app-generic-button>
+
+
+
+  </div>
+  <div class="scan_bottom-publicity_container">
+    <app-publicity></app-publicity>
+  </div>
+
+</div>
