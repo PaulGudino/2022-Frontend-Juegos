@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './loading/loading.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { SharedModule } from 'src/app/componentes/shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    LoadingComponent
+    LoadingComponent,
+    ConfirmDialogComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [
-    LoadingComponent
+    LoadingComponent,
+    ConfirmDialogComponent,
   ]
 })
 export class ComponentesCompartidosModule { }
