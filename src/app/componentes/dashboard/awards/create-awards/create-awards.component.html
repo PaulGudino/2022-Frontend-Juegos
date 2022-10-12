@@ -19,7 +19,7 @@
         
                 <mat-form-field>
                     <mat-label>Stock Inicial</mat-label>
-                    <input autocomplete="off" formControlName="initial_stock" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text" minlength="10" maxlength="10" matInput>
+                    <input autocomplete="off" formControlName="initial_stock" onkeypress='return event.charCode >= 49 && event.charCode <= 57' type="text" matInput>
                 </mat-form-field>
         
                 <mat-form-field>
@@ -48,7 +48,7 @@
         </div>
         <div    >
             <div>
-                <input #takeInput (change)="capturarFile($event)" type="file">
+                <input #takeInput (change)="capturarFile($event)" type="file" accept="image/*">
                 <button (click)="deleteImage()" mat-icon-button color="warn">
                     <mat-icon>close</mat-icon>
                 </button>

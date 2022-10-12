@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Roles } from 'src/app/interfaces/roles/roles';
@@ -29,7 +29,7 @@ export class CrearUsuariosComponent implements OnInit {
       username: ['', Validators.required],
       names: ['', Validators.required],
       surnames: ['', Validators.required],
-      email: ['', Validators.required],
+      email : new FormControl('', [Validators.required, Validators.email]),
       password: ['', Validators.required],
       phone: ['', Validators.required],
       sex: ['', Validators.required],

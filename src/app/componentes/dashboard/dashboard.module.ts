@@ -30,7 +30,7 @@ import { ClientsComponent } from './clients/clients.component';
 import { AwardsComponent } from './awards/awards.component';
 import { CreateClientComponent } from './clients/create-client/create-client.component';
 import { ViewAwardsComponent } from './awards/view-awards/view-awards.component';
-import { CreateAwardsComponent } from './awards/create-awards/create-awards/create-awards.component';
+import { CreateAwardsComponent } from './awards/create-awards/create-awards.component';
 
 
 
