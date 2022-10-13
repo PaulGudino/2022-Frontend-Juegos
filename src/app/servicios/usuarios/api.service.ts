@@ -39,12 +39,12 @@ export class ApiService {
     return this.http.get<Roles[]>(this.url+'api/rolfilter/?name='+name);
   }
 
-  postUsuarios(user: UsuariosCrear){
-    return this.http.post(this.url+'api/create/user/', user);
+  postUsuarios(form: FormData){
+    return this.http.post(this.url+'api/create/user/', form);
   }
 
-  putUsuario(id:number, user: UsuariosEditar){
-    return this.http.put(this.url+'api/user/'+id+'/', user);
+  putUsuario(id:number, form: FormData){
+    return this.http.put(this.url+'api/user/'+id+'/', form);
   }
 
   deleteUsuario(id:number):Observable<Usuarios>{

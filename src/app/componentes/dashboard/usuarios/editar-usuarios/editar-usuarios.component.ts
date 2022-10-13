@@ -1,4 +1,3 @@
-import { ConfirmacionEditarComponent } from './../confirmacion-editar/confirmacion-editar.component';
 import { Usuarios } from '../../../../interfaces/usuarios/usuarios';
 import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
@@ -6,8 +5,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuariosEditar } from 'src/app/interfaces/usuarios/usuarioeditar';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Roles } from 'src/app/interfaces/roles/roles';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
+import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
+import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
 
 @Component({
   selector: 'app-editar-usuarios',
@@ -19,6 +20,7 @@ export class EditarUsuariosComponent implements OnInit {
   form: FormGroup;
   roles: Roles[] = [];
   id_rol: number = 0;
+  mensaje_error_lista: string[] = [];
   usuarioget: Usuarios ={
     id: 0,
     cedula : '',
@@ -43,7 +45,8 @@ export class EditarUsuariosComponent implements OnInit {
     private router: Router, 
     private activerouter: ActivatedRoute, 
     public dialog: MatDialog,
-    private snackBar: MatSnackBar,
+    private snackBar: SnackbarService,
+    private dialogService: ConfirmDialogService
     ) {
 
     this.form = this.fb.group({
@@ -93,38 +96,54 @@ export class EditarUsuariosComponent implements OnInit {
     });
   }
 
+
+  mensajes_errores(mensajes: string[]){
+    const dialogref = this.dialog.open(MensajesErrorComponent,{
+      width:'50%',
+      data: mensajes
+    });
+  }
+  
   actualizarUsuario(){
     let usuarioid = this.activerouter.snapshot.paramMap.get('id');
-    const usuario: UsuariosEditar = {
-      id: Number(usuarioid),
-      cedula: this.form.value.cedula,
-      username: this.form.value.username,
-      names: this.form.value.names,
-      surnames: this.form.value.surnames,
-      email: this.form.value.email,
-      phone: this.form.value.phone,
-      sex: this.form.value.sex,
-      address: this.form.value.address,
-      rol: this.form.value.rol,
+    if (this.form.valid){
+      const options = {
+        title: 'EDITAR USUARIO',
+        message: 'ESTA SEGURO QUE QUIERE ACTUALIZAR EL USUARIO?',
+        cancelText: 'CANCELAR',
+        confirmText: 'CONFIRMAR'
+      };
+      this.dialogService.open(options);
+      this.dialogService.confirmed().subscribe(confirmed => {
+        let formData: FormData = new FormData();
+        formData.append('cedula', this.form.get('cedula')?.value);
+        formData.append('username', this.form.get('username')?.value);
+        formData.append('names', this.form.get('names')?.value);
+        formData.append('surnames', this.form.get('surnames')?.value);
+        formData.append('email', this.form.get('email')?.value);
+        formData.append('phone', this.form.get('phone')?.value);
+        formData.append('sex', this.form.get('sex')?.value);
+        formData.append('address', this.form.get('address')?.value);
+        formData.append('rol', this.form.get('rol')?.value);
+        formData.append('is_active', this.form.get('is_active')?.value);
+
+        this.api.putUsuario(Number(usuarioid), formData).subscribe(
+          (data) => {
+            this.snackBar.mensaje('Usuario Actualizado Exitosamente');
+            this.router.navigate(['/dashboard/usuarios']);
+          },
+          (res) => {
+            for(let message in res.error){
+              this.mensaje_error_lista.push(res.error[message])
+            }
+            this.mensajes_errores(this.mensaje_error_lista)
+            this.mensaje_error_lista=[];
+          }
+        );
     }
-    if(this.form.valid){
-      const dialogref = this.dialog.open(ConfirmacionEditarComponent,{
-        width:'50%',
-        data: usuario
-      });
-      dialogref.afterClosed().subscribe(res =>{
-        console.log(res)
-      })
-    }else{
-      this.error();
-    }
-    
+    );
+
   }
-  error(){
-    this.snackBar.open('Llene el formulario correctamente', '', {
-      duration: 2500,
-      horizontalPosition: 'right',
-      verticalPosition: 'bottom'
-    })
-  }
+}
+
 }
