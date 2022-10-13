@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -67,6 +66,20 @@ export class LoginComponent implements OnInit {
       width:'50%',
       data: mensajes
     });
+  }
+  RegisterKeyPress(input: string){
+    const enter = document.getElementById(input);
+    enter?.addEventListener('keyup', (event) => {
+      if(event.key === 'Enter'){
+        alert('Enter');
+        this.ingresar();
+      }
+    });
+  }
+  enter(event: any){
+    if(event.key === 'Enter'){
+      this.ingresar();
+    }
   }
 }
 

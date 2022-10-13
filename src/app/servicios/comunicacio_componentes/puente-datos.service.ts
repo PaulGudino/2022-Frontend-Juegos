@@ -12,8 +12,16 @@ export interface ID{
 export class PuenteDatosService {
   usuario_id: number = 0;
   usuario_permisos: any = [];
-  // url = 'http://localhost:8000/';
-  url = 'https://juegos.pythonanywhere.com/';
+
+  /**
+   * For testing environments
+   */
+  url = 'http://localhost:8000/';
+
+  /**
+   * For deployment environmnets
+   */
+  //  url = 'https://juegos.pythonanywhere.com/';
   constructor(
 
   ) { }

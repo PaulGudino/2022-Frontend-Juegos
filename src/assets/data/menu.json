@@ -13,5 +13,15 @@
         "nombre": "Roles",
         "icono": "view_timeline",
         "ruta": "/dashboard/roles"
+    },
+    {
+        "nombre": "Clientes",
+        "icono": "group",
+        "ruta": "/dashboard/clientes"
+    },
+    {
+        "nombre": "Premios",
+        "icono": "card_giftcard",
+        "ruta": "/dashboard/premios"
     }
 ]

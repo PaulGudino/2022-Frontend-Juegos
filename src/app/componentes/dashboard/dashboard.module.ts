@@ -26,6 +26,12 @@ import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambia
 import { ConfirmarCambiarContraseniaComponent } from './inicio/confirmar-cambiar-Contrasenia/confirmar-cambiar-contrasenia/confirmar-cambiar-contrasenia.component';
 import { ComponentesCompartidosModule } from 'src/app/componentes-compartidos/componentes-compartidos/componentes-compartidos.module';
 import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usuarios-eliminados/usuarios-eliminados.component';
+import { ClientsComponent } from './clients/clients.component';
+import { AwardsComponent } from './awards/awards.component';
+import { CreateClientComponent } from './clients/create-client/create-client.component';
+import { ViewAwardsComponent } from './awards/view-awards/view-awards.component';
+import { CreateAwardsComponent } from './awards/create-awards/create-awards.component';
+
 
 
 @NgModule({
@@ -52,6 +58,11 @@ import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usua
     CambiarContraseniaComponent,
     ConfirmarCambiarContraseniaComponent,
     UsuariosEliminadosComponent,
+    ClientsComponent,
+    AwardsComponent,
+    CreateClientComponent,
+    ViewAwardsComponent,
+    CreateAwardsComponent,
   ],
   imports: [
     SharedModule,

@@ -21,12 +21,17 @@ import { RoleseditarGuard } from './../../guardianes/roles/editar/roleseditar.gu
 import { RolescrearGuard } from './../../guardianes/roles/crear/rolescrear.guard';
 import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
 import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usuarios-eliminados/usuarios-eliminados.component';
+import { ClientsComponent } from './clients/clients.component';
+import { AwardsComponent } from './awards/awards.component';
+import { CreateClientComponent } from './clients/create-client/create-client.component';
+import { CreateAwardsComponent } from './awards/create-awards/create-awards.component';
+import { ViewAwardsComponent } from './awards/view-awards/view-awards.component';
 
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: '', component: InicioComponent},
-    { path: 'cambiar-contraseña', component: CambiarContraseniaComponent },
+    {path: 'cambiar-contraseña', component: CambiarContraseniaComponent },
     {path: 'usuarios', component: UsuariosComponent},
     {path: 'usuarios/crear', component: CrearUsuariosComponent, canActivate: [UsuarioscrearGuard]},
     {path: 'usuarios/editar/:id', component: EditarUsuariosComponent, canActivate: [UsuarioeditarGuard]},
@@ -36,6 +41,11 @@ const routes: Routes = [
     {path: 'roles/crear', component: RolesCrearComponent, canActivate: [RolescrearGuard]},
     {path: 'roles/editar/:id', component: RolesEditarComponent, canActivate: [RoleseditarGuard]},
     {path: 'roles/permisos/:id', component: PermisosRolesComponent, canActivate: [RolesverGuard]},
+    {path: 'clientes', component : ClientsComponent},
+    {path: 'clientes/crear', component: CreateClientComponent},
+    {path: 'premios', component : AwardsComponent},
+    {path: 'premios/crear', component: CreateAwardsComponent},
+    {path: 'premios/visualizar/:id', component: ViewAwardsComponent},
   ]},
 ];
 

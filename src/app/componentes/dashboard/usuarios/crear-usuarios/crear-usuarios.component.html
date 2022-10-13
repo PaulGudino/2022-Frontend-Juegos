@@ -7,39 +7,78 @@
     <form [formGroup]="form">
         <mat-form-field>
             <mat-label>Cédula</mat-label>
-            <input autocomplete="off" formControlName="cedula" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text" minlength="10" maxlength="10" matInput>
+
+            <input matInput #input autocomplete="off" formControlName="cedula" type="text" required
+            placeholder="0957303423" maxlength="10" minlength="10"
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <mat-hint align="end">
+                {{input.value.length || 0}}/10
+            </mat-hint>
+            <mat-error *ngIf="form.controls['cedula'].hasError('required')" >
+                Campo requerido
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Username</mat-label>
             <input autocomplete="off" formControlName="username" type="text" matInput>
+            <mat-hint>Nombre del usuario</mat-hint>
+            <mat-error *ngIf="form.controls['username'].hasError('required')" >
+                Campo requerido
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Nombres</mat-label>
-            <input autocomplete="off" formControlName="names" type="text" matInput>
+            <input matInput autocomplete="off" formControlName="names" type="text" required placeholder="Nicolás Andrés"
+            onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+            <mat-hint>Nombre completo</mat-hint>
+            <mat-error *ngIf="form.controls['names'].hasError('required')" >
+                Campo requerido
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Apellidos</mat-label>
-            <input autocomplete="off"  formControlName="surnames" type="text" matInput>
+            <input matInput autocomplete="off" formControlName="surnames" type="text" required placeholder="Plaza Iñiguez"
+            onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+            <mat-hint>Apellido paterno y materno</mat-hint>
+            <mat-error *ngIf="form.controls['surnames'].hasError('required')" >
+                Campo requerido
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Correo electrónico</mat-label>
-            <input autocomplete="off" formControlName="email" type="email" matInput>
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput placeholder="usuario@dominio.com" formControlName="email" type="email" required autocomplete="off"
+            placeholder="usuario@dominio.com">
+            <mat-error *ngIf="form.controls['email'].hasError('required')">
+                Campo requerido
+            </mat-error> 
+            <mat-error *ngIf="form.controls['email'].hasError('email')">
+                Ingresa un correo válido
+             </mat-error>
         </mat-form-field>
 
 
         <mat-form-field>
-            <mat-label>Telefono</mat-label>
-            <input autocomplete="off" formControlName="phone" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text" minlength="10" maxlength="10" matInput>
+            <mat-label>Teléfono</mat-label>
+            <input matInput #input autocomplete="off" formControlName="phone" type="text" required
+            placeholder="0939552946" maxlength="10" minlength="10"
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <mat-error *ngIf="form.controls['phone'].hasError('required')" >
+                Campo requerido
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Contraseña</mat-label>
             <input matInput autocomplete="off" minlength="8" formControlName="password" [type]="ocultar ? 'password' : 'text'">
                 <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+            <mat-hint>Minimo 8 caracteres</mat-hint>
+            <mat-error *ngIf="form.controls['password'].hasError('required')" >
+                Campo requerido
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -48,11 +87,19 @@
                 <mat-option value="F">Femenino</mat-option>
                 <mat-option value="M">Masculino</mat-option>
             </mat-select>
+            <mat-hint>Seleccione una opción</mat-hint>
+            <mat-error *ngIf="form.controls['sex'].hasError('required')" >
+                Campo requerido
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Dirección</mat-label>
             <input autocomplete="off" formControlName="address" type="text" matInput>
+            <mat-hint>Dirección del usuario</mat-hint>
+            <mat-error *ngIf="form.controls['address'].hasError('required')" >
+                Campo requerido
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -60,6 +107,10 @@
             <mat-select formControlName="rol" mat-select placeholder="Seleccione una opción" >
                 <mat-option *ngFor="let rol of roles" value={{rol.id}}>{{rol.name}}</mat-option>
             </mat-select>
+            <mat-hint>Seleccione una opción</mat-hint>
+            <mat-error *ngIf="form.controls['rol'].hasError('required')" >
+                Campo requerido
+            </mat-error>
         </mat-form-field>
 
     </form>

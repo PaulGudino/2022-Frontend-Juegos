@@ -1,0 +1,13 @@
+header, .dialog-message {
+    text-transform: lowercase;
+}
+.header::first-letter, .dialog-message::first-letter {
+    text-transform: uppercase;
+}
+.container_dialog{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+}

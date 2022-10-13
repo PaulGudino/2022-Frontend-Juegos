@@ -1,0 +1,101 @@
+<!-- Toolbar -->
+
+<mat-toolbar>
+    <span>Nuevo Cliente</span>
+</mat-toolbar>
+
+<!-- Form -->
+
+<form [formGroup]="formGroup">
+
+    <!-- ID Input -->
+
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Cédula</mat-label>
+
+            <input matInput #input autocomplete="off" formControlName="id" type="text" required
+            placeholder="0957303423" maxlength="10" minlength="10"
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <mat-hint align="end">
+                {{input.value.length || 0}}/10
+            </mat-hint>
+            <mat-error *ngIf="formGroup.controls['id'].hasError('required')" >
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </p>
+
+    <!-- Names Input -->
+
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombres</mat-label>
+            <input matInput autocomplete="off" formControlName="names" type="text" required placeholder="Nicolás Andrés"
+            onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+            <mat-hint>Nombre completo</mat-hint>
+            <mat-error *ngIf="formGroup.controls['names'].hasError('required')" >
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </p>
+
+    <!-- Surnames Input -->
+    
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Apellidos</mat-label>
+            <input matInput autocomplete="off" formControlName="surnames" type="text" required placeholder="Plaza Iñiguez"
+            onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+            <mat-hint>Apellido paterno y materno</mat-hint>
+            <mat-error *ngIf="formGroup.controls['surnames'].hasError('required')" >
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </p>
+
+    <!-- Email Input -->
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput placeholder="usuario@dominio.com" formControlName="email" type="email" required
+            placeholder="usuario@dominio.com">
+            <mat-error *ngIf="formGroup.controls['email'].hasError('required')">
+                Campo requerido
+            </mat-error> 
+            <mat-error *ngIf="formGroup.controls['email'].hasError('email')">
+                Ingresa un correo válido
+             </mat-error>
+        </mat-form-field>
+    </p>
+
+    <!-- Phone Input -->
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Teléfono</mat-label>
+            <input matInput #input autocomplete="off" formControlName="phone" type="text" required
+            placeholder="0939552946" maxlength="10" minlength="10"
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <mat-error *ngIf="formGroup.controls['id'].hasError('required')" >
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+    </p>
+
+    <!-- Address Input -->
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Dirección</mat-label>
+            <textarea matInput placeholder="Ciudad, Cantón, Parroquia" style="resize: none;"
+            maxlength="300" rows="5"></textarea>
+        </mat-form-field>
+    </p>
+
+    <!-- Buttons -->
+
+    <div style="display: flex; justify-content: right;">
+        <button mat-raised-button (click)="toClientList()">Cancelar</button>
+        <button mat-raised-button color="primary">Añadir</button>
+    </div>
+
+</form>

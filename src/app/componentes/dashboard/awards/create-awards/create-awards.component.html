@@ -1,0 +1,74 @@
+<mat-toolbar>
+    <span>Crear Premios</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+<div class="container_card" >
+ <mat-card class="card">
+    <div class="container_flex">
+        <div>
+            <form [formGroup]="form">
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input autocomplete="off" formControlName="name" type="text" matInput>
+                </mat-form-field>
+        
+                <mat-form-field>
+                    <mat-label>Descripción</mat-label>
+                    <input autocomplete="off" formControlName="description" type="text" matInput>
+                </mat-form-field>
+        
+                <mat-form-field>
+                    <mat-label>Stock Inicial</mat-label>
+                    <input autocomplete="off" formControlName="initial_stock" onkeypress='return event.charCode >= 49 && event.charCode <= 57' type="text" matInput>
+                </mat-form-field>
+        
+                <mat-form-field>
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="is_active" mat-select placeholder="Seleccione una opción">
+                        <mat-option value=true>Activo</mat-option>
+                        <mat-option value=false>Inactivo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+        
+                <mat-form-field>
+                    <mat-label>Categotría</mat-label>
+                    <mat-select formControlName="category" mat-select placeholder="Seleccione una opción">
+                        <mat-option *ngFor="let categoria of Categorias" value={{categoria.id}}>{{categoria.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Juego</mat-label>
+                    <mat-select formControlName="juego" mat-select placeholder="Seleccione una opción">
+                        <mat-option *ngFor="let juego of Juegos" value={{juego.id}}>{{juego.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+        
+            </form>
+        </div>
+        <div    >
+            <div>
+                <input #takeInput (change)="capturarFile($event)" type="file" accept="image/*">
+                <button (click)="deleteImage()" mat-icon-button color="warn">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div class="container_img">
+                <img [src]="previsulizacion" alt="Inserte una Imagen">
+            </div>
+        </div>
+    </div>
+    <div class="container_botones">
+        <button  mat-raised-button color="warn">
+            <mat-icon>close</mat-icon>
+            Cancelar
+        </button>
+        
+        <button (click)="enviar()" color="primary">
+            <mat-icon>done</mat-icon>
+            Guardar
+        </button>
+    </div>
+ </mat-card>
+</div>
+
