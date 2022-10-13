@@ -43,20 +43,20 @@ export class ConfirmacionEditarComponent implements OnInit {
   }
 
   editarUsuario(){
-    this.api.putUsuario(this.usuario.id, this.usuario).subscribe({ 
-      next: (res) => {
-        this.cerrar();
-        this.regresarUsuarios();
-        this.exito();
-      },
-      error: (res)=>{
-        for(let message in res.error){
-          this.mensaje_error_lista.push(res.error[message])
-        }
-        this.mensajes_errores(this.mensaje_error_lista)
-        this.mensaje_error_lista=[];
-      } 
-    });
+    // this.api.putUsuario(this.usuario.id, this.usuario).subscribe({ 
+    //   next: (res) => {
+    //     this.cerrar();
+    //     this.regresarUsuarios();
+    //     this.exito();
+    //   },
+    //   error: (res)=>{
+    //     for(let message in res.error){
+    //       this.mensaje_error_lista.push(res.error[message])
+    //     }
+    //     this.mensajes_errores(this.mensaje_error_lista)
+    //     this.mensaje_error_lista=[];
+    //   } 
+    // });
   }
   mensajes_errores(mensajes: string[]){
     const dialogref = this.dialog.open(MensajesErrorComponent,{

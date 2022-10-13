@@ -43,34 +43,34 @@ export class ConfirmacionCrearComponent implements OnInit {
     })
   }
   crearUsuario(){
-    const usuario: UsuariosCrear = {
-      cedula: this.form.value.cedula,
-      username: this.form.value.username,
-      names: this.form.value.names,
-      surnames: this.form.value.surnames,
-      email: this.form.value.email,
-      password: this.form.value.password,
-      phone: this.form.value.phone,
-      sex: this.form.value.sex,
-      address: this.form.value.address,
-      rol: this.form.value.rol,
-    }
-    this.api.postUsuarios(usuario).subscribe({
-      next: (res) => {
-        console.log(res)
-        this.cerrar()
-        this.regresarUsuarios();
-        this.exito();
-      },
-      error: (res)=>{
-        for(let message in res.error){
-          this.mensaje_error_lista.push(res.error[message][0])
-        }
-        this.cerrar()
-        this.mensajes_errores(this.mensaje_error_lista)
-        this.mensaje_error_lista=[]
-      }
-    })
+    // const usuario: UsuariosCrear = {
+    //   cedula: this.form.value.cedula,
+    //   username: this.form.value.username,
+    //   names: this.form.value.names,
+    //   surnames: this.form.value.surnames,
+    //   email: this.form.value.email,
+    //   password: this.form.value.password,
+    //   phone: this.form.value.phone,
+    //   sex: this.form.value.sex,
+    //   address: this.form.value.address,
+    //   rol: this.form.value.rol,
+    // }
+    // this.api.postUsuarios(usuario).subscribe({
+    //   next: (res) => {
+    //     console.log(res)
+    //     this.cerrar()
+    //     this.regresarUsuarios();
+    //     this.exito();
+    //   },
+    //   error: (res)=>{
+    //     for(let message in res.error){
+    //       this.mensaje_error_lista.push(res.error[message][0])
+    //     }
+    //     this.cerrar()
+    //     this.mensajes_errores(this.mensaje_error_lista)
+    //     this.mensaje_error_lista=[]
+    //   }
+    // })
   }
   mensajes_errores(mensajes: string[]){
     const dialogref = this.dialog.open(MensajesErrorComponent,{

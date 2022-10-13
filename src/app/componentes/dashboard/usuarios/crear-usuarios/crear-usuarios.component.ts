@@ -6,7 +6,6 @@ import { Roles } from 'src/app/interfaces/roles/roles';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
-import { UsuariosCrear } from 'src/app/interfaces/usuarios/usuariocrear';
 import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
 
 @Component({
@@ -56,19 +55,18 @@ export class CrearUsuariosComponent implements OnInit {
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
-        const usuario: UsuariosCrear = {
-          cedula: this.form.value.cedula,
-          username: this.form.value.username,
-          names: this.form.value.names,
-          surnames: this.form.value.surnames,
-          email: this.form.value.email,
-          password: this.form.value.password,
-          phone: this.form.value.phone,
-          sex: this.form.value.sex,
-          address: this.form.value.address,
-          rol: this.form.value.rol,
-        }
-        this.api.postUsuarios(usuario).subscribe({
+        let formData: FormData = new FormData();
+        formData.append('cedula', this.form.get('cedula')?.value);
+        formData.append('username', this.form.get('username')?.value);
+        formData.append('names', this.form.get('names')?.value);
+        formData.append('surnames', this.form.get('surnames')?.value);
+        formData.append('email', this.form.get('email')?.value);
+        formData.append('password', this.form.get('password')?.value);
+        formData.append('phone', this.form.get('phone')?.value);
+        formData.append('sex', this.form.get('sex')?.value);
+        formData.append('rol', this.form.get('rol')?.value);
+        formData.append('address', this.form.get('address')?.value);
+        this.api.postUsuarios(formData).subscribe({
           next: (res) => {
             this.snackBar.mensaje('Usuario Creado Exitosamente')
             this.regresarUsuarios();

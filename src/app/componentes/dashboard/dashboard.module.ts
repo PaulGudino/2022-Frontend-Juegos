@@ -31,6 +31,7 @@ import { AwardsComponent } from './awards/awards.component';
 import { CreateClientComponent } from './clients/create-client/create-client.component';
 import { ViewAwardsComponent } from './awards/view-awards/view-awards.component';
 import { CreateAwardsComponent } from './awards/create-awards/create-awards.component';
+import { EditAwardsComponent } from './awards/edit-awards/edit-awards.component';
 
 
 
@@ -63,6 +64,7 @@ import { CreateAwardsComponent } from './awards/create-awards/create-awards.comp
     CreateClientComponent,
     ViewAwardsComponent,
     CreateAwardsComponent,
+    EditAwardsComponent,
   ],
   imports: [
     SharedModule,

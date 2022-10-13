@@ -2,9 +2,11 @@ import { SnackbarService } from './../../../../servicios/snackbar/snackbar.servi
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AwardsService } from 'src/app/servicios/awards/awards.service';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
+import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
+import { ImageService } from 'src/app/servicios/image/image.service';
 
 @Component({
   selector: 'app-create-awards',
@@ -17,7 +19,9 @@ export class CreateAwardsComponent implements OnInit {
   form: FormGroup;
   @ViewChild("takeInput", { static: false })
   InputVar!: ElementRef;
-  fileToUpload!: File;
+  fileToUpload!: File | null;
+  imagen !: File;
+  mensaje_error_lista: string[] = [];
 
   Categorias = [
     {id: 'L', name: 'Legendaria'},
@@ -34,9 +38,10 @@ export class CreateAwardsComponent implements OnInit {
     private router: Router, 
     private fb: FormBuilder, 
     public dialog: MatDialog,
-    private sanitizer: DomSanitizer,
     private awardSrv: AwardsService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private dialogService: ConfirmDialogService,
+    private imageSrv: ImageService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -52,67 +57,76 @@ export class CreateAwardsComponent implements OnInit {
   ngOnInit(): void {
   }
   capturarFile(event: any): void {
-    const archivoCapturado = event.target.files[0];
-    this.fileToUpload = archivoCapturado;
-    let nombre = archivoCapturado.name;
-    if ( nombre.split('.')[1] == 'png' || nombre.split('.')[1] == 'jpg' || nombre.split('.')[1] == 'jpeg' || nombre.split('.')[1] == 'gif' ) {
-      this.extraerBase64(archivoCapturado).then((imagen: any) => {
+    this.fileToUpload = this.imageSrv.captureFile(event);
+    if (this.fileToUpload) {
+      this.imagen = this.fileToUpload;
+      this.imageSrv.extraerBase64(this.imagen).then((imagen: any) => {
         this.previsulizacion = imagen.base;
       });
     }else{
-      this.deleteImage();
+      this.previsulizacion = '';
+      this.InputVar.nativeElement.value = "";
       this.snackbar.mensaje('Solo se permiten imagenes');
     }
   }
-  extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
-    try {
-      const unsafeImg = window.URL.createObjectURL($event);
-      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-      const reader = new FileReader();
-      reader.readAsDataURL($event);
-      reader.onload = () => {
-        resolve({
-          base: reader.result
-        });
-      };
-      reader.onerror = error => {
-        resolve({
-          base: null
-        });
-      }
-      return image;
-    } catch (e) {
-      return null;
-    }
-  }
-  )
+  
+  
 
   deleteImage(){
     this.previsulizacion = '';
     this.InputVar.nativeElement.value = "";
   }
 
-  enviar(){
-    let formData: FormData = new FormData();
-    let user_register = localStorage.getItem('user_id');
+  createAwards(){
+    if (this.form.valid && this.fileToUpload) {
+      const options = {
+        title: 'CREAR PREMIO',
+        message: 'ESTA SEGURO QUE QUIERE CREAR EL PREMIO?',
+        cancelText: 'CANCELAR',
+        confirmText: 'CONFIRMAR'
+      };
+      this.dialogService.open(options);
+      this.dialogService.confirmed().subscribe(confirmed => {
 
-    formData.append('name', this.form.get('name')?.value);
-    formData.append('description', this.form.get('description')?.value);
-    formData.append('initial_stock', this.form.get('initial_stock')?.value);
-    formData.append('is_active', this.form.get('is_active')?.value);
-    formData.append('category', this.form.get('category')?.value);
-    formData.append('juego', this.form.get('juego')?.value);
-    formData.append('imagen', this.fileToUpload, this.fileToUpload.name);
-    formData.append('user_register', user_register!);
-    
-    this.awardSrv.postAward(formData).subscribe(
-      (res) => {
-        this.snackbar.mensaje('Premio creado correctamente');
-        this.router.navigate(['dashboard/premios']);
-      },
-      (err) => {
-        console.log(err);
-      }
-    )
+        let formData: FormData = new FormData();
+        let user_register = localStorage.getItem('user_id');
+
+        formData.append('name', this.form.get('name')?.value);
+        formData.append('description', this.form.get('description')?.value);
+        formData.append('initial_stock', this.form.get('initial_stock')?.value);
+        formData.append('is_active', this.form.get('is_active')?.value);
+        formData.append('category', this.form.get('category')?.value);
+        formData.append('juego', this.form.get('juego')?.value);
+        formData.append('imagen', this.imagen, this.imagen.name);
+        formData.append('user_register', user_register!);
+
+        this.awardSrv.postAward(formData).subscribe(
+          (res) => {
+            this.snackbar.mensaje('Premio creado correctamente');
+            this.router.navigate(['dashboard/premios']);
+          },
+          (res) => {
+            for(let message in res.error){
+              this.mensaje_error_lista.push(res.error[message][0])
+            }
+            this.mensajes_errores(this.mensaje_error_lista)
+            this.mensaje_error_lista=[]
+          }
+        )
+      });
+    }else{
+      this.snackbar.mensaje('Complete todos los campos');
+    }
+  }
+
+  mensajes_errores(mensajes: string[]){
+    const dialogref = this.dialog.open(MensajesErrorComponent,{
+      width:'50%',
+      data: mensajes
+    });
+  }
+
+  backAwards(){
+    this.router.navigate(['dashboard/premios']);
   }
 }

@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AwardsService } from 'src/app/servicios/awards/awards.service';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-awards',
@@ -28,6 +29,7 @@ export class AwardsComponent implements OnInit {
     public dialog: MatDialog,
     private snackbar: SnackbarService,
     private premiosSrv: AwardsService,
+    private dialogService: ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +60,19 @@ export class AwardsComponent implements OnInit {
     alert("Editar Premios");
   }
   eliminarPremios(id: number){
-    alert("Eliminar Premios");
+    const options = {
+      title: 'ELIMINAR PREMIO',
+      message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL PREMIO?',
+      cancelText: 'CANCELAR',
+      confirmText: 'CONFIRMAR'
+    };
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      this.premiosSrv.deleteAward(id).subscribe((data) => {
+        this.snackbar.mensaje("Premio Eliminado Existosamente");
+        this.cargarPremios();
+      }
+      );
+    });
   }
 }
