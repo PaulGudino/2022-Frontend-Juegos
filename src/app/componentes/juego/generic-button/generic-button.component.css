@@ -1,0 +1,9 @@
+.generic-btn{
+  padding: 1rem 1.5rem;
+  font-size: 1.6rem;
+  margin: 0;
+  text-align: center;
+  border-radius:15px;
+  outline:none;
+  border: none;
+}

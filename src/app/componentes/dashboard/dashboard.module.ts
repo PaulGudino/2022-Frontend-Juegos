@@ -32,6 +32,7 @@ import { CreateClientComponent } from './clients/create-client/create-client.com
 import { ViewAwardsComponent } from './awards/view-awards/view-awards.component';
 import { CreateAwardsComponent } from './awards/create-awards/create-awards.component';
 import { EditAwardsComponent } from './awards/edit-awards/edit-awards.component';
+import { ProbabilidadesComponent } from './probabilidades/probabilidades.component';
 
 
 
@@ -65,6 +66,7 @@ import { EditAwardsComponent } from './awards/edit-awards/edit-awards.component'
     ViewAwardsComponent,
     CreateAwardsComponent,
     EditAwardsComponent,
+    ProbabilidadesComponent,
   ],
   imports: [
     SharedModule,

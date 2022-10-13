@@ -1,0 +1,17 @@
+.publicity_container{
+  background-color: aqua;
+  width: 100%;
+  height: 15vh;
+}
+.publicity_img-container,img{
+  padding:0;
+  margin: 0;
+}
+.publicity_img-container{
+  width: 100%;
+  height: 100%;
+}
+.publicity_img{
+  width: 100%;
+  height: 100%;
+}

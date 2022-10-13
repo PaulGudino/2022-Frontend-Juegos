@@ -26,7 +26,7 @@ import { AwardsComponent } from './awards/awards.component';
 import { CreateClientComponent } from './clients/create-client/create-client.component';
 import { CreateAwardsComponent } from './awards/create-awards/create-awards.component';
 import { ViewAwardsComponent } from './awards/view-awards/view-awards.component';
-
+import {ProbabilidadesComponent} from './probabilidades/probabilidades.component'
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
@@ -46,6 +46,8 @@ const routes: Routes = [
     {path: 'premios', component : AwardsComponent},
     {path: 'premios/crear', component: CreateAwardsComponent},
     {path: 'premios/visualizar/:id', component: ViewAwardsComponent},
+    {path: 'probabilidades', component : ProbabilidadesComponent},
+
   ]},
 ];
 
