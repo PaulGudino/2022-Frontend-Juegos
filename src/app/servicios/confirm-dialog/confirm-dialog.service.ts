@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/componentes-compartidos/componentes-compartidos/confirm-dialog/confirm-dialog.component';
 import { map, take } from 'rxjs/operators';
+import { MensajesErrorComponent } from 'src/app/componentes/dashboard/mensajes-error/mensajes-error.component';
 
 
 @Injectable({
@@ -31,5 +32,18 @@ export class ConfirmDialogService {
       return res;
     }
     ));
+  }
+
+  public error(mensaje: string[]){
+
+    let mensaje_error_lista: string[] = [];
+
+    for(let message in mensaje){
+      mensaje_error_lista.push(mensaje[message])
+    }
+
+    const dialogref = this.dialog.open(MensajesErrorComponent,{
+      data: mensaje_error_lista
+    });
   }
 }

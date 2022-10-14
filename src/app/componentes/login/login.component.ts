@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar(){
+    console.log(this.ocultar);
     const username = this.form.value.username;
     const password = this.form.value.password;
     this.auth.Login({username, password}).subscribe(
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
         console.log(err);
         this.error();
         this.form.reset();
+        this.ocultar = true;
       }
     );
   }

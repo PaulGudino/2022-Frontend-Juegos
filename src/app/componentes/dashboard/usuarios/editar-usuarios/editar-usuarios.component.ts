@@ -3,12 +3,9 @@ import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsuariosEditar } from 'src/app/interfaces/usuarios/usuarioeditar';
-import { MatDialog } from '@angular/material/dialog';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
-import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
 
 @Component({
   selector: 'app-editar-usuarios',
@@ -20,7 +17,6 @@ export class EditarUsuariosComponent implements OnInit {
   form: FormGroup;
   roles: Roles[] = [];
   id_rol: number = 0;
-  mensaje_error_lista: string[] = [];
   usuarioget: Usuarios ={
     id: 0,
     cedula : '',
@@ -44,7 +40,6 @@ export class EditarUsuariosComponent implements OnInit {
     private fb: FormBuilder, 
     private router: Router, 
     private activerouter: ActivatedRoute, 
-    public dialog: MatDialog,
     private snackBar: SnackbarService,
     private dialogService: ConfirmDialogService
     ) {
@@ -95,14 +90,6 @@ export class EditarUsuariosComponent implements OnInit {
       this.roles = data;
     });
   }
-
-
-  mensajes_errores(mensajes: string[]){
-    const dialogref = this.dialog.open(MensajesErrorComponent,{
-      width:'50%',
-      data: mensajes
-    });
-  }
   
   actualizarUsuario(){
     let usuarioid = this.activerouter.snapshot.paramMap.get('id');
@@ -133,11 +120,7 @@ export class EditarUsuariosComponent implements OnInit {
             this.router.navigate(['/dashboard/usuarios']);
           },
           (res) => {
-            for(let message in res.error){
-              this.mensaje_error_lista.push(res.error[message])
-            }
-            this.mensajes_errores(this.mensaje_error_lista)
-            this.mensaje_error_lista=[];
+            this.dialogService.error(res.error);
           }
         );
     }

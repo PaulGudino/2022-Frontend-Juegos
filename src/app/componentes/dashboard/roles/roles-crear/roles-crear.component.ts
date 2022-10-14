@@ -1,12 +1,9 @@
 import { SnackbarService } from './../../../../servicios/snackbar/snackbar.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/servicios/usuarios/api.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { RolesService } from 'src/app/servicios/roles/roles.service';
-import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
 
 @Component({
   selector: 'app-roles-crear',
@@ -16,13 +13,10 @@ import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.comp
 export class RolesCrearComponent implements OnInit {
 
   form: FormGroup
-  mensaje_error_lista: string[] = [];
 
   constructor(
-    private api: ApiService, 
     private router: Router, 
     private fb: FormBuilder, 
-    public dialog: MatDialog,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
     private rolSrv: RolesService
@@ -38,13 +32,6 @@ export class RolesCrearComponent implements OnInit {
   }
   regresarRoles(){
     this.router.navigate(['/dashboard/roles']);
-  }
-  
-  mensajes_errores(mensajes: string[]){
-    const dialogref = this.dialog.open(MensajesErrorComponent,{
-      width:'50%',
-      data: mensajes
-    });
   }
 
   crearRol(){
@@ -67,11 +54,7 @@ export class RolesCrearComponent implements OnInit {
             this.regresarRoles();
           },
           (err) => {
-            for(let message in err.error){
-              this.mensaje_error_lista.push(err.error[message][0])
-            }
-            this.mensajes_errores(this.mensaje_error_lista)
-            this.mensaje_error_lista=[]
+            this.dialogService.error(err.error);
           }
         )
       });

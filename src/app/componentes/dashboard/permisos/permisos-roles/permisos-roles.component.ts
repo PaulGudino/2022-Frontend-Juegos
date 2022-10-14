@@ -2,7 +2,6 @@ import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { RolesService } from './../../../../servicios/roles/roles.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormArray, FormControl} from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Permisos } from 'src/app/interfaces/permisos/permisos';
 import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
@@ -26,7 +25,6 @@ export class PermisosRolesComponent implements OnInit {
     private permisoSrv: PermisosService,
     private activerouter: ActivatedRoute, 
     private router: Router,
-    public dialog: MatDialog,
     private roles_service: RolesService,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService

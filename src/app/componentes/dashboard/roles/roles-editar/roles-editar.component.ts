@@ -3,10 +3,8 @@ import { RolesService } from './../../../../servicios/roles/roles.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
-import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
 
 @Component({
   selector: 'app-roles-editar',
@@ -16,7 +14,6 @@ import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.comp
 export class RolesEditarComponent implements OnInit {
 
   form: FormGroup;
-  mensaje_error_lista: string[] = [];
   editar_rol: Roles ={
     id: 0,
     name: '',
@@ -29,7 +26,6 @@ export class RolesEditarComponent implements OnInit {
     private rol: RolesService,
     private activerouter: ActivatedRoute, 
     private snackbar: SnackbarService,
-    public dialog: MatDialog,
     private dialogService: ConfirmDialogService
   ) {
     this.form = this.fb.group({
@@ -50,13 +46,6 @@ export class RolesEditarComponent implements OnInit {
   }
   regresarRoles(){
     this.router.navigate(['/dashboard/roles']);
-  }
-
-  mensajes_errores(mensajes: string[]){
-    const dialogref = this.dialog.open(MensajesErrorComponent,{
-      width:'50%',
-      data: mensajes
-    });
   }
   
   editarRol(){
@@ -80,11 +69,7 @@ export class RolesEditarComponent implements OnInit {
             this.router.navigate(['/dashboard/roles']);
           },
           err => {
-            for(let message in err.error){
-              this.mensaje_error_lista.push(err.error[message])
-            }
-            this.mensajes_errores(this.mensaje_error_lista)
-            this.mensaje_error_lista=[];
+            this.dialogService.error(err.error);
           }
         )
       });

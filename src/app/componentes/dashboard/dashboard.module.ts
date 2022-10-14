@@ -16,7 +16,6 @@ import { RolesCrearComponent } from './roles/roles-crear/roles-crear.component';
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
 import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
 import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
-import { ConfirmarCambiarContraseniaComponent } from './inicio/confirmar-cambiar-Contrasenia/confirmar-cambiar-contrasenia/confirmar-cambiar-contrasenia.component';
 import { ComponentesCompartidosModule } from 'src/app/componentes-compartidos/componentes-compartidos/componentes-compartidos.module';
 import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usuarios-eliminados/usuarios-eliminados.component';
 import { ClientsComponent } from './clients/clients.component';
@@ -44,7 +43,6 @@ import { ProbabilidadesComponent } from './probabilidades/probabilidades.compone
     RolesEditarComponent,
     PermisosRolesComponent,
     CambiarContraseniaComponent,
-    ConfirmarCambiarContraseniaComponent,
     UsuariosEliminadosComponent,
     ClientsComponent,
     AwardsComponent,

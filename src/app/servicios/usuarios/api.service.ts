@@ -57,8 +57,8 @@ export class ApiService {
   getfilteUsuariobyRol(id:number):Observable<UsuariosFiltradobyRol[]>{
     return this.http.get<UsuariosFiltradobyRol[]>(this.url+'api/userfilterrol/?rol='+id);
   }
-  postCambiarContraseña(id:number, cambio: CambiarContraseña){
-    return this.http.post(this.url+'api/user/'+id+'/change_password/', cambio);
+  postCambiarContraseña(id:number, form: FormData){
+    return this.http.post(this.url+'api/user/'+id+'/change_password/', form);
   }
   postCambiarisActivate(id:number){
     return this.http.post(this.url+'api/user/'+id+'/activate_user/', null);
