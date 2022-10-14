@@ -57,7 +57,7 @@ export class AwardsComponent implements OnInit {
     this.router.navigate(['/dashboard/premios/visualizar/'+id]);
   }
   editarPremios(id: number){
-    alert("Editar Premios");
+    this.router.navigate(['/dashboard/premios/editar/'+id]);
   }
   eliminarPremios(id: number){
     const options = {

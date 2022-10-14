@@ -1,11 +1,9 @@
 import { SnackbarService } from './../../../../servicios/snackbar/snackbar.service';
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AwardsService } from 'src/app/servicios/awards/awards.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
-import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
 import { ImageService } from 'src/app/servicios/image/image.service';
 
 @Component({
@@ -21,7 +19,6 @@ export class CreateAwardsComponent implements OnInit {
   InputVar!: ElementRef;
   fileToUpload!: File | null;
   imagen !: File;
-  mensaje_error_lista: string[] = [];
 
   Categorias = [
     {id: 'L', name: 'Legendaria'},
@@ -37,7 +34,6 @@ export class CreateAwardsComponent implements OnInit {
   constructor(
     private router: Router, 
     private fb: FormBuilder, 
-    public dialog: MatDialog,
     private awardSrv: AwardsService,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
@@ -105,12 +101,8 @@ export class CreateAwardsComponent implements OnInit {
             this.snackbar.mensaje('Premio creado correctamente');
             this.router.navigate(['dashboard/premios']);
           },
-          (res) => {
-            for(let message in res.error){
-              this.mensaje_error_lista.push(res.error[message][0])
-            }
-            this.mensajes_errores(this.mensaje_error_lista)
-            this.mensaje_error_lista=[]
+          (err) => {
+            this.dialogService.error(err.error);
           }
         )
       });
@@ -119,12 +111,6 @@ export class CreateAwardsComponent implements OnInit {
     }
   }
 
-  mensajes_errores(mensajes: string[]){
-    const dialogref = this.dialog.open(MensajesErrorComponent,{
-      width:'50%',
-      data: mensajes
-    });
-  }
 
   backAwards(){
     this.router.navigate(['dashboard/premios']);

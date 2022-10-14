@@ -28,7 +28,7 @@ export class AwardsService {
     return this.http.post(this.url+'api/premios/', data);
   }
   putAward(id: number, data: FormData){
-    return this.http.put(this.url+'api/premios/'+id, data);
+    return this.http.put(this.url+'api/premios/'+id+'/', data);
   }
   deleteAward(id: number){
     return this.http.delete(this.url+'api/premios/'+id);

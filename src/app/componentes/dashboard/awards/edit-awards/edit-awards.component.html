@@ -1,5 +1,5 @@
-<!-- <mat-toolbar>
-    <span>Crear Premios</span>
+<mat-toolbar>
+    <span>Editar Premios</span>
     <span class="example-spacer"></span>
 </mat-toolbar>
 <div class="container_card" >
@@ -19,7 +19,7 @@
         
                 <mat-form-field>
                     <mat-label>Stock Inicial</mat-label>
-                    <input autocomplete="off" formControlName="initial_stock" onkeypress='return event.charCode >= 49 && event.charCode <= 57' type="text" matInput>
+                    <input autocomplete="off" formControlName="initial_stock" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text" matInput>
                 </mat-form-field>
         
                 <mat-form-field>
@@ -48,6 +48,7 @@
         </div>
         <div    >
             <div>
+                Formato png, jpg, jpeg
                 <input #takeInput (change)="capturarFile($event)" type="file" accept="image/*">
                 <button (click)="deleteImage()" mat-icon-button color="warn">
                     <mat-icon>close</mat-icon>
@@ -71,4 +72,4 @@
     </div>
  </mat-card>
 </div>
- -->
+

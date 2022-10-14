@@ -25,6 +25,7 @@ import { ClientsComponent } from './clients/clients.component';
 import { AwardsComponent } from './awards/awards.component';
 import { CreateClientComponent } from './clients/create-client/create-client.component';
 import { CreateAwardsComponent } from './awards/create-awards/create-awards.component';
+import { EditAwardsComponent } from './awards/edit-awards/edit-awards.component';
 import { ViewAwardsComponent } from './awards/view-awards/view-awards.component';
 import {ProbabilidadesComponent} from './probabilidades/probabilidades.component'
 
@@ -45,6 +46,7 @@ const routes: Routes = [
     {path: 'clientes/crear', component: CreateClientComponent},
     {path: 'premios', component : AwardsComponent},
     {path: 'premios/crear', component: CreateAwardsComponent},
+    {path: 'premios/editar/:id', component: EditAwardsComponent},
     {path: 'premios/visualizar/:id', component: ViewAwardsComponent},
     {path: 'probabilidades', component : ProbabilidadesComponent},
 
