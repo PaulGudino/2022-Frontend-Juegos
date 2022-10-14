@@ -1,4 +1,3 @@
-import { ConfirmacionEliminarComponent } from './confirmacion-eliminar/confirmacion-eliminar.component';
 import { ApiService } from '../../../servicios/usuarios/api.service';
 import { Usuarios } from '../../../interfaces/usuarios/usuarios';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { lastValueFrom } from 'rxjs';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -33,7 +33,8 @@ export class UsuariosComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private permisos_api: PermisosService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private dialogService: ConfirmDialogService
 
     ) { }
 
@@ -74,17 +75,24 @@ export class UsuariosComponent implements OnInit {
   async eliminarUsuario(id:number){
     await this.Permisoeliminar();
     if(this.permisos.length > 0){
-      const dialogref = this.dialog.open(ConfirmacionEliminarComponent,{
-        width:'50%',
-        data: id
+      const options = {
+        title: 'ELIMINAR USUARIO',
+        message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL USUARIO?',
+        cancelText: 'CANCELAR',
+        confirmText: 'CONFIRMAR'
+      };
+      this.dialogService.open(options);
+      this.dialogService.confirmed().subscribe(confirmed => {
+        this.api.deleteUsuario(id).subscribe(res => {
+          this.snackbar.mensaje('Usuario Eliminado Exitosamente');
+          this.cargarUsuarios();
+        }
+        );
       });
-      dialogref.afterClosed().subscribe(res =>{
-        console.log(res)
-        this.cargarUsuarios();
-      })
     }else{
       this.snackbar.mensaje('No tiene permisos para eliminar usuarios');
     }
+    
   }
   async Permisoeliminar(){
     let rol_id = Number(localStorage.getItem('rol_id'));

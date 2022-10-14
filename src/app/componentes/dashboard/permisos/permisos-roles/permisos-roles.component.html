@@ -4,45 +4,31 @@
 </mat-toolbar>
 <div class="container_card">
     <mat-card class="card">
-        <div class="parent">
-            <div class="div1">
-                <div class="container_vistas">
-                    <h1>Vistas Disponibles</h1>
-                    <h2>Usuarios</h2>
-                    <h2>Roles</h2>
-                </div>     
-            </div>
-            <div class="div2"> 
+        <div>
+            <form [formGroup]="form" novalidate>
                 <div class="container">
-                    <div> <label class="label">Crear</label></div>
-                    <div> <label class="label">Visualizar</label></div>
-                    <div> <label class="label">Editar</label></div>
-                    <div> <label class="label">Eliminar</label></div>
-                </div>
-            </div>
-            <div class="div3"> 
-                <div>
-                    <form [formGroup]="form" novalidate>
-                        <div class="container">
-                            <div *ngFor="let permiso of Lista_permisos; let i=index">
-                                <!-- <label class="label espaciado container_checkbox">
-                                    <input type="checkbox" id="{{permiso.id}}" (change)="onCheckboxChange($event)" [value]="permiso.id" />
-                                    <div>
-                                        <label for="{{permiso.id}}"></label>
-                                      </div>
-                                </label> -->
-                                    <div class="espaciado">
-                                      <div class="button r" id="button-3">
-                                        <input class="checkbox" type="checkbox" id="{{permiso.id}}" (change)="onCheckboxChange($event)" [value]="permiso.id" />
-                                        <div class="knobs"></div>
-                                        <div class="layer"></div>
-                                      </div>
-                                    </div>
+                    <div *ngFor="let permiso of Lista_permisos; let i=index">
+                        <!-- <label class="label espaciado container_checkbox">
+                            <input type="checkbox" id="{{permiso.id}}" (change)="onCheckboxChange($event)" [value]="permiso.id" />
+                            <div>
+                                <label for="{{permiso.id}}"></label>
+                              </div>
+                        </label> -->
+                            <div class="container_permiso">
+                                <div class="permiso_nombre">
+                                    <label>{{permiso.name}}</label>
+                                </div>
+                                <div class="espaciado">
+                                  <div class="button r" id="button-3">
+                                    <input class="checkbox" type="checkbox" id="{{permiso.id}}" (change)="onCheckboxChange($event)" [value]="permiso.id" />
+                                    <div class="knobs"></div>
+                                    <div class="layer"></div>
+                                  </div>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         
         <div class="container_botones">

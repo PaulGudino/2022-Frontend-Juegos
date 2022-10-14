@@ -1,11 +1,12 @@
+import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { RolesService } from './../../../../servicios/roles/roles.service';
-import { PermisosConfirmarComponent } from './../permisos-confirmar/permisos-confirmar.component';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormArray, FormControl} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Permisos } from 'src/app/interfaces/permisos/permisos';
 import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-permisos-roles',
@@ -16,16 +17,19 @@ export class PermisosRolesComponent implements OnInit {
 
   Lista_permisos: Permisos [] = [];
   Permisos_eliminar : string[] = []
+  
 
   form : FormGroup;
   rol : string = '';
   constructor(
     private fb: FormBuilder,
-    private permisos_api: PermisosService,
+    private permisoSrv: PermisosService,
     private activerouter: ActivatedRoute, 
     private router: Router,
     public dialog: MatDialog,
-    private roles_service: RolesService
+    private roles_service: RolesService,
+    private snackbar: SnackbarService,
+    private dialogService: ConfirmDialogService
     ) {
       this.form = this.fb.group({
         ckeckArray: this.fb.array([])
@@ -60,13 +64,13 @@ export class PermisosRolesComponent implements OnInit {
   }
 
   cargarPermisos(){
-    this.permisos_api.getPermisos().subscribe((data) => {
+    this.permisoSrv.getPermisos().subscribe((data) => {
       this.Lista_permisos = data;
     });
   }
 
   obtenerPermisosbyrol(id:number){
-    this.permisos_api.getPermisosbyRol(id).subscribe(
+    this.permisoSrv.getPermisosbyRol(id).subscribe(
       (data) => {
         const checkArray: FormArray = this.form.get('ckeckArray') as FormArray;
         for (let i = 0; i < data.length; i++) {
@@ -93,16 +97,49 @@ export class PermisosRolesComponent implements OnInit {
     this.router.navigate(['/dashboard/roles']);
   }
   guardarPermisos(){
-    let rolid = Number(this.activerouter.snapshot.paramMap.get('id'));
-    let permisos_nuevos = this.form.value.ckeckArray;
-    let permisos_viejos = this.Permisos_eliminar;
-
-    const dialogref = this.dialog.open(PermisosConfirmarComponent,{
-      width:'50%',
-      data: { rol: rolid, permission_viejos: permisos_viejos, permission_nuevos: permisos_nuevos }
+    const options = {
+      title: 'GUARDAR PERMISOS',
+      message: 'ESTA SEGURO QUE QUIERE CAMBIAR LOS PERMISOS DEL ROL?',
+      cancelText: 'CANCELAR',
+      confirmText: 'CONFIRMAR'
+    };
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      this.guardarPermisosNuevos();
     });
-    dialogref.afterClosed().subscribe(res =>{
-      console.log(res)
-    })
   }
+
+  eliminarPermisosViejos(){
+    let permisoseliminar = this.Permisos_eliminar;
+    if(permisoseliminar.length > 0){
+      for( let i = 0; i < permisoseliminar.length; i++){
+        this.permisoSrv.deletePermissionRol(Number(permisoseliminar[i])).subscribe(
+          (data) => {
+            console.log(data);
+          });
+      }
+    }
+  }
+
+  guardarPermisosNuevos(){
+    this.eliminarPermisosViejos();
+    let permisosnuevos = this.form.value.ckeckArray;
+    let rol_id = Number(this.activerouter.snapshot.paramMap.get('id'));
+    if(permisosnuevos.length > 0){
+      for( let i = 0; i < permisosnuevos.length; i++){   
+        let p = Number(permisosnuevos[i]);
+        this.permisoSrv.postPermisosbyRol({rol: rol_id, permission: p}).subscribe(
+          (data) => {
+            console.log('Permisos actualizados correctamente');
+          });
+      }
+      this.snackbar.mensaje('Permisos actualizados correctamente');
+      this.router.navigate(['/dashboard/roles']);
+    }else{
+      this.snackbar.mensaje('Este rol no tiene permisos');
+      this.router.navigate(['/dashboard/roles']);
+    }
+  }
+
+
 }

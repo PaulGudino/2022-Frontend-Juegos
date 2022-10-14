@@ -1,4 +1,3 @@
-import { RolesConfirmarEliminarComponent } from './roles-confirmar-eliminar/roles-confirmar-eliminar.component';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,6 +9,8 @@ import { ApiService } from 'src/app/servicios/usuarios/api.service';
 import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { lastValueFrom } from 'rxjs';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
+import { RolesService } from 'src/app/servicios/roles/roles.service';
 
 @Component({
   selector: 'app-roles',
@@ -30,7 +31,9 @@ export class RolesComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private permisos_api: PermisosService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private dialogService: ConfirmDialogService,
+    private rolSrv: RolesService
 
   ) { }
 
@@ -64,14 +67,24 @@ export class RolesComponent implements OnInit {
   async eliminarRol(id:number){
     await this.Permisoeliminar();
     if(this.permisos.length > 0){
-      const dialogref = this.dialog.open(RolesConfirmarEliminarComponent,{
-        width:'50%',
-        data: id
+      const options = {
+        title: 'ELIMINAR ROL',
+        message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL ROL?',
+        cancelText: 'CANCELAR',
+        confirmText: 'CONFIRMAR'
+      };
+      this.dialogService.open(options);
+      this.dialogService.confirmed().subscribe(confirmed => {
+        this.rolSrv.deleteRol(id).subscribe(
+          (data) => {
+          this.snackbar.mensaje('Rol Eliminado Exitosamente');
+          this.cargarRoles();
+        }
+        , (error) => {
+          console.log(error);
+        }
+        );
       });
-      dialogref.afterClosed().subscribe(res =>{
-        console.log(res)
-        this.cargarRoles();
-      })
     }else{
       this.snackbar.mensaje('No tiene permisos para eliminar roles');
     }

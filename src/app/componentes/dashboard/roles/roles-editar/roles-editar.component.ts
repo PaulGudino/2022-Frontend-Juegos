@@ -1,4 +1,3 @@
-import { RolesConfirmarEditarComponent } from './../roles-confirmar-editar/roles-confirmar-editar.component';
 import { SnackbarService } from './../../../../servicios/snackbar/snackbar.service';
 import { RolesService } from './../../../../servicios/roles/roles.service';
 import { Component, OnInit } from '@angular/core';
@@ -6,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Roles } from 'src/app/interfaces/roles/roles';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
+import { MensajesErrorComponent } from '../../mensajes-error/mensajes-error.component';
 
 @Component({
   selector: 'app-roles-editar',
@@ -15,6 +16,7 @@ import { Roles } from 'src/app/interfaces/roles/roles';
 export class RolesEditarComponent implements OnInit {
 
   form: FormGroup;
+  mensaje_error_lista: string[] = [];
   editar_rol: Roles ={
     id: 0,
     name: '',
@@ -28,6 +30,7 @@ export class RolesEditarComponent implements OnInit {
     private activerouter: ActivatedRoute, 
     private snackbar: SnackbarService,
     public dialog: MatDialog,
+    private dialogService: ConfirmDialogService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -48,24 +51,43 @@ export class RolesEditarComponent implements OnInit {
   regresarRoles(){
     this.router.navigate(['/dashboard/roles']);
   }
+
+  mensajes_errores(mensajes: string[]){
+    const dialogref = this.dialog.open(MensajesErrorComponent,{
+      width:'50%',
+      data: mensajes
+    });
+  }
+  
   editarRol(){
     let id_rol = this.activerouter.snapshot.paramMap.get('id');
-    const rol: Roles = {
-      id: Number(id_rol),
-      name: this.form.value.name,
-      description: this.form.value.description,
-      is_active: this.form.value.is_active,
-    }
     if(this.form.valid){
-      const dialogref = this.dialog.open(RolesConfirmarEditarComponent,{
-        width:'50%',
-        data: rol
+      const options = {
+        title: 'EDITAR ROLES',
+        message: 'ESTA SEGURO QUE QUIERE EDITAR EL ROL?',
+        cancelText: 'CANCELAR',
+        confirmText: 'CONFIRMAR'
+      };
+      this.dialogService.open(options);
+      this.dialogService.confirmed().subscribe(confirmed => {
+        let formData: FormData = new FormData();
+        formData.append('name', this.form.get('name')?.value);
+        formData.append('description', this.form.get('description')?.value);
+        formData.append('is_active', this.form.get('is_active')?.value);
+        this.rol.putRol(Number(id_rol), formData).subscribe(
+          res => {
+            this.snackbar.mensaje('Rol Actualizado Exitosamente');
+            this.router.navigate(['/dashboard/roles']);
+          },
+          err => {
+            for(let message in err.error){
+              this.mensaje_error_lista.push(err.error[message])
+            }
+            this.mensajes_errores(this.mensaje_error_lista)
+            this.mensaje_error_lista=[];
+          }
+        )
       });
-      dialogref.afterClosed().subscribe(res =>{
-        console.log(res)
-      })
-    }else{
-      this.snackbar.mensaje('Llene el formulario correctamente');
     }
   }
 }
