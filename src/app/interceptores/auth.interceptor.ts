@@ -29,10 +29,19 @@ export class AuthInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(catchError((err: HttpErrorResponse) =>{
             if (err.status === 401 && !this.refresh) {
                 this.refresh = true;
-                return this.http.post('http://localhost:8000/token/refresh/', {}, {withCredentials: true}).pipe(
-                // return this.http.post('https://juegos.pythonanywhere.com/token/refresh/', {}, {withCredentials: true}).pipe(
+
+                let formData: FormData = new FormData();
+                let refreshroken!: string;
+                refreshroken = localStorage.getItem('refresh')!;
+                formData.append('refresh', refreshroken);
+
+                return this.http.post('http://localhost:8000/token/refresh/', formData, {withCredentials: true}).pipe(
+                // return this.http.post('https://juegos.pythonanywhere.com/token/refresh/', formData, {withCredentials: true}).pipe(
                     switchMap((data: any) => {
-                        AuthInterceptor.accessToken = data.accessToken;
+                        console.log(data);
+                        localStorage.setItem('token', data.access);
+                        localStorage.setItem('refresh', data.refresh);
+                        AuthInterceptor.accessToken = data.access;
                         const req = request.clone({
                             setHeaders: {
                                 Authorization: `Bearer ${AuthInterceptor.accessToken}`

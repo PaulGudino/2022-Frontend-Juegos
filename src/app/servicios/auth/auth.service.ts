@@ -18,8 +18,8 @@ export class AuthService {
     return this.http.post(this.url+'auth/login/', login);
   }
 
-  Logout(logout: Logout){
-    return this.http.post(this.url+'auth/logout/', logout);
+  Logout(form: FormData){
+    return this.http.post(this.url+'auth/logout/', form);
   }
   OlvideContraseña(email: OlvideContraseña){
     return this.http.post(this.url+'auth/forgot-password/', email);
