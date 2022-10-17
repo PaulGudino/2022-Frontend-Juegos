@@ -20,7 +20,7 @@ import { RolesService } from 'src/app/servicios/roles/roles.service';
 export class RolesComponent implements OnInit {
 
   Titulo = 'Roles';
-  displayedColumns: string[] = ['id', 'name', 'description', 'is_active', 'Acciones']
+  displayedColumns: string[] = ['id', 'name', 'description','created', 'is_active', 'Acciones']
   dataSource !: MatTableDataSource<Roles>;
   permisos:any = [];
   @ViewChild(MatPaginator) paginator !: MatPaginator;

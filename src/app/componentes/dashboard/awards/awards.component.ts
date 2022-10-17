@@ -18,7 +18,7 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
 export class AwardsComponent implements OnInit {
 
   Titulo = "Premios";
-  displayedColumns: string[] = ['id', 'name', 'description','initial_stock','current_stock','prizes_awarded','juego', 'is_active', 'Acciones']
+  displayedColumns: string[] = ['id', 'name', 'description','initial_stock','current_stock','created','juego', 'is_active', 'Acciones']
   dataSource !: MatTableDataSource<getAwardList>;
   permisos:any = [];
   @ViewChild(MatPaginator) paginator !: MatPaginator;

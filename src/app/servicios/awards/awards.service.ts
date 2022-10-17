@@ -19,10 +19,13 @@ export class AwardsService {
   
 
   getAward():Observable<getAwardList[]>{
-    return this.http.get<getAwardList[]>(this.url+'api/premios/');
+    return this.http.get<getAwardList[]>(this.url+'api/premioslist/');
   }
   getAwardbyId(id: number):Observable<getAwardList>{
     return this.http.get<getAwardList>(this.url+'api/premios/'+id);
+  }
+  getAwardbyIdVisualizer(id: number):Observable<getAwardList>{
+    return this.http.get<getAwardList>(this.url+'api/premioslist/'+id);
   }
   postAward(data: FormData){
     return this.http.post(this.url+'api/premios/', data);
