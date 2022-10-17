@@ -75,15 +75,18 @@ export class RolesComponent implements OnInit {
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
-        this.rolSrv.deleteRol(id).subscribe(
-          (data) => {
-          this.snackbar.mensaje('Rol Eliminado Exitosamente');
-          this.cargarRoles();
+        if (confirmed) {
+          this.rolSrv.deleteRol(id).subscribe(
+            (data) => {
+            this.snackbar.mensaje('Rol Eliminado Exitosamente');
+            this.cargarRoles();
+          }
+          , (error) => {
+            this.dialogService.error(error.error);
+            this.cargarRoles();
+          }
+          );
         }
-        , (error) => {
-          console.log(error);
-        }
-        );
       });
     }else{
       this.snackbar.mensaje('No tiene permisos para eliminar roles');

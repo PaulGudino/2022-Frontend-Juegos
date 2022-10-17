@@ -102,28 +102,30 @@ export class EditarUsuariosComponent implements OnInit {
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
-        let formData: FormData = new FormData();
-        formData.append('cedula', this.form.get('cedula')?.value);
-        formData.append('username', this.form.get('username')?.value);
-        formData.append('names', this.form.get('names')?.value);
-        formData.append('surnames', this.form.get('surnames')?.value);
-        formData.append('email', this.form.get('email')?.value);
-        formData.append('phone', this.form.get('phone')?.value);
-        formData.append('sex', this.form.get('sex')?.value);
-        formData.append('address', this.form.get('address')?.value);
-        formData.append('rol', this.form.get('rol')?.value);
-        formData.append('is_active', this.form.get('is_active')?.value);
+        if (confirmed) {
+          let formData: FormData = new FormData();
+          formData.append('cedula', this.form.get('cedula')?.value);
+          formData.append('username', this.form.get('username')?.value);
+          formData.append('names', this.form.get('names')?.value);
+          formData.append('surnames', this.form.get('surnames')?.value);
+          formData.append('email', this.form.get('email')?.value);
+          formData.append('phone', this.form.get('phone')?.value);
+          formData.append('sex', this.form.get('sex')?.value);
+          formData.append('address', this.form.get('address')?.value);
+          formData.append('rol', this.form.get('rol')?.value);
+          formData.append('is_active', this.form.get('is_active')?.value);
 
-        this.api.putUsuario(Number(usuarioid), formData).subscribe(
-          (data) => {
-            this.snackBar.mensaje('Usuario Actualizado Exitosamente');
-            this.router.navigate(['/dashboard/usuarios']);
-          },
-          (res) => {
-            this.dialogService.error(res.error);
-          }
-        );
-    }
+          this.api.putUsuario(Number(usuarioid), formData).subscribe(
+            (data) => {
+              this.snackBar.mensaje('Usuario Actualizado Exitosamente');
+              this.router.navigate(['/dashboard/usuarios']);
+            },
+            (res) => {
+              this.dialogService.error(res.error);
+            }
+          );
+        }
+      }
     );
 
   }

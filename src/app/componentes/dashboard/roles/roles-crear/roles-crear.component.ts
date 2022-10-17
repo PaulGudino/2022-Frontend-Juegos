@@ -44,19 +44,21 @@ export class RolesCrearComponent implements OnInit {
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
-        let formData: FormData = new FormData();
-        formData.append('name', this.form.get('name')?.value);
-        formData.append('description', this.form.get('description')?.value);
-        formData.append('is_active', this.form.get('is_active')?.value);
-        this.rolSrv.postRoles(formData).subscribe(
-          (res) => {
-            this.snackbar.mensaje('Rol Creado Exitosamente');
-            this.regresarRoles();
-          },
-          (err) => {
-            this.dialogService.error(err.error);
-          }
-        )
+        if (confirmed) {
+          let formData: FormData = new FormData();
+          formData.append('name', this.form.get('name')?.value);
+          formData.append('description', this.form.get('description')?.value);
+          formData.append('is_active', this.form.get('is_active')?.value);
+          this.rolSrv.postRoles(formData).subscribe(
+            (res) => {
+              this.snackbar.mensaje('Rol Creado Exitosamente');
+              this.regresarRoles();
+            },
+            (err) => {
+              this.dialogService.error(err.error);
+            }
+          )
+        }
       });
     }else{
       this.snackbar.mensaje('Llene el formulario correctamente');

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Usuarios } from 'src/app/interfaces/usuarios/usuarios';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ApiService } from 'src/app/servicios/usuarios/api.service';
 
@@ -24,7 +25,8 @@ export class UsuariosEliminadosComponent implements OnInit {
     private api: ApiService, 
     private router: Router,
     public dialog: MatDialog,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private dialogService: ConfirmDialogService
   ) {
    }
 
@@ -47,9 +49,20 @@ export class UsuariosEliminadosComponent implements OnInit {
     });
   }
   restaurarUsuario(id:number){
-    this.api.postCambiarisActivate(id).subscribe((data) => {
-      this.snackbar.mensaje("Usuario activado correctamente");
-      window.location.reload();
+    const options = {
+      title: 'ACTIVAR USUARIO',
+      message: 'ESTA SEGURO QUE QUIERE ACTIVAR EL USUARIO?',
+      cancelText: 'CANCELAR',
+      confirmText: 'CONFIRMAR'
+    };
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (confirmed) {
+        this.api.postCambiarisActivate(id).subscribe((data) => {
+          this.snackbar.mensaje("Usuario activado correctamente");
+          this.cargarUsuarios();
+        });
+      }
     });
   }
   regresar(){
