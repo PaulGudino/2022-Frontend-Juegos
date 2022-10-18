@@ -96,7 +96,7 @@ export class UsuariosComponent implements OnInit {
         }
       });
     }else{
-      this.snackbar.mensaje('No tiene permisos para eliminar usuarios');
+      this.snackbar.mensaje('No tienes permisos suficientes para acceder a esta sección');
     }
     
   }

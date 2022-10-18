@@ -89,12 +89,12 @@ export class RolesComponent implements OnInit {
         }
       });
     }else{
-      this.snackbar.mensaje('No tiene permisos para eliminar roles');
+      this.snackbar.mensaje('No tienes permisos suficientes para acceder a esta sección');
     }
   }
   async Permisoeliminar(){
     let rol_id = Number(localStorage.getItem('rol_id'));
-    let permiso_id = 8;
+    let permiso_id = 9;
     const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
     this.permisos = promesa;
   }
