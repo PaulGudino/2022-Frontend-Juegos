@@ -28,7 +28,6 @@ export class EditAwardsComponent implements OnInit {
     {id: 'E', name: 'Epica'},
     {id: 'R', name: 'Rara'},
     {id: 'C', name: 'Común'},
-    {id: 'P', name: 'Publicidad'},
   ]
   Juegos = [
     {id:'T', name: 'Traga Monedas'},

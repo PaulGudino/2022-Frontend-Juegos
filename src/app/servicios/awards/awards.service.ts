@@ -19,22 +19,22 @@ export class AwardsService {
   
 
   getAward():Observable<getAwardList[]>{
-    return this.http.get<getAwardList[]>(this.url+'api/premioslist/');
+    return this.http.get<getAwardList[]>(this.url+'api/awardlist/');
   }
   getAwardbyId(id: number):Observable<getAwardList>{
-    return this.http.get<getAwardList>(this.url+'api/premios/'+id);
+    return this.http.get<getAwardList>(this.url+'api/award/'+id);
   }
   getAwardbyIdVisualizer(id: number):Observable<getAwardList>{
-    return this.http.get<getAwardList>(this.url+'api/premioslist/'+id);
+    return this.http.get<getAwardList>(this.url+'api/awardlist/'+id);
   }
   postAward(data: FormData){
-    return this.http.post(this.url+'api/premios/', data);
+    return this.http.post(this.url+'api/award/', data);
   }
   putAward(id: number, data: FormData){
-    return this.http.put(this.url+'api/premios/'+id+'/', data);
+    return this.http.put(this.url+'api/award/'+id+'/', data);
   }
   deleteAward(id: number){
-    return this.http.delete(this.url+'api/premios/'+id);
+    return this.http.delete(this.url+'api/award/'+id);
   }
 
 }
