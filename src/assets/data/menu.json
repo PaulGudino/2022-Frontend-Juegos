@@ -23,5 +23,10 @@
         "nombre": "Premios",
         "icono": "card_giftcard",
         "ruta": "/dashboard/premios"
+    },
+    {
+        "nombre": "Probabilidades",
+        "icono": "assessment",
+        "ruta": "/dashboard/probabilidades"
     }
 ]
