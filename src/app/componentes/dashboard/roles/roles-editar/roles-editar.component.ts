@@ -59,19 +59,21 @@ export class RolesEditarComponent implements OnInit {
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
-        let formData: FormData = new FormData();
-        formData.append('name', this.form.get('name')?.value);
-        formData.append('description', this.form.get('description')?.value);
-        formData.append('is_active', this.form.get('is_active')?.value);
-        this.rol.putRol(Number(id_rol), formData).subscribe(
-          res => {
-            this.snackbar.mensaje('Rol Actualizado Exitosamente');
-            this.router.navigate(['/dashboard/roles']);
-          },
-          err => {
-            this.dialogService.error(err.error);
-          }
-        )
+        if (confirmed) {
+          let formData: FormData = new FormData();
+          formData.append('name', this.form.get('name')?.value);
+          formData.append('description', this.form.get('description')?.value);
+          formData.append('is_active', this.form.get('is_active')?.value);
+          this.rol.putRol(Number(id_rol), formData).subscribe(
+            res => {
+              this.snackbar.mensaje('Rol Actualizado Exitosamente');
+              this.router.navigate(['/dashboard/roles']);
+            },
+            err => {
+              this.dialogService.error(err.error);
+            }
+          )
+        }
       });
     }
   }

@@ -28,7 +28,6 @@ export class EditAwardsComponent implements OnInit {
     {id: 'E', name: 'Epica'},
     {id: 'R', name: 'Rara'},
     {id: 'C', name: 'Común'},
-    {id: 'P', name: 'Publicidad'},
   ]
   Juegos = [
     {id:'T', name: 'Traga Monedas'},
@@ -107,30 +106,32 @@ export class EditAwardsComponent implements OnInit {
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
 
-        let formData: FormData = new FormData();
-        let user_modify = localStorage.getItem('user_id');
+        if (confirmed) {
+          let formData: FormData = new FormData();
+          let user_modify = localStorage.getItem('user_id');
 
-        formData.append('name', this.form.get('name')?.value);
-        formData.append('description', this.form.get('description')?.value);
-        formData.append('initial_stock', this.form.get('initial_stock')?.value);
-        formData.append('is_active', this.form.get('is_active')?.value);
-        formData.append('category', this.form.get('category')?.value);
-        formData.append('juego', this.form.get('juego')?.value);
-        if (this.fileToUpload) {
-          formData.append('imagen', this.imagen, this.imagen.name);
-        }
-        formData.append('user_modify', user_modify!);
-
-        this.awardSrv.putAward(Number(award_id), formData).subscribe(
-          (res) => {
-            this.snackbar.mensaje('Premio Actualizado Exitosamente');
-            this.router.navigate(['/dashboard/premios']);
-          },
-          (err) => {
-            this.dialogService.error(err.error);
-            
+          formData.append('name', this.form.get('name')?.value);
+          formData.append('description', this.form.get('description')?.value);
+          formData.append('initial_stock', this.form.get('initial_stock')?.value);
+          formData.append('is_active', this.form.get('is_active')?.value);
+          formData.append('category', this.form.get('category')?.value);
+          formData.append('juego', this.form.get('juego')?.value);
+          if (this.fileToUpload) {
+            formData.append('imagen', this.imagen, this.imagen.name);
           }
-        )
+          formData.append('user_modify', user_modify!);
+
+          this.awardSrv.putAward(Number(award_id), formData).subscribe(
+            (res) => {
+              this.snackbar.mensaje('Premio Actualizado Exitosamente');
+              this.router.navigate(['/dashboard/premios']);
+            },
+            (err) => {
+              this.dialogService.error(err.error);
+              
+            }
+          )
+        }
       });
     }
   }

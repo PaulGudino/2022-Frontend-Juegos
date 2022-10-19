@@ -20,7 +20,7 @@ import { RolesService } from 'src/app/servicios/roles/roles.service';
 export class RolesComponent implements OnInit {
 
   Titulo = 'Roles';
-  displayedColumns: string[] = ['id', 'name', 'description', 'is_active', 'Acciones']
+  displayedColumns: string[] = ['id', 'name', 'description','created', 'is_active', 'Acciones']
   dataSource !: MatTableDataSource<Roles>;
   permisos:any = [];
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -75,23 +75,26 @@ export class RolesComponent implements OnInit {
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
-        this.rolSrv.deleteRol(id).subscribe(
-          (data) => {
-          this.snackbar.mensaje('Rol Eliminado Exitosamente');
-          this.cargarRoles();
+        if (confirmed) {
+          this.rolSrv.deleteRol(id).subscribe(
+            (data) => {
+            this.snackbar.mensaje('Rol Eliminado Exitosamente');
+            this.cargarRoles();
+          }
+          , (error) => {
+            this.dialogService.error(error.error);
+            this.cargarRoles();
+          }
+          );
         }
-        , (error) => {
-          console.log(error);
-        }
-        );
       });
     }else{
-      this.snackbar.mensaje('No tiene permisos para eliminar roles');
+      this.snackbar.mensaje('No tienes permisos suficientes para acceder a esta sección');
     }
   }
   async Permisoeliminar(){
     let rol_id = Number(localStorage.getItem('rol_id'));
-    let permiso_id = 8;
+    let permiso_id = 9;
     const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
     this.permisos = promesa;
   }

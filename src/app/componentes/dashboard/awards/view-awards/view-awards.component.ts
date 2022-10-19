@@ -35,7 +35,7 @@ export class ViewAwardsComponent implements OnInit {
 
   ngOnInit(): void {
     let premioid = this.activerouter.snapshot.paramMap.get('id');
-    this.award.getAwardbyId(Number(premioid)).subscribe((data) => {
+    this.award.getAwardbyIdVisualizer(Number(premioid)).subscribe((data) => {
       this.premioget = data;
     })
   }

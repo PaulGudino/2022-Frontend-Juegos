@@ -51,26 +51,28 @@ export class CrearUsuariosComponent implements OnInit {
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
-        let formData: FormData = new FormData();
-        formData.append('cedula', this.form.get('cedula')?.value);
-        formData.append('username', this.form.get('username')?.value);
-        formData.append('names', this.form.get('names')?.value);
-        formData.append('surnames', this.form.get('surnames')?.value);
-        formData.append('email', this.form.get('email')?.value);
-        formData.append('password', this.form.get('password')?.value);
-        formData.append('phone', this.form.get('phone')?.value);
-        formData.append('sex', this.form.get('sex')?.value);
-        formData.append('rol', this.form.get('rol')?.value);
-        formData.append('address', this.form.get('address')?.value);
-        this.api.postUsuarios(formData).subscribe({
-          next: (res) => {
-            this.snackBar.mensaje('Usuario Creado Exitosamente')
-            this.regresarUsuarios();
-          },
-          error: (res)=>{
-            this.dialogService.error(res.error);
-          }
-        })
+        if (confirmed) {
+          let formData: FormData = new FormData();
+          formData.append('cedula', this.form.get('cedula')?.value);
+          formData.append('username', this.form.get('username')?.value);
+          formData.append('names', this.form.get('names')?.value);
+          formData.append('surnames', this.form.get('surnames')?.value);
+          formData.append('email', this.form.get('email')?.value);
+          formData.append('password', this.form.get('password')?.value);
+          formData.append('phone', this.form.get('phone')?.value);
+          formData.append('sex', this.form.get('sex')?.value);
+          formData.append('rol', this.form.get('rol')?.value);
+          formData.append('address', this.form.get('address')?.value);
+          this.api.postUsuarios(formData).subscribe({
+            next: (res) => {
+              this.snackBar.mensaje('Usuario Creado Exitosamente')
+              this.regresarUsuarios();
+            },
+            error: (res)=>{
+              this.dialogService.error(res.error);
+            }
+          })
+        }
       });
     }else{
       this.snackBar.mensaje('Llene el formulario correctamente')

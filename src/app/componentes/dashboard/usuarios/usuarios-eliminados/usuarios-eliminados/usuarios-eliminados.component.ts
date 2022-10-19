@@ -4,7 +4,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 import { Usuarios } from 'src/app/interfaces/usuarios/usuarios';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
+import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ApiService } from 'src/app/servicios/usuarios/api.service';
 
@@ -19,12 +22,15 @@ export class UsuariosEliminadosComponent implements OnInit {
   dataSource !: MatTableDataSource<Usuarios>;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
+  permisos:any = [];
 
   constructor(
     private api: ApiService, 
     private router: Router,
     public dialog: MatDialog,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private dialogService: ConfirmDialogService,
+    private permisos_api: PermisosService,
   ) {
    }
 
@@ -46,13 +52,36 @@ export class UsuariosEliminadosComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
-  restaurarUsuario(id:number){
-    this.api.postCambiarisActivate(id).subscribe((data) => {
-      this.snackbar.mensaje("Usuario activado correctamente");
-      window.location.reload();
-    });
+  async restaurarUsuario(id:number){
+    await this.Permisoeliminar();
+    if(this.permisos.length > 0){
+      const options = {
+        title: 'ACTIVAR USUARIO',
+        message: 'ESTA SEGURO QUE QUIERE ACTIVAR EL USUARIO?',
+        cancelText: 'CANCELAR',
+        confirmText: 'CONFIRMAR'
+      };
+      this.dialogService.open(options);
+      this.dialogService.confirmed().subscribe(confirmed => {
+        if (confirmed) {
+          this.api.postCambiarisActivate(id).subscribe((data) => {
+            this.snackbar.mensaje("Usuario activado correctamente");
+            this.cargarUsuarios();
+          });
+        }
+      });
+    }else{
+      this.snackbar.mensaje('No tienes permisos suficientes para realizar esta acción');
+    }
+    
   }
   regresar(){
     this.router.navigate(['/dashboard/usuarios']);
+  }
+  async Permisoeliminar(){
+    let rol_id = Number(localStorage.getItem('rol_id'));
+    let permiso_id = 9;
+    const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
+    this.permisos = promesa;
   }
 }

@@ -13,12 +13,6 @@ import { RolesCrearComponent } from './roles/roles-crear/roles-crear.component';
 
 //Guardianes
 
-import { UsuarioscrearGuard } from 'src/app/guardianes/usuarios/crear/usuarioscrear.guard';
-import { UsuarioeditarGuard } from './../../guardianes/usuarios/editar/usuarioeditar.guard';
-import { UsuarioverGuard } from './../../guardianes/usuarios/ver/usuariover.guard';
-import { RolesverGuard } from './../../guardianes/roles/ver/rolesver.guard';
-import { RoleseditarGuard } from './../../guardianes/roles/editar/roleseditar.guard';
-import { RolescrearGuard } from './../../guardianes/roles/crear/rolescrear.guard';
 import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
 import { UsuariosEliminadosComponent } from './usuarios/usuarios-eliminados/usuarios-eliminados/usuarios-eliminados.component';
 import { ClientsComponent } from './clients/clients.component';
@@ -28,27 +22,29 @@ import { CreateAwardsComponent } from './awards/create-awards/create-awards.comp
 import { EditAwardsComponent } from './awards/edit-awards/edit-awards.component';
 import { ViewAwardsComponent } from './awards/view-awards/view-awards.component';
 import {ProbabilidadesComponent} from './probabilidades/probabilidades.component'
+import { PermissionsGuard } from 'src/app/guardianes/Permissions/permissions.guard';
+import { InicioGuard } from 'src/app/guardianes/inicio/inicio.guard';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: '', component: InicioComponent},
     {path: 'cambiar-contraseña', component: CambiarContraseniaComponent },
     {path: 'usuarios', component: UsuariosComponent},
-    {path: 'usuarios/crear', component: CrearUsuariosComponent, canActivate: [UsuarioscrearGuard]},
-    {path: 'usuarios/editar/:id', component: EditarUsuariosComponent, canActivate: [UsuarioeditarGuard]},
-    {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent, canActivate: [UsuarioverGuard]},
-    {path: 'usuarios/eliminados', component: UsuariosEliminadosComponent},
-    {path: 'roles', component: RolesComponent},
-    {path: 'roles/crear', component: RolesCrearComponent, canActivate: [RolescrearGuard]},
-    {path: 'roles/editar/:id', component: RolesEditarComponent, canActivate: [RoleseditarGuard]},
-    {path: 'roles/permisos/:id', component: PermisosRolesComponent, canActivate: [RolesverGuard]},
-    {path: 'clientes', component : ClientsComponent},
-    {path: 'clientes/crear', component: CreateClientComponent},
-    {path: 'premios', component : AwardsComponent},
-    {path: 'premios/crear', component: CreateAwardsComponent},
-    {path: 'premios/editar/:id', component: EditAwardsComponent},
-    {path: 'premios/visualizar/:id', component: ViewAwardsComponent},
-    {path: 'probabilidades', component : ProbabilidadesComponent},
+    {path: 'usuarios/crear', component: CrearUsuariosComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 1}},
+    {path: 'usuarios/editar/:id', component: EditarUsuariosComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 2}},
+    {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 3}},
+    {path: 'usuarios/eliminados', component: UsuariosEliminadosComponent, canActivate: [InicioGuard]},
+    {path: 'roles', component: RolesComponent, canActivate: [InicioGuard]},
+    {path: 'roles/crear', component: RolesCrearComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 6}},
+    {path: 'roles/editar/:id', component: RolesEditarComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 7}},
+    {path: 'roles/permisos/:id', component: PermisosRolesComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 8}},
+    {path: 'clientes', component : ClientsComponent, canActivate: [InicioGuard]},
+    {path: 'clientes/crear', component: CreateClientComponent, canActivate: [InicioGuard]},
+    {path: 'premios', component : AwardsComponent, canActivate: [InicioGuard]},
+    {path: 'premios/crear', component: CreateAwardsComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 14}},
+    {path: 'premios/editar/:id', component: EditAwardsComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 15}},
+    {path: 'premios/visualizar/:id', component: ViewAwardsComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 16}},
+    {path: 'probabilidades', component : ProbabilidadesComponent, canActivate: [InicioGuard]},
 
   ]},
 ];

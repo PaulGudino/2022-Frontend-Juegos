@@ -25,7 +25,6 @@ export class CreateAwardsComponent implements OnInit {
     {id: 'E', name: 'Epica'},
     {id: 'R', name: 'Rara'},
     {id: 'C', name: 'Común'},
-    {id: 'P', name: 'Publicidad'},
   ]
   Juegos = [
     {id:'T', name: 'Traga Monedas'},
@@ -83,28 +82,29 @@ export class CreateAwardsComponent implements OnInit {
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
+        if (confirmed) {
+          let formData: FormData = new FormData();
+          let user_register = localStorage.getItem('user_id');
 
-        let formData: FormData = new FormData();
-        let user_register = localStorage.getItem('user_id');
+          formData.append('name', this.form.get('name')?.value);
+          formData.append('description', this.form.get('description')?.value);
+          formData.append('initial_stock', this.form.get('initial_stock')?.value);
+          formData.append('is_active', this.form.get('is_active')?.value);
+          formData.append('category', this.form.get('category')?.value);
+          formData.append('juego', this.form.get('juego')?.value);
+          formData.append('imagen', this.imagen, this.imagen.name);
+          formData.append('user_register', user_register!);
 
-        formData.append('name', this.form.get('name')?.value);
-        formData.append('description', this.form.get('description')?.value);
-        formData.append('initial_stock', this.form.get('initial_stock')?.value);
-        formData.append('is_active', this.form.get('is_active')?.value);
-        formData.append('category', this.form.get('category')?.value);
-        formData.append('juego', this.form.get('juego')?.value);
-        formData.append('imagen', this.imagen, this.imagen.name);
-        formData.append('user_register', user_register!);
-
-        this.awardSrv.postAward(formData).subscribe(
-          (res) => {
-            this.snackbar.mensaje('Premio creado correctamente');
-            this.router.navigate(['dashboard/premios']);
-          },
-          (err) => {
-            this.dialogService.error(err.error);
-          }
-        )
+          this.awardSrv.postAward(formData).subscribe(
+            (res) => {
+              this.snackbar.mensaje('Premio creado correctamente');
+              this.router.navigate(['dashboard/premios']);
+            },
+            (err) => {
+              this.dialogService.error(err.error);
+            }
+          )
+        }
       });
     }else{
       this.snackbar.mensaje('Complete todos los campos');

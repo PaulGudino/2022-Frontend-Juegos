@@ -44,7 +44,6 @@ export class UsuariosComponent implements OnInit {
 
   cargarUsuarios(){
     this.api.getUsuarios().subscribe((data) => {
-      console.log(data);
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -83,14 +82,21 @@ export class UsuariosComponent implements OnInit {
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
-        this.api.deleteUsuario(id).subscribe(res => {
-          this.snackbar.mensaje('Usuario Eliminado Exitosamente');
-          this.cargarUsuarios();
+        if(confirmed){
+          this.api.deleteUsuario(id).subscribe(
+            res => {
+            this.snackbar.mensaje('Usuario Eliminado Exitosamente');
+            this.cargarUsuarios();
+          },
+          err => {
+            this.dialogService.error(err.error)
+            this.cargarUsuarios();
+          }
+          );
         }
-        );
       });
     }else{
-      this.snackbar.mensaje('No tiene permisos para eliminar usuarios');
+      this.snackbar.mensaje('No tienes permisos suficientes para acceder a esta sección');
     }
     
   }

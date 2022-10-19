@@ -103,7 +103,9 @@ export class PermisosRolesComponent implements OnInit {
     };
     this.dialogService.open(options);
     this.dialogService.confirmed().subscribe(confirmed => {
-      this.guardarPermisosNuevos();
+      if (confirmed) {
+        this.guardarPermisosNuevos();
+      }
     });
   }
 

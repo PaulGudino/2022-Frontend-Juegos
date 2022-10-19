@@ -1,4 +1,3 @@
-import { Logout } from '../../interfaces/auth/logout';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Login } from '../../interfaces/auth/login';

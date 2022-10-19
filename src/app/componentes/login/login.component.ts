@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.clear();
   }
 
   ingresar(){
