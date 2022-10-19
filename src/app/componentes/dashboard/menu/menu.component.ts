@@ -35,21 +35,21 @@ export class MenuComponent implements OnInit {
     });
   }
   logout(){
-    const id_salir = localStorage.getItem('user_id');
-    const id = Number(id_salir);
     let refresh !: string
-    if (id) {
-      let formData: FormData = new FormData();
-      refresh = localStorage.getItem('refresh')!;
-      formData.append('refresh', refresh);
-      this.auth.Logout(formData).subscribe(
-        res => {
-          this.router.navigate(['/login']);
-          localStorage.clear();
-          AuthInterceptor.accessToken = '';
-        },
-        err => console.log(err)
-      );
+    if (localStorage.getItem('token')){
+        let formData: FormData = new FormData();
+        refresh = localStorage.getItem('refresh')!;
+        formData.append('refresh', refresh);
+        this.auth.Logout(formData).subscribe(
+          res => {
+            this.router.navigate(['/login']);
+            localStorage.clear();
+            AuthInterceptor.accessToken = '';
+          },
+          err => console.log(err)
+        );
+    }else{
+      this.router.navigate(['/login']);
     }
   }
 }
