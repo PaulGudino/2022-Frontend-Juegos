@@ -98,7 +98,7 @@ export class ClientsComponent implements OnInit{
       })
     }
     else {
-      this.snackBar.mensaje("No tienes los permisos suficientes para eliminar " + this.pluralName);
+      this.snackBar.mensaje("No tienes permiso para Eliminar " + this.singularName);
     }
   }
 

@@ -20,6 +20,7 @@ export class PermissionsGuard implements CanActivate {
   ): Promise<boolean> {
 
     let Permiso_id = Number(route.data['Permiso_id']);
+    let Permiso_nombre = route.data['Permiso_nombre'];
     
     let rol = Number(localStorage.getItem('rol_id'));
     const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol, Permiso_id));
@@ -27,7 +28,7 @@ export class PermissionsGuard implements CanActivate {
       return true;
 
     } else {
-      this.snackbar.mensaje('No tienes permisos suficientes para acceder a esta sección');
+      this.snackbar.mensaje('No tienes permiso para: ' + Permiso_nombre);
       return false;
     }
   }

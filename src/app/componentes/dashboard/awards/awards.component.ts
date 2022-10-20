@@ -80,7 +80,7 @@ export class AwardsComponent implements OnInit {
         }
       });
     } else {
-      this.snackbar.mensaje('No tienes permisos suficientes para acceder a esta sección');
+      this.snackbar.mensaje('No tienes permisos para Eliminar Premios');
     }
   }
 
