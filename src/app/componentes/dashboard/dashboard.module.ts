@@ -25,6 +25,8 @@ import { ViewAwardsComponent } from './awards/view-awards/view-awards.component'
 import { CreateAwardsComponent } from './awards/create-awards/create-awards.component';
 import { EditAwardsComponent } from './awards/edit-awards/edit-awards.component';
 import { ProbabilidadesComponent } from './probabilidades/probabilidades.component';
+import { CategorieComponent } from './probabilidades/categorie/categorie.component';
+import { ModalComponent } from './probabilidades/modal/modal.component';
 
 
 
@@ -51,6 +53,8 @@ import { ProbabilidadesComponent } from './probabilidades/probabilidades.compone
     CreateAwardsComponent,
     EditAwardsComponent,
     ProbabilidadesComponent,
+    CategorieComponent,
+    ModalComponent,
   ],
   imports: [
     SharedModule,

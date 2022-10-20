@@ -1,0 +1,17 @@
+<div class="container-category">
+  <div class="categorie {{color}}">
+    <p class="category-title m-0 me-3">{{title}}</p>
+    <div class="add-container">
+      <mat-icon>add</mat-icon>
+    </div>
+    <figure class="award-container" *ngFor="let award of awards">
+      <img src="{{award.imagen}}" alt="award-image">
+    </figure>
+
+  </div>
+  <div class="container-box">
+    <div class="box" *ngFor="let award of awards"></div>
+
+  </div>
+
+</div>

@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         let req = request;
-        
+
         if (AuthInterceptor.accessToken) {
             req = request.clone({
                 setHeaders: {
@@ -35,8 +35,8 @@ export class AuthInterceptor implements HttpInterceptor {
                 refreshroken = localStorage.getItem('refresh')!;
                 formData.append('refresh', refreshroken);
 
-                // return this.http.post('http://localhost:8000/token/refresh/', formData, {withCredentials: true}).pipe(
-                return this.http.post('https://juegos.pythonanywhere.com/token/refresh/', formData, {withCredentials: true}).pipe(
+                return this.http.post('http://localhost:8000/token/refresh/', formData, {withCredentials: true}).pipe(
+                //return this.http.post('https://juegos.pythonanywhere.com/token/refresh/', formData, {withCredentials: true}).pipe(
                     switchMap((data: any) => {
                         console.log(data);
                         localStorage.setItem('token', data.access);
@@ -56,5 +56,5 @@ export class AuthInterceptor implements HttpInterceptor {
         }));
         // return next.handle(request);
     }
-    
+
 }
