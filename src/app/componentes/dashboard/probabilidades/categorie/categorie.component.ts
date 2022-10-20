@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { getAwardList } from 'src/app/interfaces/awards/getAwardList';
 
 
@@ -8,6 +8,9 @@ import { getAwardList } from 'src/app/interfaces/awards/getAwardList';
   styleUrls: ['./categorie.component.css']
 })
 export class CategorieComponent implements OnInit {
+  isModalOpen:boolean = false;
+  @Output() propagar = new EventEmitter<any>();
+
   @Input() awards:getAwardList[]=[];
   @Input() title:string = ''
   @Input() color:string=''
@@ -19,6 +22,13 @@ export class CategorieComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+  openModal(){
+    this.isModalOpen=true;
+    this.propagar.emit({
+      isModalOpen: this.isModalOpen,
+      awards:this.awards
+    });
   }
 
 }

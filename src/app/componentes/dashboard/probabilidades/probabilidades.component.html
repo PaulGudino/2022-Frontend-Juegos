@@ -2,6 +2,8 @@
   <span>Probabilidad</span>
   <span class="example-spacer"></span>
 </mat-toolbar>
+<app-modal *ngIf="isModalOpen" (propagar)="manageCloseModal($event)"  > PRUEBA</app-modal>
+
 <div class="container-premios">
 
   <div class="container-categories">
@@ -10,6 +12,7 @@
       <h3 mat-lib-title> Casillas Disponibles</h3>
     </div>
     <app-categorie
+    (propagar)="padreOpenModal($event)"
     color="legendary"
     title = "Legendaria"
     [awards]="legendary"
@@ -29,6 +32,7 @@
     title = "Comun"
     [awards]="common"
     ></app-categorie>
+
   </div>
 
   <div class="container-set-categories">

@@ -8,10 +8,12 @@ import {AwardsService} from "../../../servicios/awards/awards.service";
   styleUrls: ['./probabilidades.component.css']
 })
 export class ProbabilidadesComponent implements OnInit {
+  isModalOpen:boolean=false;
   legendary:getAwardList[]=[];
   epic:getAwardList[]=[];
   rare:getAwardList[]=[];
   common:getAwardList[]=[];
+  modalAwards:getAwardList[]=[];
 
   constructor(
     private awards:AwardsService
@@ -38,6 +40,14 @@ export class ProbabilidadesComponent implements OnInit {
       }
     })
 
+  }
+
+  padreOpenModal(modalChange:any):void{
+    this.isModalOpen=modalChange.isModalOpen;
+    this.modalAwards = modalChange.awards;
+  }
+  manageCloseModal(modalChange:boolean):void{
+    this.isModalOpen = modalChange;
   }
 
 }
