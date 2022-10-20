@@ -91,7 +91,7 @@ export class ClientsComponent implements OnInit{
           this.api.deleteClient(id).subscribe(
             (data) => {
               this.snackBar.mensaje(this.singularName + ' eliminado exitosamente');
-              this.toClientCreation();
+              this.toClientList();
             }
           )
         }

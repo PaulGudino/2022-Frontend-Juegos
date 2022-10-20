@@ -72,7 +72,7 @@ export class EditClientComponent implements OnInit {
           this.api.putClient(Number(clientId), formData).subscribe ({
             next : (res) => {
               this.snackBar.mensaje(this.singularName + ' actualizado exitosamente')
-              this.router.navigate(['/dashboard/clientes'])
+              this.toClientList();
             },
             error : (res) => {
               this.confirmDialog.error(res.error);
