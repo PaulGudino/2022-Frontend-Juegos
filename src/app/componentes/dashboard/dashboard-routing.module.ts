@@ -24,6 +24,8 @@ import { ViewAwardsComponent } from './awards/view-awards/view-awards.component'
 import {ProbabilidadesComponent} from './probabilidades/probabilidades.component'
 import { PermissionsGuard } from 'src/app/guardianes/Permissions/permissions.guard';
 import { InicioGuard } from 'src/app/guardianes/inicio/inicio.guard';
+import { EditClientComponent } from './clients/edit-client/edit-client.component';
+import { ViewClientComponent } from './clients/view-client/view-client.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
@@ -40,6 +42,8 @@ const routes: Routes = [
     {path: 'roles/permisos/:id', component: PermisosRolesComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 8}},
     {path: 'clientes', component : ClientsComponent, canActivate: [InicioGuard]},
     {path: 'clientes/crear', component: CreateClientComponent, canActivate: [InicioGuard]},
+    {path: 'clientes/editar/:id', component: EditClientComponent, canActivate: [InicioGuard]},
+    {path: 'clientes/vizualizar/:id', component: ViewClientComponent, canActivate: [InicioGuard]},
     {path: 'premios', component : AwardsComponent, canActivate: [InicioGuard]},
     {path: 'premios/crear', component: CreateAwardsComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 14}},
     {path: 'premios/editar/:id', component: EditAwardsComponent, canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 15}},

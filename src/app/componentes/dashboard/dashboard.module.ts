@@ -25,6 +25,8 @@ import { ViewAwardsComponent } from './awards/view-awards/view-awards.component'
 import { CreateAwardsComponent } from './awards/create-awards/create-awards.component';
 import { EditAwardsComponent } from './awards/edit-awards/edit-awards.component';
 import { ProbabilidadesComponent } from './probabilidades/probabilidades.component';
+import { EditClientComponent } from './clients/edit-client/edit-client.component';
+import { ViewClientComponent } from './clients/view-client/view-client.component';
 
 
 
@@ -47,6 +49,8 @@ import { ProbabilidadesComponent } from './probabilidades/probabilidades.compone
     ClientsComponent,
     AwardsComponent,
     CreateClientComponent,
+    EditClientComponent,
+    ViewClientComponent,
     ViewAwardsComponent,
     CreateAwardsComponent,
     EditAwardsComponent,

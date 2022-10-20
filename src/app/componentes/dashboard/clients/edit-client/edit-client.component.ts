@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
 
 
 @Component({
-  selector: 'app-create-client',
-  templateUrl: './create-client.component.html',
-  styleUrls: ['./create-client.component.css']
+  selector: 'app-edit-client',
+  templateUrl: './edit-client.component.html',
+  styleUrls: ['./edit-client.component.css']
 })
-export class CreateClientComponent implements OnInit {
+export class EditClientComponent implements OnInit {
 
   singularName : string = 'Cliente'
   pluralName : string = 'Clientes'
-  actionName : string = 'Crear'
+  actionName : string = 'Editar'
   formGroup : FormGroup;
+  currentClient : any;
 
   constructor(
     private router : Router,
@@ -24,11 +25,10 @@ export class CreateClientComponent implements OnInit {
     // Dialog and snackBar services
     private snackBar : SnackbarService,
     private confirmDialog : ConfirmDialogService,
-    private api : ClientService
+    private api : ClientService,
+    private activatedRoute : ActivatedRoute,
   ) {
     // Building the form with the formBuilder
-
-    // id refers to cedula
 
     this.formGroup = this.formBuilder.group({
       cedula : ['', Validators.required],
@@ -46,15 +46,16 @@ export class CreateClientComponent implements OnInit {
     this.router.navigate(['dashboard/clientes']);
   }
 
-  createClient() {
+  editClient() {
     this.formGroup.valid ? this.showDialog() : 
     this.snackBar.mensaje('Llene el formulario correctamente');
   }
 
   showDialog() {
+    let clientName = this.activatedRoute.snapshot.paramMap.get('names');
     const DIALOGINFO = {
       title: this.actionName + ' ' + this.singularName,
-      message: '¿Está seguro de que quiere ' + this.actionName + ' el nuevo ' + this.singularName,
+      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + clientName,
       cancelText: 'Cancelar',
       confirmText: this.actionName
     }
@@ -63,13 +64,14 @@ export class CreateClientComponent implements OnInit {
   }
 
   sendForm () {
+    let clientId = this.activatedRoute.snapshot.paramMap.get('id');
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
           let formData = this.fillForm();
-          this.api.postClient(formData).subscribe ({
+          this.api.putClient(Number(clientId), formData).subscribe ({
             next : (res) => {
-              this.snackBar.mensaje(this.singularName + ' ' + this.actionName + ' Exitosamente')
+              this.snackBar.mensaje(this.singularName + ' actualizado exitosamente')
               this.router.navigate(['/dashboard/clientes'])
             },
             error : (res) => {
@@ -82,7 +84,7 @@ export class CreateClientComponent implements OnInit {
   }
 
   fillForm() {
-    let user_client_register = localStorage.getItem('user_id');
+    let user_client_modify = localStorage.getItem('user_id');
     let formData : FormData = new FormData();
     formData.append('cedula', this.formGroup.get('cedula')?.value);
     formData.append('names', this.formGroup.get('names')?.value);
@@ -92,12 +94,34 @@ export class CreateClientComponent implements OnInit {
     formData.append('address', this.formGroup.get('address')?.value);
     formData.append('sex', this.formGroup.get('sex')?.value);
     formData.append('state', this.formGroup.get('state')?.value);
-    formData.append('user_client_register', user_client_register!);
-    formData.append('user_client_modify', user_client_register!);
+    formData.append('user_client_modify', user_client_modify!);
     return formData;
   }
 
   ngOnInit(): void {
+    let clientId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.api.getClientById(Number(clientId)).subscribe(
+      (res) => {
+        this.currentClient = res;
+        this.getClientInfo();
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+
+  getClientInfo() {
+    this.formGroup.patchValue({
+      cedula : this.currentClient.cedula,
+      names : this.currentClient.names,
+      surnames : this.currentClient.surnames,
+      email : this.currentClient.email,
+      phone : this.currentClient.phone,
+      address : this.currentClient.address,
+      sex : this.currentClient.sex,
+      state : this.currentClient.state
+    })
   }
 
 }
