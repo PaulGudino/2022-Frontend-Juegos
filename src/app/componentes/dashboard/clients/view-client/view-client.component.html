@@ -1,0 +1,74 @@
+<!-- Toolbar -->
+
+<mat-toolbar>
+    <span>{{actionName}} Cliente</span>
+</mat-toolbar>
+
+<!-- Div -->
+
+<div>
+    <mat-list>
+
+        <!-- Cédula -->
+
+        <mat-label>Cédula</mat-label>
+        <mat-list-item>{{client.cedula}}</mat-list-item>
+
+
+        <!-- Nombres -->
+
+        <mat-label>Nombres</mat-label>
+        <mat-list-item>{{client.names}}</mat-list-item>
+
+        <!-- Apellidos -->
+
+        <mat-label>Apellidos</mat-label>
+        <mat-list-item>{{client.surnames}}</mat-list-item>
+
+        <!-- Correo Electrónico -->
+
+        <mat-label>Correo Electrónico</mat-label>
+        <mat-list-item>{{client.email}}</mat-list-item>
+
+        <!-- Teléfono -->
+
+        <mat-label>Teléfono</mat-label>
+        <mat-list-item>{{client.phone}}</mat-list-item>
+
+        <!-- Sexo -->
+
+        <mat-label>Sexo</mat-label>
+        <mat-list-item>{{client.sex}}</mat-list-item>
+
+        <!-- Dirección -->
+
+        <mat-label>Dirección</mat-label>
+        <mat-list-item>{{client.address}}</mat-list-item>
+
+        <!-- Fecha de registro -->
+
+        <mat-label>Fecha de registro</mat-label>
+        <mat-list-item>{{client.created}}</mat-list-item>
+
+        <!-- Usuario responsable del registro -->
+
+        <mat-label>Usuario de registro</mat-label>
+        <mat-list-item>{{client.user_client_register}}</mat-list-item>
+
+        <!-- Fecha de última modificación -->
+
+        <mat-label>Fecha de última modificación</mat-label>
+        <mat-list-item>{{client.modified}}</mat-list-item>
+
+        <!-- Usuario responsable de la modificación -->
+
+        <mat-label>Usuario responsable de la modificación</mat-label>
+        <mat-list-item>{{client.user_client_modify}}</mat-list-item>
+
+    </mat-list>
+
+    <button (click)="toClientList()" mat-raised-button color="warn">
+        <mat-icon>close</mat-icon>
+        Salir
+    </button>
+</div>

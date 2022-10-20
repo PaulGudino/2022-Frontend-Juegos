@@ -1,7 +1,6 @@
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -27,6 +26,8 @@ import { EditAwardsComponent } from './awards/edit-awards/edit-awards.component'
 import { ProbabilidadesComponent } from './probabilidades/probabilidades.component';
 import { CategorieComponent } from './probabilidades/categorie/categorie.component';
 import { ModalComponent } from './probabilidades/modal/modal.component';
+import { EditClientComponent } from './clients/edit-client/edit-client.component';
+import { ViewClientComponent } from './clients/view-client/view-client.component';
 
 
 
@@ -49,6 +50,8 @@ import { ModalComponent } from './probabilidades/modal/modal.component';
     ClientsComponent,
     AwardsComponent,
     CreateClientComponent,
+    EditClientComponent,
+    ViewClientComponent,
     ViewAwardsComponent,
     CreateAwardsComponent,
     EditAwardsComponent,

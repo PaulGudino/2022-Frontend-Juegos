@@ -42,8 +42,10 @@ import { ComponentesCompartidosModule } from './componentes-compartidos/componen
       useClass: AuthInterceptor, 
       multi: true
     },
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
-    
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
   ],
   bootstrap: [AppComponent]
 })

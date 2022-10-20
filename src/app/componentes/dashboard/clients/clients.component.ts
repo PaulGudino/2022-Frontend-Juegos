@@ -1,41 +1,18 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { Client } from 'src/app/interfaces/client/Client';
+import { ClientService } from 'src/app/servicios/client/client.service';
+import { lastValueFrom } from 'rxjs';
+import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
+import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 
 /**
  * Reference taken from https://material.angular.io/components/table/examples
  */
-
-/**
- * Constans used to fill up out data base
- */
-
-const NAMES : string[] = [
-  'Paul',
-  'Diego',
-  'Nicolás'
-]
-
-const SURNAMES : string[] = [
-  'Gudiño',
-  'Rojas',
-  'Plaza'
-]
-
-const EMAILS : string[] = [
-  'pgudino@espol.edu.ec',
-  'ddrojas@espol.edu.ec',
-  'niplinig@espol.edu.ec'
-]
-
-export interface ClientData {
-  id: number;
-  name : string;
-  surname : string;
-  email : string;
-}
 
 /**
  * @Table of clients with sorting, pagination and filtering
@@ -46,19 +23,21 @@ export interface ClientData {
   styleUrls: ['./clients.component.css'],
   templateUrl: './clients.component.html',
 })
-export class ClientsComponent implements AfterViewInit{
+export class ClientsComponent implements OnInit{
 
   singularName : string = 'Cliente';
   pluralName : string = 'Clientes';
+  permissions : any = [];
 
   displayedColumns : string[] = [
-    'id',
-    'name',
-    'surname',
+    'cedula',
+    'names',
+    'surnames',
     'email',
+    'state',
     'actions'
   ]
-  dataSource : MatTableDataSource<ClientData>;
+  dataSource !: MatTableDataSource<Client>;
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -66,17 +45,24 @@ export class ClientsComponent implements AfterViewInit{
   constructor(
     // Atributes of the user component
     private router : Router,
-  ) {
-    // Create 100 Clients
-    const clients = Array.from( { length : 100 }, (_, k) => createNewClient(k + 1) );
+    private api : ClientService,
+    private permissionsApi : PermisosService,
+    private confirmDialog : ConfirmDialogService,
+    private snackBar : SnackbarService,
+  ) {}
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(clients);
+  ngOnInit() : void {
+    this.loadClients();
   }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  
+  loadClients() {
+    this.api.getClients().subscribe(
+      (data) => {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    )
   }
 
   applyFilter(event: Event) {
@@ -88,19 +74,59 @@ export class ClientsComponent implements AfterViewInit{
     }
   }
 
+  viewClient(id : number) {
+    this.router.navigate(['/dashboard/clientes/vizualizar/' + id]);
+  }
+
+  editClient(id : number) {
+    this.router.navigate(['/dashboard/clientes/editar/' + id]);
+  }
+
+  async deleteClient(id : number) {
+    await this.canDelete();
+    if (this.permissions.length > 0) {
+      this.showDeleteDialog();
+      this.confirmDialog.confirmed().subscribe(confirmed => {
+        if (confirmed) {
+          this.api.deleteClient(id).subscribe(
+            (data) => {
+              this.snackBar.mensaje(this.singularName + ' eliminado exitosamente');
+              this.toClientCreation();
+            }
+          )
+        }
+      })
+    }
+    else {
+      this.snackBar.mensaje("No tienes los permisos suficientes para eliminar " + this.pluralName);
+    }
+  }
+
+  showDeleteDialog() {
+      const DIALOGINFO = {
+        title : 'Delete ' + this.singularName,
+        message : '¿Está seguro de que quiere eliminar el cliente?',
+        cancelText : 'Cancelar',
+        confirmText : 'Eliminar'
+      };
+
+      this.confirmDialog.open(DIALOGINFO);
+
+  }
+
+  async canDelete() {
+    let rolId = Number(localStorage.getItem('rol_id'));
+    let permissionId = 13;
+    const promise = await lastValueFrom(this.permissionsApi.getPermisosbyRolandPermission(rolId, permissionId));
+    this.permissions = promise;
+  }
+
   toClientCreation() {
     this.router.navigate(['dashboard/clientes/crear']);
   }
 
-}
+  toClientList() {
+    this.router.navigate(['dashboard/clientes']);
+  }
 
-function createNewClient(id : number) : ClientData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))];
-
-  return {
-    id : id,
-    name : NAMES[Math.round(Math.random() * (NAMES.length - 1))],
-    surname : SURNAMES[Math.round(Math.random() * (SURNAMES.length - 1))],
-    email : EMAILS[Math.round(Math.random() * (EMAILS.length - 1))],
-  };
 }
