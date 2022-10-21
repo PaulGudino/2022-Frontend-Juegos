@@ -14,6 +14,11 @@ export class ProbabilidadesComponent implements OnInit {
   rare:getAwardList[]=[];
   common:getAwardList[]=[];
   modalAwards:getAwardList[]=[];
+  categoryModal:string='';
+
+  totalSquares:number=0;
+  limitWinners:number=5;
+  limitMessage:string=`Todavia no ha pasado el limite actual ${this.limitWinners}`
 
   constructor(
     private awards:AwardsService
@@ -45,6 +50,7 @@ export class ProbabilidadesComponent implements OnInit {
   padreOpenModal(modalChange:any):void{
     this.isModalOpen=modalChange.isModalOpen;
     this.modalAwards = modalChange.awards;
+    this.categoryModal = modalChange.category;
   }
   manageCloseModal(modalChange:boolean):void{
     this.isModalOpen = modalChange;

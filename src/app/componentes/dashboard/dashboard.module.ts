@@ -28,6 +28,8 @@ import { CategorieComponent } from './probabilidades/categorie/categorie.compone
 import { ModalComponent } from './probabilidades/modal/modal.component';
 import { EditClientComponent } from './clients/edit-client/edit-client.component';
 import { ViewClientComponent } from './clients/view-client/view-client.component';
+import { ModalItemComponent } from './probabilidades/modal-item/modal-item.component';
+import { CategorySetSquareItemComponent } from './probabilidades/category-set-square-item/category-set-square-item.component';
 
 
 
@@ -58,6 +60,8 @@ import { ViewClientComponent } from './clients/view-client/view-client.component
     ProbabilidadesComponent,
     CategorieComponent,
     ModalComponent,
+    ModalItemComponent,
+    CategorySetSquareItemComponent,
   ],
   imports: [
     SharedModule,

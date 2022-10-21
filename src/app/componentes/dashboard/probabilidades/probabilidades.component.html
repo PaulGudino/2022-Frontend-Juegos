@@ -2,7 +2,12 @@
   <span>Probabilidad</span>
   <span class="example-spacer"></span>
 </mat-toolbar>
-<app-modal *ngIf="isModalOpen" (propagar)="manageCloseModal($event)"  > PRUEBA</app-modal>
+
+<app-modal *ngIf="isModalOpen"
+(propagar)="manageCloseModal($event)"
+category="{{categoryModal}}"
+[modalAwards]="modalAwards">
+</app-modal>
 
 <div class="container-premios">
 
@@ -18,16 +23,19 @@
     [awards]="legendary"
     ></app-categorie>
     <app-categorie
+    (propagar)="padreOpenModal($event)"
     color="epic"
     title = "Epica"
     [awards]="epic"
     ></app-categorie>
     <app-categorie
+    (propagar)="padreOpenModal($event)"
     color="rare"
     title = "Rara"
     [awards]="rare"
     ></app-categorie>
     <app-categorie
+    (propagar)="padreOpenModal($event)"
     color="common"
     title = "Comun"
     [awards]="common"
@@ -37,6 +45,56 @@
 
   <div class="container-set-categories">
     <h3 mat-lib-title class="set-categories__title"> Editar Casillas</h3>
+    <div class="container-set-squares">
+      <app-category-set-square-item
+      category="Legendaria"
+      >
+      </app-category-set-square-item>
+      <app-category-set-square-item
+      category="Epica"
+      >
+      </app-category-set-square-item>
+      <app-category-set-square-item
+      category="Rara"
+      >
+      </app-category-set-square-item>
+      <app-category-set-square-item
+      category="Comun"
+      >
+      </app-category-set-square-item>
+
+      <div class="line"></div>
+
+      <div class="container-total">
+        <p class="total">Total:</p>
+        <p class="total-squares__number">{{totalSquares}} casillas</p>
+
+      </div>
+
+      <div class="container-total">
+        <p class="total">Porcentaje de ganar un premio</p>
+        <form action="" class="row align-items-center me-2 form">
+          <input type="number" class="form__input">
+          %
+        </form>
+
+      </div>
+
+      <div class="container-ganadores">
+        <div class="container-total">
+          <p class="total">Limitar ganadores por dia</p>
+          <form action="" class="row align-items-center me-2 form">
+            <input type="number" class="form__input">
+          </form>
+        </div>
+        <p class="ganadores__limit-message no-pass-limit">{{limitMessage}}</p>
+      </div>
+
+
+
+
+    </div>
+
   </div>
 
 </div>

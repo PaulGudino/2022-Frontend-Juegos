@@ -1,3 +1,6 @@
+p{
+  margin: 0;
+}
 .container-premios{
   display: flex;
   align-items: top;
@@ -23,5 +26,47 @@ img{
   justify-content: space-between;
 }
 .set-categories__title{
-  margin: top 0.5rem;
+  margin-top: 0.5rem;
 }
+.container-set-squares{
+  display: flex;
+  flex-direction: column;
+  gap:.8rem;
+  padding-right: .5rem;
+}
+.line{
+  border-top: 1px solid black;
+  width: 57%;
+  align-self: center;
+}
+.container-total{
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+
+}
+.total-squares__number{
+  margin-right: 5rem;
+}
+.form{
+  gap:0.2rem;
+}
+.form__input{
+  width: 2rem;
+  height: 2rem;
+}
+.container-ganadores{
+  display: flex;
+  flex-direction: column;
+  gap:1.2rem;
+}
+.ganadores__limit-message{
+  align-self: center;
+}
+.no-pass-limit{
+  color:green;
+}
+.pass-limit{
+  color:red;
+}
+
