@@ -38,7 +38,7 @@ export class RolesCrearComponent implements OnInit {
     if(this.form.valid){
       const options = {
         title: 'CREAR ROLES',
-        message: 'ESTA SEGURO QUE QUIERE ELIMINA EL USUARIO?',
+        message: 'ESTA SEGURO QUE QUIERE CREAR EL ROL?',
         cancelText: 'CANCELAR',
         confirmText: 'CONFIRMAR'
       };
