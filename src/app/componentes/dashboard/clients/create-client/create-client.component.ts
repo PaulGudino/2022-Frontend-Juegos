@@ -70,7 +70,7 @@ export class CreateClientComponent implements OnInit {
           this.api.postClient(formData).subscribe ({
             next : (res) => {
               this.snackBar.mensaje(this.singularName + ' ' + this.actionName + ' Exitosamente')
-              this.router.navigate(['/dashboard/clientes'])
+              this.toClientList();
             },
             error : (res) => {
               this.confirmDialog.error(res.error);

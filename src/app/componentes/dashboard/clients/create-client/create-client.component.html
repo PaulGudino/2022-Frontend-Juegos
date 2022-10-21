@@ -116,10 +116,10 @@
         <mat-form-field appearance="fill">
             <mat-label>Estado</mat-label>
             <mat-select formControlName="state" mat-select placeholder="Seleccione una opción">
-                <mat-option value="NO">Ninguno</mat-option>
-                <mat-option value="AC">Activo</mat-option>
-                <mat-option value="IN">Inactivo</mat-option>
-                <mat-option value="DI">Desabilitado</mat-option>
+                <mat-option value="Ninguno">Ninguno</mat-option>
+                <mat-option value="Activo">Activo</mat-option>
+                <mat-option value="Inactivo">Inactivo</mat-option>
+                <mat-option value="Deshabilitado">Deshabilitado</mat-option>
             </mat-select>
             <mat-hint>Seleccione una opción</mat-hint>
             <mat-error *ngIf="formGroup.controls['state'].hasError('required')">
