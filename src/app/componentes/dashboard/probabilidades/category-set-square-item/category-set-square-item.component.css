@@ -1,0 +1,32 @@
+.container-set-item{
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.container__squares{
+  display:flex;
+  gap: .5rem;
+  align-items: center;
+}
+.item__category{
+  margin: 0;
+  margin-right: .8rem;
+}
+.squares__number{
+  margin: 0;
+}
+.squares__btn,
+.btn__icon{
+  padding: 0;
+  margin: 0;
+}
+.squares__btn{
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background-color: #8080804a;
+  padding: 0.2rem;
+}
+

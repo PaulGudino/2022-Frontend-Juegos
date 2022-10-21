@@ -3,10 +3,28 @@
   height: 100vh;
   position: absolute;
   background-color:#808080a3;
+  z-index: 0;
 }
 .container-modal-awards{
-
+  position: relative;
+  z-index: 1;
   background-color:gray;
   height: 20rem;
-  width: 75%;
+  width: 90%;
+  padding:2rem;
+}
+.awards-container{
+  position:relative;
+  display: flex;
+  justify-content: center;
+  gap:0.5rem;
+  flex-wrap: wrap;
+}
+.cancel-icon{
+  position:absolute;
+  top: 7px;
+  right: 15px;
+  width: 2rem;
+  height: 2rem;
+  font-size: 2rem;
 }

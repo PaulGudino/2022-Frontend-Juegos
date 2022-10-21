@@ -1,0 +1,19 @@
+.container-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.5rem;
+}
+.item__img-container{
+  width:5rem;
+  height:5rem;
+
+}
+img{
+  width:100%;
+  height:100%;
+}
+.modal-item__btn{
+  outline:none;
+  padding:1.5rem;
+}

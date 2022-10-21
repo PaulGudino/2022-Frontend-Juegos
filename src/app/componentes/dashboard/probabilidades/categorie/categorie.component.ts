@@ -27,6 +27,7 @@ export class CategorieComponent implements OnInit {
     this.isModalOpen=true;
     this.propagar.emit({
       isModalOpen: this.isModalOpen,
+      category:this.title,
       awards:this.awards
     });
   }
