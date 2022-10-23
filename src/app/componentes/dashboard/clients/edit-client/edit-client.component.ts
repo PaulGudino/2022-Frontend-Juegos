@@ -52,12 +52,11 @@ export class EditClientComponent implements OnInit {
   }
 
   showDialog() {
-    let clientName = this.activatedRoute.snapshot.paramMap.get('names');
     const DIALOGINFO = {
-      title: this.actionName + ' ' + this.singularName,
-      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + clientName,
-      cancelText: 'Cancelar',
-      confirmText: this.actionName
+      title: 'EDITAR CLIENTE',
+      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + '?', 
+      cancelText: 'CANCELAR',
+      confirmText: 'EDITAR'
     }
     this.confirmDialog.open(DIALOGINFO)
     this.sendForm()
@@ -71,7 +70,7 @@ export class EditClientComponent implements OnInit {
           let formData = this.fillForm();
           this.api.putClient(Number(clientId), formData).subscribe ({
             next : (res) => {
-              this.snackBar.mensaje(this.singularName + ' actualizado exitosamente')
+              this.snackBar.mensaje(this.singularName + ' Actualizado Exitosamente')
               this.toClientList();
             },
             error : (res) => {

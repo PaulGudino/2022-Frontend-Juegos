@@ -86,7 +86,7 @@ export class AwardsComponent implements OnInit {
 
   async Permisoeliminar(){
     let rol_id = Number(localStorage.getItem('rol_id'));
-    let permiso_id = 17;
+    let permiso_id = 8;
     const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
     this.permisos = promesa;
   }

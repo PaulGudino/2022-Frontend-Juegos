@@ -53,9 +53,9 @@ export class RolesEditarComponent implements OnInit {
     if(this.form.valid){
       const options = {
         title: 'EDITAR ROLES',
-        message: 'ESTA SEGURO QUE QUIERE EDITAR EL ROL?',
+        message: '¿ESTÁ SEGURO QUE QUIERE EDITAR EL ROL '+ this.form.get('name')?.value +'?',
         cancelText: 'CANCELAR',
-        confirmText: 'CONFIRMAR'
+        confirmText: 'EDITAR'
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
@@ -64,6 +64,7 @@ export class RolesEditarComponent implements OnInit {
           formData.append('name', this.form.get('name')?.value);
           formData.append('description', this.form.get('description')?.value);
           formData.append('is_active', this.form.get('is_active')?.value);
+          formData.append('rol_request', localStorage.getItem('rol_id') || '');
           this.rol.putRol(Number(id_rol), formData).subscribe(
             res => {
               this.snackbar.mensaje('Rol Actualizado Exitosamente');

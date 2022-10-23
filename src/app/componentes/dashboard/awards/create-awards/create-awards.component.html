@@ -10,16 +10,29 @@
                 <mat-form-field>
                     <mat-label>Nombre</mat-label>
                     <input autocomplete="off" formControlName="name" type="text" matInput>
+                    <mat-hint>Nombre del Premio</mat-hint>
+                    <mat-error *ngIf="form.controls['name'].hasError('required')" >
+                        Campo requerido
+                    </mat-error>
                 </mat-form-field>
         
                 <mat-form-field>
                     <mat-label>Descripción</mat-label>
                     <input autocomplete="off" formControlName="description" type="text" matInput>
+                    <mat-hint>Descripción del Premio</mat-hint>
+                    <mat-error *ngIf="form.controls['description'].hasError('required')" >
+                        Campo requerido
+                    </mat-error>
                 </mat-form-field>
         
                 <mat-form-field>
                     <mat-label>Stock Inicial</mat-label>
-                    <input autocomplete="off" formControlName="initial_stock" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text" matInput>
+                    <input autocomplete="off" formControlName="initial_stock" onpaste="return false" type="number" oninput="this.value = 
+                    !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null"  matInput>
+                    <mat-hint>Stock Inicial del Premio</mat-hint>
+                    <mat-error *ngIf="form.controls['initial_stock'].hasError('required')" >
+                        Campo requerido
+                    </mat-error>
                 </mat-form-field>
         
                 <mat-form-field>
@@ -28,6 +41,10 @@
                         <mat-option value=true>Activo</mat-option>
                         <mat-option value=false>Inactivo</mat-option>
                     </mat-select>
+                    <mat-hint>Estado del Premio</mat-hint>
+                    <mat-error *ngIf="form.controls['is_active'].hasError('required')" >
+                        Campo requerido
+                    </mat-error>
                 </mat-form-field>
         
                 <mat-form-field>
@@ -35,6 +52,10 @@
                     <mat-select formControlName="category" mat-select placeholder="Seleccione una opción">
                         <mat-option *ngFor="let categoria of Categorias" value={{categoria.id}}>{{categoria.name}}</mat-option>
                     </mat-select>
+                    <mat-hint>Categoria del Premio</mat-hint>
+                    <mat-error *ngIf="form.controls['category'].hasError('required')" >
+                        Campo requerido
+                    </mat-error>
                 </mat-form-field>
                 
                 <mat-form-field>
@@ -42,8 +63,11 @@
                     <mat-select formControlName="juego" mat-select placeholder="Seleccione una opción">
                         <mat-option *ngFor="let juego of Juegos" value={{juego.id}}>{{juego.name}}</mat-option>
                     </mat-select>
+                    <mat-hint>Juego del Premio</mat-hint>
+                    <mat-error *ngIf="form.controls['juego'].hasError('required')" >
+                        Campo requerido
+                    </mat-error>
                 </mat-form-field>
-        
             </form>
         </div>
         <div    >
@@ -67,7 +91,7 @@
         
         <button mat-raised-button color="primary" (click)="createAwards()" color="primary">
             <mat-icon>done</mat-icon>
-            Guardar
+            Crear
         </button>
     </div>
  </mat-card>

@@ -1,7 +1,7 @@
 import { Usuarios } from '../../../../interfaces/usuarios/usuarios';
 import { ApiService } from '../../../../servicios/usuarios/api.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
@@ -49,7 +49,7 @@ export class EditarUsuariosComponent implements OnInit {
       username: ['', Validators.required],
       names: ['', Validators.required],
       surnames: ['', Validators.required],
-      email: ['', Validators.required],
+      email : new FormControl('', [Validators.required, Validators.email]),
       phone: ['', Validators.required],
       sex: ['', Validators.required],
       address: ['', Validators.required],
@@ -96,9 +96,9 @@ export class EditarUsuariosComponent implements OnInit {
     if (this.form.valid){
       const options = {
         title: 'EDITAR USUARIO',
-        message: 'ESTA SEGURO QUE QUIERE ACTUALIZAR EL USUARIO?',
+        message: '¿ESTÁ SEGURO QUE QUIERE ACTUALIZAR EL USUARIO '+ this.form.get('names')?.value+ ' '+this.form.get('surnames')?.value +'?',
         cancelText: 'CANCELAR',
-        confirmText: 'CONFIRMAR'
+        confirmText: 'EDITAR'
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
@@ -114,6 +114,7 @@ export class EditarUsuariosComponent implements OnInit {
           formData.append('address', this.form.get('address')?.value);
           formData.append('rol', this.form.get('rol')?.value);
           formData.append('is_active', this.form.get('is_active')?.value);
+          formData.append('rol_request', localStorage.getItem('rol_id') || '');
 
           this.api.putUsuario(Number(usuarioid), formData).subscribe(
             (data) => {

@@ -38,9 +38,9 @@ export class RolesCrearComponent implements OnInit {
     if(this.form.valid){
       const options = {
         title: 'CREAR ROLES',
-        message: 'ESTA SEGURO QUE QUIERE CREAR EL ROL?',
+        message: '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO ROL?',
         cancelText: 'CANCELAR',
-        confirmText: 'CONFIRMAR'
+        confirmText: 'CREAR'
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
@@ -49,6 +49,7 @@ export class RolesCrearComponent implements OnInit {
           formData.append('name', this.form.get('name')?.value);
           formData.append('description', this.form.get('description')?.value);
           formData.append('is_active', this.form.get('is_active')?.value);
+          formData.append('rol_request', localStorage.getItem('rol_id') || '');
           this.rolSrv.postRoles(formData).subscribe(
             (res) => {
               this.snackbar.mensaje('Rol Creado Exitosamente');

@@ -31,7 +31,15 @@ export class MenuComponent implements OnInit {
 
   cargarMenu(){
     this.api.getMenu().subscribe((data) => {
-      this.menu = data;
+      if (localStorage.getItem('rol_id') != '1'){
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].nombre != 'Usuarios' && data[i].nombre != 'Roles'){
+            this.menu.push(data[i]);
+          }
+        }
+      }else{
+        this.menu = data;
+      }
     });
   }
   logout(){

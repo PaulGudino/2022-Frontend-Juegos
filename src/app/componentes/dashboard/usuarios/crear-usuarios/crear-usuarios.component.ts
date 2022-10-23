@@ -45,9 +45,9 @@ export class CrearUsuariosComponent implements OnInit {
     if(this.form.valid){
       const options = {
         title: 'CREAR USUARIO',
-        message: 'ESTA SEGURO QUE QUIERE CREAR EL USUARIO?',
+        message: '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO USUARIO?',
         cancelText: 'CANCELAR',
-        confirmText: 'CONFIRMAR'
+        confirmText: 'CREAR'
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
@@ -63,6 +63,7 @@ export class CrearUsuariosComponent implements OnInit {
           formData.append('sex', this.form.get('sex')?.value);
           formData.append('rol', this.form.get('rol')?.value);
           formData.append('address', this.form.get('address')?.value);
+          formData.append('rol_request', localStorage.getItem('rol_id') || '');
           this.api.postUsuarios(formData).subscribe({
             next: (res) => {
               this.snackBar.mensaje('Usuario Creado Exitosamente')

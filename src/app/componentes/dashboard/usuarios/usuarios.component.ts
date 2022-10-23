@@ -7,9 +7,7 @@ import { ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
-import { lastValueFrom } from 'rxjs';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 
 @Component({
@@ -23,7 +21,6 @@ export class UsuariosComponent implements OnInit {
   displayedColumns: string[] = ['cedula', 'names', 'surnames', 'email', 'phone', 'sex', 'rol', 'Acciones']
   dataSource !: MatTableDataSource<Usuarios>;
   user_id = Number(localStorage.getItem('user_id'));
-  permisos:any = [];
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -32,7 +29,6 @@ export class UsuariosComponent implements OnInit {
     private api: ApiService, 
     private router: Router,
     public dialog: MatDialog,
-    private permisos_api: PermisosService,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService
 
@@ -71,9 +67,8 @@ export class UsuariosComponent implements OnInit {
     this.router.navigate(['dashboard/usuarios/visualizar', id]);
   }
 
-  async eliminarUsuario(id:number){
-    await this.Permisoeliminar();
-    if(this.permisos.length > 0){
+  eliminarUsuario(id:number){
+    if(localStorage.getItem('rol_id') == '1'){
       const options = {
         title: 'ELIMINAR USUARIO',
         message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL USUARIO?',
@@ -99,12 +94,6 @@ export class UsuariosComponent implements OnInit {
       this.snackbar.mensaje('No tienes permiso para Eliminar Usuarios');
     }
     
-  }
-  async Permisoeliminar(){
-    let rol_id = Number(localStorage.getItem('rol_id'));
-    let permiso_id = 4;
-    const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
-    this.permisos = promesa;
   }
   usuariosEliminados(){
     this.router.navigate(['dashboard/usuarios/eliminados']);
