@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Menu } from './../../../interfaces/menu';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../servicios/usuarios/api.service';
@@ -29,7 +30,7 @@ export class MenuComponent implements OnInit {
     this.cargarMenu();
   }
 
-  cargarMenu(){
+  cargarMenu() {
     this.api.getMenu().subscribe((data) => {
       if (localStorage.getItem('rol_id') != '1'){
         for (let i = 0; i < data.length; i++) {

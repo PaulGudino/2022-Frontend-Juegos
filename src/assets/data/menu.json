@@ -28,5 +28,10 @@
         "nombre": "Probabilidades",
         "icono": "assessment",
         "ruta": "/dashboard/probabilidades"
+    },
+    {
+        "nombre": "Traga Monedas",
+        "icono": "casino",
+        "ruta": "/dashboard/juego"
     }
 ]

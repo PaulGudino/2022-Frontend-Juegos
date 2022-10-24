@@ -27,6 +27,7 @@ import { PermissionsGuard } from 'src/app/guardianes/Permissions/permissions.gua
 import { InicioGuard } from 'src/app/guardianes/inicio/inicio.guard';
 import { EditClientComponent } from './clients/edit-client/edit-client.component';
 import { ViewClientComponent } from './clients/view-client/view-client.component';
+import { TragamonedasComponent } from './game/tragamonedas/tragamonedas.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
@@ -70,7 +71,7 @@ const routes: Routes = [
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 7, Permiso_nombre: 'Editar Premio'}},
     {path: 'probabilidades', component : ProbabilidadesComponent, 
     canActivate: [InicioGuard]},
-
+    {path: 'juego', component : TragamonedasComponent,}
   ]},
 ];
 
