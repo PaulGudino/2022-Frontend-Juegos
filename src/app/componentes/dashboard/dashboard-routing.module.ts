@@ -1,3 +1,4 @@
+import { AdministrationGuard } from './../../guardianes/Administration/administration.guard';
 import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
 import { EditarUsuariosComponent } from './usuarios/editar-usuarios/editar-usuarios.component';
@@ -26,48 +27,51 @@ import { PermissionsGuard } from 'src/app/guardianes/Permissions/permissions.gua
 import { InicioGuard } from 'src/app/guardianes/inicio/inicio.guard';
 import { EditClientComponent } from './clients/edit-client/edit-client.component';
 import { ViewClientComponent } from './clients/view-client/view-client.component';
+import { TragamonedasComponent } from './game/tragamonedas/tragamonedas.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: '', component: InicioComponent},
     {path: 'cambiar-contraseña', component: CambiarContraseniaComponent },
+    // Usuarios Administradores
     {path: 'usuarios', component: UsuariosComponent, 
-    canActivate: [InicioGuard]},
+    canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'usuarios/crear', component: CrearUsuariosComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 1, Permiso_nombre: 'Crear Usuario'}},
+    canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 2, Permiso_nombre: 'Visualizar Usuario'}},
+    canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'usuarios/editar/:id', component: EditarUsuariosComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 3, Permiso_nombre: 'Editar Usuario'}},
+    canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'usuarios/eliminados', component: UsuariosEliminadosComponent, 
-    canActivate: [InicioGuard]},
+    canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'roles', component: RolesComponent, 
-    canActivate: [InicioGuard]},
+    canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'roles/crear', component: RolesCrearComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 6, Permiso_nombre: 'Crear Rol'}},
+    canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'roles/permisos/:id', component: PermisosRolesComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 7, Permiso_nombre: 'Editar Permisos'}},
+    canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'roles/editar/:id', component: RolesEditarComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 8, Permiso_nombre: 'Editar Rol'}},
+    canActivate: [InicioGuard, AdministrationGuard]},
+    // Usuarios Normales
     {path: 'clientes', component : ClientsComponent, 
     canActivate: [InicioGuard]},
     {path: 'clientes/crear', component: CreateClientComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 10, Permiso_nombre: 'Crear Cliente'}},
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 1, Permiso_nombre: 'Crear Cliente'}},
     {path: 'clientes/vizualizar/:id', component: ViewClientComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 11, Permiso_nombre: 'Visualizar Cliente'}},
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 2, Permiso_nombre: 'Visualizar Cliente'}},
     {path: 'clientes/editar/:id', component: EditClientComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 12, Permiso_nombre: 'Editar Cliente'}},
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 3, Permiso_nombre: 'Editar Cliente'}},
     {path: 'premios', component : AwardsComponent, 
     canActivate: [InicioGuard]},
     {path: 'premios/crear', component: CreateAwardsComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 14, Permiso_nombre: 'Crear Premio'}},
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 5, Permiso_nombre: 'Crear Premio'}},
     {path: 'premios/visualizar/:id', component: ViewAwardsComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 15, Permiso_nombre: 'Visualizar Premio'}},
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 6, Permiso_nombre: 'Visualizar Premio'}},
     {path: 'premios/editar/:id', component: EditAwardsComponent, 
-    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 16, Permiso_nombre: 'Editar Premio'}},
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 7, Permiso_nombre: 'Editar Premio'}},
     {path: 'probabilidades', component : ProbabilidadesComponent, 
     canActivate: [InicioGuard]},
-
+    {path: 'juego', component : TragamonedasComponent,}
   ]},
 ];
 

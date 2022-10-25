@@ -53,10 +53,10 @@ export class CreateClientComponent implements OnInit {
 
   showDialog() {
     const DIALOGINFO = {
-      title: this.actionName + ' ' + this.singularName,
-      message: '¿Está seguro de que quiere ' + this.actionName + ' el nuevo ' + this.singularName,
-      cancelText: 'Cancelar',
-      confirmText: this.actionName
+      title: 'CREAR CLIENTE',
+      message: '¿Está seguro de que quiere ' + this.actionName + ' el nuevo ' + this.singularName + '?',
+      cancelText: 'CANCELAR',
+      confirmText: 'CREAR'
     }
     this.confirmDialog.open(DIALOGINFO)
     this.sendForm()
@@ -69,7 +69,7 @@ export class CreateClientComponent implements OnInit {
           let formData = this.fillForm();
           this.api.postClient(formData).subscribe ({
             next : (res) => {
-              this.snackBar.mensaje(this.singularName + ' ' + this.actionName + ' Exitosamente')
+              this.snackBar.mensaje('Cliente Creado Exitosamente');
               this.toClientList();
             },
             error : (res) => {

@@ -4,10 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
 import { Usuarios } from 'src/app/interfaces/usuarios/usuarios';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
-import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ApiService } from 'src/app/servicios/usuarios/api.service';
 
@@ -22,7 +20,6 @@ export class UsuariosEliminadosComponent implements OnInit {
   dataSource !: MatTableDataSource<Usuarios>;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
-  permisos:any = [];
 
   constructor(
     private api: ApiService, 
@@ -30,7 +27,6 @@ export class UsuariosEliminadosComponent implements OnInit {
     public dialog: MatDialog,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
-    private permisos_api: PermisosService,
   ) {
    }
 
@@ -52,9 +48,8 @@ export class UsuariosEliminadosComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
-  async restaurarUsuario(id:number){
-    await this.Permisoeliminar();
-    if(this.permisos.length > 0){
+  restaurarUsuario(id:number){
+    if(localStorage.getItem('rol_id') == '1'){
       const options = {
         title: 'ACTIVAR USUARIO',
         message: 'ESTA SEGURO QUE QUIERE ACTIVAR EL USUARIO?',
@@ -77,11 +72,5 @@ export class UsuariosEliminadosComponent implements OnInit {
   }
   regresar(){
     this.router.navigate(['/dashboard/usuarios']);
-  }
-  async Permisoeliminar(){
-    let rol_id = Number(localStorage.getItem('rol_id'));
-    let permiso_id = 9;
-    const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
-    this.permisos = promesa;
   }
 }

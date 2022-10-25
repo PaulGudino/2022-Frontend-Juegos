@@ -1,13 +1,10 @@
-import { CambiarContraseña } from './../../interfaces/usuarios/cambiarContraseña';
 import { UsuariosFiltradobyRol } from './../../interfaces/usuarios/usuariofilterbyRol';
-import { UsuariosCrear } from '../../interfaces/usuarios/usuariocrear';
 import { Usuarios } from '../../interfaces/usuarios/usuarios';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Menu } from '../../interfaces/menu';
 import { Roles } from '../../interfaces/roles/roles';
-import { UsuariosEditar } from '../../interfaces/usuarios/usuarioeditar';
 import { PuenteDatosService } from '../comunicacio_componentes/puente-datos.service';
 
 @Injectable({

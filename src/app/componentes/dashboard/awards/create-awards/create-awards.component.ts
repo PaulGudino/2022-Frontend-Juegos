@@ -76,9 +76,9 @@ export class CreateAwardsComponent implements OnInit {
     if (this.form.valid && this.fileToUpload) {
       const options = {
         title: 'CREAR PREMIO',
-        message: 'ESTA SEGURO QUE QUIERE CREAR EL PREMIO?',
+        message: '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO PREMIO?',
         cancelText: 'CANCELAR',
-        confirmText: 'CONFIRMAR'
+        confirmText: 'CREAR'
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
@@ -97,7 +97,7 @@ export class CreateAwardsComponent implements OnInit {
 
           this.awardSrv.postAward(formData).subscribe(
             (res) => {
-              this.snackbar.mensaje('Premio creado correctamente');
+              this.snackbar.mensaje('Premio Creado Exitosamente');
               this.router.navigate(['dashboard/premios']);
             },
             (err) => {

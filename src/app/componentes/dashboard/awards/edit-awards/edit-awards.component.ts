@@ -99,9 +99,9 @@ export class EditAwardsComponent implements OnInit {
       let award_id = this.activerouter.snapshot.paramMap.get('id');
       const options = {
         title: 'EDITAR PREMIO',
-        message: 'ESTA SEGURO QUE QUIERE EDITAR EL PREMIO?',
+        message: '¿ESTÁ SEGURO QUE QUIERE EDITAR EL PREMIO '+ this.form.get('name')?.value +'?',
         cancelText: 'CANCELAR',
-        confirmText: 'CONFIRMAR'
+        confirmText: 'EDITAR'
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {

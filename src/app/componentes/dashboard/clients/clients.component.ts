@@ -116,7 +116,7 @@ export class ClientsComponent implements OnInit{
 
   async canDelete() {
     let rolId = Number(localStorage.getItem('rol_id'));
-    let permissionId = 13;
+    let permissionId = 4;
     const promise = await lastValueFrom(this.permissionsApi.getPermisosbyRolandPermission(rolId, permissionId));
     this.permissions = promise;
   }

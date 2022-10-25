@@ -30,6 +30,7 @@ import { EditClientComponent } from './clients/edit-client/edit-client.component
 import { ViewClientComponent } from './clients/view-client/view-client.component';
 import { ModalItemComponent } from './probabilidades/modal-item/modal-item.component';
 import { CategorySetSquareItemComponent } from './probabilidades/category-set-square-item/category-set-square-item.component';
+import { TragamonedasComponent } from './game/tragamonedas/tragamonedas.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { CategorySetSquareItemComponent } from './probabilidades/category-set-sq
     ModalComponent,
     ModalItemComponent,
     CategorySetSquareItemComponent,
+    TragamonedasComponent,
   ],
   imports: [
     SharedModule,

@@ -7,9 +7,8 @@
     <form [formGroup]="form">
         <mat-form-field>
             <mat-label>Cédula</mat-label>
-
             <input matInput #input autocomplete="off" formControlName="cedula" type="text" required
-            placeholder="0957303423" maxlength="10" minlength="10"
+            placeholder="0000000000" maxlength="10" minlength="10" onpaste="return false"
             onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             <mat-hint align="end">
                 {{input.value.length || 0}}/10
@@ -21,7 +20,7 @@
 
         <mat-form-field>
             <mat-label>Username</mat-label>
-            <input autocomplete="off" formControlName="username" type="text" matInput>
+            <input autocomplete="off" formControlName="username" type="text" placeholder="usuario" matInput >
             <mat-hint>Nombre del usuario</mat-hint>
             <mat-error *ngIf="form.controls['username'].hasError('required')" >
                 Campo requerido
@@ -30,8 +29,7 @@
 
         <mat-form-field>
             <mat-label>Nombres</mat-label>
-            <input matInput autocomplete="off" formControlName="names" type="text" required placeholder="Nicolás Andrés"
-            onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+            <input matInput autocomplete="off" formControlName="names" type="text" required placeholder="Nombres">
             <mat-hint>Nombre completo</mat-hint>
             <mat-error *ngIf="form.controls['names'].hasError('required')" >
                 Campo requerido
@@ -40,8 +38,7 @@
 
         <mat-form-field>
             <mat-label>Apellidos</mat-label>
-            <input matInput autocomplete="off" formControlName="surnames" type="text" required placeholder="Plaza Iñiguez"
-            onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+            <input matInput autocomplete="off" formControlName="surnames" type="text" required placeholder="Apellidos">
             <mat-hint>Apellido paterno y materno</mat-hint>
             <mat-error *ngIf="form.controls['surnames'].hasError('required')" >
                 Campo requerido
@@ -52,6 +49,7 @@
             <mat-label>Correo Electrónico</mat-label>
             <input matInput placeholder="usuario@dominio.com" formControlName="email" type="email" required autocomplete="off"
             placeholder="usuario@dominio.com">
+            <mat-hint>Correo electrónico</mat-hint>
             <mat-error *ngIf="form.controls['email'].hasError('required')">
                 Campo requerido
             </mat-error> 
@@ -64,8 +62,9 @@
         <mat-form-field>
             <mat-label>Teléfono</mat-label>
             <input matInput #input autocomplete="off" formControlName="phone" type="text" required
-            placeholder="0939552946" maxlength="10" minlength="10"
+            placeholder="0000000000" maxlength="10" minlength="10" onpaste="return false"
             onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <mat-hint>Teléfono</mat-hint>
             <mat-error *ngIf="form.controls['phone'].hasError('required')" >
                 Campo requerido
             </mat-error>
@@ -73,7 +72,7 @@
 
         <mat-form-field>
             <mat-label>Contraseña</mat-label>
-            <input matInput autocomplete="off" minlength="8" formControlName="password" [type]="ocultar ? 'password' : 'text'">
+            <input matInput onpaste="return false" autocomplete="off" minlength="8" formControlName="password" [type]="ocultar ? 'password' : 'text'">
                 <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
             <mat-hint>Minimo 8 caracteres</mat-hint>
             <mat-error *ngIf="form.controls['password'].hasError('required')" >
@@ -122,7 +121,7 @@
         
         <button mat-raised-button color="primary" (click)="crearUsuario()">
             <mat-icon>done</mat-icon>
-            Guardar
+            Crear
         </button>
     </div>
  </mat-card>
