@@ -52,6 +52,7 @@ export class CreateAwardsComponent implements OnInit {
   ngOnInit(): void {
   }
   capturarFile(event: any): void {
+
     this.fileToUpload = this.imageSrv.captureFile(event);
     if (this.fileToUpload) {
       this.imagen = this.fileToUpload;

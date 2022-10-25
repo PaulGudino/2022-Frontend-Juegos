@@ -91,7 +91,7 @@ export class ClientsComponent implements OnInit{
           this.api.deleteClient(id).subscribe(
             (data) => {
               this.snackBar.mensaje(this.singularName + ' eliminado exitosamente');
-              this.toClientList();
+              this.loadClients();
             }
           )
         }
@@ -104,7 +104,7 @@ export class ClientsComponent implements OnInit{
 
   showDeleteDialog() {
       const DIALOGINFO = {
-        title : 'Delete ' + this.singularName,
+        title : 'ELIMINAR ' + this.singularName.toUpperCase(),
         message : '¿Está seguro de que quiere eliminar el cliente?',
         cancelText : 'Cancelar',
         confirmText : 'Eliminar'

@@ -12,7 +12,8 @@
             <mat-form-field>
                 <mat-label>Cédula</mat-label>
                 <input matInput #input autocomplete="off" formControlName="cedula" type="text" required
-                placeholder="0900000000" maxlength="10" minlength="10" onpaste="return false">
+                placeholder="0900000000" maxlength="10" minlength="10" onpaste="return false"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                 <mat-hint align="end">
                     {{input.value.length || 0}}/10
                 </mat-hint>
@@ -41,7 +42,7 @@
 
             <mat-form-field >
                 <mat-label>Correo Electrónico</mat-label>
-                <input matInput formControlName="email" type="email" required placeholder="usuario@dominio.com">
+                <input matInput formControlName="email" type="email" required placeholder="usuario@dominio.com" autocomplete="off">
                 <mat-hint>Correo electrónico</mat-hint>
                 <mat-error *ngIf="formGroup.controls['email'].hasError('required')">
                     Campo requerido
@@ -54,7 +55,8 @@
             <mat-form-field>
                 <mat-label>Teléfono</mat-label>
                 <input matInput #input autocomplete="off" formControlName="phone" type="text" required
-                placeholder="0900000000" maxlength="10" minlength="10" onpaste="return false">
+                placeholder="0900000000" maxlength="10" minlength="10" onpaste="return false"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                 <mat-hint>Teléfono</mat-hint>
                 <mat-error *ngIf="formGroup.controls['phone'].hasError('required')" >
                     Campo requerido
@@ -73,11 +75,11 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field >
+            <mat-form-field>
                 <mat-label>Dirección</mat-label>
-                <textarea matInput formControlName="address" placeholder="Ciudad, Cantón, Parroquia" style="resize: none;"
-                maxlength="300" rows="5"></textarea>
-                <mat-error *ngIf="formGroup.controls['address'].hasError('required')">
+                <input autocomplete="off" formControlName="address" type="text" placeholder="Ciudad, Cantón, Parroquia" matInput>
+                <mat-hint>Dirección del usuario</mat-hint>
+                <mat-error *ngIf="formGroup.controls['address'].hasError('required')" >
                     Campo requerido
                 </mat-error>
             </mat-form-field>

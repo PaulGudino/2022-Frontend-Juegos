@@ -102,6 +102,7 @@ export class EditClientComponent implements OnInit {
     this.api.getClientById(Number(clientId)).subscribe(
       (res) => {
         this.currentClient = res;
+        console.log(res)
         this.getClientInfo();
       },
       (err) => {

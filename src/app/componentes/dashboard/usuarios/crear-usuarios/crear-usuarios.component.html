@@ -94,7 +94,7 @@
 
         <mat-form-field>
             <mat-label>Dirección</mat-label>
-            <input autocomplete="off" formControlName="address" type="text" matInput>
+            <input autocomplete="off" formControlName="address" type="text" placeholder="Ciudad, Cantón, Parroquia" matInput>
             <mat-hint>Dirección del usuario</mat-hint>
             <mat-error *ngIf="form.controls['address'].hasError('required')" >
                 Campo requerido
