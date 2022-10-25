@@ -12,8 +12,7 @@
             <mat-form-field>
                 <mat-label>Cédula</mat-label>
                 <input matInput #input autocomplete="off" formControlName="cedula" type="text" required
-                placeholder="0000000000" maxlength="10" minlength="10" onpaste="return false"
-                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                placeholder="0900000000" maxlength="10" minlength="10" onpaste="return false">
                 <mat-hint align="end">
                     {{input.value.length || 0}}/10
                 </mat-hint>
@@ -42,12 +41,11 @@
 
             <mat-form-field >
                 <mat-label>Correo Electrónico</mat-label>
-                <input matInput placeholder="usuario@dominio.com" formControlName="email" type="email" required
-                placeholder="usuario@dominio.com">
+                <input matInput formControlName="email" type="email" required placeholder="usuario@dominio.com">
                 <mat-hint>Correo electrónico</mat-hint>
                 <mat-error *ngIf="formGroup.controls['email'].hasError('required')">
                     Campo requerido
-                </mat-error> 
+                </mat-error>
                 <mat-error *ngIf="formGroup.controls['email'].hasError('email')">
                     Ingresa un correo válido
                     </mat-error>
@@ -56,8 +54,7 @@
             <mat-form-field>
                 <mat-label>Teléfono</mat-label>
                 <input matInput #input autocomplete="off" formControlName="phone" type="text" required
-                placeholder="0000000000" maxlength="10" minlength="10" onpaste="return false"
-                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                placeholder="0900000000" maxlength="10" minlength="10" onpaste="return false">
                 <mat-hint>Teléfono</mat-hint>
                 <mat-error *ngIf="formGroup.controls['phone'].hasError('required')" >
                     Campo requerido
@@ -65,11 +62,10 @@
             </mat-form-field>
 
             <mat-form-field >
-                <mat-label>Estado</mat-label>
+                <mat-label>Sexo</mat-label>
                 <mat-select formControlName="sex" mat-select placeholder="Seleccione una opción">
-                    <mat-option value="N">Ninguno</mat-option>
-                    <mat-option value="F">Femenino</mat-option>
-                    <mat-option value="M">Masculino</mat-option>
+                    <mat-option value="Femenino">Femenino</mat-option>
+                    <mat-option value="Masculino">Masculino</mat-option>
                 </mat-select>
                 <mat-hint>Seleccione una opción</mat-hint>
                 <mat-error *ngIf="formGroup.controls['sex'].hasError('required')">
@@ -89,10 +85,8 @@
             <mat-form-field >
                 <mat-label>Estado</mat-label>
                 <mat-select formControlName="state" mat-select placeholder="Seleccione una opción">
-                    <mat-option value="Ninguno">Ninguno</mat-option>
                     <mat-option value="Activo">Activo</mat-option>
                     <mat-option value="Inactivo">Inactivo</mat-option>
-                    <mat-option value="Deshabilitado">Deshabilitado</mat-option>
                 </mat-select>
                 <mat-hint>Seleccione una opción</mat-hint>
                 <mat-error *ngIf="formGroup.controls['state'].hasError('required')">
@@ -106,7 +100,7 @@
                 <mat-icon>close</mat-icon>
                 Cancelar
             </button>
-            
+
             <button mat-raised-button color="primary" (click)="createClient()">
                 <mat-icon>done</mat-icon>
                 Crear
