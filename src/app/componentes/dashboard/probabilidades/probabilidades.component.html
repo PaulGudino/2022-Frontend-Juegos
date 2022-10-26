@@ -20,25 +20,26 @@ category="{{categoryModal}}"
     (propagar)="padreOpenModal($event)"
     color="legendary"
     title = "Legendaria"
-    [awards]="legendary"
+    [awardsList] = "legendary"
+
     ></app-categorie>
     <app-categorie
     (propagar)="padreOpenModal($event)"
     color="epic"
     title = "Epica"
-    [awards]="epic"
+    [awardsList] = "epic"
     ></app-categorie>
     <app-categorie
     (propagar)="padreOpenModal($event)"
     color="rare"
     title = "Rara"
-    [awards]="rare"
+    [awardsList] = "rare"
     ></app-categorie>
     <app-categorie
     (propagar)="padreOpenModal($event)"
     color="common"
     title = "Comun"
-    [awards]="common"
+    [awardsList] = "common"
     ></app-categorie>
 
   </div>
