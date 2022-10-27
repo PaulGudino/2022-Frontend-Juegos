@@ -70,6 +70,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatDialogModule,
     MatCheckboxModule,
-  ]
+  ],
+
 })
 export class SharedModule { }

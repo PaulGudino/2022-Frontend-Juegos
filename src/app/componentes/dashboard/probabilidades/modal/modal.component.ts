@@ -1,5 +1,7 @@
 import { Component, OnInit,Output,EventEmitter,Input } from '@angular/core';
 import { getAwardList } from 'src/app/interfaces/awards/getAwardList';
+import { Publicity } from 'src/app/interfaces/publicity/publicity';
+import {AwardsService} from '../../../../servicios/awards/awards.service';
 
 @Component({
   selector: 'app-modal',
@@ -8,14 +10,26 @@ import { getAwardList } from 'src/app/interfaces/awards/getAwardList';
 })
 export class ModalComponent implements OnInit {
   @Input() category: string='';
-  @Input() modalAwards:getAwardList[]=[];
+  @Input() publicity: Publicity[]=[]
+
+  modalAwards:getAwardList[]=[];
 
   isOpenModal:boolean=true;
   @Output() propagar = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(
+    private awards:AwardsService,
+  ) { }
 
   ngOnInit(): void {
+    this.awards.getAward()
+    .subscribe(data => {
+      data.map(award =>{
+        if(this.category == award.category){
+          this.modalAwards.push(award);
+        }
+      })
+    })
 
   }
 

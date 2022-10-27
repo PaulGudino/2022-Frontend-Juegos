@@ -6,7 +6,8 @@
 <app-modal *ngIf="isModalOpen"
 (propagar)="manageCloseModal($event)"
 category="{{categoryModal}}"
-[modalAwards]="modalAwards">
+[publicity]="publicityList"
+>
 </app-modal>
 
 <div class="container-premios">
@@ -16,38 +17,56 @@ category="{{categoryModal}}"
       <h3 mat-lib-title> Categorias y Premios</h3>
       <h3 mat-lib-title> Casillas Disponibles</h3>
     </div>
-    <app-categorie
+    <app-categorie *ngIf="legendary.length>0"
     (propagar)="padreOpenModal($event)"
     color="legendary"
     title = "Legendaria"
-    [awardsList] = "legendary"
-
+    [awards]="legendary"
+    [boxes]="legendary_box"
     ></app-categorie>
     <app-categorie
     (propagar)="padreOpenModal($event)"
     color="epic"
     title = "Epica"
-    [awardsList] = "epic"
+    [awards] = "epic"
+    [boxes] = "epic_box"
+
+
     ></app-categorie>
     <app-categorie
     (propagar)="padreOpenModal($event)"
     color="rare"
     title = "Rara"
-    [awardsList] = "rare"
+    [awards] = "rare"
+    [boxes] = "epic_box"
+
+
     ></app-categorie>
     <app-categorie
     (propagar)="padreOpenModal($event)"
     color="common"
     title = "Comun"
-    [awardsList] = "common"
+    [awards] = "common"
+    [boxes] = "common_box"
+
+
+    ></app-categorie>
+
+    <app-categorie
+    (propagar)="padreOpenModal($event)"
+    color="publicity"
+    title = "publicity"
+    [boxes] = "common_box"
+
+
     ></app-categorie>
 
   </div>
 
   <div class="container-set-categories">
-    <h3 mat-lib-title class="set-categories__title"> Editar Casillas</h3>
+    <h3 mat-lib-title class="set-categories__title"> Editar Probabilidades</h3>
     <div class="container-set-squares">
-      <app-category-set-square-item
+      <!-- <app-category-set-square-item
       category="Legendaria"
       >
       </app-category-set-square-item>
@@ -64,32 +83,35 @@ category="{{categoryModal}}"
       >
       </app-category-set-square-item>
 
-      <div class="line"></div>
+      <div class="line"></div> -->
 
-      <div class="container-total">
+      <!-- <div class="container-total">
         <p class="total">Total:</p>
         <p class="total-squares__number">{{totalSquares}} casillas</p>
 
-      </div>
+      </div> -->
 
       <div class="container-total">
-        <p class="total">Porcentaje de ganar un premio</p>
-        <form action="" class="row align-items-center me-2 form">
-          <input type="number" class="form__input">
-          %
-        </form>
+
+        <form [formGroup]="form" action="" class="row align-items-center justify-content-start me-2 form">
+          <label class="total col-8" for="percent_win">Porcentaje de ganar un premio</label>
+          <input type="number" class="form__input col-4" id="percent_win" formControlName="percent_win" required> %
+
+
+          <label class="total col-8 mt-4" for="limit_winners">Limitar ganadores por dia</label>
+          <input type="number" class="form__input col-4" id="limit_winners" formControlName="limit_winners" required>
+
+
+          <p class="ganadores__limit-message no-pass-limit">{{limitMessage}}</p>
+
+      </form>
+      <button (click)="addProbabilityConfig()">
+        anadir configuracion
+      </button>
 
       </div>
 
-      <div class="container-ganadores">
-        <div class="container-total">
-          <p class="total">Limitar ganadores por dia</p>
-          <form action="" class="row align-items-center me-2 form">
-            <input type="number" class="form__input">
-          </form>
-        </div>
-        <p class="ganadores__limit-message no-pass-limit">{{limitMessage}}</p>
-      </div>
+
 
 
 

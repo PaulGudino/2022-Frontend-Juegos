@@ -38,14 +38,14 @@ import { ComponentesCompartidosModule } from './componentes-compartidos/componen
       multi: true
     },
     {
-      provide: HTTP_INTERCEPTORS, 
-      useClass: AuthInterceptor, 
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true
     },
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

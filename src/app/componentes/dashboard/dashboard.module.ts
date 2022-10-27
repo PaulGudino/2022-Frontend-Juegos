@@ -69,6 +69,6 @@ import { TragamonedasComponent } from './game/tragamonedas/tragamonedas.componen
     CommonModule,
     DashboardRoutingModule,
     ComponentesCompartidosModule
-  ]
+  ],
 })
 export class DashboardModule { }
