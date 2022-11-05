@@ -8,3 +8,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
   height: 100vh;
 }
+.background-green-primary{
+   background-color: #00ffc5;
+}
+.green-primary{
+   color: #00ffc5;
+}
+.background-navy-primary{
+   background-color: #002130;
+}
+.navy-primary{
+   color: #002130;
+}
+.background-light-blue-primary{
+   background-color: #055970;
+}
+.light-blue-primary{
+   color: #055970;
+}
+.background-light-lead-primary{
+   background-color: #3f3f43;
+}
+.light-lead-primary{
+   color: #3f3f43;
+}
+
+

@@ -1,0 +1,45 @@
+<div class="container-fluid background-navy-primary root-container">
+   <div class="row">
+      <div class="col align-self-center text-center">
+         <h2 class="date-title green-primary">JUEGO DISPONIBLE</h2>
+      </div>
+   </div>
+
+   <div class="calendar-container">
+      <div class="calendar">
+         <p class="input-date green-primary">Inicio</p>
+         <div class="calendar__card">
+            <mat-card class="demo-inline-calendar-card">
+               <mat-calendar [(selected)]="selected"></mat-calendar>
+            </mat-card>
+         </div>
+
+         <p>Selected date: {{ selected }}</p>
+
+         <button class="background-green-primary btn save-button">
+            Guardar
+         </button>
+      </div>
+      <div class="calendar">
+         <p class="input-date green-primary">Fin</p>
+         <div class="calendar__card">
+            <mat-card class="demo-inline-calendar-card">
+               <mat-calendar [(selected)]="selected"></mat-calendar>
+            </mat-card>
+         </div>
+
+         <p>Selected date: {{ selected }}</p>
+
+         <button class="btn cancel-button">Cancelar</button>
+      </div>
+   </div>
+
+   <div class="row align-items-center exit-container">
+      <img
+         class="col-1 exit-icon"
+         src="../../../../assets/img/exit-icon.png"
+         alt="exit"
+      />
+      <p class="green-primary col-4">CERRAR SESIÓN</p>
+   </div>
+</div>

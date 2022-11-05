@@ -28,50 +28,54 @@ import { InicioGuard } from 'src/app/guardianes/inicio/inicio.guard';
 import { EditClientComponent } from './clients/edit-client/edit-client.component';
 import { ViewClientComponent } from './clients/view-client/view-client.component';
 import { TragamonedasComponent } from './game/tragamonedas/tragamonedas.component';
+import { GameDateComponent } from './game-date/game-date.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: '', component: InicioComponent},
     {path: 'cambiar-contraseña', component: CambiarContraseniaComponent },
     // Usuarios Administradores
-    {path: 'usuarios', component: UsuariosComponent, 
+    {path: 'usuarios', component: UsuariosComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    {path: 'usuarios/crear', component: CrearUsuariosComponent, 
+    {path: 'usuarios/crear', component: CrearUsuariosComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent, 
+    {path: 'usuarios/visualizar/:id', component: VisualizarUsuariosComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    {path: 'usuarios/editar/:id', component: EditarUsuariosComponent, 
+    {path: 'usuarios/editar/:id', component: EditarUsuariosComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    {path: 'usuarios/eliminados', component: UsuariosEliminadosComponent, 
+    {path: 'usuarios/eliminados', component: UsuariosEliminadosComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    {path: 'roles', component: RolesComponent, 
+    {path: 'roles', component: RolesComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    {path: 'roles/crear', component: RolesCrearComponent, 
+    {path: 'roles/crear', component: RolesCrearComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    {path: 'roles/permisos/:id', component: PermisosRolesComponent, 
+    {path: 'roles/permisos/:id', component: PermisosRolesComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    {path: 'roles/editar/:id', component: RolesEditarComponent, 
+    {path: 'roles/editar/:id', component: RolesEditarComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
     // Usuarios Normales
-    {path: 'clientes', component : ClientsComponent, 
+    {path: 'clientes', component : ClientsComponent,
     canActivate: [InicioGuard]},
-    {path: 'clientes/crear', component: CreateClientComponent, 
+    {path: 'clientes/crear', component: CreateClientComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 1, Permiso_nombre: 'Crear Cliente'}},
-    {path: 'clientes/vizualizar/:id', component: ViewClientComponent, 
+    {path: 'clientes/vizualizar/:id', component: ViewClientComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 2, Permiso_nombre: 'Visualizar Cliente'}},
-    {path: 'clientes/editar/:id', component: EditClientComponent, 
+    {path: 'clientes/editar/:id', component: EditClientComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 3, Permiso_nombre: 'Editar Cliente'}},
-    {path: 'premios', component : AwardsComponent, 
+    {path: 'premios', component : AwardsComponent,
     canActivate: [InicioGuard]},
-    {path: 'premios/crear', component: CreateAwardsComponent, 
+    {path: 'premios/crear', component: CreateAwardsComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 5, Permiso_nombre: 'Crear Premio'}},
-    {path: 'premios/visualizar/:id', component: ViewAwardsComponent, 
+    {path: 'premios/visualizar/:id', component: ViewAwardsComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 6, Permiso_nombre: 'Visualizar Premio'}},
-    {path: 'premios/editar/:id', component: EditAwardsComponent, 
+    {path: 'premios/editar/:id', component: EditAwardsComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 7, Permiso_nombre: 'Editar Premio'}},
-    {path: 'probabilidades', component : ProbabilidadesComponent, 
+    {path: 'probabilidades', component : ProbabilidadesComponent,
     canActivate: [InicioGuard]},
-    {path: 'juego', component : TragamonedasComponent,}
+    //Game
+    {path: 'juego', component : TragamonedasComponent, canActivate: [InicioGuard]},
+    {path: 'juego/fecha', component : GameDateComponent},
+
   ]},
 ];
 

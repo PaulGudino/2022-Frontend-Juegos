@@ -22,6 +22,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -48,6 +50,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     CommonModule,
@@ -70,6 +74,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 
 })
