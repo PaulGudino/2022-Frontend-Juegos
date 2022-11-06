@@ -10,13 +10,14 @@
          <p class="input-date green-primary">Inicio</p>
          <div class="calendar__card">
             <mat-card class="demo-inline-calendar-card">
-               <mat-calendar [(selected)]="selected"></mat-calendar>
+               <mat-calendar [(selected)]="beginDate"></mat-calendar>
             </mat-card>
          </div>
 
-         <p>Selected date: {{ selected }}</p>
-
-         <button class="background-green-primary btn save-button">
+         <button
+            (click)="saveNewDateGame()"
+            class="background-green-primary btn-game__date save-button"
+         >
             Guardar
          </button>
       </div>
@@ -24,13 +25,11 @@
          <p class="input-date green-primary">Fin</p>
          <div class="calendar__card">
             <mat-card class="demo-inline-calendar-card">
-               <mat-calendar [(selected)]="selected"></mat-calendar>
+               <mat-calendar [(selected)]="finishDate"></mat-calendar>
             </mat-card>
          </div>
 
-         <p>Selected date: {{ selected }}</p>
-
-         <button class="btn cancel-button">Cancelar</button>
+         <button class="btn-game__date cancel-button">Cancelar</button>
       </div>
    </div>
 

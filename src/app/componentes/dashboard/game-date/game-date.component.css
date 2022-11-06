@@ -7,6 +7,7 @@ p{
 }
 .exit-container{
    margin-top:1rem;
+   padding-bottom: 1rem;
 }
 .date-title{
    margin: 1.5rem 0;
@@ -36,14 +37,21 @@ p{
 .date-container{
    height:100%;
 }
-.btn{
+.btn-game__date{
    padding: 0.5rem 2rem;
    font-size: 14px;
    width:8rem;
+   outline: none;
+   border: none;
+   border-radius: 6px;
 }
 .save-button{
    align-self: flex-end;
    margin-right: 2rem;
+
+}
+.btn-game__date:hover{
+   cursor: pointer
 
 }
 .cancel-button{
