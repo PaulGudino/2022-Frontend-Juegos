@@ -6,7 +6,7 @@ import {ThemeService} from './service/theme.service';
   styleUrls: ['./juego.component.css']
 })
 export class JuegoComponent implements OnInit {
-  bacgroundImgUrl = '';
+  backgroundImgUrl = '';
 
   constructor(
     private themeService: ThemeService

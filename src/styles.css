@@ -8,6 +8,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
   height: 100vh;
 }
+.background-black-primary{
+   background-color: #000910;
+}
 .background-green-primary{
    background-color: #00ffc5;
 }
@@ -31,6 +34,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .light-lead-primary{
    color: #3f3f43;
+}
+.mat-card .mat-calendar .mat-calendar-content .ng-star-inserted .mat-calendar-table .mat-calendar-table-header,
+.mat-calendar-body-label{
+   color: #00ffc5;
+}
+.mat-calendar-body-cell-content,
+.mat-date-range-input-separator{
+   color: white;
+
+}
+.mat-calendar-body-selected{
+   background-color: #00ffc5;
+   color: black;
 }
 
 

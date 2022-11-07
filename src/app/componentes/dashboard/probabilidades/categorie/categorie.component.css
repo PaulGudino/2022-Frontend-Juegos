@@ -12,24 +12,38 @@ img{
   display: flex;
   gap: 0.2rem;
   align-items: center;
-  background-color: aqua;
-  justify-content:center;
+  justify-content:start;
   width: 80%;
-  box-shadow: -2px 6px 5px 0px #AAB5B7;;
   flex-wrap: wrap;
   padding: 0.5rem 0;
+  border-radius: 6px;
 }
 .category-title{
   font-size:1rem;
 }
 .add-container{
-  background-color: #dcdcdc;
   border-radius: 15px;
   width: 3rem;
-  height: 3rem;
+  height: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #00ffc5;
+  padding:0.3rem 0;
+}
+.styled-icon{
+   font-size:17px;
+   width:17px;
+   height:17px;
+}
+.btn-container{
+   display: flex;
+   gap:.5rem;
+   align-items: center;
+   border-radius:6px;
+   padding:.3rem 1rem;
+   margin-left: .3rem;
+   background-color: #002130;
 }
 .award-container{
   width: 5rem;
@@ -44,23 +58,6 @@ img{
 .box{
   width: 5rem;
   height: 5rem;
-  border: solid;
+  border: 1px solid #00ffc5;
 }
-.legendary{
-  background-color:mistyrose;
-}
-.epic{
-  background-color:#a390a6;
-}
-.rare{
-  background-color:#bcd4e3;
 
-}
-.common{
-  background-color:#d3e3bc;
-}
-.publicity{
-  background-color:#23373a;
-
-
-}

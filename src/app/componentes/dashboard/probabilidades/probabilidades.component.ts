@@ -76,7 +76,6 @@ export class ProbabilidadesComponent implements OnInit {
     // })
     this.probability.getProbabilites()
     .subscribe(data =>{
-      debugger;
       this.probabilityData = data[data.length-1]
       this.limitWinners = this.probabilityData.winners_limit
       this.limitMessage = `Todavia no ha pasado el limite actual ${this.limitWinners}`

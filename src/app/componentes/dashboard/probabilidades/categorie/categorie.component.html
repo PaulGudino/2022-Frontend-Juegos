@@ -1,27 +1,25 @@
 <div class="container-category">
-  <div class="categorie {{color}}">
-    <p class="category-title m-0 me-3">{{title}}</p>
-    <div class="add-container" (click)="openModal()">
-      <mat-icon>add</mat-icon>
-    </div>
+   <div class="categorie background-light-blue-primary">
+      <div class="background-navy-primary btn-container green-primary">
+         <div class="add-container" (click)="openModal()">
+            <mat-icon class="styled-icon">add</mat-icon>
+         </div>
+         <p class="category-title m-0 me-3">{{ title }}</p>
+      </div>
 
-    <figure class="award-container" *ngFor="let award of awards">
-      <img src="{{award.imagen}}" alt="award-image">
-    </figure>
-    <div *ngIf="title == 'publicity'">
-      <figure class="award-container" *ngFor="let publicity of publicityList">
-        <img src="{{publicity.image}}" alt="award-image">
+      <figure class="award-container" *ngFor="let award of awards">
+         <img src="{{ award.imagen }}" alt="award-image" />
       </figure>
-
-    </div>
-
-
-
-
-  </div>
-  <div class="container-box">
-    <div class="box" *ngFor="let i of boxes" ></div>
-
-  </div>
-
+      <div *ngIf="title == 'publicity'">
+         <figure
+            class="award-container"
+            *ngFor="let publicity of publicityList"
+         >
+            <img src="{{ publicity.image }}" alt="award-image" />
+         </figure>
+      </div>
+   </div>
+   <div class="container-box">
+      <div class="box" *ngFor="let i of boxes"></div>
+   </div>
 </div>

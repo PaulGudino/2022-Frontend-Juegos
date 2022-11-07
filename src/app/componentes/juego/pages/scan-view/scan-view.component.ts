@@ -8,14 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class ScanViewComponent implements OnInit {
 
   selectedInputCode:boolean = false;
-  titleScanState:boolean = true;
-  code:string = '123';
-  title:String = 'Escanea el Codigo';
-  explication:String = 'Puedes escanear el codigo QR de tu tikect o tambien puedes ingresar manualmente el codigo';
+  scanState:boolean = true;
+  code:string = 'Ingresa tu codigo aqui...';
+  explication:String = 'Puedes escanear el codigo QR de tu tikect';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  changeView(){
+   this.scanState = false;
+  }
 }

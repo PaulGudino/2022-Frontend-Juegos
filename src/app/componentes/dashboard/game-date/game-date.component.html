@@ -1,4 +1,4 @@
-<div class="container-fluid background-navy-primary root-container">
+<div class="container-fluid background-black-primary root-container">
    <div class="row">
       <div class="col align-self-center text-center">
          <h2 class="date-title green-primary">JUEGO DISPONIBLE</h2>
@@ -9,8 +9,13 @@
       <div class="calendar">
          <p class="input-date green-primary">Inicio</p>
          <div class="calendar__card">
-            <mat-card class="demo-inline-calendar-card">
-               <mat-calendar [(selected)]="beginDate"></mat-calendar>
+            <mat-card
+               class="demo-inline-calendar-card background-navy-primary green-primary"
+            >
+               <mat-calendar
+                  class="green-primary"
+                  [(selected)]="beginDate"
+               ></mat-calendar>
             </mat-card>
          </div>
 
@@ -24,7 +29,9 @@
       <div class="calendar">
          <p class="input-date green-primary">Fin</p>
          <div class="calendar__card">
-            <mat-card class="demo-inline-calendar-card">
+            <mat-card
+               class="demo-inline-calendar-card background-navy-primary green-primary"
+            >
                <mat-calendar [(selected)]="finishDate"></mat-calendar>
             </mat-card>
          </div>
