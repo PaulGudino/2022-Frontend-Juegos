@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-
+:root {
+   --color-principal: #00ffc5;
+   --color-fondo: #002130;
+   --color-letras: #ffffff;
+   --color-ventanas: #055970;
+   --color-cafe:#3f3f43;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .container-fullscreen{
@@ -12,32 +18,32 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    background-color: #000910;
 }
 .background-green-primary{
-   background-color: #00ffc5;
+   background-color: var(--color-principal);
 }
 .green-primary{
-   color: #00ffc5;
+   color: var(--color-principal);
 }
 .background-navy-primary{
-   background-color: #002130;
+   background-color: var(--color-fondo);
 }
 .navy-primary{
-   color: #002130;
+   color: var(--color-fondo);
 }
 .background-light-blue-primary{
-   background-color: #055970;
+   background-color: var(--color-ventanas);
 }
 .light-blue-primary{
-   color: #055970;
+   color: var(--color-ventanas);
 }
 .background-light-lead-primary{
-   background-color: #3f3f43;
+   background-color: var(--color-cafe);
 }
 .light-lead-primary{
-   color: #3f3f43;
+   color: var(--color-cafe);
 }
 .mat-card .mat-calendar .mat-calendar-content .ng-star-inserted .mat-calendar-table .mat-calendar-table-header,
 .mat-calendar-body-label{
-   color: #00ffc5;
+   color: var(--color-principal);
 }
 .mat-calendar-body-cell-content,
 .mat-date-range-input-separator{
@@ -45,11 +51,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 }
 .mat-calendar-body-selected{
-   background-color: #00ffc5;
+   background-color:var(--color-principal);
    color: black;
 }
 .mat-dialog-container{
-   background-color:#055970;
+   background-color:var(--color-ventanas)
+}
+.mat-toolbar{
+   background-color: var(--color-fondo);
+   color: var(--color-principal);
+}
+.mat-sidenav{
+   background-color: var(--color-ventanas);
 }
 
 

@@ -1,3 +1,10 @@
+:root{
+    --color-principal: #00ffc5;
+   --color-fondo: #002130;
+   --color-letras: #ffffff;
+   --color-ventanas: #055970;
+   --color-cafe:#3f3f43;
+}
 table {
     width: 100%;
 }
@@ -21,4 +28,8 @@ table {
     display: flex;
     justify-content: space-between;
 }
+.mat-toolbar{
+    background-color: var(--color-ventanas);
+
+ }
 
