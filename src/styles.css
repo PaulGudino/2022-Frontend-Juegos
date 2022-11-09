@@ -48,5 +48,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    background-color: #00ffc5;
    color: black;
 }
+.mat-dialog-container{
+   background-color:#055970;
+}
 
 

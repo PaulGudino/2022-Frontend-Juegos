@@ -30,7 +30,6 @@ import { EditClientComponent } from './clients/edit-client/edit-client.component
 import { ViewClientComponent } from './clients/view-client/view-client.component';
 import { ModalItemComponent } from './probabilidades/modal-item/modal-item.component';
 import { CategorySetSquareItemComponent } from './probabilidades/category-set-square-item/category-set-square-item.component';
-import { TragamonedasComponent } from './game/tragamonedas/tragamonedas.component';
 import { GameDateComponent } from './game-date/game-date.component';
 import { CalendarPickerComponent } from './game-date/calendar-picker/calendar-picker.component';
 
@@ -64,7 +63,6 @@ import { CalendarPickerComponent } from './game-date/calendar-picker/calendar-pi
     ModalComponent,
     ModalItemComponent,
     CategorySetSquareItemComponent,
-    TragamonedasComponent,
     GameDateComponent,
     CalendarPickerComponent,
   ],

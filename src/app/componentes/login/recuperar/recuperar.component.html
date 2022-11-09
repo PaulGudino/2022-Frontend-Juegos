@@ -1,22 +1,33 @@
 <div class="body">
-    <div class="recuperar">
-        <form [formGroup]="form">
-            <img src="./assets/img/promo.png" alt="promo.png">
-        <h2>Generar Código</h2>
-        <mat-form-field class="ancho" >
-            <mat-label>Email</mat-label>
-            <input matInput autocomplete="off" formControlName="email">
-        </mat-form-field>
-        <br>
-        <button class="ancho boton" (click)="recuperar()" mat-raised-button color="primary" [disabled]="form.invalid">Enviar</button>
-        </form>
-        <br>
-        <div class="ancho">
-            <a routerLink="/login">Regresar</a>
+    <div class="card">
+        <div class="recover_container">
+            <form [formGroup]="form">
+                <div class="candado_img">
+                    <img src="./assets/img/contrasena.png" alt="contrasena.png">
+                </div>   
+                <h2>RECUPERACIÓN DE CUENTA</h2>
+                <div class="container_form">
+                    <h2>Correo Electrónico:</h2>
+                    <div class="ancho border_container" >
+                        <input matInput placeholder="correo@dominio.com" autocomplete="off" formControlName="email">
+                    </div>
+                </div>
+            </form>
+            <div class="button_container" *ngIf="!form.invalid">
+                <button class="ancho" (click)="recuperar()" mat-raised-button>Solicitar Clave</button>
+            </div>
+            <div class="button_container">
+                <button class="ancho" (click)="cancel()" mat-raised-button>Cancelar</button>
+            </div>
+            <br>
+            <div class="ancho">
+                <a routerLink="/reset-contraseña">Ya tienes código?</a>
+            </div>
         </div>
-        <br>
-        <div class="ancho">
-            <a routerLink="/reset-contraseña">Ya tienes código?</a>
+        <div class="image_container">
+            <div class="back_img">
+                <img src="./assets/img/back.jpg" alt="back.jpg">
+            </div>
         </div>
     </div>
 </div>

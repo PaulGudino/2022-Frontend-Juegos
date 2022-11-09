@@ -53,4 +53,7 @@ export class RecuperarComponent implements OnInit {
       data: mensajes
     });
   }
+  cancel(){
+    this.router.navigate(['login']);
+  }
 }

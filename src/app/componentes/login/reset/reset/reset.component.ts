@@ -60,4 +60,7 @@ export class ResetComponent implements OnInit {
       data: mensajes
     });
   }
+  cancel(){
+    this.router.navigate(['login']);
+  }
 }

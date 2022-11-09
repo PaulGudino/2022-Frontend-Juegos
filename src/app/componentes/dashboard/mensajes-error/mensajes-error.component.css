@@ -1,7 +1,20 @@
 .container_dialog{
     display: flex;
     flex-direction: column;
+    --color-principal: #00ffc5;
+    --color-fondo: #002130;
+    --color-letras: #ffffff;
+    --color-ventanas: #055970;
     justify-content: center;
+    height: 100%;
+    width: 100%;
     align-items: center;
-    width: 500px;
+    background: var(--color-ventanas);
+    color: var(--color-letras);
+}
+.button_container button{
+    border-radius: 15px;
+    background: var(--color-principal);
+    color: var(--color-fondo);
+    cursor: pointer;
 }

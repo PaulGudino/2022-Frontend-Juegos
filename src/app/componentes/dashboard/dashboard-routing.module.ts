@@ -27,7 +27,6 @@ import { PermissionsGuard } from 'src/app/guardianes/Permissions/permissions.gua
 import { InicioGuard } from 'src/app/guardianes/inicio/inicio.guard';
 import { EditClientComponent } from './clients/edit-client/edit-client.component';
 import { ViewClientComponent } from './clients/view-client/view-client.component';
-import { TragamonedasComponent } from './game/tragamonedas/tragamonedas.component';
 import { GameDateComponent } from './game-date/game-date.component';
 
 const routes: Routes = [
@@ -73,7 +72,6 @@ const routes: Routes = [
     {path: 'probabilidades', component : ProbabilidadesComponent,
     canActivate: [InicioGuard]},
     //Game
-    {path: 'juego', component : TragamonedasComponent, canActivate: [InicioGuard]},
     {path: 'juego/fecha', component : GameDateComponent},
 
   ]},
