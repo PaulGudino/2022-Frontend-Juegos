@@ -11,6 +11,10 @@ import { CrearUsuariosComponent } from './usuarios/crear-usuarios/crear-usuarios
 import { VisualizarUsuariosComponent } from './usuarios/visualizar-usuarios/visualizar-usuarios.component';
 import { RolesComponent } from './roles/roles.component';
 import { RolesCrearComponent } from './roles/roles-crear/roles-crear.component';
+import { TicketsComponent } from './tickets/tickets.component';
+import { CreateTicketComponent } from './tickets/create-ticket/create-ticket.component';
+import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component';
+import { EditTicketComponent } from './tickets/edit-ticket/edit-ticket.component';
 
 //Guardianes
 
@@ -28,6 +32,7 @@ import { InicioGuard } from 'src/app/guardianes/inicio/inicio.guard';
 import { EditClientComponent } from './clients/edit-client/edit-client.component';
 import { ViewClientComponent } from './clients/view-client/view-client.component';
 import { GameDateComponent } from './game-date/game-date.component';
+
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
@@ -52,7 +57,8 @@ const routes: Routes = [
     canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'roles/editar/:id', component: RolesEditarComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    // Usuarios Normales
+    
+    // Clientes
     {path: 'clientes', component : ClientsComponent,
     canActivate: [InicioGuard]},
     {path: 'clientes/crear', component: CreateClientComponent,
@@ -61,6 +67,17 @@ const routes: Routes = [
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 2, Permiso_nombre: 'Visualizar Cliente'}},
     {path: 'clientes/editar/:id', component: EditClientComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 3, Permiso_nombre: 'Editar Cliente'}},
+
+    // Tickets
+    {path: 'tickets', component : TicketsComponent, canActivate : [InicioGuard] },
+    {path: 'tickets/crear', component : CreateTicketComponent,
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 1, Permiso_nombre: 'Crear Ticket'}},
+    {path: 'clientes/vizualizar/:id', component: ViewTicketComponent,
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 2, Permiso_nombre: 'Visualizar Ticket'}},
+    {path: 'clientes/editar/:id', component: EditTicketComponent,
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 3, Permiso_nombre: 'Editar Ticket'}},
+
+    // Premios
     {path: 'premios', component : AwardsComponent,
     canActivate: [InicioGuard]},
     {path: 'premios/crear', component: CreateAwardsComponent,

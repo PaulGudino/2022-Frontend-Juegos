@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
-import { ClientService } from 'src/app/servicios/clients/client.service';
+import { ClientService } from 'src/app/servicios/client/client.service';
 
 
 @Component({

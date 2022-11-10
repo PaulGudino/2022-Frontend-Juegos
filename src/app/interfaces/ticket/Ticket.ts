@@ -1,4 +1,5 @@
 export interface Ticket {
+    id : string,
     invoice_number : string,
     qr_code: string;
     date_created : string;

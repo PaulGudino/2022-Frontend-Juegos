@@ -10,20 +10,12 @@ import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 
-/**
- * Reference taken from https://material.angular.io/components/table/examples
- */
-
-/**
- * @Table of clients with sorting, pagination and filtering
- */
-
 @Component({
   selector: 'app-tickets',
   styleUrls: ['./tickets.component.css'],
   templateUrl: './tickets.component.html',
 })
-export class ClientsComponent implements OnInit{
+export class TicketsComponent implements OnInit{
 
   singularName : string = 'Ticket';
   pluralName : string = 'Tickets';
