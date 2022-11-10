@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import {GameService} from './../../../servicios/game/game.service'
-import { GamePutDate } from 'src/app/interfaces/game/gamePutDate';
+import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
 
 @Component({
   selector: 'app-game-date',

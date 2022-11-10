@@ -1,4 +1,4 @@
-import { GamePutDate } from 'src/app/interfaces/game/gamePutDate';
+import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
