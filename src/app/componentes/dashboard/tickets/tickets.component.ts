@@ -97,7 +97,7 @@ export class TicketsComponent implements OnInit{
   showDeleteDialog() {
       const DIALOGINFO = {
         title : 'ELIMINAR ' + this.singularName.toUpperCase(),
-        message : '¿Está seguro de que quiere eliminar el cliente?',
+        message : '¿Está seguro de que quiere eliminar el ' + this.singularName + ' ?',
         cancelText : 'Cancelar',
         confirmText : 'Eliminar'
       };
@@ -113,12 +113,12 @@ export class TicketsComponent implements OnInit{
     this.permissions = promise;
   }
 
-  toClientCreation() {
-    this.router.navigate(['dashboard/clientes/crear']);
+  toTicketCreation() {
+    this.router.navigate(['dashboard/tickets/crear']);
   }
 
-  toClientList() {
-    this.router.navigate(['dashboard/clientes']);
+  toTicketList() {
+    this.router.navigate(['dashboard/tickets']);
   }
 
 }

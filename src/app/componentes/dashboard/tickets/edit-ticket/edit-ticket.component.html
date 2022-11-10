@@ -44,7 +44,7 @@
             <mat-form-field >
                 <mat-label>Cliente</mat-label>
                 <mat-select formControlName="client" mat-select placeholder="Seleccione una opción">
-                    <mat-option *ngFor="let client in allClients" [value]="client.id">
+                    <mat-option *ngFor="let client of allClients" [value]="client.id">
                         {{ client.names + ' ' + client.surnames }}
                     </mat-option>
                 </mat-select>
@@ -59,7 +59,7 @@
             <mat-form-field >
                 <mat-label>Juego</mat-label>
                 <mat-select formControlName="game" mat-select placeholder="Seleccione una opción">
-                    <mat-option *ngFor="let game in allGames" [value]="game.id">
+                    <mat-option *ngFor="let game of allGames" [value]="game.id">
                         {{ game.game}}
                     </mat-option>
                 </mat-select>
