@@ -60,7 +60,7 @@
                 <mat-label>Juego</mat-label>
                 <mat-select formControlName="game" mat-select placeholder="Seleccione una opción">
                     <mat-option *ngFor="let game of allGames" [value]="game.id">
-                        {{ game.game}}
+                        {{ game.name}}
                     </mat-option>
                 </mat-select>
                 <mat-hint>Seleccione una opción</mat-hint>
