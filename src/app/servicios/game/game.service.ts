@@ -18,6 +18,9 @@ export class GameService {
    private puente: PuenteDatosService
   ) { }
 
+  getGames():Observable<GamePutDate[]>{
+    return this.http.get<GamePutDate[]>(this.url+'api/game/');
+  }
 
   putGame(id: number, data: any){
    return this.http.put(this.url+'api/game/'+id+'/', data);
