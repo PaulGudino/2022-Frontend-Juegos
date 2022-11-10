@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { TicketService } from 'src/app/servicios/ticket/ticket.service';
+import { GameService } from 'src/app/servicios/game/game.service';
+import { ClientService } from 'src/app/servicios/client/client.service';
+import { Client } from 'src/app/interfaces/client/Client';
+import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
 
 
 @Component({
@@ -18,6 +22,8 @@ export class EditTicketComponent implements OnInit {
   actionName : string = 'Editar'
   formGroup : FormGroup;
   currentTicket : any;
+  allClients : Client[] = [];
+  allGames : GamePutDate[] = [];
 
   constructor(
     private router : Router,
@@ -27,6 +33,8 @@ export class EditTicketComponent implements OnInit {
     private confirmDialog : ConfirmDialogService,
     private api : TicketService,
     private activatedRoute : ActivatedRoute,
+    private ClientAPI : ClientService,
+    private GameAPI : GameService,
   ) {
     // Building the form with the formBuilder
 
@@ -36,6 +44,18 @@ export class EditTicketComponent implements OnInit {
       client : ['', Validators.required],
       game : ['', Validators.required],
     });
+
+
+    this.ClientAPI.getClients().subscribe(
+      (data) => {
+        this.allClients = data;
+      }
+    );
+    this.GameAPI.getGames().subscribe(
+      (data) => {
+        this.allGames = data;
+      }
+    );
   }
 
   toTicketList() {

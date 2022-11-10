@@ -20,8 +20,8 @@ export class CreateTicketComponent implements OnInit {
   pluralName : string = 'Tickets'
   actionName : string = 'Crear'
   formGroup : FormGroup;
-  allClients : Client[];
-  allGames : GamePutDate[];
+  allClients : Client[] = [];
+  allGames : GamePutDate[] = [];
 
   constructor(
     private router : Router,
