@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
    --color-principal: #00ffc5;
-   --color-fondo: #002130;
+   --color-fondo-principal: #000910;
+   --color-fondo-secundario: #002130;
    --color-letras: #ffffff;
    --color-ventanas: #055970;
    --color-cafe:#3f3f43;
@@ -15,7 +16,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 100vh;
 }
 .background-black-primary{
-   background-color: #000910;
+   /* background-color: #000910; */
+   background-color: var(--color-fondo-secundario);
 }
 .background-green-primary{
    background-color: var(--color-principal);
@@ -24,7 +26,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    color: var(--color-principal);
 }
 .background-navy-primary{
-   background-color: var(--color-fondo);
+   background-color: var(--color-fondo-secundario);
 }
 .navy-primary{
    color: var(--color-fondo);
@@ -58,11 +60,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    background-color:var(--color-ventanas)
 }
 .mat-toolbar{
-   background-color: var(--color-fondo);
+   background-color: var(--color-fondo-principal);
    color: var(--color-principal);
 }
 .mat-sidenav{
-   background-color: var(--color-ventanas);
+   background-color: var(--color-fondo-secundario);
 }
-
-
+.mat-sidenav-container{
+   background-color: var(--color-fondo-principal);
+   color: #00ffc5;
+}
+.mat-drawer-backdrop.mat-drawer-shown {
+   background-color: transparent
+ }

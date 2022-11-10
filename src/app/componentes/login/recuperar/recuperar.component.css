@@ -1,13 +1,15 @@
 .body{
     --color-principal: #00ffc5;
-    --color-fondo: #002130;
-    --color-letras: #ffffff;
-    --color-ventanas: #055970;
+   --color-fondo-principal: #000910;
+   --color-fondo-secundario: #002130;
+   --color-letras: #ffffff;
+   --color-ventanas: #055970;
+   --color-cafe:#3f3f43;
     display: flex;
     justify-content: center;
     height: 100%;
     align-items: center;
-    background: var(--color-ventanas);
+    background: var(--color-fondo-secundario);
 }
 .card{
     width: 70%;
@@ -16,8 +18,8 @@
     display: flex;
     flex-direction: row;
     border-radius: 25px;
-    background: var(--color-fondo);
-    box-shadow: 4px 4px 20px 0px var(--color-fondo)
+    background: var(--color-fondo-principal);
+    box-shadow: 4px 4px 20px 0px var(--color-fondo-principal)
 }
 .recover_container{
     width: 50%;
@@ -60,7 +62,7 @@ input{
     border:none;
     outline: none;
     color: var(--color-letras);
-    background: var(--color-fondo);
+    background: var(--color-fondo-principal);
 }
 .container_form{
     padding: 0 15%;
