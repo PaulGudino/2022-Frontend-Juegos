@@ -14,9 +14,9 @@ import { Ticket } from 'src/app/interfaces/ticket/Ticket';
 })
 export class ViewTicketComponent implements OnInit {
 
-  singularName : string = 'Ticket';
-  pluralName : string = 'Tickets';
-  actionName : string = 'Visualizar';
+  singularName : string = 'ticket';
+  pluralName : string = 'tickets';
+  actionName : string = 'visualizar';
   ticket : Ticket = {
     id : '',
     invoice_number : '',
@@ -33,16 +33,16 @@ export class ViewTicketComponent implements OnInit {
   constructor(
     private router : Router,
     private activedRoute : ActivatedRoute,
-    private api : TicketService,
+    private ticketAPI : TicketService,
   ) {}
 
-  toTicketList() {
-    this.router.navigate(['dashboard/tickets']);
+  toList() {
+    this.router.navigate(['dashboard/' + this.pluralName]);
   }
 
   ngOnInit(): void {
     let ticketId = this.activedRoute.snapshot.paramMap.get('id');
-    this.api.getTicketById(Number(ticketId)).subscribe((data) => {
+    this.ticketAPI.getById(Number(ticketId)).subscribe((data) => {
       this.ticket = data;
     })
   }

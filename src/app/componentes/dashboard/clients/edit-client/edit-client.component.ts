@@ -13,9 +13,9 @@ import { ClientService } from 'src/app/servicios/client/client.service';
 })
 export class EditClientComponent implements OnInit {
 
-  singularName : string = 'Cliente'
+  singularName : string = 'cliente'
   pluralName : string = 'Clientes'
-  actionName : string = 'Editar'
+  actionName : string = 'editar'
   formGroup : FormGroup;
   currentClient : any;
 
@@ -25,7 +25,7 @@ export class EditClientComponent implements OnInit {
     // Dialog and snackBar services
     private snackBar : SnackbarService,
     private confirmDialog : ConfirmDialogService,
-    private api : ClientService,
+    private clientAPI : ClientService,
     private activatedRoute : ActivatedRoute,
   ) {
     // Building the form with the formBuilder
@@ -42,8 +42,8 @@ export class EditClientComponent implements OnInit {
     });
   }
 
-  toClientList() {
-    this.router.navigate(['dashboard/clientes']);
+  toList() {
+    this.router.navigate(['dashboard/' + this.pluralName]);
   }
 
   editClient() {
@@ -53,10 +53,10 @@ export class EditClientComponent implements OnInit {
 
   showDialog() {
     const DIALOGINFO = {
-      title: 'EDITAR CLIENTE',
-      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + '?', 
-      cancelText: 'CANCELAR',
-      confirmText: 'EDITAR'
+      title: this.actionName + ' ' + this.singularName,
+      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + ' ?', 
+      cancelText: 'Cancelar',
+      confirmText: this.actionName
     }
     this.confirmDialog.open(DIALOGINFO)
     this.sendForm()
@@ -68,10 +68,10 @@ export class EditClientComponent implements OnInit {
       confirmed => {
         if (confirmed) {
           let formData = this.fillForm();
-          this.api.putClient(Number(clientId), formData).subscribe ({
+          this.clientAPI.put(Number(clientId), formData).subscribe ({
             next : (res) => {
               this.snackBar.mensaje(this.singularName + ' Actualizado Exitosamente')
-              this.toClientList();
+              this.toList();
             },
             error : (res) => {
               this.confirmDialog.error(res.error);
@@ -99,11 +99,11 @@ export class EditClientComponent implements OnInit {
 
   ngOnInit(): void {
     let clientId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.api.getClientById(Number(clientId)).subscribe(
+    this.clientAPI.getById(Number(clientId)).subscribe(
       (res) => {
         this.currentClient = res;
         console.log(res)
-        this.getClientInfo();
+        this.getInfo();
       },
       (err) => {
         console.log(err);
@@ -111,7 +111,7 @@ export class EditClientComponent implements OnInit {
     )
   }
 
-  getClientInfo() {
+  getInfo() {
     this.formGroup.patchValue({
       cedula : this.currentClient.cedula,
       names : this.currentClient.names,

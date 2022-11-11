@@ -15,6 +15,7 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { CreateTicketComponent } from './tickets/create-ticket/create-ticket.component';
 import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component';
 import { EditTicketComponent } from './tickets/edit-ticket/edit-ticket.component';
+import { GameSelectionComponent } from './game-selection/game-selection.component';
 
 //Guardianes
 
@@ -88,8 +89,10 @@ const routes: Routes = [
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_id: 7, Permiso_nombre: 'Editar Premio'}},
     {path: 'probabilidades', component : ProbabilidadesComponent,
     canActivate: [InicioGuard]},
+    
     //Game
     {path: 'juego/fecha', component : GameDateComponent},
+    {path: 'juego/seleccion', component : GameSelectionComponent},
 
   ]},
 ];

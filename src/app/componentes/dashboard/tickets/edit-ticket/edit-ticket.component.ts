@@ -31,7 +31,7 @@ export class EditTicketComponent implements OnInit {
     // Dialog and snackBar services
     private snackBar : SnackbarService,
     private confirmDialog : ConfirmDialogService,
-    private api : TicketService,
+    private ticketAPI : TicketService,
     private activatedRoute : ActivatedRoute,
     private ClientAPI : ClientService,
     private GameAPI : GameService,
@@ -46,33 +46,33 @@ export class EditTicketComponent implements OnInit {
     });
 
 
-    this.ClientAPI.getClients().subscribe(
+    this.ClientAPI.getAll().subscribe(
       (data) => {
         this.allClients = data;
       }
     );
-    this.GameAPI.getGames().subscribe(
+    this.GameAPI.getAll().subscribe(
       (data) => {
         this.allGames = data;
       }
     );
   }
 
-  toTicketList() {
+  toList() {
     this.router.navigate(['dashboard/tickets']);
   }
 
-  editTicket() {
+  edit() {
     this.formGroup.valid ? this.showDialog() : 
     this.snackBar.mensaje('Llene el formulario correctamente');
   }
 
   showDialog() {
     const DIALOGINFO = {
-      title: 'EDITAR TICKET',
-      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + '?', 
-      cancelText: 'CANCELAR',
-      confirmText: 'EDITAR'
+      title: this.actionName + ' ' + this.singularName,
+      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + ' ?', 
+      cancelText: 'Cancelar',
+      confirmText: this.actionName
     }
     this.confirmDialog.open(DIALOGINFO)
     this.sendForm()
@@ -84,10 +84,10 @@ export class EditTicketComponent implements OnInit {
       confirmed => {
         if (confirmed) {
           let formData = this.fillForm();
-          this.api.putTicket(Number(ticketId), formData).subscribe ({
+          this.ticketAPI.put(Number(ticketId), formData).subscribe ({
             next : (res) => {
               this.snackBar.mensaje(this.singularName + ' Actualizado Exitosamente')
-              this.toTicketList();
+              this.toList();
             },
             error : (res) => {
               this.confirmDialog.error(res.error);
@@ -111,11 +111,11 @@ export class EditTicketComponent implements OnInit {
 
   ngOnInit(): void {
     let ticketId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.api.getTicketById(Number(ticketId)).subscribe(
+    this.ticketAPI.getById(Number(ticketId)).subscribe(
       (res) => {
         this.currentTicket = res;
         console.log(res)
-        this.getTicketInfo();
+        this.getInfo();
       },
       (err) => {
         console.log(err);
@@ -123,7 +123,7 @@ export class EditTicketComponent implements OnInit {
     )
   }
 
-  getTicketInfo() {
+  getInfo() {
     this.formGroup.patchValue({
       invoice_number : this.currentTicket.invoice_number,
       state : this.currentTicket.state,

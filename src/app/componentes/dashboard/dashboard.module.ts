@@ -36,7 +36,7 @@ import { CreateTicketComponent } from './tickets/create-ticket/create-ticket.com
 import { TicketsComponent } from './tickets/tickets.component';
 import { EditTicketComponent } from './tickets/edit-ticket/edit-ticket.component';
 import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component';
-
+import { GameSelectionComponent } from './game-selection/game-selection.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +74,9 @@ import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component
     ModalComponent,
     ModalItemComponent,
     CategorySetSquareItemComponent,
+    // Game Component
     GameDateComponent,
+    GameSelectionComponent,
     CalendarPickerComponent,
   ],
   imports: [

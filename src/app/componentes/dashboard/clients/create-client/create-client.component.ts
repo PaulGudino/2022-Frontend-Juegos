@@ -13,9 +13,9 @@ import { ClientService } from 'src/app/servicios/client/client.service';
 })
 export class CreateClientComponent implements OnInit {
 
-  singularName : string = 'Cliente'
-  pluralName : string = 'Clientes'
-  actionName : string = 'Crear'
+  singularName : string = 'cliente'
+  pluralName : string = 'clientes'
+  actionName : string = 'crear'
   formGroup : FormGroup;
 
   constructor(
@@ -42,21 +42,21 @@ export class CreateClientComponent implements OnInit {
     });
   }
 
-  toClientList() {
-    this.router.navigate(['dashboard/clientes']);
+  toList() {
+    this.router.navigate(['dashboard/' + this.pluralName]);
   }
 
-  createClient() {
+  create() {
     this.formGroup.valid ? this.showDialog() : 
     this.snackBar.mensaje('Llene el formulario correctamente');
   }
 
   showDialog() {
     const DIALOGINFO = {
-      title: 'CREAR CLIENTE',
+      title: this.actionName + ' ' + this.singularName,
       message: '¿Está seguro de que quiere ' + this.actionName + ' el nuevo ' + this.singularName + '?',
-      cancelText: 'CANCELAR',
-      confirmText: 'CREAR'
+      cancelText: 'Cancelar',
+      confirmText: this.actionName
     }
     this.confirmDialog.open(DIALOGINFO)
     this.sendForm()
@@ -67,10 +67,10 @@ export class CreateClientComponent implements OnInit {
       confirmed => {
         if (confirmed) {
           let formData = this.fillForm();
-          this.api.postClient(formData).subscribe ({
+          this.api.post(formData).subscribe ({
             next : (res) => {
-              this.snackBar.mensaje('Cliente Creado Exitosamente');
-              this.toClientList();
+              this.snackBar.mensaje( this.singularName + ' creado exitosamente');
+              this.toList();
             },
             error : (res) => {
               this.confirmDialog.error(res.error);

@@ -1,17 +1,14 @@
 <!-- Toolbar -->
-
 <mat-toolbar>
     <span>{{actionName}} {{singularName}} : {{currentTicket.id}} {{currentTicket.invoice_number} </span>
 </mat-toolbar>
 
 <!-- Form -->
-
 <div class="container">
     <mat-card>
         <form [formGroup]="formGroup">
 
             <!-- Invoice Number Input--->
-
             <mat-form-field>
                 <mat-label>Número de Factura</mat-label>
                 <input matInput #input autocomplete="off" formControlName="invoice_number" type="text" required
@@ -26,7 +23,6 @@
             </mat-form-field>
 
             <!-- Select State -->
-
             <mat-form-field >
                 <mat-label>Estado</mat-label>
                 <mat-select formControlName="state" mat-select placeholder="Seleccione una opción">
@@ -40,7 +36,6 @@
             </mat-form-field>
 
             <!-- Select Client -->
-
             <mat-form-field >
                 <mat-label>Cliente</mat-label>
                 <mat-select formControlName="client" mat-select placeholder="Seleccione una opción">
@@ -55,7 +50,6 @@
             </mat-form-field>
 
             <!-- Select Game -->
-
             <mat-form-field >
                 <mat-label>Juego</mat-label>
                 <mat-select formControlName="game" mat-select placeholder="Seleccione una opción">
@@ -68,16 +62,16 @@
                     Campo requerido
                 </mat-error>
             </mat-form-field>
-
         </form>
+
         <!-- Buttons -->
         <div class="container_botones">
-            <button (click)="toTicketList()" mat-raised-button color="warn">
+            <button (click)="toList()" mat-raised-button color="warn">
                 <mat-icon>close</mat-icon>
                 Cancelar
             </button>
 
-            <button mat-raised-button color="primary" (click)="editTicket()">
+            <button mat-raised-button color="primary" (click)="edit()">
                 <mat-icon>done</mat-icon>
                 Crear
             </button>

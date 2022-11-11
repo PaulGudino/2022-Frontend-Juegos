@@ -16,9 +16,9 @@ import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
 })
 export class CreateTicketComponent implements OnInit {
 
-  singularName : string = 'Ticket'
-  pluralName : string = 'Tickets'
-  actionName : string = 'Crear'
+  singularName : string = 'ticket'
+  pluralName : string = 'tickets'
+  actionName : string = 'crear'
   formGroup : FormGroup;
   allClients : Client[] = [];
   allGames : GamePutDate[] = [];
@@ -44,33 +44,33 @@ export class CreateTicketComponent implements OnInit {
       game : ['', Validators.required],
     });
 
-    this.ClientAPI.getClients().subscribe(
+    this.ClientAPI.getAll().subscribe(
       (data) => {
         this.allClients = data;
       }
     );
-    this.GameAPI.getGames().subscribe(
+    this.GameAPI.getAll().subscribe(
       (data) => {
         this.allGames = data;
       }
     );
   }
 
-  toTicketList() {
-    this.router.navigate(['dashboard/tickets']);
+  toList() {
+    this.router.navigate(['dashboard/' + this.pluralName]);
   }
 
-  createTicket() {
+  create() {
     this.formGroup.valid ? this.showDialog() : 
     this.snackBar.mensaje('Llene el formulario correctamente');
   }
 
   showDialog() {
     const DIALOGINFO = {
-      title: 'CREAR TICKET',
+      title: this.actionName + ' ' + this.singularName,
       message: '¿Está seguro de que quiere ' + this.actionName + ' el nuevo ' + this.singularName + '?',
-      cancelText: 'CANCELAR',
-      confirmText: 'CREAR'
+      cancelText: 'Cancelar',
+      confirmText: this.actionName
     }
     this.confirmDialog.open(DIALOGINFO)
     this.sendForm()
@@ -81,10 +81,10 @@ export class CreateTicketComponent implements OnInit {
       confirmed => {
         if (confirmed) {
           let formData = this.fillForm();
-          this.ticketAPI.postTicket(formData).subscribe ({
+          this.ticketAPI.post(formData).subscribe ({
             next : (res) => {
               this.snackBar.mensaje(this.singularName + ' Creado Exitosamente');
-              this.toTicketList();
+              this.toList();
             },
             error : (res) => {
               this.confirmDialog.error(res.error);

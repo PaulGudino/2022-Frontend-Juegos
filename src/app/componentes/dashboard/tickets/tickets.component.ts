@@ -17,8 +17,9 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
 })
 export class TicketsComponent implements OnInit{
 
-  singularName : string = 'Ticket';
-  pluralName : string = 'Tickets';
+  singularName : string = 'ticket';
+  pluralName : string = 'tickets';
+  actionName : string = 'eliminar';
   permissions : any = [];
 
   displayedColumns : string[] = [
@@ -37,18 +38,18 @@ export class TicketsComponent implements OnInit{
   constructor(
     // Atributes of the user component
     private router : Router,
-    private api : TicketService,
-    private permissionsApi : PermisosService,
+    private ticketAPI : TicketService,
+    private permissionsAPI : PermisosService,
     private confirmDialog : ConfirmDialogService,
     private snackBar : SnackbarService,
   ) {}
 
   ngOnInit() : void {
-    this.loadTickets();
+    this.loadAll();
   }
   
-  loadTickets() {
-    this.api.getTickets().subscribe(
+  loadAll() {
+    this.ticketAPI.getAll().subscribe(
       (data) => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
@@ -66,24 +67,24 @@ export class TicketsComponent implements OnInit{
     }
   }
 
-  viewTicket(id : number) {
-    this.router.navigate(['/dashboard/tickets/vizualizar/' + id]);
+  view(id : number) {
+    this.router.navigate(['/dashboard/' + this.pluralName +  '/vizualizar/' + id]);
   }
 
-  editTicket(id : number) {
-    this.router.navigate(['/dashboard/tickets/editar/' + id]);
+  edit(id : number) {
+    this.router.navigate(['/dashboard/' + this.pluralName + '/editar/' + id]);
   }
 
-  async deleteTicket(id : number) {
+  async delete(id : number) {
     await this.canDelete();
     if (this.permissions.length > 0) {
       this.showDeleteDialog();
       this.confirmDialog.confirmed().subscribe(confirmed => {
         if (confirmed) {
-          this.api.deleteTicket(id).subscribe(
+          this.ticketAPI.delete(id).subscribe(
             (data) => {
               this.snackBar.mensaje(this.singularName + ' eliminado exitosamente');
-              this.loadTickets();
+              this.loadAll();
             }
           )
         }
@@ -96,10 +97,10 @@ export class TicketsComponent implements OnInit{
 
   showDeleteDialog() {
       const DIALOGINFO = {
-        title : 'ELIMINAR ' + this.singularName.toUpperCase(),
+        title : this.actionName + ' ' + this.singularName,
         message : '¿Está seguro de que quiere eliminar el ' + this.singularName + ' ?',
         cancelText : 'Cancelar',
-        confirmText : 'Eliminar'
+        confirmText : this.actionName
       };
 
       this.confirmDialog.open(DIALOGINFO);
@@ -109,16 +110,16 @@ export class TicketsComponent implements OnInit{
   async canDelete() {
     let rolId = Number(localStorage.getItem('rol_id'));
     let permissionId = 12;
-    const promise = await lastValueFrom(this.permissionsApi.getPermisosbyRolandPermission(rolId, permissionId));
+    const promise = await lastValueFrom(this.permissionsAPI.getPermisosbyRolandPermission(rolId, permissionId));
     this.permissions = promise;
   }
 
-  toTicketCreation() {
-    this.router.navigate(['dashboard/tickets/crear']);
+  toCreation() {
+    this.router.navigate(['dashboard/'+ this.pluralName +'/crear']);
   }
 
-  toTicketList() {
-    this.router.navigate(['dashboard/tickets']);
+  toList() {
+    this.router.navigate(['dashboard/' + this.pluralName]);
   }
 
 }

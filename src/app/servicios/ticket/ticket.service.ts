@@ -16,19 +16,19 @@ export class TicketService {
 
   url = this.puente.geturl();
 
-  getTickets():Observable<Ticket[]>{
+  getAll():Observable<Ticket[]>{
     return this.http.get<Ticket[]>(this.url+'api/ticket/');
   }
-  getTicketById(id: number):Observable<Ticket>{
+  getById(id: number):Observable<Ticket>{
     return this.http.get<Ticket>(this.url+'api/ticket/'+id);
   }
-  postTicket(form: FormData){
+  post(form: FormData){
     return this.http.post(this.url+'api/ticket/', form);
   }
-  putTicket(id: number, form: FormData){
+  put(id: number, form: FormData){
     return this.http.put(this.url+'api/ticket/'+id+'/', form);
   }
-  deleteTicket(id: number){
+  delete(id: number){
     return this.http.delete(this.url+'api/ticket/'+id);
   }
 
