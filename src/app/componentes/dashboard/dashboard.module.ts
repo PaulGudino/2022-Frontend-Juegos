@@ -32,6 +32,7 @@ import { ModalItemComponent } from './probabilidades/modal-item/modal-item.compo
 import { CategorySetSquareItemComponent } from './probabilidades/category-set-square-item/category-set-square-item.component';
 import { GameDateComponent } from './game-date/game-date.component';
 import { CalendarPickerComponent } from './game-date/calendar-picker/calendar-picker.component';
+import { AwardsConditionsComponent } from './awards/awards-conditions/awards-conditions.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { CalendarPickerComponent } from './game-date/calendar-picker/calendar-pi
     CategorySetSquareItemComponent,
     GameDateComponent,
     CalendarPickerComponent,
+    AwardsConditionsComponent,
   ],
   imports: [
     SharedModule,

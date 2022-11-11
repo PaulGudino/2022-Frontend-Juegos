@@ -72,4 +72,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .mat-drawer-backdrop.mat-drawer-shown {
    background-color: transparent
- }
+}
+/* Css del input con fecha */
+.mat-calendar{
+   background: red;
+}
+.time-container{
+   background: red;
+}
+.actions {
+   background: red;
+}
+.actions button {
+   background: green;
+}
+/* Fin */

@@ -1,3 +1,4 @@
+import { AwardsConditionsComponent } from './awards/awards-conditions/awards-conditions.component';
 import { AdministrationGuard } from './../../guardianes/Administration/administration.guard';
 import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
@@ -73,6 +74,7 @@ const routes: Routes = [
     canActivate: [InicioGuard]},
     //Game
     {path: 'juego/fecha', component : GameDateComponent},
+    {path: 'premio/condicion', component : AwardsConditionsComponent},
 
   ]},
 ];
