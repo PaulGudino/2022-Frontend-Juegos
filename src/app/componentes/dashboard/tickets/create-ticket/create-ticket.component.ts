@@ -3,20 +3,25 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
+import { TicketService } from 'src/app/servicios/ticket/ticket.service';
+import { GameService } from 'src/app/servicios/game/game.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
-
+import { Client } from 'src/app/interfaces/client/Client';
+import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
 
 @Component({
-  selector: 'app-create-client',
-  templateUrl: './create-client.component.html',
-  styleUrls: ['./create-client.component.css']
+  selector: 'app-create-ticket',
+  templateUrl: './create-ticket.component.html',
+  styleUrls: ['./create-ticket.component.css']
 })
-export class CreateClientComponent implements OnInit {
+export class CreateTicketComponent implements OnInit {
 
-  singularName : string = 'cliente'
-  pluralName : string = 'clientes'
+  singularName : string = 'ticket'
+  pluralName : string = 'tickets'
   actionName : string = 'crear'
   formGroup : FormGroup;
+  allClients : Client[] = [];
+  allGames : GamePutDate[] = [];
 
   constructor(
     private router : Router,
@@ -24,22 +29,31 @@ export class CreateClientComponent implements OnInit {
     // Dialog and snackBar services
     private snackBar : SnackbarService,
     private confirmDialog : ConfirmDialogService,
-    private api : ClientService
+    private ticketAPI : TicketService,
+    private ClientAPI : ClientService,
+    private GameAPI : GameService,
   ) {
     // Building the form with the formBuilder
 
     // id refers to cedula
 
     this.formGroup = this.formBuilder.group({
-      cedula : ['', Validators.required],
-      names : ['', Validators.required],
-      surnames : ['', Validators.required],
-      email : new FormControl('', [Validators.required, Validators.email]),
-      phone : ['', Validators.required],
-      sex: ['', Validators.required],
-      address : ['', Validators.required],
-      state : ['', Validators.required]
+      invoice_number : ['', Validators.required],
+      state : ['', Validators.required],
+      client : ['', Validators.required],
+      game : ['', Validators.required],
     });
+
+    this.ClientAPI.getAll().subscribe(
+      (data) => {
+        this.allClients = data;
+      }
+    );
+    this.GameAPI.getAll().subscribe(
+      (data) => {
+        this.allGames = data;
+      }
+    );
   }
 
   toList() {
@@ -67,9 +81,9 @@ export class CreateClientComponent implements OnInit {
       confirmed => {
         if (confirmed) {
           let formData = this.fillForm();
-          this.api.post(formData).subscribe ({
+          this.ticketAPI.post(formData).subscribe ({
             next : (res) => {
-              this.snackBar.mensaje( this.singularName + ' creado exitosamente');
+              this.snackBar.mensaje(this.singularName + ' Creado Exitosamente');
               this.toList();
             },
             error : (res) => {
@@ -82,18 +96,14 @@ export class CreateClientComponent implements OnInit {
   }
 
   fillForm() {
-    let user_client_register = localStorage.getItem('user_id');
+    let user_register = localStorage.getItem('user_id');
     let formData : FormData = new FormData();
-    formData.append('cedula', this.formGroup.get('cedula')?.value);
-    formData.append('names', this.formGroup.get('names')?.value);
-    formData.append('surnames', this.formGroup.get('surnames')?.value);
-    formData.append('email', this.formGroup.get('email')?.value);
-    formData.append('phone', this.formGroup.get('phone')?.value);
-    formData.append('address', this.formGroup.get('address')?.value);
-    formData.append('sex', this.formGroup.get('sex')?.value);
+    formData.append('invoice_number', this.formGroup.get('invoice_number')?.value);
     formData.append('state', this.formGroup.get('state')?.value);
-    formData.append('user_client_register', user_client_register!);
-    formData.append('user_client_modify', user_client_register!);
+    formData.append('client', this.formGroup.get('client')?.value);
+    formData.append('game', this.formGroup.get('game')?.value);
+    formData.append('user_register', user_register!);
+    formData.append('user_modifier', user_register!);
     return formData;
   }
 

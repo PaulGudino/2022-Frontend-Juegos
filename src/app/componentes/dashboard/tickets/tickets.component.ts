@@ -3,34 +3,34 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { Client } from 'src/app/interfaces/client/Client';
-import { ClientService } from 'src/app/servicios/client/client.service';
+import { Ticket } from 'src/app/interfaces/ticket/Ticket';
+import { TicketService } from 'src/app/servicios/ticket/ticket.service';
 import { lastValueFrom } from 'rxjs';
 import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 
 @Component({
-  selector: 'app-clients',
-  styleUrls: ['./clients.component.css'],
-  templateUrl: './clients.component.html',
+  selector: 'app-tickets',
+  styleUrls: ['./tickets.component.css'],
+  templateUrl: './tickets.component.html',
 })
-export class ClientsComponent implements OnInit{
+export class TicketsComponent implements OnInit{
 
-  singularName : string = 'cliente';
-  pluralName : string = 'clientes';
+  singularName : string = 'ticket';
+  pluralName : string = 'tickets';
   actionName : string = 'eliminar';
   permissions : any = [];
 
   displayedColumns : string[] = [
-    'cedula',
-    'names',
-    'surnames',
-    'email',
+    'invoice_number',
+    'qr_code',
     'state',
+    'client',
+    'game',
     'actions'
   ]
-  dataSource !: MatTableDataSource<Client>;
+  dataSource !: MatTableDataSource<Ticket>;
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -38,8 +38,8 @@ export class ClientsComponent implements OnInit{
   constructor(
     // Atributes of the user component
     private router : Router,
-    private clientAPI : ClientService,
-    private permissionAPI : PermisosService,
+    private ticketAPI : TicketService,
+    private permissionsAPI : PermisosService,
     private confirmDialog : ConfirmDialogService,
     private snackBar : SnackbarService,
   ) {}
@@ -49,7 +49,7 @@ export class ClientsComponent implements OnInit{
   }
   
   loadAll() {
-    this.clientAPI.getAll().subscribe(
+    this.ticketAPI.getAll().subscribe(
       (data) => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
@@ -81,7 +81,7 @@ export class ClientsComponent implements OnInit{
       this.showDeleteDialog();
       this.confirmDialog.confirmed().subscribe(confirmed => {
         if (confirmed) {
-          this.clientAPI.delete(id).subscribe(
+          this.ticketAPI.delete(id).subscribe(
             (data) => {
               this.snackBar.mensaje(this.singularName + ' eliminado exitosamente');
               this.loadAll();
@@ -98,7 +98,7 @@ export class ClientsComponent implements OnInit{
   showDeleteDialog() {
       const DIALOGINFO = {
         title : this.actionName + ' ' + this.singularName,
-        message : '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + '?',
+        message : '¿Está seguro de que quiere eliminar el ' + this.singularName + ' ?',
         cancelText : 'Cancelar',
         confirmText : this.actionName
       };
@@ -109,13 +109,13 @@ export class ClientsComponent implements OnInit{
 
   async canDelete() {
     let rolId = Number(localStorage.getItem('rol_id'));
-    let permissionId = 4;
-    const promise = await lastValueFrom(this.permissionAPI.getPermisosbyRolandPermission(rolId, permissionId));
+    let permissionId = 12;
+    const promise = await lastValueFrom(this.permissionsAPI.getPermisosbyRolandPermission(rolId, permissionId));
     this.permissions = promise;
   }
 
   toCreation() {
-    this.router.navigate(['dashboard/' + this.pluralName + '/crear']);
+    this.router.navigate(['dashboard/'+ this.pluralName +'/crear']);
   }
 
   toList() {

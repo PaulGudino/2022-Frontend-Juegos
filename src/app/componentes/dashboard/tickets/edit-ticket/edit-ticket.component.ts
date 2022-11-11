@@ -3,21 +3,27 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
+import { TicketService } from 'src/app/servicios/ticket/ticket.service';
+import { GameService } from 'src/app/servicios/game/game.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
+import { Client } from 'src/app/interfaces/client/Client';
+import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
 
 
 @Component({
-  selector: 'app-edit-client',
-  templateUrl: './edit-client.component.html',
-  styleUrls: ['./edit-client.component.css']
+  selector: 'app-edit-ticket',
+  templateUrl: './edit-ticket.component.html',
+  styleUrls: ['./edit-ticket.component.css']
 })
-export class EditClientComponent implements OnInit {
+export class EditTicketComponent implements OnInit {
 
-  singularName : string = 'cliente'
-  pluralName : string = 'Clientes'
-  actionName : string = 'editar'
+  singularName : string = 'Ticket'
+  pluralName : string = 'Tickets'
+  actionName : string = 'Editar'
   formGroup : FormGroup;
-  currentClient : any;
+  currentTicket : any;
+  allClients : Client[] = [];
+  allGames : GamePutDate[] = [];
 
   constructor(
     private router : Router,
@@ -25,28 +31,38 @@ export class EditClientComponent implements OnInit {
     // Dialog and snackBar services
     private snackBar : SnackbarService,
     private confirmDialog : ConfirmDialogService,
-    private clientAPI : ClientService,
+    private ticketAPI : TicketService,
     private activatedRoute : ActivatedRoute,
+    private ClientAPI : ClientService,
+    private GameAPI : GameService,
   ) {
     // Building the form with the formBuilder
 
     this.formGroup = this.formBuilder.group({
-      cedula : ['', Validators.required],
-      names : ['', Validators.required],
-      surnames : ['', Validators.required],
-      email : new FormControl('', [Validators.required, Validators.email]),
-      phone : ['', Validators.required],
-      sex: ['', Validators.required],
-      address : ['', Validators.required],
-      state : ['', Validators.required]
+      invoice_number : ['', Validators.required],
+      state : ['', Validators.required],
+      client : ['', Validators.required],
+      game : ['', Validators.required],
     });
+
+
+    this.ClientAPI.getAll().subscribe(
+      (data) => {
+        this.allClients = data;
+      }
+    );
+    this.GameAPI.getAll().subscribe(
+      (data) => {
+        this.allGames = data;
+      }
+    );
   }
 
   toList() {
-    this.router.navigate(['dashboard/' + this.pluralName]);
+    this.router.navigate(['dashboard/tickets']);
   }
 
-  editClient() {
+  edit() {
     this.formGroup.valid ? this.showDialog() : 
     this.snackBar.mensaje('Llene el formulario correctamente');
   }
@@ -63,12 +79,12 @@ export class EditClientComponent implements OnInit {
   }
 
   sendForm () {
-    let clientId = this.activatedRoute.snapshot.paramMap.get('id');
+    let ticketId = this.activatedRoute.snapshot.paramMap.get('id');
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
           let formData = this.fillForm();
-          this.clientAPI.put(Number(clientId), formData).subscribe ({
+          this.ticketAPI.put(Number(ticketId), formData).subscribe ({
             next : (res) => {
               this.snackBar.mensaje(this.singularName + ' Actualizado Exitosamente')
               this.toList();
@@ -83,25 +99,21 @@ export class EditClientComponent implements OnInit {
   }
 
   fillForm() {
-    let user_client_modify = localStorage.getItem('user_id');
+    let user_modifier = localStorage.getItem('user_id');
     let formData : FormData = new FormData();
-    formData.append('cedula', this.formGroup.get('cedula')?.value);
-    formData.append('names', this.formGroup.get('names')?.value);
-    formData.append('surnames', this.formGroup.get('surnames')?.value);
-    formData.append('email', this.formGroup.get('email')?.value);
-    formData.append('phone', this.formGroup.get('phone')?.value);
-    formData.append('address', this.formGroup.get('address')?.value);
-    formData.append('sex', this.formGroup.get('sex')?.value);
+    formData.append('invoice_number', this.formGroup.get('invoice_number')?.value);
     formData.append('state', this.formGroup.get('state')?.value);
-    formData.append('user_client_modify', user_client_modify!);
+    formData.append('client', this.formGroup.get('client')?.value);
+    formData.append('game', this.formGroup.get('game')?.value);
+    formData.append('user_modifier', user_modifier!);
     return formData;
   }
 
   ngOnInit(): void {
-    let clientId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.clientAPI.getById(Number(clientId)).subscribe(
+    let ticketId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.ticketAPI.getById(Number(ticketId)).subscribe(
       (res) => {
-        this.currentClient = res;
+        this.currentTicket = res;
         console.log(res)
         this.getInfo();
       },
@@ -113,14 +125,10 @@ export class EditClientComponent implements OnInit {
 
   getInfo() {
     this.formGroup.patchValue({
-      cedula : this.currentClient.cedula,
-      names : this.currentClient.names,
-      surnames : this.currentClient.surnames,
-      email : this.currentClient.email,
-      phone : this.currentClient.phone,
-      address : this.currentClient.address,
-      sex : this.currentClient.sex,
-      state : this.currentClient.state
+      invoice_number : this.currentTicket.invoice_number,
+      state : this.currentTicket.state,
+      client : this.currentTicket.client,
+      game : this.currentTicket.game,
     })
   }
 
