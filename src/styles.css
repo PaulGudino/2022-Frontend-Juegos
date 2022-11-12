@@ -7,6 +7,11 @@
    --color-ventanas: #055970;
    --color-cafe:#3f3f43;
 }
+*{
+   box-sizing: border-box;
+   padding:0;
+   margin:0;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -18,7 +23,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .background-black-primary{
    /* background-color: #000910; */
-   background-color: var(--color-fondo-secundario);
+   background-color: var(--color-fondo-principal);
 }
 .background-green-primary{
    background-color: var(--color-principal);
@@ -60,10 +65,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-dialog-container{
    background-color:var(--color-ventanas)
 }
-.mat-toolbar{
+/* .mat-toolbar{
    background-color: var(--color-fondo-principal);
    color: var(--color-principal);
-}
+} */
 .mat-sidenav{
    background-color: var(--color-fondo-secundario);
 }
