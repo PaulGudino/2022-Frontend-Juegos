@@ -37,4 +37,16 @@ h1.example-app-name {
 .menu{
   color: #fff;
 }
-
+.Logout{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  margin-left: 25px;
+}
+.Logout button{
+  background: var(--color-fondo-secundario);
+  color: var(--color-principal);
+  border-radius: 25px;
+  padding-bottom: 15px;
+}

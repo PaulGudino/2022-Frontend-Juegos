@@ -1,4 +1,4 @@
-import { ApiService } from '../../../servicios/usuarios/api.service';
+import { ApiService } from '../../../servicios/user/user.service';
 import { Usuarios } from '../../../interfaces/usuarios/usuarios';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,10 +12,17 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
 
 @Component({
   selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
 export class UsuariosComponent implements OnInit {
+
+  Filters = [
+    {id: '?rol=&is_active=true', name: 'Usuarios Activos'},
+    {id: '?rol=&is_active=false', name: 'Usuarios Inactivos'},
+    {id: '?ordering=-created', name: 'Ultimos Usuarios Creados'},
+    {id: '?ordering=created', name: 'Primeros Usuarios Creados'},
+  ]
 
   Titulo = 'Usuarios';
   displayedColumns: string[] = ['cedula', 'names', 'surnames', 'email', 'phone', 'sex', 'rol', 'Acciones']
@@ -35,11 +42,11 @@ export class UsuariosComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.cargarUsuarios();
+    this.cargarUsuarios("?rol=&is_active=true");
   }
 
-  cargarUsuarios(){
-    this.api.getUsuarios().subscribe((data) => {
+  cargarUsuarios(filter: string){
+    this.api.getUsuarios(filter).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -81,11 +88,11 @@ export class UsuariosComponent implements OnInit {
           this.api.deleteUsuario(id).subscribe(
             res => {
             this.snackbar.mensaje('Usuario Eliminado Exitosamente');
-            this.cargarUsuarios();
+            this.cargarUsuarios("?rol=&is_active=true");
           },
           err => {
             this.dialogService.error(err.error)
-            this.cargarUsuarios();
+            this.cargarUsuarios("?rol=&is_active=true");
           }
           );
         }
@@ -95,7 +102,7 @@ export class UsuariosComponent implements OnInit {
     }
     
   }
-  usuariosEliminados(){
-    this.router.navigate(['dashboard/usuarios/eliminados']);
+  filter(filter: string){
+    this.cargarUsuarios(filter);
   }
 }

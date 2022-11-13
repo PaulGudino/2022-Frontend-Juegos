@@ -1,6 +1,6 @@
-import { SnackbarService } from './../../../../servicios/snackbar/snackbar.service';
+import { SnackbarService } from '../../../../servicios/snackbar/snackbar.service';
 import { FormGroup,FormControl, FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from '../../../../servicios/usuarios/api.service';
+import { ApiService } from '../../../../servicios/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { Router } from '@angular/router';
@@ -8,8 +8,8 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
 
 @Component({
   selector: 'app-crear-usuarios',
-  templateUrl: './crear-usuarios.component.html',
-  styleUrls: ['./crear-usuarios.component.css']
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.css']
 })
 export class CrearUsuariosComponent implements OnInit {
 

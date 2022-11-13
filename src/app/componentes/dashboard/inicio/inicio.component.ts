@@ -1,5 +1,5 @@
 import { Usuarios } from '../../../interfaces/usuarios/usuarios';
-import { ApiService } from '../../../servicios/usuarios/api.service';
+import { ApiService } from '../../../servicios/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 

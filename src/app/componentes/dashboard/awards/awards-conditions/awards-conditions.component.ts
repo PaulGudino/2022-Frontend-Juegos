@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgZone, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,6 +13,8 @@ import { ThemePalette } from '@angular/material/core';
 export class AwardsConditionsComponent implements OnInit {
 
   @ViewChild('picker') picker : any;
+
+  asd = true;
 
   public date!: moment.Moment;
   public disabled = false;
@@ -38,6 +40,5 @@ export class AwardsConditionsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 }

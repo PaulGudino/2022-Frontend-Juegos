@@ -10,13 +10,13 @@
                     <div class="container_form">
                         <h2>Correo Electrónico:</h2>
                         <div class="ancho border_container">
-                            <input placeholder="correo@dominio.com" matInput autocomplete="off" formControlName="email">
+                            <input matInput autocomplete="off" formControlName="email">
                         </div>
                     </div>
                     <div class="container_form">
                         <h2>Código:</h2>
                         <div class="ancho border_container">
-                            <input placeholder="123456" matInput autocomplete="off" onkeypress='return event.charCode >= 48 && event.charCode <= 57' formControlName="code">
+                            <input matInput autocomplete="off" onkeypress='return event.charCode >= 48 && event.charCode <= 57' formControlName="code">
                         </div>
                     </div>
                     <div class="container_form">
@@ -25,7 +25,7 @@
                             Minimo 8 caracteres {{input.value.length || 0}}/8
                         </h2>
                         <div class = "ancho password border_container">
-                            <input matInput #input placeholder="****************" autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
+                            <input matInput #input autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
                                 <button class="eye_password" mat-icon-button matSuffix (click)="ocultar = !ocultar"> 
                                     <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon>
                                 </button>

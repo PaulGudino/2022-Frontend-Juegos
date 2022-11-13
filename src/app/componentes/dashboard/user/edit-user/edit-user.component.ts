@@ -1,5 +1,5 @@
 import { Usuarios } from '../../../../interfaces/usuarios/usuarios';
-import { ApiService } from '../../../../servicios/usuarios/api.service';
+import { ApiService } from '../../../../servicios/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,8 +9,8 @@ import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-editar-usuarios',
-  templateUrl: './editar-usuarios.component.html',
-  styleUrls: ['./editar-usuarios.component.css']
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
 })
 export class EditarUsuariosComponent implements OnInit {
 

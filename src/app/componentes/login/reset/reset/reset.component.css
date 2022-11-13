@@ -9,7 +9,7 @@
     justify-content: center;
     height: 100%;
     align-items: center;
-    background: var(--color-fondo-secundario);
+    background: var(--color-fondo-principal);
 }
 .card{
     width: 70%;
@@ -18,8 +18,8 @@
     display: flex;
     flex-direction: row;
     border-radius: 25px;
-    background: var(--color-fondo-principal);
-    box-shadow: 4px 4px 20px 0px var(--color-fondo-principal)
+    background: var(--color-fondo-secundario);
+    box-shadow: 4px 4px 20px 0px var(--color-fondo-secundario)
 }
 .reset_container{
     width: 50%;
@@ -62,7 +62,7 @@ input{
     border:none;
     outline: none;
     color: var(--color-letras);
-    background: var(--color-fondo-principal);
+    background: var(--color-fondo-secundario);
 }
 .container_form{
     padding: 0 15%;

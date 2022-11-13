@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/servicios/usuarios/api.service';
+import { ApiService } from 'src/app/servicios/user/user.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { MensajesErrorComponent } from '../../../mensajes-error/mensajes-error.component';
 

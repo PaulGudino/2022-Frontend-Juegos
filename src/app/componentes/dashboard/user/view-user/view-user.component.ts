@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuarios } from '../../../../interfaces/usuarios/usuarios';
-import { ApiService } from '../../../../servicios/usuarios/api.service';
+import { ApiService } from '../../../../servicios/user/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-visualizar-usuarios',
-  templateUrl: './visualizar-usuarios.component.html',
-  styleUrls: ['./visualizar-usuarios.component.css']
+  templateUrl: './view-user.component.html',
+  styleUrls: ['./view-user.component.css']
 })
 export class VisualizarUsuariosComponent implements OnInit {
 

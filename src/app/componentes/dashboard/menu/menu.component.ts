@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Menu } from './../../../interfaces/menu';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../servicios/usuarios/api.service';
+import { ApiService } from '../../../servicios/user/user.service';
 import { Router } from '@angular/router';
 import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { AuthService } from 'src/app/servicios/auth/auth.service';

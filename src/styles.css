@@ -74,22 +74,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .mat-sidenav-container{
    background-color: var(--color-fondo-principal);
-   color: #00ffc5;
+   color: var(--color-principal);
 }
 .mat-drawer-backdrop.mat-drawer-shown {
    background-color: transparent
 }
-/* Css del input con fecha */
-.mat-calendar{
-   background: red;
+.mat-select-placeholder{
+   color: var(--color-principal);
 }
-.time-container{
-   background: red;
+.mat-select-arrow {
+   color: var(--color-principal);
 }
-.actions {
-   background: red;
+.mat-select-value {
+   color: var(--color-principal)
 }
-.actions button {
-   background: green;
+.mat-form-field-underline{
+   width: 0px !important;
 }
-/* Fin */
+.mat-snack-bar-container{
+   background-color: var(--color-ventanas);
+   color: var(--color-principal);
+}

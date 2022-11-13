@@ -1,0 +1,106 @@
+:root{
+    --color-principal: #00ffc5;
+    --color-fondo-principal: #000910;
+    --color-fondo-secundario: #002130;
+    --color-letras: #ffffff;
+    --color-ventanas: #055970;
+    --color-cafe:#3f3f43;
+}
+table {
+    width: 100%;
+}
+.container{
+    margin-top: 20px;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+.buscador {
+    margin-left: 25px;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.ancho_columna{
+    width: 17%;
+}
+.mat-toolbar{
+    background-color: var(--color-fondo-secundario);
+ }
+
+ /* Css agregar, filtrado, busqueda */
+.button_container{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    margin-left: 7%;
+    margin-bottom: 20px;
+}
+.button_container button{
+    background: var(--color-fondo-secundario);
+    color: var(--color-principal);
+    border-radius: 25px;
+}
+.add_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon_container{
+    color: var(--color-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--color-principal) 1px solid;
+    width: 50px;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+.filter_search_container{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 7%;
+}
+.filter{
+    text-align: center;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--color-principal) 1px solid;
+    border-radius: 25px;
+    margin-right: 25px;
+}
+.mat-option{
+    color: var(--color-principal);
+    background-color: var(--color-fondo-secundario);
+}
+.mat-option:hover{
+    background-color: var(--color-principal);
+    color: var(--color-fondo-secundario);
+}
+.search{
+    text-align: center;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--color-principal) 1px solid;
+    border-radius: 25px;
+}
+.buscador::placeholder{
+    color: var(--color-principal);
+}
+.search mat-icon{
+    padding-right: 30px;
+}
+::ng-deep .mat-select-placeholder{
+    color: var(--color-principal);
+ }
+ ::ng-deep .mat-select-arrow {
+    color: var(--color-principal);
+ }
+ ::ng-deep .mat-select-value {
+    color: var(--color-principal)
+ }

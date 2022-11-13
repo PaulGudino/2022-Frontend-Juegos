@@ -1,57 +1,65 @@
 <mat-toolbar>
-    <span>Nuevo Usuario</span>
+    <span>Editar Usuario : {{usuarioget.names}} {{usuarioget.surnames}}</span>
     <span class="example-spacer"></span>
 </mat-toolbar>
 <div class="container">
- <mat-card>
     <form [formGroup]="form">
         <mat-form-field>
-            <mat-label>Cédula</mat-label>
-            <input matInput #input autocomplete="off" formControlName="cedula" type="text" required
-            placeholder="0000000000" maxlength="10" minlength="10" onpaste="return false"
-            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <label>Cédula</label>
+            <div class="input_form">
+                <input matInput #input autocomplete="off" formControlName="cedula" type="text" required
+                    maxlength="10" minlength="10" onpaste="return false"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            </div>
             <mat-hint align="end">
                 {{input.value.length || 0}}/10
             </mat-hint>
             <mat-error *ngIf="form.controls['cedula'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Username</mat-label>
-            <input autocomplete="off" formControlName="username" type="text" placeholder="usuario" matInput >
+            <label>Username</label>
+            <div class="input_form">
+                <input autocomplete="off" formControlName="username" type="text" matInput >
+            </div>
             <mat-hint>Nombre del usuario</mat-hint>
             <mat-error *ngIf="form.controls['username'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Nombres</mat-label>
-            <input matInput autocomplete="off" formControlName="names" type="text" required placeholder="Nombres">
+            <label>Nombres</label>
+            <div class="input_form">
+                <input matInput autocomplete="off" formControlName="names" type="text" required>
+            </div>
             <mat-hint>Nombre completo</mat-hint>
             <mat-error *ngIf="form.controls['names'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Apellidos</mat-label>
-            <input matInput autocomplete="off" formControlName="surnames" type="text" required placeholder="Apellidos">
+            <label>Apellidos</label>
+            <div class="input_form">
+                <input matInput autocomplete="off" formControlName="surnames" type="text" required>
+            </div>
             <mat-hint>Apellido paterno y materno</mat-hint>
             <mat-error *ngIf="form.controls['surnames'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Correo Electrónico</mat-label>
-            <input matInput placeholder="usuario@dominio.com" formControlName="email" type="email" required autocomplete="off"
-            placeholder="usuario@dominio.com">
+            <label>Correo Electrónico</label>
+            <div class="input_form">
+                <input matInput formControlName="email" type="email" required autocomplete="off">
+            </div>
             <mat-hint>Correo electrónico</mat-hint>
             <mat-error *ngIf="form.controls['email'].hasError('required')">
-                Campo requerido
+                Campo requerido !!!
             </mat-error> 
             <mat-error *ngIf="form.controls['email'].hasError('email')">
                 Ingresa un correo válido
@@ -60,56 +68,62 @@
 
 
         <mat-form-field>
-            <mat-label>Teléfono</mat-label>
-            <input matInput #input_tel autocomplete="off" formControlName="phone" type="text" required
-            placeholder="0000000000" maxlength="10" minlength="10" onpaste="return false"
-            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <label>Teléfono</label>
+            <div class="input_form">
+                <input matInput #input_tel autocomplete="off" formControlName="phone" type="text" required
+                maxlength="10" minlength="10" onpaste="return false"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            </div>
             <mat-hint align="end">
                 {{input_tel.value.length || 0}}/10
             </mat-hint>
             <mat-error *ngIf="form.controls['phone'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Contraseña</mat-label>
-            <input matInput onpaste="return false" autocomplete="off" minlength="8" formControlName="password" [type]="ocultar ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-            <mat-hint>Minimo 8 caracteres</mat-hint>
-            <mat-error *ngIf="form.controls['password'].hasError('required')" >
-                Campo requerido
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Sexo</mat-label>
-            <mat-select formControlName="sex" mat-select placeholder="Seleccione una opción">
+            <label>Sexo</label>
+            <mat-select formControlName="sex">
                 <mat-option value="F">Femenino</mat-option>
                 <mat-option value="M">Masculino</mat-option>
             </mat-select>
             <mat-hint>Seleccione una opción</mat-hint>
             <mat-error *ngIf="form.controls['sex'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Dirección</mat-label>
-            <input autocomplete="off" formControlName="address" type="text" placeholder="Ciudad, Cantón, Parroquia" matInput>
+            <label>Dirección</label>
+            <div class="input_form">
+                <input autocomplete="off" formControlName="address" type="text"  matInput>
+            </div>
             <mat-hint>Dirección del usuario</mat-hint>
             <mat-error *ngIf="form.controls['address'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Rol</mat-label>
-            <mat-select formControlName="rol" mat-select placeholder="Seleccione una opción" >
+            <label>Rol</label>
+            <mat-select formControlName="rol" mat-select >
                 <mat-option *ngFor="let rol of roles" value={{rol.id}}>{{rol.name}}</mat-option>
             </mat-select>
             <mat-hint>Seleccione una opción</mat-hint>
             <mat-error *ngIf="form.controls['rol'].hasError('required')" >
+                Campo requerido !!!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <label>Estado</label>
+            <mat-select formControlName="is_active" mat-select>
+                <mat-option value=true>Activo</mat-option>
+                <mat-option value=false>Inactivo</mat-option>
+            </mat-select>
+            <mat-hint>Seleccione una opción</mat-hint>
+            <mat-error *ngIf="form.controls['is_active'].hasError('required')" >
                 Campo requerido
             </mat-error>
         </mat-form-field>
@@ -121,10 +135,10 @@
             Cancelar
         </button>
         
-        <button mat-raised-button color="primary" (click)="crearUsuario()">
+        <button mat-raised-button color="primary" (click)="actualizarUsuario()">
             <mat-icon>done</mat-icon>
-            Crear
+            Guardar
         </button>
     </div>
- </mat-card>
 </div>
+

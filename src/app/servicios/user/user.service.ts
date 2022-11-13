@@ -1,4 +1,4 @@
-import { UsuariosFiltradobyRol } from './../../interfaces/usuarios/usuariofilterbyRol';
+import { UsuariosFiltradobyRol } from '../../interfaces/usuarios/usuariofilterbyRol';
 import { Usuarios } from '../../interfaces/usuarios/usuarios';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -20,12 +20,8 @@ export class ApiService {
     return this.http.get<Menu[]>('/assets/data/menu.json');
   }
 
-  getUsuarios():Observable<Usuarios[]>{
-    return this.http.get<Usuarios[]>(this.url+'api/userfilteriseliminated/?is_active=true');
-  }
-
-  getUsuariosEliminados():Observable<Usuarios[]>{
-    return this.http.get<Usuarios[]>(this.url+'api/userfilteriseliminated/?is_active=false');
+  getUsuarios(filter: string):Observable<Usuarios[]>{
+    return this.http.get<Usuarios[]>(this.url+'api/userfilter/'+filter);
   }
 
   getUsuarioId(id:number):Observable<Usuarios>{
@@ -37,7 +33,7 @@ export class ApiService {
   }
 
   postUsuarios(form: FormData){
-    return this.http.post(this.url+'api/create/user/', form);
+    return this.http.post(this.url+'api/user/', form);
   }
 
   putUsuario(id:number, form: FormData){
@@ -52,7 +48,7 @@ export class ApiService {
     return this.http.get<Roles[]>(this.url+'api/rol/');
   }
   getfilteUsuariobyRol(id:number):Observable<UsuariosFiltradobyRol[]>{
-    return this.http.get<UsuariosFiltradobyRol[]>(this.url+'api/userfilterrol/?rol='+id);
+    return this.http.get<UsuariosFiltradobyRol[]>(this.url+'api/userfilter/?rol='+id);
   }
   postCambiarContraseña(id:number, form: FormData){
     return this.http.post(this.url+'api/user/'+id+'/change_password/', form);

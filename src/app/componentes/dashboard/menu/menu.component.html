@@ -7,14 +7,6 @@
       <span class="example-spacer"></span>
       <h1 class="example-app-name">{{ Titulo2 }}</h1>
       <span class="example-spacer"></span>
-      <button
-         (click)="logout()"
-         mat-icon-button
-         class="example-icon"
-         aria-label="Example icon-button with share icon"
-      >
-         <mat-icon>logout</mat-icon>
-      </button>
    </mat-toolbar>
 
    <mat-sidenav-container class="example-sidenav-container">
@@ -30,6 +22,14 @@
                {{ item.nombre }}</a
             >
          </mat-nav-list>
+         <div class="Logout">
+            <button
+               (click)="logout()"
+               mat-raised-button>
+               <mat-icon>logout</mat-icon>
+               CERRAR SESIÓN
+         </button>
+         </div>
       </mat-sidenav>
 
       <mat-sidenav-content>
