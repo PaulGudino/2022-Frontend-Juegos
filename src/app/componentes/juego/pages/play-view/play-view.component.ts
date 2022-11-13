@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./play-view.component.css']
 })
 export class PlayViewComponent implements OnInit {
+   informationText:string='A JUGAR!'
+   availableSpin:number=2;
+   informationTextGame:string=`Disponnible ${this.availableSpin} Giro mas`
+
 
   constructor() { }
 
