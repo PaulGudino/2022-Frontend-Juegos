@@ -10,7 +10,7 @@ export class ScanViewComponent implements OnInit {
   selectedInputCode:boolean = false;
   scanState:boolean = true;
   code:string = 'Ingresa tu codigo aqui...';
-  explication:String = 'Puedes escanear el codigo QR de tu tikect';
+  explication:String = 'Puedes escanear el codigo QR de tu ticket';
 
   constructor() { }
 
