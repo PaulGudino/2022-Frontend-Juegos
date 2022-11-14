@@ -21,6 +21,9 @@ export class PermisosService {
   getPermisos():Observable<Permisos[]>{
     return this.http.get<Permisos[]>(this.url+'api/permission/');
   }
+  getPermisosbyName(name:string):Observable<Permisos[]>{
+    return this.http.get<Permisos[]>(this.url+'api/permissionfilter/?search='+name);
+  }
   getPermisosbyRol(id:number):Observable<PermisosbyRol[]>{
     return this.http.get<PermisosbyRol[]>(this.url+'api/rolpermissionfilter/?rol='+id);
   }

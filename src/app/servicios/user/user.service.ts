@@ -47,6 +47,9 @@ export class ApiService {
   getRoles():Observable<Roles[]>{
     return this.http.get<Roles[]>(this.url+'api/rol/');
   }
+  getRolesFilter(filter: string):Observable<Roles[]>{
+    return this.http.get<Roles[]>(this.url+'api/rolfilter/'+filter);
+  }
   getfilteUsuariobyRol(id:number):Observable<UsuariosFiltradobyRol[]>{
     return this.http.get<UsuariosFiltradobyRol[]>(this.url+'api/userfilter/?rol='+id);
   }

@@ -1,3 +1,11 @@
+:root{
+  --color-principal: #00ffc5;
+  --color-fondo-principal: #000910;
+  --color-fondo-secundario: #002130;
+  --color-letras: #ffffff;
+  --color-ventanas: #055970;
+  --color-cafe:#3f3f43;
+}
 .container{
   margin: 25px;
   flex-flow: row wrap;
@@ -31,6 +39,12 @@ h2{
 
 .container_botones button{
   margin: 0 10px;
+  background-color: var(--color-cafe);
+  color: var(--color-letras);
+}
+.container_botones button:hover{
+  background-color: var(--color-principal);
+  color: var(--color-fondo-secundario);
 }
 .example-spacer {
   flex: 1 1 auto;
@@ -40,6 +54,7 @@ h2{
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  flex-direction: column;
 }
 .container_permiso{
   display: flex;
@@ -48,7 +63,8 @@ h2{
   align-items: center;
 }
 .permiso_nombre{
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color: var(--color-letras);
 }
 
 
@@ -66,15 +82,15 @@ h2{
 {
     position: relative;
     top: 50%;
-    width: 74px;
-    height: 36px;
+    width: 100px;
+    height: 40px;
     margin: -20px auto 0 auto;
     overflow: hidden;
 }
 
 .button.r, .button.r .layer
 {
-    border-radius: 100px;
+    border-radius: 10px;
 }
 
 .checkbox
@@ -97,7 +113,7 @@ h2{
 .layer
 {
     width: 100%;
-    background-color: #E4E4E4;
+    background-color: var(--color-letras);
     transition: 0.3s ease all;
     z-index: 1;
 }
@@ -107,16 +123,16 @@ h2{
     position: absolute;
     top: 4px;
     left: 4px;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     color: #fff;
-    font-size: 10px;
+    font-size: 15px;
     font-weight: bold;
     text-align: center;
     line-height: 1;
     padding: 9px 4px;
-    background-color: #F44336;
-    border-radius: 50%;
+    background-color: var(--color-cafe);
+    border-radius: 20%;
     transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
 }
 
@@ -134,11 +150,17 @@ h2{
 #button-3 .checkbox:checked + .knobs:before
 {
     content: 'SI';
-    left: 42px;
-    background-color: #03A9F4;
+    left: 65px;
+    background-color: var(--color-principal);
+    color: var(--color-fondo-secundario);
 }
 
 #button-3 .checkbox:checked ~ .layer
 {
-    background-color: #E4E4E4;
+    background-color: var(--color-letras);
 }
+.mat-toolbar{
+  background-color: var(--color-fondo-secundario);
+  color: var(--color-principal);
+}
+

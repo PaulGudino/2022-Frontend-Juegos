@@ -17,6 +17,15 @@ import { RolesService } from 'src/app/servicios/roles/roles.service';
 })
 export class RolesComponent implements OnInit {
 
+  Filters = [
+    {id: '?is_active=true', name: 'Roles Activos'},
+    {id: '?is_active=false', name: 'Roles Inactivos'},
+    {id: '?ordering=-created', name: 'Ultimos Roles Creados'},
+    {id: '?ordering=created', name: 'Primeros Roles Creados'},
+  ]
+
+  filter_default = '?is_active=true'
+
   Titulo = 'Roles';
   displayedColumns: string[] = ['id', 'name', 'description','created', 'is_active', 'Acciones']
   dataSource !: MatTableDataSource<Roles>;
@@ -34,7 +43,7 @@ export class RolesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cargarRoles();
+    this.cargarRoles(this.filter_default);
   }
   aplicarFiltro(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -44,8 +53,8 @@ export class RolesComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  cargarRoles(){
-    this.api.getRoles().subscribe((data) => {
+  cargarRoles(filter: string){
+    this.api.getRolesFilter(filter).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -74,11 +83,11 @@ export class RolesComponent implements OnInit {
           this.rolSrv.deleteRol(id).subscribe(
             (data) => {
             this.snackbar.mensaje('Rol Eliminado Exitosamente');
-            this.cargarRoles();
+            this.cargarRoles(this.filter_default);
           }
           , (error) => {
             this.dialogService.error(error.error);
-            this.cargarRoles();
+            this.cargarRoles(this.filter_default);
           }
           );
         }
@@ -86,5 +95,8 @@ export class RolesComponent implements OnInit {
     }else{
       this.snackbar.mensaje('No tienes permiso para Eliminar Roles');
     }
+  }
+  filter(filter: string){
+    this.cargarRoles(filter);
   }
 }

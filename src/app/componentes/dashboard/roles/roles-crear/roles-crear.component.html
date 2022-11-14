@@ -3,35 +3,38 @@
     <span class="example-spacer"></span>
 </mat-toolbar>
 <div class="container">
- <mat-card>
     <form [formGroup]="form">
         <mat-form-field>
-            <mat-label>Nombre</mat-label>
-            <input autocomplete="off" formControlName="name" type="text" matInput>
+            <label>Nombre</label>
+            <div class="input_form">
+                <input autocomplete="off" formControlName="name" type="text" matInput>
+            </div>
             <mat-hint>Nombre del Rol</mat-hint>
             <mat-error *ngIf="form.controls['name'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Descripción</mat-label>
-            <input autocomplete="off"  formControlName="description" type="text" matInput>
+            <label>Descripción</label>
+            <div class="input_form" >
+                <input autocomplete="off"  formControlName="description" type="text" matInput>    
+            </div>
             <mat-hint>Descripción del Rol</mat-hint>
             <mat-error *ngIf="form.controls['description'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Estado</mat-label>
-            <mat-select formControlName="is_active" mat-select placeholder="Seleccione una opción">
+            <label>Estado</label>
+            <mat-select formControlName="is_active" mat-select>
                 <mat-option value=true>Activo</mat-option>
                 <mat-option value=false>Inactivo</mat-option>
             </mat-select>
             <mat-hint>Seleccione una opción</mat-hint>
             <mat-error *ngIf="form.controls['is_active'].hasError('required')" >
-                Campo requerido
+                Campo requerido !!!
             </mat-error>
         </mat-form-field>
     </form>
@@ -46,6 +49,5 @@
             Crear
         </button>
     </div>
- </mat-card>
 </div>
 

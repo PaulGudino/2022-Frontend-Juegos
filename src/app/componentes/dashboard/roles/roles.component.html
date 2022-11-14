@@ -2,22 +2,40 @@
    <span>{{ Titulo }}</span>
    <span class="example-spacer"></span>
 </mat-toolbar>
-<div class="container">
-   <button mat-raised-button (click)="agregarRol()">Agregar Rol</button>
+
+<div class="button_container">
+   <button mat-raised-button (click)="agregarRol()">
+      <div class="add_container">
+         <div class="icon_container">
+            <mat-icon>add</mat-icon>
+         </div>
+         <span>Agregar</span>
+      </div>
+   </button>
+</div>
+
+<div class="filter_search_container">
+   <div class="filter">
+      <mat-select (selectionChange) = "filter($event.value)" mat-select placeholder="Filtrar">
+         <mat-option *ngFor="let filter of Filters" value={{filter.id}}>{{filter.name}}</mat-option>
+      </mat-select>
+   </div>
+   <div class="search" >
+         <input
+            class="buscador"
+            matInput
+            (keyup)="aplicarFiltro($event)"
+            placeholder="Buscar"
+            autocomplete="off"
+            #input
+         />
+         <mat-icon>
+            search
+         </mat-icon>
+   </div>
 </div>
 
 <div class="container mat-elevation-z8">
-   <mat-form-field appearance="standard">
-      <mat-label class="buscador">Buscar</mat-label>
-      <input
-         class="buscador"
-         matInput
-         (keyup)="aplicarFiltro($event)"
-         placeholder="Ej. Administrador"
-         autocomplete="off"
-         #input
-      />
-   </mat-form-field>
 
    <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="id">

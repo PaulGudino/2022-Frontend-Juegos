@@ -95,12 +95,6 @@ table {
 .search mat-icon{
     padding-right: 30px;
 }
-::ng-deep .mat-select-placeholder{
-    color: var(--color-principal);
- }
- ::ng-deep .mat-select-arrow {
-    color: var(--color-principal);
- }
- ::ng-deep .mat-select-value {
-    color: var(--color-principal)
- }
+.buscador:focus::placeholder{    
+    color: var(--color-fondo-principal);
+}
