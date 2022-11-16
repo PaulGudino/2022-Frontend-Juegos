@@ -1,10 +1,4 @@
 .body{
-    --color-principal: #00ffc5;
-   --color-fondo-principal: #000910;
-   --color-fondo-secundario: #002130;
-   --color-letras: #ffffff;
-   --color-ventanas: #055970;
-   --color-cafe:#3f3f43;
     display: flex;
     justify-content: center;
     height: 100%;

@@ -36,5 +36,8 @@ export class AwardsService {
   deleteAward(id: number){
     return this.http.delete(this.url+'api/award/'+id);
   }
+  getFilterAward(filter: string):Observable<getAwardList[]>{ 
+    return this.http.get<getAwardList[]>(this.url+'api/awardfilter/'+filter);
+  }
 
 }
