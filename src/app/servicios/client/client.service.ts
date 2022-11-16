@@ -31,5 +31,8 @@ export class ClientService {
   delete(id: number){
     return this.http.delete(this.url+'api/client/'+id);
   }
+  getFilter(filter: string):Observable<Client[]>{    
+    return this.http.get<Client[]>(this.url+'api/clientfilter/'+filter);
+  }
 
 }

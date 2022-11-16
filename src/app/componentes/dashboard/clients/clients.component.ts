@@ -17,6 +17,15 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
 })
 export class ClientsComponent implements OnInit{
 
+  Filters = [
+    {id: '?state=Activo', name: 'Clientes Activos'},
+    {id: '?state=Inactivo', name: 'Clientes Inactivos'},
+    {id: '?ordering=-created', name: 'Ultimos Clientes Creados'},
+    {id: '?ordering=created', name: 'Primeros Clientes Creados'},
+  ]
+
+  filter_default = '?is_active=true'
+
   singularName : string = 'cliente';
   pluralName : string = 'clientes';
   actionName : string = 'eliminar';
@@ -45,11 +54,11 @@ export class ClientsComponent implements OnInit{
   ) {}
 
   ngOnInit() : void {
-    this.loadAll();
+    this.loadAll(this.filter_default);
   }
   
-  loadAll() {
-    this.clientAPI.getAll().subscribe(
+  loadAll(filter:string) {
+    this.clientAPI.getFilter(filter).subscribe(
       (data) => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
@@ -84,7 +93,7 @@ export class ClientsComponent implements OnInit{
           this.clientAPI.delete(id).subscribe(
             (data) => {
               this.snackBar.mensaje(this.singularName + ' eliminado exitosamente');
-              this.loadAll();
+              this.loadAll(this.filter_default);
             }
           )
         }
@@ -120,6 +129,10 @@ export class ClientsComponent implements OnInit{
 
   toList() {
     this.router.navigate(['dashboard/' + this.pluralName]);
+  }
+
+  filter(filter: string){
+    this.loadAll(filter);
   }
 
 }

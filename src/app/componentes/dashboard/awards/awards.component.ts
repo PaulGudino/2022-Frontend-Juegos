@@ -18,6 +18,15 @@ import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 })
 export class AwardsComponent implements OnInit {
 
+  Filters = [
+    {id: '?is_active=true', name: 'Roles Activos'},
+    {id: '?is_active=false', name: 'Roles Inactivos'},
+    {id: '?ordering=-created', name: 'Ultimos Roles Creados'},
+    {id: '?ordering=created', name: 'Primeros Roles Creados'},
+  ]
+
+  filter_default = '?is_active=true'
+
   Titulo = "Premios";
   displayedColumns: string[] = ['id', 'name', 'description','initial_stock','current_stock','created','juego', 'is_active', 'Acciones']
   dataSource !: MatTableDataSource<getAwardList>;
@@ -35,7 +44,7 @@ export class AwardsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cargarPremios();
+    this.cargarPremios(this.filter_default);
   }
   agregarPremios(){
     this.router.navigate(['/dashboard/premios/crear']);
@@ -48,8 +57,8 @@ export class AwardsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  cargarPremios(){
-    this.premiosSrv.getAward().subscribe((data) => {
+  cargarPremios(filter:string){
+    this.premiosSrv.getFilterAward(filter).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -75,7 +84,7 @@ export class AwardsComponent implements OnInit {
         if (confirmed) {
           this.premiosSrv.deleteAward(id).subscribe((data) => {
             this.snackbar.mensaje("Premio Eliminado Existosamente");
-            this.cargarPremios();
+            this.cargarPremios(this.filter_default);
           });
         }
       });
@@ -89,5 +98,9 @@ export class AwardsComponent implements OnInit {
     let permiso_id = 8;
     const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
     this.permisos = promesa;
+  }
+
+  filter(filter: string){
+    this.cargarPremios(filter);
   }
 }

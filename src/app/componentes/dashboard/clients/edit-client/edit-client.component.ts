@@ -43,7 +43,7 @@ export class EditClientComponent implements OnInit {
   }
 
   toList() {
-    this.router.navigate(['dashboard/' + this.pluralName]);
+    this.router.navigate(['dashboard/' + this.pluralName.toLocaleLowerCase()]);
   }
 
   editClient() {
