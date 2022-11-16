@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scan-view',
@@ -12,12 +13,19 @@ export class ScanViewComponent implements OnInit {
   code:string = 'Ingresa tu codigo aqui...';
   explication:String = 'Puedes escanear el codigo QR de tu ticket';
 
-  constructor() { }
+  constructor(
+   private router: Router,
+
+  ) { }
 
   ngOnInit(): void {
   }
 
   changeView(){
    this.scanState = false;
+  }
+
+  continueToGame(){
+   this.router.navigate(['/juego/play']);
   }
 }
