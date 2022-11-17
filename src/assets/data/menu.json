@@ -25,6 +25,11 @@
         "ruta": "/dashboard/premios"
     },
     {
+        "nombre": "Premios Condicionados",
+        "icono": "verified",
+        "ruta": "/dashboard/premios/condicion"
+    },
+    {
         "nombre": "Probabilidades",
         "icono": "assessment",
         "ruta": "/dashboard/probabilidades"

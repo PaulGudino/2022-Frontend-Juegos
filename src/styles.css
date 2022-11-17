@@ -126,6 +126,9 @@ Sobreescritura tablas
 .mat-icon-button.mat-warn.mat-button-disabled, .mat-icon-button.mat-button-disabled.mat-button-disabled, .mat-stroked-button.mat-primary.mat-button-disabled, .mat-stroked-button.mat-accent.mat-button-disabled, .mat-stroked-button.mat-warn.mat-button-disabled, .mat-stroked-button.mat-button-disabled.mat-button-disabled{
    color:white;
 }
+.mat-drawer-backdrop.mat-drawer-shown {
+   background-color: transparent
+}
 
 /* .mat-toolbar{
    background-color: var(--color-fondo-principal);

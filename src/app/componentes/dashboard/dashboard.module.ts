@@ -32,12 +32,12 @@ import { ModalItemComponent } from './probabilidades/modal-item/modal-item.compo
 import { CategorySetSquareItemComponent } from './probabilidades/category-set-square-item/category-set-square-item.component';
 import { GameDateComponent } from './game-date/game-date.component';
 import { CalendarPickerComponent } from './game-date/calendar-picker/calendar-picker.component';
-import { AwardsConditionsComponent } from './awards/awards-conditions/awards-conditions.component';
 import { CreateTicketComponent } from './tickets/create-ticket/create-ticket.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { EditTicketComponent } from './tickets/edit-ticket/edit-ticket.component';
 import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component';
 import { GameSelectionComponent } from './game-selection/game-selection.component';
+import { AwardsConditionComponent } from './awards-condition/awards-condition.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,7 @@ import { GameSelectionComponent } from './game-selection/game-selection.componen
     GameDateComponent,
     GameSelectionComponent,
     CalendarPickerComponent,
-    AwardsConditionsComponent,
+    AwardsConditionComponent,
   ],
   imports: [
     SharedModule,

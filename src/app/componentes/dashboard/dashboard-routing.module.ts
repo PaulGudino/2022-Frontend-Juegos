@@ -1,4 +1,3 @@
-import { AwardsConditionsComponent } from './awards/awards-conditions/awards-conditions.component';
 import { AdministrationGuard } from './../../guardianes/Administration/administration.guard';
 import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
@@ -33,6 +32,7 @@ import { InicioGuard } from 'src/app/guardianes/inicio/inicio.guard';
 import { EditClientComponent } from './clients/edit-client/edit-client.component';
 import { ViewClientComponent } from './clients/view-client/view-client.component';
 import { GameDateComponent } from './game-date/game-date.component';
+import { AwardsConditionComponent } from './awards-condition/awards-condition.component';
 
 
 const routes: Routes = [
@@ -87,10 +87,12 @@ const routes: Routes = [
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Editar Premio'}},
     {path: 'probabilidades', component : ProbabilidadesComponent,
     canActivate: [InicioGuard]},
+
+    //Premios por condicion
+    {path: 'premios/condicion', component : AwardsConditionComponent},
     
     //Game
     {path: 'juego/fecha', component : GameDateComponent},
-    {path: 'premio/condicion', component : AwardsConditionsComponent},
     {path: 'juego/seleccion', component : GameSelectionComponent},
 
   ]},
