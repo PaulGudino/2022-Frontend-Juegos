@@ -15,22 +15,30 @@
 
 <div class="filter_search_container">
    <div class="filter">
-      <mat-select (selectionChange) = "filter($event.value)" mat-select placeholder="Filtrar">
-         <mat-option *ngFor="let filter of Filters" value={{filter.id}}>{{filter.name}}</mat-option>
+      <mat-select
+         class="green-primary"
+         (selectionChange)="filter($event.value)"
+         mat-select
+         placeholder="Filtrar"
+      >
+         <mat-option
+            class="background-navy-primary white-color"
+            *ngFor="let filter of Filters"
+            value="{{ filter.id }}"
+            >{{ filter.name }}</mat-option
+         >
       </mat-select>
    </div>
-   <div class="search" >
-         <input
-            class="buscador"
-            matInput
-            (keyup)="aplicarFiltro($event)"
-            placeholder="Buscar"
-            autocomplete="off"
-            #input
-         />
-         <mat-icon>
-            search
-         </mat-icon>
+   <div class="search green-primary">
+      <input
+         class="buscador"
+         matInput
+         (keyup)="aplicarFiltro($event)"
+         placeholder="Buscar"
+         autocomplete="off"
+         #input
+      />
+      <mat-icon class="green-primary"> search </mat-icon>
    </div>
 </div>
 

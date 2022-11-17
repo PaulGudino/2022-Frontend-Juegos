@@ -17,6 +17,9 @@ table {
 .example-spacer {
   flex: 1 1 auto;
 }
+.mat-toolbar{
+   background-color: var(--color-fondo-secundario);
+}
 
 /* Css agregar, filtrado, busqueda */
 .button_container{
@@ -61,14 +64,14 @@ table {
   border-radius: 25px;
   margin-right: 25px;
 }
-.mat-option{
+/* .mat-option{
   color: var(--color-principal);
   background-color: var(--color-fondo-secundario);
 }
 .mat-option:hover{
   background-color: var(--color-principal);
   color: var(--color-fondo-secundario);
-}
+} */
 .search{
   text-align: center;
   width: 400px;
@@ -84,6 +87,6 @@ table {
 .search mat-icon{
   padding-right: 30px;
 }
-.buscador:focus::placeholder{    
+.buscador:focus::placeholder{
   color: var(--color-fondo-principal);
 }

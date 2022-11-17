@@ -17,3 +17,34 @@ table {
 .example-spacer {
   flex: 1 1 auto;
 }
+.mat-toolbar{
+   background-color: var(--color-fondo-secundario);
+}
+/**/
+.button_container{
+   display: flex;
+   justify-content: flex-start;
+   margin-top: 20px;
+   margin-left: 7%;
+   margin-bottom: 20px;
+}
+.button_container button{
+   background: var(--color-fondo-secundario);
+   color: var(--color-principal);
+   border-radius: 25px;
+}
+.add_container{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.icon_container{
+   color: var(--color-principal);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: var(--color-principal) 1px solid;
+   width: 50px;
+   border-radius: 25px;
+   margin-right: 10px;
+}

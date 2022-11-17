@@ -49,6 +49,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .light-lead-primary{
    color: var(--color-cafe);
 }
+.white-color{
+   color:white;
+}
 .mat-card .mat-calendar .mat-calendar-content .ng-star-inserted .mat-calendar-table .mat-calendar-table-header,
 .mat-calendar-body-label{
    color: var(--color-principal);
@@ -65,6 +68,59 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-dialog-container{
    background-color:var(--color-ventanas)
 }
+/*
+Sobreescritura componetes angular material User components */
+
+.filter .mat-select-placeholder,
+.filter .mat-select-min-line{
+   color: var(--color-principal);
+}
+
+.filter .mat-select-panel .mat-optgroup-label, .mat-select-panel .mat-option:hover{
+   background-color:var(--color-fondo-secundario);
+   color: var(--color-principal);
+
+}
+.mat-option.mat-active{
+   background:var(--color-fondo-secundario);
+   color: white
+
+
+}
+/*
+Sobreescritura tablas
+*/
+.mat-elevation-z8 table,
+.mat-elevation-z8 .mat-paginator{
+   background-color: var(--color-fondo-secundario);
+   color: white;
+}
+
+.mat-elevation-z8 .mat-sort-header-container{
+   color: var(--color-principal);
+}
+
+.mat-elevation-z8 th,
+.mat-elevation-z8 td{
+   border-color: white ;
+   color: white
+
+}
+.mat-elevation-z8 .mat-select-arrow,
+.mat-elevation-z8 .mat-select-value{
+   color: white
+
+}
+.mat-button.mat-primary.mat-button-disabled,
+.mat-button.mat-accent.mat-button-disabled,
+.mat-button.mat-warn.mat-button-disabled,
+.mat-button.mat-button-disabled.mat-button-disabled,
+.mat-icon-button.mat-primary.mat-button-disabled,
+.mat-icon-button.mat-accent.mat-button-disabled,
+.mat-icon-button.mat-warn.mat-button-disabled, .mat-icon-button.mat-button-disabled.mat-button-disabled, .mat-stroked-button.mat-primary.mat-button-disabled, .mat-stroked-button.mat-accent.mat-button-disabled, .mat-stroked-button.mat-warn.mat-button-disabled, .mat-stroked-button.mat-button-disabled.mat-button-disabled{
+   color:white;
+}
+
 /* .mat-toolbar{
    background-color: var(--color-fondo-principal);
    color: var(--color-principal);
