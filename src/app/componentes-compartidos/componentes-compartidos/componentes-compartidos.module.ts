@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './loading/loading.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { SharedModule } from 'src/app/componentes/shared/shared.module';
+import { ButtonPrimaryComponent } from './button-primary/button-primary.component';
 
 
 
 @NgModule({
   declarations: [
     LoadingComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ButtonPrimaryComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { SharedModule } from 'src/app/componentes/shared/shared.module';
   exports: [
     LoadingComponent,
     ConfirmDialogComponent,
+    ButtonPrimaryComponent,
   ]
 })
 export class ComponentesCompartidosModule { }

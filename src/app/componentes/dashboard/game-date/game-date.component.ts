@@ -59,4 +59,8 @@ export class GameDateComponent implements OnInit {
       return true;
    }
 
+   cancel(){
+
+   }
+
 }

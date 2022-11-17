@@ -1,3 +1,7 @@
+<mat-toolbar class="green-primary background-navy-primary">
+   <span>Fecha</span>
+   <span class="example-spacer"></span>
+</mat-toolbar>
 <div class="container-fluid background-black-primary root-container">
    <div class="row">
       <div class="col align-self-center text-center">
@@ -19,12 +23,11 @@
             </mat-card>
          </div>
 
-         <button
+         <app-button-primary
             (click)="saveNewDateGame()"
-            class="background-green-primary btn-game__date save-button"
-         >
-            Guardar
-         </button>
+            title="Guardar"
+            class="save-button"
+         ></app-button-primary>
       </div>
       <div class="calendar">
          <p class="input-date green-primary">Fin</p>
@@ -36,7 +39,12 @@
             </mat-card>
          </div>
 
-         <button class="btn-game__date cancel-button">Cancelar</button>
+         <app-button-primary
+            (click)="cancel()"
+            title="Cancelar"
+            class="cancel-button"
+            [backgroundColor]="'#d4d4d4'"
+         ></app-button-primary>
       </div>
    </div>
 </div>

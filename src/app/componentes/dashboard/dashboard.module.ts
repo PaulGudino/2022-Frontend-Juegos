@@ -1,4 +1,6 @@
 import { SharedModule } from './../shared/shared.module';
+import { ComponentesCompartidosModule } from 'src/app/componentes-compartidos/componentes-compartidos/componentes-compartidos.module';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -15,7 +17,6 @@ import { RolesCrearComponent } from './roles/roles-crear/roles-crear.component';
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
 import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
 import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
-import { ComponentesCompartidosModule } from 'src/app/componentes-compartidos/componentes-compartidos/componentes-compartidos.module';
 import { ClientsComponent } from './clients/clients.component';
 import { AwardsComponent } from './awards/awards.component';
 import { CreateClientComponent } from './clients/create-client/create-client.component';
