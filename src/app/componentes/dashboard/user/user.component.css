@@ -64,14 +64,6 @@ table {
     border-radius: 25px;
     margin-right: 25px;
 }
-/* .mat-option{
-    color: var(--color-principal);
-    background-color: var(--color-fondo-secundario);
-}
-.mat-option:hover{
-    background-color: var(--color-principal);
-    color: var(--color-fondo-secundario);
-} */
 .search{
     text-align: center;
     width: 400px;

@@ -13,7 +13,9 @@ import { ImageService } from 'src/app/servicios/image/image.service';
 })
 export class CreateAwardsComponent implements OnInit {
 
-  public previsulizacion: string = '';
+  img_upload = "assets/img/upload.png";
+
+  public previsulizacion: string = this.img_upload;
   form: FormGroup;
   @ViewChild("takeInput", { static: false })
   InputVar!: ElementRef;
@@ -55,12 +57,11 @@ export class CreateAwardsComponent implements OnInit {
 
     this.fileToUpload = this.imageSrv.captureFile(event);
     if (this.fileToUpload) {
-      this.imagen = this.fileToUpload;
-      this.imageSrv.extraerBase64(this.imagen).then((imagen: any) => {
-        this.previsulizacion = imagen.base;
+      this.imageSrv.extraerBase64(this.fileToUpload).then((imagen: any) => {
+      this.previsulizacion = imagen.base;
       });
     }else{
-      this.previsulizacion = '';
+      this.previsulizacion = this.img_upload;
       this.InputVar.nativeElement.value = "";
       this.snackbar.mensaje('Solo se permiten imagenes');
     }
@@ -69,12 +70,14 @@ export class CreateAwardsComponent implements OnInit {
   
 
   deleteImage(){
-    this.previsulizacion = '';
+    this.previsulizacion = this.img_upload;
     this.InputVar.nativeElement.value = "";
+    this.fileToUpload = null;
   }
 
   createAwards(){
     if (this.form.valid && this.fileToUpload) {
+      this.imagen = this.fileToUpload;
       const options = {
         title: 'CREAR PREMIO',
         message: '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO PREMIO?',

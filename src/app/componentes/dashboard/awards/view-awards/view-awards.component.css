@@ -6,12 +6,13 @@
     margin: 20px;
 }
 mat-label{
-    font-size: 17px;
-    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--color-principal);
 }
 .card{
     width: 100%;
     border-radius: 10px;
+    background-color: var(--color-fondo-principal);
 }
 .datos{
     width: 50%;
@@ -45,4 +46,21 @@ mat-label{
     height: 100%;
     border-radius: 10px;
     object-fit: fill;
+}
+.mat-list-item{
+    color: #fff;
+    font-size: 1.25rem;
+}
+.mat-toolbar{
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-principal);
+}
+button{
+    margin-top: 25px;
+    background: var(--color-cafe);
+    color: var(--color-letras);
+}
+button:hover{
+    background: var(--color-principal);
+    color: var(--color-fondo-secundario);
 }

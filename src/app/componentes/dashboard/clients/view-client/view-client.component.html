@@ -51,14 +51,14 @@
             <mat-list-item>{{client.modified}}</mat-list-item>
     
             <!-- Usuario responsable de la modificación -->
-            <mat-label>Usuario responsable de la modificación</mat-label>
+            <mat-label>Última usuario que modificó</mat-label>
             <mat-list-item>{{client.user_client_modify}}</mat-list-item>
     
         </mat-list>
 
         <!-- Buttons -->
         <div class="container_botones">
-            <button (click)="toList()" mat-raised-button color="warn">
+            <button (click)="toList()" mat-raised-button>
                 <mat-icon>close</mat-icon>
                 Salir
             </button>

@@ -21,6 +21,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
   height: 100vh;
 }
+.color-white{
+  color: var(--color-letras);
+}
 .background-black-primary{
    /* background-color: #000910; */
    background-color: var(--color-fondo-principal);
@@ -67,6 +70,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .mat-dialog-container{
    background-color:var(--color-ventanas)
+}
+.mat-form-field-underline{
+   width: 0px !important;
 }
 /*
 Sobreescritura componetes angular material User components */

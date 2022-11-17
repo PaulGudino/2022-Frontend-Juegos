@@ -15,7 +15,9 @@ import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 })
 export class EditAwardsComponent implements OnInit {
 
-  public previsulizacion: string = '';
+  img_upload = "assets/img/upload.png";
+
+  public previsulizacion: string = this.img_upload;
   form: FormGroup;
   @ViewChild("takeInput", { static: false })
   InputVar!: ElementRef;
@@ -78,20 +80,20 @@ export class EditAwardsComponent implements OnInit {
   capturarFile(event: any): void {
     this.fileToUpload = this.imageSrv.captureFile(event);
     if (this.fileToUpload) {
-      this.imagen = this.fileToUpload;
-      this.imageSrv.extraerBase64(this.imagen).then((imagen: any) => {
+      this.imageSrv.extraerBase64(this.fileToUpload).then((imagen: any) => {
         this.previsulizacion = imagen.base;
       });
     }else{
-      this.previsulizacion = '';
+      this.previsulizacion = this.img_upload;
       this.InputVar.nativeElement.value = "";
       this.snackbar.mensaje('Solo se permiten imagenes');
     }
   }
 
   deleteImage(){
-    this.previsulizacion = '';
+    this.previsulizacion = this.img_upload;
     this.InputVar.nativeElement.value = "";
+    this.fileToUpload = null;
   }
 
   editAwards() {
@@ -117,6 +119,7 @@ export class EditAwardsComponent implements OnInit {
           formData.append('category', this.form.get('category')?.value);
           formData.append('juego', this.form.get('juego')?.value);
           if (this.fileToUpload) {
+            this.imagen = this.fileToUpload;
             formData.append('imagen', this.imagen, this.imagen.name);
           }
           formData.append('user_modify', user_modify!);
