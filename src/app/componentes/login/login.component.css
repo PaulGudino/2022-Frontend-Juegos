@@ -67,6 +67,7 @@ h2{
     outline: none;
     color: var(--color-letras);
     background: var(--color-fondo-secundario);
+    text-align: start;
 }
 .container_form{
     padding: 0 15%;
