@@ -1,0 +1,8 @@
+<form [formGroup]="form">
+    <div>
+        <ngb-timepicker formControlName="arrivalTime" [meridian]="true"></ngb-timepicker>
+    </div>
+    <div>
+        <button (click)="create()"  class="btn btn-succes btn-sm green-primary">Create</button>
+    </div>
+</form>

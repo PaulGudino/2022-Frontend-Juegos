@@ -38,6 +38,7 @@ import { EditTicketComponent } from './tickets/edit-ticket/edit-ticket.component
 import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component';
 import { GameSelectionComponent } from './game-selection/game-selection.component';
 import { AwardsConditionComponent } from './awards-condition/awards-condition.component';
+import { CreateAwardsConditionComponent } from './awards-condition/create-awards-condition/create-awards-condition.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { AwardsConditionComponent } from './awards-condition/awards-condition.co
     GameSelectionComponent,
     CalendarPickerComponent,
     AwardsConditionComponent,
+    CreateAwardsConditionComponent,
   ],
   imports: [
     SharedModule,

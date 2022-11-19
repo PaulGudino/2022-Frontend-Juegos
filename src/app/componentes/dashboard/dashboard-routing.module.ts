@@ -33,6 +33,7 @@ import { EditClientComponent } from './clients/edit-client/edit-client.component
 import { ViewClientComponent } from './clients/view-client/view-client.component';
 import { GameDateComponent } from './game-date/game-date.component';
 import { AwardsConditionComponent } from './awards-condition/awards-condition.component';
+import { CreateAwardsConditionComponent } from './awards-condition/create-awards-condition/create-awards-condition.component';
 
 
 const routes: Routes = [
@@ -90,6 +91,7 @@ const routes: Routes = [
 
     //Premios por condicion
     {path: 'premios/condicion', component : AwardsConditionComponent},
+    {path: 'premios/condicion/crear', component : CreateAwardsConditionComponent},
     
     //Game
     {path: 'juego/fecha', component : GameDateComponent},

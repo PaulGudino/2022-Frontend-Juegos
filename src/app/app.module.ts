@@ -29,7 +29,7 @@ import { ComponentesCompartidosModule } from './componentes-compartidos/componen
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    ComponentesCompartidosModule
+    ComponentesCompartidosModule,
   ],
   providers: [
     {
