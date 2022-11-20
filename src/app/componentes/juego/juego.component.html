@@ -1,5 +1,6 @@
+<app-publicity [urlPublicity]="top_publicity"></app-publicity>
 <div class="container-fluid home_container p-0 m-0">
-   <app-logo></app-logo>
+   <app-logo [urlImage]="logoImage"></app-logo>
    <figure class="home-image_container p-0 m-0">
       <img
          src="../../../assets/img/back.jpg"
@@ -12,7 +13,8 @@
       <app-generic-button
          class="home_btn"
          routerLink="/juego/scan"
-         title="Toca para jugar"
+         [title]="buttonTitle"
       ></app-generic-button>
    </div>
 </div>
+<app-publicity [urlPublicity]="bottom_publicity"></app-publicity>

@@ -9,6 +9,7 @@ export class LogoComponent implements OnInit {
    @Input() height:string ='15rem';
    @Input() isHome:boolean = true;
    @Input() isBackground:boolean = false;
+   @Input() urlImage:string=''
 
   constructor() { }
 
