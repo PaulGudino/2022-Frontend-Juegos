@@ -1,11 +1,15 @@
 <div class="container-fullscreen p-0 m-0">
-   <app-publicity></app-publicity>
+   <app-publicity [urlPublicity]="top_publicity"></app-publicity>
    <div class="container-menu">
       <app-logo [isBackground]="true" height="12rem"></app-logo>
       <div class="scan-shadow"></div>
       <div class="scan_menu-container">
          <div class="menu-container_img-container">
-            <app-logo height="6rem" [isHome]="false"></app-logo>
+            <app-logo
+               [urlImage]="style.image_logo_game"
+               height="6rem"
+               [isHome]="false"
+            ></app-logo>
          </div>
          <p class="info-game__text">{{ informationText }}</p>
          <div class="information-game-container" [ngPlural]="availableSpin">
@@ -137,5 +141,5 @@
       </div>
    </div>
 
-   <app-publicity></app-publicity>
+   <app-publicity [urlPublicity]="bottom_publicity"></app-publicity>
 </div>
