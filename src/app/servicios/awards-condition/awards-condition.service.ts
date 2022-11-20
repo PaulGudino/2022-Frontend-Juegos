@@ -17,8 +17,8 @@ export class AwardsConditionService {
   getAwardConditionFilter(filter: string){
     return this.http.get(this.url+'api/awardconditionfilter/'+filter);
   }
-  getAwardCondition(){
-    return this.http.get(this.url+'api/awardcondition/');
+  getAward(){
+    return this.http.get(this.url+'api/awardfilter/?is_active=true');
   }
   getAwardConditionbyId(id: number){
     return this.http.get(this.url+'api/awardcondition/'+id);

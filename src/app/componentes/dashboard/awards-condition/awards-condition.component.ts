@@ -18,10 +18,10 @@ import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 export class AwardsConditionComponent implements OnInit {
 
   Filters = [
-    {id: '?is_active=true', name: 'Roles Activos'},
-    {id: '?is_active=false', name: 'Roles Inactivos'},
-    {id: '?ordering=-created', name: 'Ultimos Roles Creados'},
-    {id: '?ordering=created', name: 'Primeros Roles Creados'},
+    {id: '?is_active=true', name: 'Premios Condicionados Activos'},
+    {id: '?is_active=false', name: 'Premios Condicionados Inactivos'},
+    {id: '?ordering=start_date', name: 'Primeros Premios En Iniciar'},
+    {id: '?ordering=end_date', name: 'Primeros Premios En Terminar'},
   ]
 
   filter_default = '?is_active=true'
@@ -65,7 +65,7 @@ export class AwardsConditionComponent implements OnInit {
     this.cargarPremios(filter);
   }
   agregarPremios(){
-    alert("Agregar Premios");
+    this.router.navigate(['dashboard/premios/condicion/crear']);
   }
   verPremios(id: number){
     alert("Ver Premios");

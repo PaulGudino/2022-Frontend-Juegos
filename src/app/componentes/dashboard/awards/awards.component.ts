@@ -82,8 +82,13 @@ export class AwardsComponent implements OnInit {
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
         if (confirmed) {
-          this.premiosSrv.deleteAward(id).subscribe((data) => {
+          this.premiosSrv.deleteAward(id).subscribe(
+            (data) => {
             this.snackbar.mensaje("Premio Eliminado Existosamente");
+            this.cargarPremios(this.filter_default);
+          },
+          (err) => {
+            this.dialogService.error(err.error)
             this.cargarPremios(this.filter_default);
           });
         }
