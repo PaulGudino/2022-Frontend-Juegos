@@ -161,7 +161,7 @@ Sobreescritura tablas
    color: var(--color-principal);
 } */
 
-
+/* Colores de los time-picker */
 .btn-outline-primary {
    --bs-btn-color: var(--color-principal);
    --bs-btn-border-color: var(--color-principal);
