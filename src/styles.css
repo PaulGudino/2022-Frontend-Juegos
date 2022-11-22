@@ -129,6 +129,10 @@ Sobreescritura tablas
 .mat-drawer-backdrop.mat-drawer-shown {
    background-color: transparent
 }
+.mat-snack-bar-container{
+   background-color: var(--color-ventanas);
+   color: var(--color-principal);
+}
 
 /* .mat-toolbar{
    background-color: var(--color-fondo-principal);

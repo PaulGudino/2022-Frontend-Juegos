@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AwardsConditionService } from 'src/app/servicios/awards-condition/awards-condition.service';
 import { AwardsService } from 'src/app/servicios/awards/awards.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 
 @Component({
-  selector: 'app-create-awards-condition',
-  templateUrl: './create-awards-condition.component.html',
-  styleUrls: ['./create-awards-condition.component.css']
+  selector: 'app-edit-awards-condition',
+  templateUrl: './edit-awards-condition.component.html',
+  styleUrls: ['./edit-awards-condition.component.css']
 })
-export class CreateAwardsConditionComponent implements OnInit {
+export class EditAwardsConditionComponent implements OnInit {
 
   minDate = new Date();
-  minDatefin  = new Date();
-
+  award_condition_id = Number(this.activerouter.snapshot.paramMap.get('id'));
   img_upload = "assets/img/regalo.png";
 
   public previsulizacion: string = this.img_upload;
@@ -30,7 +29,7 @@ export class CreateAwardsConditionComponent implements OnInit {
   finishDate: Date = new Date();
 
   award_condition: any[] = [];
-
+  
   constructor(
     private fb: FormBuilder,
     private awardConditionSrv: AwardsConditionService,
@@ -38,22 +37,59 @@ export class CreateAwardsConditionComponent implements OnInit {
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
     private router: Router, 
-  ) { 
+    private activerouter: ActivatedRoute, 
+  ) {
     this.form = this.fb.group({
       startTime:['', Validators.required],
       endTime:['', Validators.required],
       award:['', Validators.required],
     })
-  }
+   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.getAward();
+    await this.getAwardConditionId(this.award_condition_id);
+
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth();
     let currentDay = new Date().getDate();
     this.minDate = new Date(currentYear, currentMonth, currentDay);
-    this.minDatefin = new Date(currentYear, currentMonth, currentDay);
-    this.finishDate = new Date(currentYear, currentMonth, currentDay);
+  }
+  cancel(){
+    this.router.navigate(['/dashboard/premios/condicion']);
+  }
+  getAward(){
+    this.awardConditionSrv.getAward().subscribe(
+      (data:any) => {
+        this.award_condition = data;
+      }
+    )
+  }
+  async getAwardConditionId(id:number){
+    this.awardConditionSrv.getAwardConditionbyId(id).subscribe(
+      (res:any) => {
+        this.imgAward(res.award);
+        let hora_inicio = res.start_date.split(" ")[1].split(":")[0];
+        let minute_inicio = res.start_date.split(" ")[1].split(":")[1];
+        let hora_fin = res.end_date.split(" ")[1].split(":")[0];
+        let minute_fin = res.end_date.split(" ")[1].split(":")[1];
+
+        this.form.controls['award'].setValue(res.award.toString());
+        this.form.controls['startTime'].setValue({
+          hour: Number(hora_inicio),
+          minute: Number(minute_inicio)
+        });
+        this.form.controls['endTime'].setValue({
+          hour: Number(hora_fin),
+          minute: Number(minute_fin)
+        });
+        this.beginDate = new Date(res.start_date_nf);
+        this.finishDate = new Date(res.end_date_nf);
+      },
+      (err:any) => {
+        this.dialogService.error(err.error);
+      }
+    )
   }
   async changetime(){
     let hora_inicio = this.form.value.startTime.hour
@@ -72,9 +108,7 @@ export class CreateAwardsConditionComponent implements OnInit {
     this.startDate = new Date(parseInt(year_i), parseInt(month_i) - 1, parseInt(day_i), parseInt(hora_inicio), parseInt(minuto_inicio));
     this.endDate = new Date(parseInt(year_f), parseInt(month_f) - 1, parseInt(day_f), parseInt(hora_fin), parseInt(minuto_fin));
   }
-
-  async create(){
-    
+  async editAwardCondition(){
     if (this.form.valid) {
 
       await this.changetime();
@@ -82,7 +116,7 @@ export class CreateAwardsConditionComponent implements OnInit {
         title: 'CREAR PREMIO CONDICIONADO',
         message: '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO PREMIO CONDICIONADO?',
         cancelText: 'CANCELAR',
-        confirmText: 'CREAR'
+        confirmText: 'EDITAR'
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
@@ -96,9 +130,9 @@ export class CreateAwardsConditionComponent implements OnInit {
           formData.append('award', this.form.get('award')?.value);
           formData.append('game', game.toString());
 
-          this.awardConditionSrv.postAwardCondition(formData).subscribe(
+          this.awardConditionSrv.putAwardCondition(this.award_condition_id, formData).subscribe(
             (res) => {
-              this.snackbar.mensaje('Premio Condicionado Creado Exitosamente');
+              this.snackbar.mensaje('Premio Condicionado Actualizado Exitosamente');
               this.router.navigate(['dashboard/premios/condicion']);
             },
             (err) => {
@@ -111,14 +145,6 @@ export class CreateAwardsConditionComponent implements OnInit {
       this.snackbar.mensaje('Complete todos los campos');
     }
   }
-
-  getAward(){
-    this.awardConditionSrv.getAward().subscribe(
-      (data:any) => {
-        this.award_condition = data;
-      }
-    )
-  }
   imgAward(id:number){
     this.awardSrv.getAwardbyId(id).subscribe(
       (data:any) => {
@@ -128,8 +154,4 @@ export class CreateAwardsConditionComponent implements OnInit {
       }
     )
   }
-  cancel(){
-    this.router.navigate(['dashboard/premios/condicion']);
-  }
-
 }

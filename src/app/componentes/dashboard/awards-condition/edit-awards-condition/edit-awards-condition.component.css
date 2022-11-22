@@ -1,0 +1,115 @@
+.mat-toolbar{
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-principal);
+ }
+ .condition_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+ }
+ .date_container{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+ }
+ .container{
+    margin-top: 20px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+ }
+ .register_container{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+ }
+ .calendar{
+     display: flex;
+     flex-direction: column;
+     gap: 1.5rem;
+     width: 45%
+  }
+  .input-date{
+     margin-top: 20px;
+     padding:0.5rem 1.5rem;
+     border:1px solid var(--color-principal);
+     border-radius:15px;
+     text-align: center;
+  }
+  .calendar__card{
+     padding: 0 1rem;
+  }
+  .time_container{
+    display: flex;
+    justify-content: center;
+  }
+  .time{
+    color: var(--color-principal);
+  }
+  .mat-form-field{
+    width: 95%;
+    margin: 0 20px;
+    background: var(--color-fondo-principal);
+    color: #000;
+ }
+ .input_form{
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 40px;
+ }
+ .mat-hint{
+    color: var(--color-principal);
+ }
+ .mat-error{
+    color: var(--color-principal);
+ }
+ label{
+    color: #ffffff;
+    margin-bottom: 10px;
+ }
+ .mat-select{
+    background: #fff;
+    border-radius: 10px;
+    height: 40px;
+    padding-left: 15px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+ }
+ .form_container{
+    width: 40%;
+ }
+ .img_container{
+    display: flex;
+    width: 60%;
+    height: 250px;
+ }
+ .img_container img{
+    margin: auto;
+    margin-top: 10%;
+    width: 85%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: fill;
+ }
+ .container_botones{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 15px;
+     margin-top: 10%;
+ }
+ .container_botones button{
+    margin: 0 10px;
+    background-color: var(--color-cafe);
+ }
+ .container_botones button:hover{
+    background-color: var(--color-principal);
+    color: var(--color-fondo-secundario);
+ }

@@ -1,0 +1,78 @@
+<mat-toolbar>
+    <span>Editar Premio Condicionado : {{award_name}} </span>
+    <span class="example-spacer"></span>
+ </mat-toolbar>
+ <form [formGroup]="form">
+       <div class="condition_container">
+          <div class="container">
+             <div class="register_container">
+                <div class="form_container">
+                   <mat-form-field>
+                      <label>Premios</label><br>
+                      <label>Hay {{stock_actual}} del premio: {{award_name}}</label>
+                      <mat-select formControlName="award" mat-select (selectionChange)="imgAward($event.value)" [disabled]="true">
+                          <mat-option *ngFor="let premio of award_condition" value={{premio.id}}>{{premio.name}}</mat-option>
+                      </mat-select>
+                      <mat-hint>Seleccione una opción</mat-hint>
+                      <mat-error *ngIf="form.controls['award'].hasError('required')" >
+                          Campo requerido !!!
+                      </mat-error>
+                  </mat-form-field> 
+                </div>
+                <div class="img_container">
+                   <img [src]="previsulizacion" alt="Inserte una Imagen">
+                </div>
+             </div>
+             <div class="container_botones">
+                <button  mat-raised-button color="warn" (click)="cancel()">
+                    <mat-icon>close</mat-icon>
+                    Cancelar
+                </button>
+                
+                <button mat-raised-button (click)="editAwardCondition()" color="primary">
+                    <mat-icon>done</mat-icon>
+                    Guardar
+                </button>
+            </div>
+          </div>
+          <div class="date_container">
+             <div class="calendar">
+                <p class="input-date green-primary">Fecha Inicio</p>
+                <div class="calendar__card">
+                   <mat-card
+                      class="demo-inline-calendar-card background-navy-primary green-primary"
+                   >
+                      <mat-calendar
+                         class="green-primary"
+                         [(selected)]="beginDate"
+                         [startAt]="beginDate"
+                         [minDate]="minDate"
+                      ></mat-calendar>
+                   </mat-card>
+                </div>
+                <div class="time_container">
+                   <ngb-timepicker class="time" formControlName="startTime" [meridian]="true"></ngb-timepicker>
+                </div>
+             </div>
+             <div class="calendar">
+                <p class="input-date green-primary">Fecha Fin</p>
+                <div class="calendar__card">
+                   <mat-card
+                      class="demo-inline-calendar-card background-navy-primary green-primary"
+                   >
+                      <mat-calendar
+                         class="green-primary"
+                         [(selected)]="finishDate"
+                         [startAt]="finishDate"
+                         [minDate]="minDate"
+                      ></mat-calendar>
+                   </mat-card>
+                </div>
+                <div class="time_container">
+                   <ngb-timepicker formControlName="endTime" [meridian]="true"></ngb-timepicker>
+                </div>
+             </div>
+          </div>
+       </div>
+ </form>
+ 

@@ -1,0 +1,63 @@
+<mat-toolbar>
+    <span>Visualizar Premio Condicionado</span>
+    <span class="example-spacer"></span>
+ </mat-toolbar>
+ <div class="container_card">
+    <mat-card class="card">
+        <div class="container_flex">
+            <div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Nombre</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{award_name}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Juego</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{award_condition.game}}</mat-list-item>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Fecha de Inicio</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{award_condition.start_date}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Fecha de Fin</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{award_condition.end_date}}</mat-list-item>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Duración</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{award_condition.duration}} días</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Estado</mat-label>
+                        <br>
+                        <div *ngIf="award_condition.is_approved ; else sinmodificar">
+                            <mat-list-item role="listitem">Procesado</mat-list-item>
+                        </div>
+                        <ng-template #sinmodificar>
+                            <mat-list-item role="listitem">Sin Procesar</mat-list-item>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="container_img">
+                <img [src]="award_image" alt="">
+            </div>
+        </div>
+        
+        <div class="container_botones">
+            <button (click)="backAwardCondition()" mat-raised-button>
+                <mat-icon>close</mat-icon>
+                Salir
+            </button>
+        </div>
+    </mat-card>
+</div>

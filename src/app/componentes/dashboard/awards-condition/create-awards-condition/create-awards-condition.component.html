@@ -8,7 +8,8 @@
             <div class="register_container">
                <div class="form_container">
                   <mat-form-field>
-                     <label>Premios</label>
+                     <label>Premios</label><br>
+                     <label>Hay {{stock_actual}} del premio: {{award_name}}</label>
                      <mat-select formControlName="award" mat-select (selectionChange)="imgAward($event.value)" >
                          <mat-option *ngFor="let premio of award_condition" value={{premio.id}}>{{premio.name}}</mat-option>
                      </mat-select>
@@ -16,32 +17,7 @@
                      <mat-error *ngIf="form.controls['award'].hasError('required')" >
                          Campo requerido !!!
                      </mat-error>
-                 </mat-form-field>
-                  <mat-form-field>
-                     <label>Stock Condicionado</label><br>
-                     <label>Hay {{stock_actual}} del premio: {{award_name}}</label>
-                     <div class="input_form">
-                        <input autocomplete="off" formControlName="initial_stock" onpaste="return false" type="number"
-                        max = {{stock_actual}}
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                        oninput="this.value = !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null"  matInput>
-                     </div>
-                     <mat-hint>Stock Inicial del Premio</mat-hint>
-                     <mat-error *ngIf="form.controls['initial_stock'].hasError('required')" >
-                        Campo requerido !!!
-                     </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                     <label>Estado</label>
-                     <mat-select formControlName="is_active" mat-select>
-                         <mat-option value=true>Activo</mat-option>
-                         <mat-option value=false>Inactivo</mat-option>
-                     </mat-select>
-                     <mat-hint>Seleccione una opción</mat-hint>
-                     <mat-error *ngIf="form.controls['is_active'].hasError('required')" >
-                         Campo requerido !!!
-                     </mat-error>
-                 </mat-form-field>
+                 </mat-form-field> 
                </div>
                <div class="img_container">
                   <img [src]="previsulizacion" alt="Inserte una Imagen">

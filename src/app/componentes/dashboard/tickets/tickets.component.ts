@@ -17,8 +17,8 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
 })
 export class TicketsComponent implements OnInit{
 
-  singularName : string = 'ticket';
-  pluralName : string = 'tickets';
+  singularName : string = 'Ticket';
+  pluralName : string = 'Tickets';
   actionName : string = 'eliminar';
   permissions : any = [];
 
@@ -97,10 +97,10 @@ export class TicketsComponent implements OnInit{
 
   showDeleteDialog() {
       const DIALOGINFO = {
-        title : this.actionName + ' ' + this.singularName,
+        title : this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
         message : '¿Está seguro de que quiere eliminar el ' + this.singularName + ' ?',
-        cancelText : 'Cancelar',
-        confirmText : this.actionName
+        cancelText : 'CANCELAR',
+        confirmText : this.actionName.toUpperCase()
       };
 
       this.confirmDialog.open(DIALOGINFO);

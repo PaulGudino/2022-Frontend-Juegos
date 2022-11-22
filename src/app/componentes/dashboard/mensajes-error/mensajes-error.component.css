@@ -18,3 +18,15 @@
     color: var(--color-fondo);
     cursor: pointer;
 }
+.container_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
+.container_img img{
+    width: 200%;
+    height: 200%;
+    object-fit: fill;
+}

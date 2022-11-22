@@ -53,10 +53,10 @@ export class CreateClientComponent implements OnInit {
 
   showDialog() {
     const DIALOGINFO = {
-      title: this.actionName + ' ' + this.singularName,
+      title: this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
       message: '¿Está seguro de que quiere ' + this.actionName + ' el nuevo ' + this.singularName + '?',
-      cancelText: 'Cancelar',
-      confirmText: this.actionName
+      cancelText: 'CANCELAR',
+      confirmText: this.actionName.toUpperCase()
     }
     this.confirmDialog.open(DIALOGINFO)
     this.sendForm()

@@ -24,7 +24,7 @@ export class ClientsComponent implements OnInit{
     {id: '?ordering=created', name: 'Primeros Clientes Creados'},
   ]
 
-  filter_default = '?state=Activo'
+  filter_default = '?ordering=-created'
 
   singularName : string = 'cliente';
   pluralName : string = 'clientes';
@@ -106,10 +106,10 @@ export class ClientsComponent implements OnInit{
 
   showDeleteDialog() {
       const DIALOGINFO = {
-        title : this.actionName + ' ' + this.singularName,
+        title : this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
         message : '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + '?',
-        cancelText : 'Cancelar',
-        confirmText : this.actionName
+        cancelText : 'CANCELAR',
+        confirmText : this.actionName.toUpperCase()
       };
 
       this.confirmDialog.open(DIALOGINFO);
@@ -118,7 +118,8 @@ export class ClientsComponent implements OnInit{
 
   async canDelete() {
     let rolId = Number(localStorage.getItem('rol_id'));
-    let permissionId = 4;
+    let permiso = await lastValueFrom(this.permissionAPI.getPermisosbyName('Eliminar Cliente'));
+    let permissionId = Number(permiso[0].id);
     const promise = await lastValueFrom(this.permissionAPI.getPermisosbyRolandPermission(rolId, permissionId));
     this.permissions = promise;
   }

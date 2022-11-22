@@ -1,3 +1,4 @@
+import { EditAwardsConditionComponent } from './awards-condition/edit-awards-condition/edit-awards-condition.component';
 import { AdministrationGuard } from './../../guardianes/Administration/administration.guard';
 import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
@@ -34,6 +35,7 @@ import { ViewClientComponent } from './clients/view-client/view-client.component
 import { GameDateComponent } from './game-date/game-date.component';
 import { AwardsConditionComponent } from './awards-condition/awards-condition.component';
 import { CreateAwardsConditionComponent } from './awards-condition/create-awards-condition/create-awards-condition.component';
+import { ViewAwardsConditionComponent } from './awards-condition/view-awards-condition/view-awards-condition.component';
 
 
 const routes: Routes = [
@@ -90,8 +92,14 @@ const routes: Routes = [
     canActivate: [InicioGuard]},
 
     //Premios por condicion
-    {path: 'premios/condicion', component : AwardsConditionComponent},
-    {path: 'premios/condicion/crear', component : CreateAwardsConditionComponent},
+    {path: 'premios/condicion', component : AwardsConditionComponent,
+    canActivate: [InicioGuard]},
+    {path: 'premios/condicion/crear', component : CreateAwardsConditionComponent,
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Crear Condicion de Premio'}},
+    {path: 'premios/condicion/visualizar/:id', component : ViewAwardsConditionComponent,
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Ver Condicion de Premio'}},
+    {path: 'premios/condicion/editar/:id', component : EditAwardsConditionComponent,
+    canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Editar Condicion de Premio'}},
     
     //Game
     {path: 'juego/fecha', component : GameDateComponent},
