@@ -1,0 +1,24 @@
+<mat-toolbar class="background-navy-primary green-primary">
+   <span>Publicidad</span>
+   <span class="example-spacer"></span>
+</mat-toolbar>
+
+<div class="publicity-container">
+   <div class="publicity__changes">
+      <app-add-publicity title="Publicidad Superior"></app-add-publicity>
+      <app-add-publicity title="Publicidad Inferior"></app-add-publicity>
+   </div>
+   <div class="publicity__view">
+      <div class="view-container">
+         <app-banner-publicity
+            class="top-publicity"
+            [urlPublicity]="top_publicity"
+         ></app-banner-publicity>
+         <div class="view-menu"></div>
+         <app-banner-publicity
+            class="bottom_publicity"
+            [urlPublicity]="bottom_publicity"
+         ></app-banner-publicity>
+      </div>
+   </div>
+</div>

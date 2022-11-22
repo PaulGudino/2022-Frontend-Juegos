@@ -19,4 +19,5 @@ export class PublicityService {
   getPublicityList():Observable<Publicity[]> {
     return this.http.get<Publicity[]>(this.url+'api/publicity/')
   }
+
 }

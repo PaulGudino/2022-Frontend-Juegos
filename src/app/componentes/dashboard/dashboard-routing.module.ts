@@ -16,6 +16,7 @@ import { CreateTicketComponent } from './tickets/create-ticket/create-ticket.com
 import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component';
 import { EditTicketComponent } from './tickets/edit-ticket/edit-ticket.component';
 import { GameSelectionComponent } from './game-selection/game-selection.component';
+import {PublicityComponent} from './publicity/publicity.component';
 
 //Guardianes
 
@@ -57,7 +58,7 @@ const routes: Routes = [
     canActivate: [InicioGuard, AdministrationGuard]},
     {path: 'roles/editar/:id', component: RolesEditarComponent,
     canActivate: [InicioGuard, AdministrationGuard]},
-    
+
     // Clientes
     {path: 'clientes', component : ClientsComponent,
     canActivate: [InicioGuard]},
@@ -92,10 +93,11 @@ const routes: Routes = [
     //Premios por condicion
     {path: 'premios/condicion', component : AwardsConditionComponent},
     {path: 'premios/condicion/crear', component : CreateAwardsConditionComponent},
-    
+
     //Game
     {path: 'juego/fecha', component : GameDateComponent},
     {path: 'juego/seleccion', component : GameSelectionComponent},
+    {path: 'juego/publicidad', component : PublicityComponent},
 
   ]},
 ];

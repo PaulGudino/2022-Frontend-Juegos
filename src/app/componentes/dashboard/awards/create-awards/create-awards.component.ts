@@ -33,8 +33,8 @@ export class CreateAwardsComponent implements OnInit {
   ]
 
   constructor(
-    private router: Router, 
-    private fb: FormBuilder, 
+    private router: Router,
+    private fb: FormBuilder,
     private awardSrv: AwardsService,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
@@ -49,10 +49,11 @@ export class CreateAwardsComponent implements OnInit {
       juego: ['', Validators.required],
   })
    }
-  
+
 
   ngOnInit(): void {
   }
+
   capturarFile(event: any): void {
 
     this.fileToUpload = this.imageSrv.captureFile(event);
@@ -66,8 +67,8 @@ export class CreateAwardsComponent implements OnInit {
       this.snackbar.mensaje('Solo se permiten imagenes');
     }
   }
-  
-  
+
+
 
   deleteImage(){
     this.previsulizacion = this.img_upload;

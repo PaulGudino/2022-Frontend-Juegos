@@ -1,0 +1,16 @@
+<div class="color-white publicity-container">
+   <p class="publicity__title green-primary">{{ title }}</p>
+   <div class="publicity-info__container">
+      <p class="">Imagen</p>
+      <div class="file-select" id="src-file1">
+         <input
+            class="file-input"
+            #takeInput
+            (change)="capturarFile($event)"
+            type="file"
+            name="src-file1"
+            aria-label="Archivo"
+         />
+      </div>
+   </div>
+</div>

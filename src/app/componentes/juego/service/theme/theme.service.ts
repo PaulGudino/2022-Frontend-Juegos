@@ -26,7 +26,6 @@ export class ThemeService {
   }
   getPublicityList():Observable<Publicity[]>{
     return this.http.get<Publicity[]>(`${this.url}api/publicity/`)
-
   }
 
   getThemeImages(){

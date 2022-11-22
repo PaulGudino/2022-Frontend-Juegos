@@ -39,6 +39,9 @@ import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component
 import { GameSelectionComponent } from './game-selection/game-selection.component';
 import { AwardsConditionComponent } from './awards-condition/awards-condition.component';
 import { CreateAwardsConditionComponent } from './awards-condition/create-awards-condition/create-awards-condition.component';
+import { PublicityComponent } from './publicity/publicity.component';
+import { AddPublicityComponent } from './publicity/add-publicity/add-publicity.component';
+import { BannerPublicityComponent } from './publicity/banner-publicity/banner-publicity.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +84,9 @@ import { CreateAwardsConditionComponent } from './awards-condition/create-awards
     CalendarPickerComponent,
     AwardsConditionComponent,
     CreateAwardsConditionComponent,
+    PublicityComponent,
+    AddPublicityComponent,
+    BannerPublicityComponent,
   ],
   imports: [
     SharedModule,
