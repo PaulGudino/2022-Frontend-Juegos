@@ -1,4 +1,5 @@
 import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
+import { Game } from 'src/app/interfaces/game/Game';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,8 +16,8 @@ export class GameService {
    private puente: PuenteDatosService
   ) { }
 
-  getAll():Observable<GamePutDate[]>{
-    return this.http.get<GamePutDate[]>(this.url+'api/game/');
+  getAll():Observable<Game[]>{
+    return this.http.get<Game[]>(this.url+'api/game/');
   }
 
   put(id: number, data: any){
