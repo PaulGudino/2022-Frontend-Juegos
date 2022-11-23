@@ -1,8 +1,8 @@
 <!-- Toolbar -->
 <mat-toolbar class="background-navy-primary green-primary">
-   <span>Clientes</span>
+   <span>{{ singularName }}</span>
 
-   <span class="example-spacer"></span>
+   <span class="spacer"></span>
 </mat-toolbar>
 
 <!-- Buttons -->
@@ -12,11 +12,12 @@
          <div class="icon_container">
             <mat-icon>add</mat-icon>
          </div>
-         <span>Agregar Cliente</span>
+         <span>Agregar {{ singularName }}</span>
       </div>
    </button>
 </div>
 
+<!--Filter-->
 <div class="filter_search_container">
    <div class="filter">
       <mat-select

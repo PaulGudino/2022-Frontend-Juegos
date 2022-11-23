@@ -14,7 +14,7 @@ table {
 .color_verde{
   color: #4CAF50;
 }
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 .mat-toolbar{

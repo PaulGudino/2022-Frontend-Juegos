@@ -6,62 +6,76 @@
 </mat-toolbar>
 
 <!-- Div -->
-<div class="container_card">
-    <mat-card class="card">
+<mat-grid-list cols="3" rowHeight="50rem">
+
+    <!-- Client Info -->
+    <mat-grid-tile>
         <mat-list>
-    
             <!-- Cédula -->
             <mat-label>Cédula</mat-label>
             <mat-list-item>{{client.cedula}}</mat-list-item>
-    
+
             <!-- Nombres -->
             <mat-label>Nombres</mat-label>
             <mat-list-item>{{client.names}}</mat-list-item>
-    
+
             <!-- Apellidos -->
             <mat-label>Apellidos</mat-label>
             <mat-list-item>{{client.surnames}}</mat-list-item>
-    
+
             <!-- Correo Electrónico -->
             <mat-label>Correo Electrónico</mat-label>
             <mat-list-item>{{client.email}}</mat-list-item>
-    
+
             <!-- Teléfono -->
             <mat-label>Teléfono</mat-label>
             <mat-list-item>{{client.phone}}</mat-list-item>
-    
+
             <!-- Sexo -->
             <mat-label>Sexo</mat-label>
             <mat-list-item>{{client.sex}}</mat-list-item>
-    
+
             <!-- Dirección -->
             <mat-label>Dirección</mat-label>
             <mat-list-item>{{client.address}}</mat-list-item>
-    
+
             <!-- Fecha de registro -->
             <mat-label>Fecha de registro</mat-label>
             <mat-list-item>{{client.created}}</mat-list-item>
-    
+
             <!-- Usuario responsable del registro -->
             <mat-label>Usuario de registro</mat-label>
             <mat-list-item>{{client.user_client_register}}</mat-list-item>
-    
+
             <!-- Fecha de última modificación -->
             <mat-label>Fecha de última modificación</mat-label>
             <mat-list-item>{{client.modified}}</mat-list-item>
-    
+
             <!-- Usuario responsable de la modificación -->
             <mat-label>Última usuario que modificó</mat-label>
             <mat-list-item>{{client.user_client_modify}}</mat-list-item>
-    
         </mat-list>
 
-        <!-- Buttons -->
-        <div class="container_botones">
-            <button (click)="toList()" mat-raised-button>
-                <mat-icon>close</mat-icon>
-                Salir
-            </button>
-        </div>
-    </mat-card>
-</div>
+    </mat-grid-tile>
+
+    <!-- Match Hisotory -->
+    <mat-grid-tile>
+        <mat-list>
+            <mat-label>Historial de partida</mat-label>
+        </mat-list>
+    </mat-grid-tile>
+
+    <!-- Summary -->
+    <mat-grid-tile>
+        <mat-list>
+            <mat-label>Resumen</mat-label>
+        </mat-list>
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+<!-- Buttons -->
+<button (click)="toList()" mat-raised-button>
+    <mat-icon>close</mat-icon>
+    Salir
+</button>

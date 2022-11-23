@@ -57,7 +57,7 @@ export class ClientsComponent implements OnInit{
     this.loadAll(this.filter_default);
   }
   
-  loadAll(filter:string) {
+  loadAll(filter : string) {
     this.clientAPI.getFilter(filter).subscribe(
       (data) => {
         this.dataSource = new MatTableDataSource(data);
@@ -67,7 +67,7 @@ export class ClientsComponent implements OnInit{
     )
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event : Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
     
@@ -132,7 +132,7 @@ export class ClientsComponent implements OnInit{
     this.router.navigate(['dashboard/' + this.pluralName]);
   }
 
-  filter(filter: string){
+  filter(filter: string) {
     this.loadAll(filter);
   }
 

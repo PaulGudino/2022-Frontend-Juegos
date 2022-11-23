@@ -2,7 +2,7 @@
 <mat-toolbar class="background-navy-primary green-primary">
    <span>{{ singularName }}</span>
 
-   <span class="example-spacer"></span>
+   <span class="spacer"></span>
 </mat-toolbar>
 
 <!-- Buttons -->
@@ -17,18 +17,38 @@
    </button>
 </div>
 
-<!-- Table -->
-<div class="container mat-elevation-z8">
-   <mat-form-field appearance="standard">
-      <mat-label>Buscar</mat-label>
+<!--Filter-->
+<div class="filter_search_container">
+   <div class="filter">
+      <mat-select
+         class="green-primary"
+         (selectionChange)="filter($event.value)"
+         mat-select
+         placeholder="Filtrar"
+      >
+         <mat-option
+            class="background-navy-primary white-color"
+            *ngFor="let filter of Filters"
+            value="{{ filter.id }}"
+            >{{ filter.name }}</mat-option
+         >
+      </mat-select>
+   </div>
+   <div class="search green-primary">
       <input
+         class="buscador"
          matInput
          (keyup)="applyFilter($event)"
-         placeholder="Ej. Nicolás"
+         placeholder="Buscar"
+         autocomplete="off"
          #input
       />
-   </mat-form-field>
+      <mat-icon class="green-primary"> search </mat-icon>
+   </div>
+</div>
 
+<!-- Table -->
+<div class="container mat-elevation-z8">
    <table mat-table [dataSource]="dataSource" matSort>
       <!-- Invocice Number Column -->
       <ng-container matColumnDef="invoice_number">

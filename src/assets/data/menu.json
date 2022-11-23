@@ -38,5 +38,10 @@
         "nombre": "Tickets",
         "icono": "confirmation_number",
         "ruta": "/dashboard/tickets"
+    },
+    {
+        "nombre": "Juegos",
+        "icono": "sports_esports",
+        "ruta": "/dashboard/juegos/seleccion"
     }
 ]

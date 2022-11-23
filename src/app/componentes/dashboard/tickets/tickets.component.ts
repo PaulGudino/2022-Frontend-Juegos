@@ -16,9 +16,19 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
   templateUrl: './tickets.component.html',
 })
 export class TicketsComponent implements OnInit{
+  
+  Filters = [
+    {id: '?state=Disponible', name: 'Tickets Activos'},
+    {id: '?state=Reclamado', name: 'Tickets Inactivos'},
+    {id: '?ordering=-created', name: 'Ultimos Tickets Creados'},
+    {id: '?ordering=created', name: 'Primeros Tickets Creados'},
+  ]
 
-  singularName : string = 'Ticket';
-  pluralName : string = 'Tickets';
+  filter_default = '?state=Disponible'
+
+  singularName : string = 'ticket';
+  pluralName : string = 'tickets';
+
   actionName : string = 'eliminar';
   permissions : any = [];
 
@@ -45,10 +55,10 @@ export class TicketsComponent implements OnInit{
   ) {}
 
   ngOnInit() : void {
-    this.loadAll();
+    this.loadAll(this.filter_default);
   }
   
-  loadAll() {
+  loadAll(filter : string) {
     this.ticketAPI.getAll().subscribe(
       (data) => {
         this.dataSource = new MatTableDataSource(data);
@@ -58,7 +68,7 @@ export class TicketsComponent implements OnInit{
     )
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event : Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
     
@@ -84,7 +94,7 @@ export class TicketsComponent implements OnInit{
           this.ticketAPI.delete(id).subscribe(
             (data) => {
               this.snackBar.mensaje(this.singularName + ' eliminado exitosamente');
-              this.loadAll();
+              this.loadAll(this.filter_default);
             }
           )
         }
@@ -120,6 +130,10 @@ export class TicketsComponent implements OnInit{
 
   toList() {
     this.router.navigate(['dashboard/' + this.pluralName]);
+  }
+
+  filter(filter: string) {
+    this.loadAll(filter);
   }
 
 }

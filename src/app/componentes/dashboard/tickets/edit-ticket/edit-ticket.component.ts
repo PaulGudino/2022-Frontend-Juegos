@@ -7,7 +7,7 @@ import { TicketService } from 'src/app/servicios/ticket/ticket.service';
 import { GameService } from 'src/app/servicios/game/game.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
 import { Client } from 'src/app/interfaces/client/Client';
-import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
+import { Game } from 'src/app/interfaces/game/Game';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class EditTicketComponent implements OnInit {
   formGroup : FormGroup;
   currentTicket : any;
   allClients : Client[] = [];
-  allGames : GamePutDate[] = [];
+  allGames : Game[] = [];
 
   constructor(
     private router : Router,

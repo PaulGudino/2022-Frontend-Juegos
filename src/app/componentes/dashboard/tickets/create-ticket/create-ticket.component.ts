@@ -7,7 +7,7 @@ import { TicketService } from 'src/app/servicios/ticket/ticket.service';
 import { GameService } from 'src/app/servicios/game/game.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
 import { Client } from 'src/app/interfaces/client/Client';
-import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
+import { Game } from 'src/app/interfaces/game/Game';
 
 @Component({
   selector: 'app-create-ticket',
@@ -21,7 +21,7 @@ export class CreateTicketComponent implements OnInit {
   actionName : string = 'crear'
   formGroup : FormGroup;
   allClients : Client[] = [];
-  allGames : GamePutDate[] = [];
+  allGames : Game[] = [];
 
   constructor(
     private router : Router,
