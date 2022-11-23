@@ -24,7 +24,7 @@ export class RolesComponent implements OnInit {
     {id: '?ordering=created', name: 'Primeros Roles Creados'},
   ]
 
-  filter_default = '?is_active=true'
+  filter_default = '?ordering=-created'
 
   Titulo = 'Roles';
   displayedColumns: string[] = ['id', 'name', 'description','created', 'is_active', 'Acciones']
@@ -69,7 +69,7 @@ export class RolesComponent implements OnInit {
   permisosRol(id:number){
     this.router.navigate(['dashboard/roles/permisos', id]);
   }
-  async eliminarRol(id:number){
+  eliminarRol(id:number){
     if(localStorage.getItem('rol_id') == '1'){
       const options = {
         title: 'ELIMINAR ROL',

@@ -9,7 +9,7 @@
           <div class="icon_container">
              <mat-icon>add</mat-icon>
           </div>
-          <span>Agregar</span>
+          <span>Agregar Premio Condicionado</span>
        </div>
     </button>
  </div>
@@ -55,36 +55,31 @@
        </ng-container>
  
        <ng-container matColumnDef="game">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Juego</th>
           <td mat-cell *matCellDef="let fila">{{ fila.game }}</td>
        </ng-container>
  
-       <ng-container matColumnDef="amount">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock Incial</th>
-          <td mat-cell *matCellDef="let fila">{{ fila.amount }}</td>
-       </ng-container>
- 
        <ng-container matColumnDef="start_date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock Actual</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Inicio</th>
           <td mat-cell *matCellDef="let fila">{{ fila.start_date }}</td>
        </ng-container>
  
        <ng-container matColumnDef="end_date">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
-             Fecha de Creación
+             Fecha de Fin
           </th>
           <td mat-cell *matCellDef="let fila">{{ fila.end_date }}</td>
        </ng-container>
  
-       <ng-container matColumnDef="is_active">
+       <ng-container matColumnDef="is_approved">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
           <td mat-cell *matCellDef="let fila">
              <div *ngIf="fila.is_active; else inactivo">
-                <div class="green-primary">Activo</div>
+                <div class="green-primary">Procesado</div>
              </div>
              <ng-template #inactivo>
                 <div>
-                   <div class="green-primary">Inactivo</div>
+                   <div class="green-primary">Sin procesar</div>
                 </div>
              </ng-template>
           </td>

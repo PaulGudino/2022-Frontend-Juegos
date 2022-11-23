@@ -63,7 +63,7 @@
                 
                 <mat-form-field>
                     <label>Juego</label>
-                    <mat-select formControlName="juego" mat-select>
+                    <mat-select formControlName="juego" mat-select [disabled]="true">
                         <mat-option *ngFor="let juego of Juegos" value={{juego.id}}>{{juego.name}}</mat-option>
                     </mat-select>
                     <mat-hint>Juego del Premio</mat-hint>

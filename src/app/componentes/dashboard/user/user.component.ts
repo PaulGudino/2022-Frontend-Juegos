@@ -24,6 +24,8 @@ export class UsuariosComponent implements OnInit {
     {id: '?ordering=created', name: 'Primeros Usuarios Creados'},
   ]
 
+  filter_default = '?ordering=-created';
+
   Titulo = 'Usuarios';
   displayedColumns: string[] = ['cedula', 'names', 'surnames', 'email', 'phone', 'sex', 'rol', 'Acciones']
   dataSource !: MatTableDataSource<Usuarios>;
@@ -42,7 +44,7 @@ export class UsuariosComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.cargarUsuarios("?rol=&is_active=true");
+    this.cargarUsuarios(this.filter_default);
   }
 
   cargarUsuarios(filter: string){
@@ -88,11 +90,11 @@ export class UsuariosComponent implements OnInit {
           this.api.deleteUsuario(id).subscribe(
             res => {
             this.snackbar.mensaje('Usuario Eliminado Exitosamente');
-            this.cargarUsuarios("?rol=&is_active=true");
+            this.cargarUsuarios(this.filter_default);
           },
           err => {
             this.dialogService.error(err.error)
-            this.cargarUsuarios("?rol=&is_active=true");
+            this.cargarUsuarios(this.filter_default);
           }
           );
         }

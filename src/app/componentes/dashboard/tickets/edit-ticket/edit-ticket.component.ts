@@ -69,10 +69,10 @@ export class EditTicketComponent implements OnInit {
 
   showDialog() {
     const DIALOGINFO = {
-      title: this.actionName + ' ' + this.singularName,
+      title: this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
       message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + ' ?', 
-      cancelText: 'Cancelar',
-      confirmText: this.actionName
+      cancelText: 'CANCELAR',
+      confirmText: this.actionName.toUpperCase()
     }
     this.confirmDialog.open(DIALOGINFO)
     this.sendForm()

@@ -19,13 +19,13 @@ import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 export class AwardsComponent implements OnInit {
 
   Filters = [
-    {id: '?is_active=true', name: 'Roles Activos'},
-    {id: '?is_active=false', name: 'Roles Inactivos'},
-    {id: '?ordering=-created', name: 'Ultimos Roles Creados'},
-    {id: '?ordering=created', name: 'Primeros Roles Creados'},
+    {id: '?is_active=true', name: 'Premios Activos'},
+    {id: '?is_active=false', name: 'Premios Inactivos'},
+    {id: '?ordering=-created', name: 'Ultimos Premios Creados'},
+    {id: '?ordering=created', name: 'Primeros Premios Creados'},
   ]
 
-  filter_default = '?is_active=true'
+  filter_default = '?ordering=-created'
 
   Titulo = "Premios";
   displayedColumns: string[] = ['id', 'name', 'description','initial_stock','current_stock','created','juego', 'is_active', 'Acciones']
@@ -82,8 +82,13 @@ export class AwardsComponent implements OnInit {
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
         if (confirmed) {
-          this.premiosSrv.deleteAward(id).subscribe((data) => {
+          this.premiosSrv.deleteAward(id).subscribe(
+            (data) => {
             this.snackbar.mensaje("Premio Eliminado Existosamente");
+            this.cargarPremios(this.filter_default);
+          },
+          (err) => {
+            this.dialogService.error(err.error)
             this.cargarPremios(this.filter_default);
           });
         }
@@ -94,10 +99,11 @@ export class AwardsComponent implements OnInit {
   }
 
   async Permisoeliminar(){
-    let rol_id = Number(localStorage.getItem('rol_id'));
-    let permiso_id = 8;
-    const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol_id, permiso_id));
-    this.permisos = promesa;
+    let rolId = Number(localStorage.getItem('rol_id'));
+    let permiso = await lastValueFrom(this.permisos_api.getPermisosbyName('Eliminar Premio'));
+    let permissionId = Number(permiso[0].id);
+    const promise = await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rolId, permissionId));
+    this.permisos = promise;
   }
 
   filter(filter: string){

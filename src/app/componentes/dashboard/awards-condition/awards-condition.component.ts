@@ -9,6 +9,7 @@ import { AwardsService } from 'src/app/servicios/awards/awards.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-awards-condition',
@@ -18,16 +19,16 @@ import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 export class AwardsConditionComponent implements OnInit {
 
   Filters = [
-    {id: '?is_active=true', name: 'Roles Activos'},
-    {id: '?is_active=false', name: 'Roles Inactivos'},
-    {id: '?ordering=-created', name: 'Ultimos Roles Creados'},
-    {id: '?ordering=created', name: 'Primeros Roles Creados'},
+    {id: '?is_approved=false', name: 'Premios Condicionados Pendientes'},
+    {id: '?is_approved=true', name: 'Premios Condicionados Finalizados'},
+    {id: '?ordering=start_date', name: 'Premios Condicionados por Fecha de Inicio'},
+    {id: '?ordering=end_date', name: 'Premios Condicionados por Fecha de Finalización'},
   ]
 
-  filter_default = '?is_active=true'
+  filter_default = '?ordering=start_date'
 
   Titulo = "Premios Condicionados";
-  displayedColumns: string[] = ['id', 'award', 'game','amount','start_date','end_date', 'is_active', 'Acciones']
+  displayedColumns: string[] = ['id', 'award', 'game','start_date','end_date', 'is_approved', 'Acciones']
   dataSource !: MatTableDataSource<any>;
   permisos:any = [];
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -65,15 +66,47 @@ export class AwardsConditionComponent implements OnInit {
     this.cargarPremios(filter);
   }
   agregarPremios(){
-    alert("Agregar Premios");
+    this.router.navigate(['dashboard/premios/condicion/crear']);
   }
   verPremios(id: number){
-    alert("Ver Premios");
+    this.router.navigate(['dashboard/premios/condicion/visualizar', id]);
   }
   editarPremios(id: number){
-    alert("Editar Premios");
+    this.router.navigate(['dashboard/premios/condicion/editar', id]);
   }
-  eliminarPremios(id: number){
-    alert("Eliminar Premios");
+  async eliminarPremios(id: number){
+    await this.Permisoeliminar();
+    console.log(this.permisos.length);
+    if (this.permisos.length > 0) {
+      const options = {
+        title: 'ELIMINAR PREMIO',
+        message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL PREMIO?',
+        cancelText: 'CANCELAR',
+        confirmText: 'CONFIRMAR'
+      };
+      this.dialogService.open(options);
+      this.dialogService.confirmed().subscribe(confirmed => {
+        if (confirmed) {
+          this.premiosCondicionSrv.deleteAwardCondition(id).subscribe(
+            (data) => {
+            this.snackbar.mensaje("Premio Condicionado Eliminado Existosamente");
+            this.cargarPremios(this.filter_default);
+          },
+          (err) => {
+            this.dialogService.error(err.error)
+            this.cargarPremios(this.filter_default);
+          });
+        }
+      });
+    } else {
+      this.snackbar.mensaje('No tienes permisos para Eliminar Premios Condicionados');
+    }
+  }
+  async Permisoeliminar(){
+    let rolId = Number(localStorage.getItem('rol_id'));
+    let permiso = await lastValueFrom(this.permisos_api.getPermisosbyName('Eliminar Condicion de Premio'));
+    let permissionId = Number(permiso[0].id);
+    const promise = await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rolId, permissionId));
+    this.permisos = promise;
   }
 }

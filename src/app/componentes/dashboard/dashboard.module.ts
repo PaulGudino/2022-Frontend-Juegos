@@ -42,6 +42,8 @@ import { CreateAwardsConditionComponent } from './awards-condition/create-awards
 import { PublicityComponent } from './publicity/publicity.component';
 import { AddPublicityComponent } from './publicity/add-publicity/add-publicity.component';
 import { BannerPublicityComponent } from './publicity/banner-publicity/banner-publicity.component';
+import { EditAwardsConditionComponent } from './awards-condition/edit-awards-condition/edit-awards-condition.component';
+import { ViewAwardsConditionComponent } from './awards-condition/view-awards-condition/view-awards-condition.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,8 @@ import { BannerPublicityComponent } from './publicity/banner-publicity/banner-pu
     PublicityComponent,
     AddPublicityComponent,
     BannerPublicityComponent,
+    EditAwardsConditionComponent,
+    ViewAwardsConditionComponent,
   ],
   imports: [
     SharedModule,

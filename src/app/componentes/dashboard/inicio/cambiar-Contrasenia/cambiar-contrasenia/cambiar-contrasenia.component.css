@@ -1,11 +1,12 @@
 mat-form-field{
-    width: 97%;
-    margin: 10px 20px;
+    width: 45%;
+    margin: 0 20px;
+    margin-bottom: 15px;
 }
-
 .container{
     margin-top: 20px;
 }
+
 .container_botones{
     display: flex;
     justify-content: center;
@@ -15,4 +16,35 @@ mat-form-field{
 
 .container_botones button{
     margin: 0 10px;
+    background-color: var(--color-cafe);
+}
+.container_botones button:hover{
+    background-color: var(--color-principal);
+    color: var(--color-fondo-secundario);
+}
+.mat-toolbar{
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-principal);
+}
+.input_form{
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 40px;
+}
+.mat-hint{
+    color: var(--color-principal);
+}
+.mat-error{
+    color: var(--color-principal);
+}
+label{
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+mat-card{
+    background-color: var(--color-fondo-principal);
 }
