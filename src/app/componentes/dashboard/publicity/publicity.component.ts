@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicityService } from 'src/app/servicios/publicity/publicity.service';
-import { ManagePublicityService } from 'src/app/servicios/publicity/manage-publicity.service';
+import {DashboardPublicityService} from '../../../servicios/publicity/dashboardPublicity/dashboard-publicity.service'
 import { Publicity } from 'src/app/interfaces/publicity/publicity';
 
 @Component({
@@ -15,18 +15,24 @@ export class PublicityComponent implements OnInit {
 
   constructor(
    private publicity: PublicityService,
-   private managePublicityService: ManagePublicityService
+   private dashboardPublicityService: DashboardPublicityService
   ) { }
 
   ngOnInit(): void {
    this.publicity.getPublicityList().subscribe(
       (data => {
-         this.managePublicityService.loadData(data);
-         this.top_publicity = this.managePublicityService.getTopPublicity();
-         this.bottom_publicity = this.managePublicityService.getBottomPublicity();
-
+         console.log(data[0])
+         this.dashboardPublicityService.changeTopPublicity(data[0].image)
+         this.dashboardPublicityService.changeBottomPublicity(data[1].image)
+         this.top_publicity = this.dashboardPublicityService.getTopPublicity()
+         this.bottom_publicity = this.dashboardPublicityService.getBottomPublicity();
       })
    )
+  }
+
+  changePublicity(publicity: string) {
+
+
   }
 
 }

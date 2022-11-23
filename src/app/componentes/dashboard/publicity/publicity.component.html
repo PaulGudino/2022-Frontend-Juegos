@@ -5,20 +5,21 @@
 
 <div class="publicity-container">
    <div class="publicity__changes">
-      <app-add-publicity title="Publicidad Superior"></app-add-publicity>
-      <app-add-publicity title="Publicidad Inferior"></app-add-publicity>
+      <app-add-publicity
+         [isTop]="true"
+         title="Publicidad Superior"
+      ></app-add-publicity>
+      <app-add-publicity
+         [isTop]="false"
+         title="Publicidad Inferior"
+      ></app-add-publicity>
+      <app-button-primary title="Guardar"></app-button-primary>
    </div>
    <div class="publicity__view">
       <div class="view-container">
-         <app-banner-publicity
-            class="top-publicity"
-            [urlPublicity]="top_publicity"
-         ></app-banner-publicity>
+         <app-banner-publicity [isTop]="true"></app-banner-publicity>
          <div class="view-menu"></div>
-         <app-banner-publicity
-            class="bottom_publicity"
-            [urlPublicity]="bottom_publicity"
-         ></app-banner-publicity>
+         <app-banner-publicity [isTop]="false"></app-banner-publicity>
       </div>
    </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
+import { DashboardPublicityService } from 'src/app/servicios/publicity/dashboardPublicity/dashboard-publicity.service';
 
 @Component({
   selector: 'app-banner-publicity',
@@ -6,11 +7,29 @@ import { Component, OnInit,Input } from '@angular/core';
   styleUrls: ['./banner-publicity.component.css']
 })
 export class BannerPublicityComponent implements OnInit {
-   @Input() urlPublicity: string = '../../../assets/publicity.png'
+   urlPublicity: string = this.dashboardPublicityService.getTopPublicity()
+   @Input() isTop:boolean = true;
 
-  constructor() { }
+  constructor(
+   public dashboardPublicityService:DashboardPublicityService
+  ) {
+   console.log(this.urlPublicity)
+  }
 
   ngOnInit(): void {
+   // this.checkPublicity()
   }
+
+  checkPublicity(): void {
+   console.log('entra a check')
+   if(this.isTop) {
+      this.urlPublicity = this.dashboardPublicityService.getTopPublicity();
+      console.log(this.urlPublicity)
+   }else{
+      this.urlPublicity = this.dashboardPublicityService.getBottomPublicity();
+   }
+  }
+
+
 
 }

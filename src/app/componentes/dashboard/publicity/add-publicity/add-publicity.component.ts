@@ -1,6 +1,7 @@
-import { Component, OnInit, Input,ElementRef,ViewChild } from '@angular/core';
+import { Component, OnInit, Input,ElementRef,ViewChild,Output, EventEmitter } from '@angular/core';
 import { ImageService } from 'src/app/servicios/image/image.service';
 import { SnackbarService } from './../../../../servicios/snackbar/snackbar.service';
+import {DashboardPublicityService} from '../../../../servicios/publicity/dashboardPublicity/dashboard-publicity.service'
 
 @Component({
   selector: 'app-add-publicity',
@@ -18,11 +19,15 @@ export class AddPublicityComponent implements OnInit {
    imagen!:File;
 
 
+
    @Input() title: string=''
+   @Input() isTop: boolean = true;
+   @Output() cambioPrevisualizacion = new EventEmitter<string>();
 
   constructor(
    private imageSrv: ImageService,
    private snackbar: SnackbarService,
+   private dashboardPublicity: DashboardPublicityService
 
   ) { }
 
@@ -35,17 +40,21 @@ export class AddPublicityComponent implements OnInit {
 
    this.fileToUpload = this.imageSrv.captureFile(event);
    if (this.fileToUpload) {
-      console.log('reconoce')
      this.imageSrv.extraerBase64(this.fileToUpload).then((imagen: any) => {
      this.previsulizacion = imagen.base;
+     this.cambioPrevisualizacion.emit(this.previsulizacion)
+
+     if(this.isTop){
+        this.dashboardPublicity.changeTopPublicity(this.previsulizacion)
+     }else{
+      this.dashboardPublicity.changeBottomPublicity(this.previsulizacion)
+     }
      });
    }else{
-      console.log('reconoce que fallo')
      this.previsulizacion = this.img_upload;
      this.InputVar.nativeElement.value = "";
      this.snackbar.mensaje('Solo se permiten imagenes');
    }
  }
-
 
 }
