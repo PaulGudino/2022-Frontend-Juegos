@@ -90,11 +90,14 @@ export class CreateAwardsConditionComponent implements OnInit {
           let formData: FormData = new FormData();
 
           let game = 1;
+          let user_register = localStorage.getItem('user_id');
 
           formData.append('start_date', this.startDate.toISOString().split('.')[0]);
           formData.append('end_date', this.endDate.toISOString().split('.')[0]);
           formData.append('award', this.form.get('award')?.value);
           formData.append('game', game.toString());
+          formData.append('user_register', user_register!);
+          formData.append('user_modify', user_register!);
 
           this.awardConditionSrv.postAwardCondition(formData).subscribe(
             (res) => {

@@ -30,13 +30,14 @@ export class ViewAwardsComponent implements OnInit {
     user_register: '',
     user_modify: '',
     category: '',
-    juego: ''
+    game: ''
   };
 
   ngOnInit(): void {
     let premioid = this.activerouter.snapshot.paramMap.get('id');
     this.award.getAwardbyIdVisualizer(Number(premioid)).subscribe((data) => {
       this.premioget = data;
+      console.log(this.premioget);
     })
   }
   regresarPremios(){

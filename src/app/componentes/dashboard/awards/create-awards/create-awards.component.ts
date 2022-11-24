@@ -29,7 +29,7 @@ export class CreateAwardsComponent implements OnInit {
     {id: 'C', name: 'Común'},
   ]
   Juegos = [
-    {id:'T', name: 'Traga Monedas'},
+    {id:'1', name: 'Tragamonedas'},
   ]
 
   constructor(
@@ -96,9 +96,10 @@ export class CreateAwardsComponent implements OnInit {
           formData.append('initial_stock', this.form.get('initial_stock')?.value);
           formData.append('is_active', this.form.get('is_active')?.value);
           formData.append('category', this.form.get('category')?.value);
-          formData.append('juego', this.form.get('juego')?.value);
+          formData.append('game', this.form.get('juego')?.value);
           formData.append('imagen', this.imagen, this.imagen.name);
           formData.append('user_register', user_register!);
+          formData.append('user_modify', user_register!);
 
           this.awardSrv.postAward(formData).subscribe(
             (res) => {

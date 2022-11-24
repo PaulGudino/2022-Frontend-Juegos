@@ -32,6 +32,30 @@
                 </div>
                 <div class="container">
                     <div class="datos">
+                        <mat-label>Usuario que registró la condición</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{award_condition.user_register}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Último usuario que modificó la condición</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{award_condition.user_modify}}</mat-list-item>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="datos">
+                        <mat-label>Fecha de Creación</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{award_condition.created}}</mat-list-item>
+                    </div>
+                    <div class="datos">
+                        <mat-label>Última Modificación</mat-label>
+                        <br>
+                        <mat-list-item role="listitem">{{award_condition.modified}}</mat-list-item>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="datos">
                         <mat-label>Duración</mat-label>
                         <br>
                         <mat-list-item role="listitem">{{award_condition.duration}} días</mat-list-item>

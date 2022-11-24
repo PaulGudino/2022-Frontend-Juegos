@@ -32,7 +32,7 @@ export class EditAwardsComponent implements OnInit {
     {id: 'C', name: 'Común'},
   ]
   Juegos = [
-    {id:'T', name: 'Traga Monedas'},
+    {id:'1', name: 'Tragamonedas'},
   ]
   
   constructor(
@@ -61,14 +61,13 @@ export class EditAwardsComponent implements OnInit {
     this.awardSrv.getAwardbyId(Number(award_id)).subscribe(
       (res) => {
         this.getPremio = res;
-        console.log(this.getPremio.imagen);
         this.form.patchValue({
           name: this.getPremio.name,
           description: this.getPremio.description,
           initial_stock: this.getPremio.initial_stock,
           is_active: this.getPremio.is_active.toString(),
           category: this.getPremio.category,
-          juego: this.getPremio.juego,
+          juego: this.getPremio.game.toString(),
         })
         this.previsulizacion = this.getPremio.imagen;
       },
@@ -117,7 +116,7 @@ export class EditAwardsComponent implements OnInit {
           formData.append('initial_stock', this.form.get('initial_stock')?.value);
           formData.append('is_active', this.form.get('is_active')?.value);
           formData.append('category', this.form.get('category')?.value);
-          formData.append('juego', this.form.get('juego')?.value);
+          formData.append('game', this.form.get('juego')?.value);
           if (this.fileToUpload) {
             this.imagen = this.fileToUpload;
             formData.append('imagen', this.imagen, this.imagen.name);

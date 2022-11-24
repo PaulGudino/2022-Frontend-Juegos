@@ -90,7 +90,7 @@ label{
     height: 40px;
   }
 .file-select::before {
-    background-color: var(--color-principal);
+    background-color: #fff;
     color: var(--color-fondo-secundario);
     font-weight: bold;
     display: flex;
