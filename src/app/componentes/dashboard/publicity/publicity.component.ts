@@ -46,6 +46,7 @@ export class PublicityComponent implements OnInit {
          cancelText: 'CANCELAR',
          confirmText: 'CREAR'
        };
+
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
          if(confirmed){
