@@ -6,13 +6,13 @@
       <img
          *ngIf="isTop"
          class="publicity_img"
-         [src]="dashboardPublicityService.getTopPublicity()"
+         [src]="dashboardPublicityService.getTopPublicityImage()"
          alt="publicity-img"
       />
       <img
          *ngIf="!isTop"
          class="publicity_img"
-         [src]="dashboardPublicityService.getBottomPublicity()"
+         [src]="dashboardPublicityService.getBottomPublicityImage()"
          alt="publicity-img"
       />
    </figure>

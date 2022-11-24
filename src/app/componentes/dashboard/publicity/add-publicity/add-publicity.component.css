@@ -11,7 +11,7 @@
    height: 40px;
  }
 .file-select::before {
-   background-color: white;
+   background-color: var(--color-principal);
    color: var(--color-fondo-secundario);
    font-weight: bold;
    display: flex;

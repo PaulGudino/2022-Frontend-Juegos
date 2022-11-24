@@ -7,28 +7,18 @@ import { DashboardPublicityService } from 'src/app/servicios/publicity/dashboard
   styleUrls: ['./banner-publicity.component.css']
 })
 export class BannerPublicityComponent implements OnInit {
-   urlPublicity: string = this.dashboardPublicityService.getTopPublicity()
+
    @Input() isTop:boolean = true;
 
   constructor(
    public dashboardPublicityService:DashboardPublicityService
-  ) {
-   console.log(this.urlPublicity)
-  }
+  ) {}
 
   ngOnInit(): void {
-   // this.checkPublicity()
+
   }
 
-  checkPublicity(): void {
-   console.log('entra a check')
-   if(this.isTop) {
-      this.urlPublicity = this.dashboardPublicityService.getTopPublicity();
-      console.log(this.urlPublicity)
-   }else{
-      this.urlPublicity = this.dashboardPublicityService.getBottomPublicity();
-   }
-  }
+
 
 
 

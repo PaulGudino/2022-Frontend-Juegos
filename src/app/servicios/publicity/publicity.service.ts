@@ -19,5 +19,14 @@ export class PublicityService {
   getPublicityList():Observable<Publicity[]> {
     return this.http.get<Publicity[]>(this.url+'api/publicity/')
   }
+  updatePublicity(){
+
+
+  }
+  put(id: number, data: FormData){
+   return this.http.put(this.url+'api/publicity/'+id+'/', data).subscribe((data) => {
+      console.log(data);
+   })
+ }
 
 }

@@ -37,6 +37,7 @@ import { GameDateComponent } from './game-date/game-date.component';
 import { AwardsConditionComponent } from './awards-condition/awards-condition.component';
 import { CreateAwardsConditionComponent } from './awards-condition/create-awards-condition/create-awards-condition.component';
 import { ViewAwardsConditionComponent } from './awards-condition/view-awards-condition/view-awards-condition.component';
+import { SaveScreenComponent } from './save-screen/save-screen.component';
 
 
 const routes: Routes = [
@@ -106,6 +107,7 @@ const routes: Routes = [
     {path: 'juego/fecha', component : GameDateComponent},
     {path: 'juego/seleccion', component : GameSelectionComponent},
     {path: 'juego/publicidad', component : PublicityComponent},
+    {path: 'juego/salvapantallas', component : SaveScreenComponent},
 
   ]},
 ];

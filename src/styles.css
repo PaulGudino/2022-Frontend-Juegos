@@ -75,7 +75,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    width: 0px !important;
 }
 /*
-Sobreescritura componetes angular material User components */
+inputs
+*/
+.input-global{
+   background: #ffffff;
+   border: none;
+   outline: none;
+   border-radius: 10px;
+   padding: 0 10px;
+   height: 40px;
+}
+/*Sobreescritura componetes angular material User components */
 
 .filter .mat-select-placeholder,
 .filter .mat-select-min-line{

@@ -26,19 +26,20 @@ export class StylesService {
   constructor(
   ) { }
 
-  loadData(style:Styles){
-   this.style = style;
-  }
+   loadData(style:Styles){
+      this.style = style;
+   }
 
-  getTitleButtonScreensaver():string{
-   return this.style.title_button_screensaver;
+   getTitleButtonScreensaver():string{
+      return this.style.title_button_screensaver;
+   }
+   getLogoUrl():string{
+      return this.style.image_logo_game;
   }
-  getLogoUrl():string{
-   return this.style.image_logo_game;
-  }
-  getStyles(){
-   return this.style
-  }
+   getStyles(){
+      return this.style
+   }
 
 
-}
+
+   }

@@ -13,7 +13,10 @@
          [isTop]="false"
          title="Publicidad Inferior"
       ></app-add-publicity>
-      <app-button-primary title="Guardar"></app-button-primary>
+      <app-button-primary
+         (click)="updatePublicity()"
+         title="Guardar"
+      ></app-button-primary>
    </div>
    <div class="publicity__view">
       <div class="view-container">

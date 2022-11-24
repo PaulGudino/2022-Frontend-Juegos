@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Publicity } from 'src/app/interfaces/publicity/publicity';
+
 
 @Injectable({
   providedIn: 'root'
@@ -6,23 +8,52 @@ import { Injectable } from '@angular/core';
 export class DashboardPublicityService {
    top_publicity:string = '';
    bottom_publicity:string = '';
+   publicityList:Publicity[]=[]
+   topImageFile:any;
+   bottomImageFile:any;
 
   constructor() { }
 
-  getTopPublicity():string {
+  loadData(data:Publicity[]){
+   this.publicityList = data
+
+  }
+  getTopPublicity():Publicity{
+   return this.publicityList[0];
+  }
+  getBottomPublicity():Publicity{
+   return this.publicityList[1];
+  }
+
+  getTopPublicityImage():string {
    return this.top_publicity;
   }
 
-  getBottomPublicity():string {
+  getBottomPublicityImage():string {
    return this.bottom_publicity;
   }
 
-  changeTopPublicity(publicity:string) {
+  changeTopPublicityImage(publicity:string) {
    this.top_publicity = publicity;
   }
 
-  changeBottomPublicity(publicity:string) {
+  changeBottomPublicityImage(publicity:string) {
    this.bottom_publicity = publicity;
+  }
+
+  getTopImageFile(){
+   return this.topImageFile;
+  }
+
+  getBottomImageFile(){
+   return this.bottomImageFile;
+  }
+  setTopImageFile(file:any){
+   this.topImageFile = file;
+  }
+
+  setBottomImageFile(file:any){
+   this.bottomImageFile = file;
   }
 
 }
