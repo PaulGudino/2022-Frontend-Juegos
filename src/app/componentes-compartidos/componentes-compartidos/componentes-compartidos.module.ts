@@ -4,6 +4,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { SharedModule } from 'src/app/componentes/shared/shared.module';
 import { ButtonPrimaryComponent } from './button-primary/button-primary.component';
+import { ButtonGameComponent } from './button-game/button-game/button-game.component';
 
 
 
@@ -11,7 +12,8 @@ import { ButtonPrimaryComponent } from './button-primary/button-primary.componen
   declarations: [
     LoadingComponent,
     ConfirmDialogComponent,
-    ButtonPrimaryComponent
+    ButtonPrimaryComponent,
+    ButtonGameComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { ButtonPrimaryComponent } from './button-primary/button-primary.componen
     LoadingComponent,
     ConfirmDialogComponent,
     ButtonPrimaryComponent,
+    ButtonGameComponent
   ]
 })
 export class ComponentesCompartidosModule { }

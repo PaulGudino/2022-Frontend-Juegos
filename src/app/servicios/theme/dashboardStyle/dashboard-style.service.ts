@@ -100,7 +100,6 @@ public  set_color_text(color:string){
 
 }
 
-
 public get_title_winner() {
    return this.style.title_winner
 }

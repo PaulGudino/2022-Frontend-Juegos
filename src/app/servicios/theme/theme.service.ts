@@ -15,8 +15,8 @@ export class ThemeService {
   url = this.puente.geturl();
 
 
-  getDesignInformation():Observable<Styles>{
-   return this.http.get<Styles>(`${this.url}api/design/`)
+  getDesignInformation():Observable<Styles[]>{
+   return this.http.get<Styles[]>(`${this.url}api/design/`)
   }
 
   updateDesgin(id:number,data:FormData){

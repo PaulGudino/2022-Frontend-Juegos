@@ -16,7 +16,6 @@ import { RecuperarComponent } from './componentes/login/recuperar/recuperar.comp
 import { ResetComponent } from './componentes/login/reset/reset/reset.component';
 import { ComponentesCompartidosModule } from './componentes-compartidos/componentes-compartidos/componentes-compartidos.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,

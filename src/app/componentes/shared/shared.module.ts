@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {FormsModule} from '@angular/forms'
 //Modulos
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -57,6 +57,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatNativeDateModule,
     NgbModule,
     MatGridListModule,
+    FormsModule,
   ],
   exports: [
     CommonModule,
@@ -83,6 +84,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatNativeDateModule,
     NgbModule,
     MatGridListModule,
+    FormsModule
   ],
 
 })
