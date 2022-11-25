@@ -1,6 +1,9 @@
+<!-- Script for QRCode generator -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <!-- Toolbar -->
 <mat-toolbar>
-    <span>{{actionName}} {{singularName}} : {{currentTicket.id}} {{currentTicket.invoice_number} </span>
+    <span>{{actionName}} {{singularName}} : {{currentTicket.id}} {{currentTicket.invoice_number}} </span>
 </mat-toolbar>
 
 <!-- Form -->
@@ -8,7 +11,7 @@
     <mat-card>
         <form [formGroup]="formGroup">
 
-            <!-- Invoice Number Input--->
+            <!-- Invoice Number Input -->
             <mat-form-field>
                 <mat-label>Número de Factura</mat-label>
                 <input matInput #input autocomplete="off" formControlName="invoice_number" type="text" required

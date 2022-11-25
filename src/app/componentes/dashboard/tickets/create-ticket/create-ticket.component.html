@@ -1,17 +1,20 @@
-<!-- Toolbar -->
+<!-- Script for QRCode generator -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
+<!-- Toolbar -->
 <mat-toolbar>
-    <span>Nuevo Ticket</span>
+    <span>{{actionName}} {{singularName}} </span>
 </mat-toolbar>
 
-<!-- Form -->
+<!-- QRCode Button -->
 
+
+<!-- Form -->
 <div class="container">
     <mat-card>
         <form [formGroup]="formGroup">
 
             <!-- Invoice Number Input--->
-
             <mat-form-field>
                 <mat-label>Número de Factura</mat-label>
                 <input matInput #input autocomplete="off" formControlName="invoice_number" type="text" required
@@ -26,7 +29,6 @@
             </mat-form-field>
 
             <!-- Select State -->
-
             <mat-form-field >
                 <mat-label>Estado</mat-label>
                 <mat-select formControlName="state" mat-select placeholder="Seleccione una opción">
@@ -40,7 +42,6 @@
             </mat-form-field>
 
             <!-- Select Client -->
-
             <mat-form-field >
                 <mat-label>Cliente</mat-label>
                 <mat-select formControlName="client" mat-select placeholder="Seleccione una opción">
@@ -55,7 +56,6 @@
             </mat-form-field>
 
             <!-- Select Game -->
-
             <mat-form-field >
                 <mat-label>Juego</mat-label>
                 <mat-select formControlName="game" mat-select placeholder="Seleccione una opción">
@@ -79,7 +79,7 @@
 
             <button mat-raised-button color="primary" (click)="create()">
                 <mat-icon>done</mat-icon>
-                Crear
+                {{actionName}}
             </button>
         </div>
     </mat-card>
