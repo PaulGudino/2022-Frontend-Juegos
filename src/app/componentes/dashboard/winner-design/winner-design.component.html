@@ -1,0 +1,111 @@
+<p>winner-design works!</p>
+<mat-toolbar class="background-navy-primary green-primary">
+   <span>Resultado</span>
+   <span class="example-spacer"></span>
+</mat-toolbar>
+
+<div class="publicity-container">
+   <div class="publicity__changes">
+      <div class="savescreen-info__container">
+         <p class="publicity__title white-color">Imagen Ganador:</p>
+         <div class="file-select" id="src-file1">
+            <input
+               class="file-input"
+               #takeInput
+               (change)="capturarFile($event)"
+               type="file"
+               name="src-file1"
+               aria-label="Archivo"
+            />
+         </div>
+         <div class="buttons-container">
+            <app-button-primary
+               (click)="updateWinner()"
+               title="Guardar"
+            ></app-button-primary>
+            <app-button-primary
+               (click)="cancel()"
+               title="Cancelar"
+               backgroundColor="#d4d4d4"
+            ></app-button-primary>
+         </div>
+      </div>
+   </div>
+   <div class="publicity__view">
+      <div class="view-container">
+         <app-banner-publicity [isTop]="true"></app-banner-publicity>
+         <div class="view-menu">
+            <app-logo
+               class="logo-container"
+               height="1.5rem"
+               [isHome]="false"
+               [isBackground]="false"
+               [urlImage]="dashStyle.get_image_logo_game()"
+            ></app-logo>
+
+            <div class="information-game-container">
+               <div class="info-game__text">
+                  <p
+                     class="info-game__text"
+                     [ngStyle]="{ color: dashStyle.get_color_text() }"
+                  >
+                     {{ availableSpin }}
+                  </p>
+               </div>
+            </div>
+            <div class="spinner__container">
+               <figure class="award-box-container">
+                  <img
+                     class="awards-box"
+                     [src]="dashStyle.get_image_machine_game()"
+                     alt="cajon-premios"
+                  />
+               </figure>
+               <div class="awards-container">
+                  <div class="awards-column">
+                     <figure class="award-image-container">
+                        <img
+                           src="../../../../../assets/img/logoejemplo.png"
+                           alt=""
+                        />
+                     </figure>
+                  </div>
+                  <div class="awards-column">
+                     <figure class="award-image-container">
+                        <img
+                           src="../../../../../assets/img/logoejemplo.png"
+                           alt=""
+                        />
+                     </figure>
+                  </div>
+                  <div class="awards-column">
+                     <figure class="award-image-container">
+                        <img
+                           src="../../../../../assets/img/logoejemplo.png"
+                           alt=""
+                        />
+                     </figure>
+                  </div>
+               </div>
+               <figure class="award-box-container congratulations-image">
+                  <img
+                     class="awards-box"
+                     [src]="previsulizacion"
+                     alt="cajon-premios"
+                  />
+               </figure>
+               <!-- <div class="hide-top"></div>
+               <div class="hide-bottom"></div> -->
+            </div>
+
+            <app-button-game
+               class="menu-btn"
+               title="Girar"
+               styledPadding=".5rem 1rem"
+               fontSize="1rem"
+            ></app-button-game>
+         </div>
+         <app-banner-publicity [isTop]="false"></app-banner-publicity>
+      </div>
+   </div>
+</div>

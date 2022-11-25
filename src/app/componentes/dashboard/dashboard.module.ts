@@ -45,6 +45,9 @@ import { BannerPublicityComponent } from './publicity/banner-publicity/banner-pu
 import { EditAwardsConditionComponent } from './awards-condition/edit-awards-condition/edit-awards-condition.component';
 import { ViewAwardsConditionComponent } from './awards-condition/view-awards-condition/view-awards-condition.component';
 import { SaveScreenComponent } from './save-screen/save-screen.component';
+import { ScanCodeComponent } from './scan-code/scan-code.component';
+import { DesignComponent } from './design/design.component';
+import { WinnerDesignComponent } from './winner-design/winner-design.component';
 
 @NgModule({
     declarations: [
@@ -93,6 +96,9 @@ import { SaveScreenComponent } from './save-screen/save-screen.component';
         EditAwardsConditionComponent,
         ViewAwardsConditionComponent,
         SaveScreenComponent,
+        ScanCodeComponent,
+        DesignComponent,
+        WinnerDesignComponent,
     ],
     imports: [
         SharedModule,
