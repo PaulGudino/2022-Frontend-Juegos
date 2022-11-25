@@ -93,7 +93,7 @@
                >
                <input
                   type="number"
-                  class="form__input col-4"
+                  class="input-global col-4 ms-4"
                   id="percent_win"
                   formControlName="percent_win"
                   required
@@ -105,7 +105,7 @@
                >
                <input
                   type="number"
-                  class="form__input col-4"
+                  class="input-global col-4 ms-4"
                   id="limit_winners"
                   formControlName="limit_winners"
                   required
@@ -114,10 +114,22 @@
                <p class="ganadores__limit-message no-pass-limit">
                   {{ limitMessage }}
                </p>
+
+               <label class="total col-8 mt-4" for="limit_winners"
+                  >Numero de intentos</label
+               >
+               <input
+                  type="number"
+                  class="input-global col-4 ms-4"
+                  id="attempts number"
+                  formControlName="attempts_number"
+                  required
+               />
             </form>
-            <button (click)="addProbabilityConfig()">
-               anadir configuracion
-            </button>
+            <app-button-primary
+               (click)="addProbabilityConfig()"
+               title="Guardar"
+            ></app-button-primary>
          </div>
       </div>
    </div>
