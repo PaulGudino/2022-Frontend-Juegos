@@ -21,7 +21,7 @@ export class AwardsConditionService {
     return this.http.get(this.url+'api/awardfilter/?is_active=true');
   }
   getAwardConditionbyId(id: number){
-    return this.http.get(this.url+'api/awardcondition/'+id);
+    return this.http.get(this.url+'api/awardcondition/'+id + '/');
   }
   postAwardCondition(data: FormData){
     return this.http.post(this.url+'api/awardcondition/', data);
@@ -30,6 +30,6 @@ export class AwardsConditionService {
     return this.http.put(this.url+'api/awardcondition/'+id+'/', data);
   }
   deleteAwardCondition(id: number){
-    return this.http.delete(this.url+'api/awardcondition/'+id);
+    return this.http.delete(this.url+'api/awardcondition/'+id + '/');
   }
 }

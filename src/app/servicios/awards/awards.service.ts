@@ -22,10 +22,10 @@ export class AwardsService {
     return this.http.get<getAwardList[]>(this.url+'api/awardlist/');
   }
   getAwardbyId(id: number):Observable<getAwardList>{
-    return this.http.get<getAwardList>(this.url+'api/award/'+id);
+    return this.http.get<getAwardList>(this.url+'api/award/'+id+'/');
   }
   getAwardbyIdVisualizer(id: number):Observable<getAwardList>{
-    return this.http.get<getAwardList>(this.url+'api/awardlist/'+id);
+    return this.http.get<getAwardList>(this.url+'api/awardlist/'+id + '/');
   }
   postAward(data: FormData){
     return this.http.post(this.url+'api/award/', data);
@@ -34,7 +34,7 @@ export class AwardsService {
     return this.http.put(this.url+'api/award/'+id+'/', data);
   }
   deleteAward(id: number){
-    return this.http.delete(this.url+'api/award/'+id);
+    return this.http.delete(this.url+'api/award/'+id + '/');
   }
   getFilterAward(filter: string):Observable<getAwardList[]>{ 
     return this.http.get<getAwardList[]>(this.url+'api/awardfilter/'+filter);

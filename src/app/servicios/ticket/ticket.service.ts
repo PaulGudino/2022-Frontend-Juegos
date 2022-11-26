@@ -20,7 +20,7 @@ export class TicketService {
     return this.http.get<Ticket[]>(this.url+'api/ticket/');
   }
   getById(id: number):Observable<Ticket>{
-    return this.http.get<Ticket>(this.url+'api/ticket/'+id);
+    return this.http.get<Ticket>(this.url+'api/ticket/'+id + '/');
   }
   post(form: FormData){
     return this.http.post(this.url+'api/ticket/', form);
@@ -29,7 +29,7 @@ export class TicketService {
     return this.http.put(this.url+'api/ticket/'+id+'/', form);
   }
   delete(id: number){
-    return this.http.delete(this.url+'api/ticket/'+id);
+    return this.http.delete(this.url+'api/ticket/'+id + '/');
   }
 
 }

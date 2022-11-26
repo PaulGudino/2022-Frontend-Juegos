@@ -20,7 +20,7 @@ export class ClientService {
     return this.http.get<Client[]>(this.url+'api/client/');
   }
   getById(id: number):Observable<Client>{
-    return this.http.get<Client>(this.url+'api/client/'+id);
+    return this.http.get<Client>(this.url+'api/client/'+id + '/');
   }
   post(form: FormData){
     return this.http.post(this.url+'api/client/', form);
@@ -29,7 +29,7 @@ export class ClientService {
     return this.http.put(this.url+'api/client/'+id+'/', form);
   }
   delete(id: number){
-    return this.http.delete(this.url+'api/client/'+id);
+    return this.http.delete(this.url+'api/client/'+id + '/');
   }
   getFilter(filter: string):Observable<Client[]>{    
     return this.http.get<Client[]>(this.url+'api/clientfilter/'+filter);

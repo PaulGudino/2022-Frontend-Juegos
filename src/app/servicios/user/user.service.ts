@@ -25,7 +25,7 @@ export class ApiService {
   }
 
   getUsuarioId(id:number):Observable<Usuarios>{
-    return this.http.get<Usuarios>(this.url+'api/user/'+id);
+    return this.http.get<Usuarios>(this.url+'api/user/'+id + '/');
   }
 
   getRolbyName(name:string):Observable<Roles[]>{
@@ -41,7 +41,7 @@ export class ApiService {
   }
 
   deleteUsuario(id:number):Observable<Usuarios>{
-    return this.http.delete<Usuarios>(this.url+'api/user/'+id);
+    return this.http.delete<Usuarios>(this.url+'api/user/'+id + '/');
   }
 
   getRoles():Observable<Roles[]>{
