@@ -11,3 +11,17 @@ header, .dialog-message {
     align-items: center;
     width: 500px;
 }
+h1{
+    color: #fff
+}
+p{
+    color: #fff
+}
+button{
+    background: #3f3f43;
+    color: #fff;
+}
+button:hover{
+    background: #00ffc5;
+    color: #002130;
+}

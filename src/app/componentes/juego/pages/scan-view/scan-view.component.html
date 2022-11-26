@@ -1,30 +1,50 @@
 <div class="scan_container p-0 m-0">
-  <app-publicity></app-publicity>
-  <div class="scan_menu-container">
-    <figure class="menu-container_img-container">
-      <img class ="menu-container_img" src="../../../assets/comandato.png" alt="company-logo">
-    </figure>
-    <h2 class = "scan_title" *ngIf="titleScanState">{{title}}</h2>
-    <h2 class = "scan_title" *ngIf="selectedInputCode">Ingrese el codigo</h2>
-    <p *ngIf="selectedInputCode" class="explication-text">
-      {{explication}}
-    </p>
-    <figure *ngIf="selectedInputCode" class="menu-container_scan-img-container">
-      <img class ="menu-container_scan-img" src="../../../assets/scan-image.png" alt="scan-logo">
-    </figure>
-    <input type="text" #codeInput = "ngModel" [(ngModel)] = "code">
-    <app-keyboard></app-keyboard>
-    <app-generic-button
-    title="Continuar"
-    fontSize="1rem"
-    styledPadding="0.5rem 1rem"
-    ></app-generic-button>
+   <app-publicity [urlPublicity]="top_publicity"></app-publicity>
+   <div class="container-menu">
+      <app-logo [isBackground]="true" height="12rem"></app-logo>
+      <div class="scan-shadow"></div>
+      <div class="scan_menu-container">
+         <div class="menu-container_img-container">
+            <app-logo
+               [urlImage]="style.image_logo_game"
+               height="6rem"
+               [isHome]="false"
+            ></app-logo>
+         </div>
+         <div class="menu-info" *ngIf="scanState">
+            <h2 class="scan_title">Escanea el Codigo</h2>
+            <p class="explication-text">
+               {{ explication }}
+            </p>
+         </div>
+         <div class="menu-info" *ngIf="!scanState">
+            <h2 class="scan_title">Ingrese el codigo</h2>
+         </div>
 
+         <figure *ngIf="scanState" class="menu-container_scan-img-container">
+            <img
+               class="menu-container_scan-img"
+               src="../../../assets/img/codigoQR.png"
+               alt="scan-logo"
+            />
+         </figure>
+         <app-keyboard *ngIf="!scanState"></app-keyboard>
+         <input
+            (click)="changeView()"
+            class="btn menu__input"
+            type="text"
+            #codeInput="ngModel"
+            [(ngModel)]="code"
+         />
+         <app-generic-button
+            (click)="continueToGame()"
+            title="Continuar"
+            fontSize="1rem"
+            styledPadding="0.5rem 2rem"
+            class="mb-2"
+         ></app-generic-button>
+      </div>
+   </div>
 
-
-  </div>
-  <div class="scan_bottom-publicity_container">
-    <app-publicity></app-publicity>
-  </div>
-
+   <app-publicity [urlPublicity]="bottom_publicity"></app-publicity>
 </div>

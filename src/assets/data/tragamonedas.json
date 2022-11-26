@@ -1,0 +1,37 @@
+[
+    {
+        "nombre": "Fecha del Juego",
+        "icono": "date_range",
+        "ruta": "/tragamonedas/fecha_juego"
+    },
+    {
+        "nombre": "Ticket",
+        "icono": "local_activity",
+        "ruta": "/tragamonedas/tickets"
+    },
+    {
+        "nombre": "Partidas",
+        "icono": "person",
+        "ruta": "/tragamonedas/partidas"
+    },
+    {
+        "nombre": "Premios",
+        "icono": "redeem",
+        "ruta": "/tragamonedas/premios"
+    },
+    {
+        "nombre": "Premios Condicionados",
+        "icono": "event",
+        "ruta": "/tragamonedas/premios_condicionados"
+    },
+    {
+        "nombre": "Probabilidades",
+        "icono": "assessment",
+        "ruta": "/tragamonedas/probabilidades"
+    },
+    {
+        "nombre": "Configuración del Juego",
+        "icono": "settings",
+        "ruta": "/tragamonedas/configuracion"
+    }
+]

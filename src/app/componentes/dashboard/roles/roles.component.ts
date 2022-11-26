@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/servicios/usuarios/api.service';
+import { ApiService } from 'src/app/servicios/user/user.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { RolesService } from 'src/app/servicios/roles/roles.service';
@@ -16,6 +16,15 @@ import { RolesService } from 'src/app/servicios/roles/roles.service';
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent implements OnInit {
+
+  Filters = [
+    {id: '?is_active=true', name: 'Roles Activos'},
+    {id: '?is_active=false', name: 'Roles Inactivos'},
+    {id: '?ordering=-created', name: 'Ultimos Roles Creados'},
+    {id: '?ordering=created', name: 'Primeros Roles Creados'},
+  ]
+
+  filter_default = '?ordering=-created'
 
   Titulo = 'Roles';
   displayedColumns: string[] = ['id', 'name', 'description','created', 'is_active', 'Acciones']
@@ -34,7 +43,7 @@ export class RolesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cargarRoles();
+    this.cargarRoles(this.filter_default);
   }
   aplicarFiltro(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -44,8 +53,8 @@ export class RolesComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  cargarRoles(){
-    this.api.getRoles().subscribe((data) => {
+  cargarRoles(filter: string){
+    this.api.getRolesFilter(filter).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -60,7 +69,7 @@ export class RolesComponent implements OnInit {
   permisosRol(id:number){
     this.router.navigate(['dashboard/roles/permisos', id]);
   }
-  async eliminarRol(id:number){
+  eliminarRol(id:number){
     if(localStorage.getItem('rol_id') == '1'){
       const options = {
         title: 'ELIMINAR ROL',
@@ -74,11 +83,11 @@ export class RolesComponent implements OnInit {
           this.rolSrv.deleteRol(id).subscribe(
             (data) => {
             this.snackbar.mensaje('Rol Eliminado Exitosamente');
-            this.cargarRoles();
+            this.cargarRoles(this.filter_default);
           }
           , (error) => {
             this.dialogService.error(error.error);
-            this.cargarRoles();
+            this.cargarRoles(this.filter_default);
           }
           );
         }
@@ -86,5 +95,8 @@ export class RolesComponent implements OnInit {
     }else{
       this.snackbar.mensaje('No tienes permiso para Eliminar Roles');
     }
+  }
+  filter(filter: string){
+    this.cargarRoles(filter);
   }
 }

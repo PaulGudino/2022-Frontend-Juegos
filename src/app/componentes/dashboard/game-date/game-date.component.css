@@ -1,0 +1,54 @@
+p{
+   margin: 0;
+}
+.exit-icon{
+   width:3.5rem;
+   height:2rem;
+}
+.exit-container{
+   margin-top:1rem;
+   padding-bottom: 1rem;
+}
+.date-title{
+   margin: 1.5rem 0;
+}
+.calendar-container{
+   display: flex;
+   justify-content: space-around;
+
+}
+.calendar{
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+   width:40%
+}
+.calendar__card{
+   padding: 0 1rem;
+}
+
+.input-date{
+   margin: 1rem 0;
+   padding:0.5rem 1.5rem;
+   border:1px solid #00ffc5;
+   border-radius:15px;
+   font-weight:500;
+}
+.date-container{
+   height:100%;
+}
+
+.save-button{
+   align-self: flex-end;
+   margin-right: 2rem;
+   margin-bottom: 2rem;
+
+}
+
+.cancel-button{
+   align-self: flex-start;
+   margin-left: 2rem;
+}
+
+
+

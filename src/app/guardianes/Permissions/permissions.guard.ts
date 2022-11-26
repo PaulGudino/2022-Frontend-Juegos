@@ -19,8 +19,11 @@ export class PermissionsGuard implements CanActivate {
   state: RouterStateSnapshot
   ): Promise<boolean> {
 
-    let Permiso_id = Number(route.data['Permiso_id']);
     let Permiso_nombre = route.data['Permiso_nombre'];
+
+    const permiso = await lastValueFrom(this.permisos_api.getPermisosbyName(Permiso_nombre));
+
+    let Permiso_id = Number(permiso[0].id);
     
     let rol = Number(localStorage.getItem('rol_id'));
     const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol, Permiso_id));

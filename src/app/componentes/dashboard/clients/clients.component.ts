@@ -10,14 +10,6 @@ import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 
-/**
- * Reference taken from https://material.angular.io/components/table/examples
- */
-
-/**
- * @Table of clients with sorting, pagination and filtering
- */
-
 @Component({
   selector: 'app-clients',
   styleUrls: ['./clients.component.css'],
@@ -25,8 +17,18 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
 })
 export class ClientsComponent implements OnInit{
 
-  singularName : string = 'Cliente';
-  pluralName : string = 'Clientes';
+  Filters = [
+    {id: '?state=Activo', name: 'Clientes Activos'},
+    {id: '?state=Inactivo', name: 'Clientes Inactivos'},
+    {id: '?ordering=-created', name: 'Ultimos Clientes Creados'},
+    {id: '?ordering=created', name: 'Primeros Clientes Creados'},
+  ]
+
+  filter_default = '?ordering=-created'
+
+  singularName : string = 'cliente';
+  pluralName : string = 'clientes';
+  actionName : string = 'eliminar';
   permissions : any = [];
 
   displayedColumns : string[] = [
@@ -45,18 +47,18 @@ export class ClientsComponent implements OnInit{
   constructor(
     // Atributes of the user component
     private router : Router,
-    private api : ClientService,
-    private permissionsApi : PermisosService,
+    private clientAPI : ClientService,
+    private permissionAPI : PermisosService,
     private confirmDialog : ConfirmDialogService,
     private snackBar : SnackbarService,
   ) {}
 
   ngOnInit() : void {
-    this.loadClients();
+    this.loadAll(this.filter_default);
   }
   
-  loadClients() {
-    this.api.getClients().subscribe(
+  loadAll(filter : string) {
+    this.clientAPI.getFilter(filter).subscribe(
       (data) => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
@@ -65,7 +67,7 @@ export class ClientsComponent implements OnInit{
     )
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event : Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
     
@@ -74,24 +76,24 @@ export class ClientsComponent implements OnInit{
     }
   }
 
-  viewClient(id : number) {
-    this.router.navigate(['/dashboard/clientes/vizualizar/' + id]);
+  view(id : number) {
+    this.router.navigate(['/dashboard/' + this.pluralName +  '/vizualizar/' + id]);
   }
 
-  editClient(id : number) {
-    this.router.navigate(['/dashboard/clientes/editar/' + id]);
+  edit(id : number) {
+    this.router.navigate(['/dashboard/' + this.pluralName + '/editar/' + id]);
   }
 
-  async deleteClient(id : number) {
+  async delete(id : number) {
     await this.canDelete();
     if (this.permissions.length > 0) {
       this.showDeleteDialog();
       this.confirmDialog.confirmed().subscribe(confirmed => {
         if (confirmed) {
-          this.api.deleteClient(id).subscribe(
+          this.clientAPI.delete(id).subscribe(
             (data) => {
               this.snackBar.mensaje(this.singularName + ' eliminado exitosamente');
-              this.loadClients();
+              this.loadAll(this.filter_default);
             }
           )
         }
@@ -104,10 +106,10 @@ export class ClientsComponent implements OnInit{
 
   showDeleteDialog() {
       const DIALOGINFO = {
-        title : 'ELIMINAR ' + this.singularName.toUpperCase(),
-        message : '¿Está seguro de que quiere eliminar el cliente?',
-        cancelText : 'Cancelar',
-        confirmText : 'Eliminar'
+        title : this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
+        message : '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + '?',
+        cancelText : 'CANCELAR',
+        confirmText : this.actionName.toUpperCase()
       };
 
       this.confirmDialog.open(DIALOGINFO);
@@ -116,17 +118,22 @@ export class ClientsComponent implements OnInit{
 
   async canDelete() {
     let rolId = Number(localStorage.getItem('rol_id'));
-    let permissionId = 4;
-    const promise = await lastValueFrom(this.permissionsApi.getPermisosbyRolandPermission(rolId, permissionId));
+    let permiso = await lastValueFrom(this.permissionAPI.getPermisosbyName('Eliminar Cliente'));
+    let permissionId = Number(permiso[0].id);
+    const promise = await lastValueFrom(this.permissionAPI.getPermisosbyRolandPermission(rolId, permissionId));
     this.permissions = promise;
   }
 
-  toClientCreation() {
-    this.router.navigate(['dashboard/clientes/crear']);
+  toCreation() {
+    this.router.navigate(['dashboard/' + this.pluralName + '/crear']);
   }
 
-  toClientList() {
-    this.router.navigate(['dashboard/clientes']);
+  toList() {
+    this.router.navigate(['dashboard/' + this.pluralName]);
+  }
+
+  filter(filter: string) {
+    this.loadAll(filter);
   }
 
 }

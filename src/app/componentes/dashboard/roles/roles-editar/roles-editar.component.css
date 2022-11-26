@@ -1,7 +1,8 @@
-mat-form-field{
+.mat-form-field{
     width: 45%;
     margin: 0 20px;
-    margin-bottom: 15px;
+    background: var(--color-fondo-principal);
+    color: #000;
 }
 .container{
     margin-top: 20px;
@@ -12,8 +13,52 @@ mat-form-field{
     justify-content: center;
     align-items: center;
     margin: 15px;
+    margin-top: 50px;
 }
 
 .container_botones button{
     margin: 0 10px;
+    background-color: var(--color-cafe);
 }
+.container_botones button:hover{
+    background-color: var(--color-principal);
+    color: var(--color-fondo-secundario);
+}
+.mat-toolbar{
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-principal);
+}
+.input_form{
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 40px;
+}
+.mat-hint{
+    color: var(--color-principal);
+}
+.mat-error{
+    color: var(--color-principal);
+}
+label{
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+.mat-select{
+    background: #ffffff;
+    border-radius: 10px;
+    height: 40px;
+    padding-left: 15px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+/* ::ng-deep .mat-select-value {
+    color: #000;
+}
+::ng-deep .mat-select-arrow {
+    color: #000;
+} */

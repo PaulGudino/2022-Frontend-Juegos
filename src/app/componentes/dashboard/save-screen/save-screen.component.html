@@ -1,0 +1,94 @@
+<mat-toolbar class="background-navy-primary green-primary">
+   <span>SALVAPANTALLAS</span>
+   <span class="example-spacer"></span>
+</mat-toolbar>
+
+<div class="publicity-container">
+   <div class="publicity__changes">
+      <p class="publicity__title white-color">Video:</p>
+      <div class="savescreen-info__container">
+         <div class="savescreen-info__video-option">
+            <p
+               class="green-primary video-option"
+               [ngClass]="{ 'video-option-active': isUpload }"
+               (click)="toggleUpload()"
+            >
+               Subir video
+            </p>
+            <p
+               class="green-primary video-option"
+               [ngClass]="{ 'video-option-active': !isUpload }"
+               (click)="toggleUpload()"
+            >
+               Copiar url
+            </p>
+         </div>
+         <div *ngIf="isUpload" class="file-select" id="src-file1">
+            <input
+               class="file-input"
+               #takeInput
+               (change)="capturarFile($event)"
+               type="file"
+               name="src-file1"
+               aria-label="Archivo"
+            />
+         </div>
+         <div class="url-select" *ngIf="!isUpload">
+            <label
+               for="url"
+               class="savescree-infor__text-label"
+               class="color-white"
+            >
+               Url del video:
+            </label>
+            <input
+               class="input-global"
+               type="text"
+               name="url"
+               placeholder="url video"
+            />
+         </div>
+      </div>
+      <p class="publicity__title white-color">Nombre del Boton:</p>
+      <div class="savescreen-info__container">
+         <input
+            type="text"
+            class="input-global"
+            placeholder="Nombre del boton"
+            #buttonInput="ngModel"
+            [(ngModel)]="buttonTitle"
+         />
+         <div class="buttons-container">
+            <app-button-primary
+               (click)="updateSaveScreen()"
+               title="Guardar"
+            ></app-button-primary>
+            <app-button-primary
+               (click)="cancel()"
+               title="Cancelar"
+               backgroundColor="#d4d4d4"
+            ></app-button-primary>
+         </div>
+      </div>
+   </div>
+   <div class="publicity__view">
+      <div class="view-container">
+         <app-banner-publicity [isTop]="true"></app-banner-publicity>
+         <div class="view-menu">
+            <video
+               class="video"
+               autoplay="true"
+               [loop]="true"
+               [src]="previsulizacion"
+            ></video>
+            <app-button-game
+               class="menu-btn"
+               [title]="buttonTitle"
+               styledPadding=".5rem .5rem"
+               fontSize="1rem"
+            ></app-button-game>
+         </div>
+         <app-banner-publicity [isTop]="false"></app-banner-publicity>
+      </div>
+   </div>
+</div>

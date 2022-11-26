@@ -1,8 +1,16 @@
-<div class="container">
-    <button mat-raised-button (click)="cambiarContrasenia()">Cambiar Contraseña</button>
+<div class="button_container">
+   <button mat-raised-button (click)="cambiarContrasenia()">
+      <div class="add_container">
+         <div class="icon_container">
+            <mat-icon class="green-primary">password</mat-icon>
+         </div>
+         <span>Cambiar Contraseña</span>
+      </div>
+   </button>
 </div>
-<div class="body">
-    <h1>Bienvenido</h1>
-    <h1>{{usuarioget.names}}</h1>
-    <h1>{{usuarioget.surnames}}</h1>
+
+<div class="body green-primary">
+   <h1>Bienvenido</h1>
+   <h1>{{ usuarioget.names }}</h1>
+   <h1>{{ usuarioget.surnames }}</h1>
 </div>

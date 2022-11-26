@@ -12,4 +12,10 @@ export class KeyboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getButtonValue(event:Event){
+   let btn = event.target as HTMLElement
+   console.log(btn.textContent);
+
+  }
+
 }

@@ -33,6 +33,7 @@ mat-form-field{
 .card{
     width: 100%;
     border-radius: 10px;
+    background: var(--color-fondo-principal);
 }
 .container_card{
     display: flex;
@@ -40,3 +41,86 @@ mat-form-field{
     align-items: center;
     margin: 20px;
 }
+.container_botones button{
+    margin: 0 10px;
+    background-color: var(--color-cafe);
+}
+.container_botones button:hover{
+    background-color: var(--color-principal);
+    color: var(--color-fondo-secundario);
+}
+.mat-toolbar{
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-principal);
+}
+.input_form{
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 40px;
+}
+.mat-hint{
+    color: var(--color-principal);
+}
+.mat-error{
+    color: var(--color-principal);
+}
+label{
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+.mat-select{
+    background: #ffffff;
+    border-radius: 10px;
+    height: 40px;
+    padding-left: 15px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.file-select {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 40px;
+  }
+.file-select::before {
+    background-color: #fff;
+    color: var(--color-fondo-secundario);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Seleccionar'; /* testo por defecto */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .file-select input[type="file"] {
+    opacity: 0;
+    width: 200px;
+    height: 32px;
+    display: inline-block;
+  }
+  
+  #src-file1::before {
+    content: 'Selecciona una imagen (png, jpg, jpeg)';
+  }
+  .file_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+

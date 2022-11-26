@@ -8,23 +8,76 @@ import { AwardsService } from '../../awards/awards.service';
 })
 export class ControllerProbabilityService {
 
-  private awards:getAwardList[]=[];
+  private id_game = '1';
+  private newAwards:getAwardList[] =[];
+  private legendary_box:Number[] = [1];
+  private epic_box:Number[] = [1,2];
+  private common_box:Number[] = [1,2,4];
+ // private publicity_box:Number[] = [1,2];
 
   constructor(
     private probability:ProbabilityService,
-    private award:AwardsService
+    private awards:AwardsService
 
-  ) { }
+  ) {
 
-  fillAwardList(){
-    this.probability.getAwardsListGame()
-    .subscribe(data => {
-      data.map(((_premio: any) => {
-        this.award.getAwardbyId(_premio.premio_id).subscribe(award_instance =>{
-        this.awards.push(award_instance);
-        })
-      }))
-    })
   }
+
+
+  addItemToCategory(award:getAwardList,category:string){
+
+    let body = {
+      game_id:this.id_game,
+      premio_id:String(award.id)
+    }
+
+    this.probability.postItemToCategory(body)
+    .subscribe((res) =>{
+
+      this.awards.getAward()
+      .subscribe(data => {
+        data.map(award =>{
+          this.probability.getAwardsListGame().subscribe(
+            awardGameData =>{
+              awardGameData.forEach((awardGame:any) =>{
+                if(award.category==category && awardGame.premio_id == award.id){
+                  this.newAwards.push(award);
+
+                }
+            })
+
+          })
+
+        })
+
+      })
+
+    })
+
+  }
+
+  addProbabilityConfig(form:FormData){
+    return;
+
+
+  }
+  getNewAwards(){
+    return this.newAwards;
+  }
+
+  getLegendaryBoxes(){
+    return this.legendary_box;
+  }
+
+  getEpicBoxes(){
+    return this.epic_box;
+  }
+
+  getCommonBoxes(){
+    return this.common_box;
+  }
+  // getPublicityBoxes(){
+  //   return this.publicity_box;
+  // }
 
 }

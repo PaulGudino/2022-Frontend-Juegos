@@ -12,6 +12,7 @@ import { KeyboardComponent } from './keyboard/keyboard.component';
 import { ScanViewComponent } from './pages/scan-view/scan-view.component';
 import { PublicityComponent } from './publicity/publicity.component';
 import { PlayViewComponent } from './pages/play-view/play-view.component';
+import { LogoComponent } from './logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PlayViewComponent } from './pages/play-view/play-view.component';
     ScanViewComponent,
     PublicityComponent,
     PlayViewComponent,
+    LogoComponent,
   ],
   imports: [
     CommonModule,

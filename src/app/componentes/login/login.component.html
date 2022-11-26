@@ -1,24 +1,63 @@
 <div class="body">
-    <div class="login" >
-        <form [formGroup]="form" (keypress)="enter($event)">
-            <img src="./assets/img/user.png" alt="user.png">
-        <h2>Iniciar Sesión</h2>
-        <mat-form-field class="ancho" >
-            <mat-label>Usuario</mat-label>
-            <input matInput autocomplete="off" formControlName="username">
-        </mat-form-field>
-        <mat-form-field class = "ancho" >
-            <mat-label>Contaseña</mat-label>
-            <input matInput placeholder="Contraseña" autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="ocultar = !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-        </mat-form-field>
-        <br>
-        <button class="ancho boton" (click)="ingresar()" mat-raised-button color="primary" [disabled]="form.invalid">Ingresar</button>
-        </form>
-        <br>
-        <div class="ancho">
-            <a routerLink="/recuperar">Olvidaste tu contraseña ?</a>
-        </div>
-    </div>
-    
+   <div class="card">
+      <div class="login_container">
+         <form [formGroup]="form" (keypress)="enter($event)">
+            <div class="tragamonedas_img">
+               <img
+                  src="./assets/img/tragamonedas-icon.png"
+                  alt="tragamonedas-icon.png"
+               />
+            </div>
+            <h2>INICIO DE SESIÓN</h2>
+            <div class="container_form">
+               <h2>Ingrese su usuario:</h2>
+               <div class="ancho border_container">
+                  <input
+                     class="form__input"
+                     matInput
+                     autocomplete="off"
+                     formControlName="username"
+                  />
+               </div>
+            </div>
+            <div class="container_form">
+               <h2>Ingrese su contraseña:</h2>
+               <div class="ancho password border_container">
+                  <input
+                     class="form__input"
+                     matInput
+                     autocomplete="off"
+                     formControlName="password"
+                     [type]="ocultar ? 'password' : 'text'"
+                  />
+                  <button
+                     class="eye_password"
+                     mat-icon-button
+                     matSuffix
+                     (click)="ocultar = !ocultar"
+                  >
+                     <mat-icon>{{
+                        ocultar ? "visibility_off" : "visibility"
+                     }}</mat-icon>
+                  </button>
+               </div>
+            </div>
+            <br />
+            <div class="ancho">
+               <a routerLink="/recuperar">¿Haz olvidado tu contraseña?</a>
+            </div>
+            <br />
+            <div class="button_container" *ngIf="!form.invalid">
+               <button class="ancho" (click)="ingresar()" mat-raised-button>
+                  Acceder
+               </button>
+            </div>
+         </form>
+      </div>
+      <div class="image_container">
+         <div class="back_img">
+            <img src="./assets/img/back.jpg" alt="back.jpg" />
+         </div>
+      </div>
+   </div>
 </div>

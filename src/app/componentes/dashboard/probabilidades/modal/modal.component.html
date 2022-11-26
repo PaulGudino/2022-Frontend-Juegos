@@ -7,10 +7,20 @@
       </div>
       <div class="awards-container">
         <app-modal-item *ngFor="let award of modalAwards"
+        [award]="award"
         name="{{award.name}}"
         imgUrl="{{award.imagen}}"
         stock="{{award.current_stock}}"
         ></app-modal-item>
+
+        <div *ngIf="category == 'publicity'">
+          <app-modal-item *ngFor="let publicity of publicity"
+          name="{{publicity.titulo}}"
+          imgUrl="{{publicity.image}}"s
+          ></app-modal-item>
+
+
+        </div>
       </div>
 
     </div>

@@ -14,9 +14,9 @@ import { Client } from 'src/app/interfaces/client/Client';
 })
 export class ViewClientComponent implements OnInit {
 
-  singularName : string = 'Cliente';
-  pluralName : string = 'Clientes';
-  actionName : string = 'Visualizar';
+  singularName : string = 'cliente';
+  pluralName : string = 'clientes';
+  actionName : string = 'visualizar';
   client : Client = {
     id : '',
     cedula : '',
@@ -36,16 +36,16 @@ export class ViewClientComponent implements OnInit {
   constructor(
     private router : Router,
     private activedRoute : ActivatedRoute,
-    private api : ClientService,
+    private clientAPI : ClientService,
   ) {}
 
-  toClientList() {
-    this.router.navigate(['dashboard/clientes']);
+  toList() {
+    this.router.navigate(['dashboard/' + this.pluralName]);
   }
 
   ngOnInit(): void {
     let clientId = this.activedRoute.snapshot.paramMap.get('id');
-    this.api.getClientById(Number(clientId)).subscribe((data) => {
+    this.clientAPI.getById(Number(clientId)).subscribe((data) => {
       this.client = data;
     })
   }

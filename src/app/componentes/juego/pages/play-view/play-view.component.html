@@ -1,21 +1,145 @@
 <div class="container-fullscreen p-0 m-0">
-  <app-publicity></app-publicity>
-  <div class="scan_menu-container">
-    <figure class="menu-container_img-container">
-      <img class ="menu-container_img" src="../../../assets/comandato.png" alt="company-logo">
-    </figure>
+   <app-publicity [urlPublicity]="top_publicity"></app-publicity>
+   <div class="container-menu">
+      <app-logo [isBackground]="true" height="12rem"></app-logo>
+      <div class="scan-shadow"></div>
+      <div class="scan_menu-container">
+         <div class="menu-container_img-container">
+            <app-logo
+               [urlImage]="style.image_logo_game"
+               height="6rem"
+               [isHome]="false"
+            ></app-logo>
+         </div>
+         <p class="info-game__text">{{ informationText }}</p>
+         <div class="information-game-container" [ngPlural]="availableSpin">
+            <ng-template ngPluralCase="=0">
+               <p class="info-game__text">
+                  No te quedan más Giros!
+               </p></ng-template
+            >
+            <ng-template class="info-game__text" ngPluralCase="=1">
+               <p class="info-game__text">
+                  Disponible 1 Giro más!
+               </p></ng-template
+            >
+            <ng-template class="info-game__text" ngPluralCase="other">
+               <p class="info-game__text">
+                  Disponible {{ availableSpin }} Giros más!
+               </p></ng-template
+            >
+         </div>
+         <div class="spinner__container">
+            <figure class="award-box-container">
+               <img
+                  class="awards-box"
+                  src="../../../../../assets/img/cajondepremios.png"
+                  alt="cajon-premios"
+               />
+            </figure>
+            <div class="awards-container">
+               <div class="awards-column">
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+               </div>
+               <div class="awards-column">
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+               </div>
+               <div class="awards-column">
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+                  <figure class="award-image-container">
+                     <img
+                        src="../../../../../assets/img/logoejemplo.png"
+                        alt=""
+                     />
+                  </figure>
+               </div>
+            </div>
+            <!-- <div class="hide-top"></div>
+            <div class="hide-bottom"></div> -->
+         </div>
+         <app-generic-button
+            title="Girar"
+            fontSize="1rem"
+            styledPadding="0.5rem 2rem"
+            class="mb-2"
+         ></app-generic-button>
+      </div>
+   </div>
 
-    <app-generic-button
-    title="Continuar"
-    fontSize="1rem"
-    styledPadding="0.5rem 1rem"
-    ></app-generic-button>
-
-
-
-  </div>
-  <div class="scan_bottom-publicity_container">
-    <app-publicity></app-publicity>
-  </div>
-
+   <app-publicity [urlPublicity]="bottom_publicity"></app-publicity>
 </div>

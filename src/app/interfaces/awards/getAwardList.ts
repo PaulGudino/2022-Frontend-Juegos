@@ -12,5 +12,5 @@ export interface getAwardList{
     user_register : string;
     user_modify : string;
     category : string;
-    juego : string;
+    game : string;
 }

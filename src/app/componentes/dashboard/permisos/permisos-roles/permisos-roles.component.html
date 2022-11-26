@@ -3,17 +3,10 @@
     <span class="example-spacer"></span>
 </mat-toolbar>
 <div class="container_card">
-    <mat-card class="card">
-        <div>
+        <div class="container_permisos">
             <form [formGroup]="form" novalidate>
                 <div class="container">
                     <div *ngFor="let permiso of Lista_permisos; let i=index">
-                        <!-- <label class="label espaciado container_checkbox">
-                            <input type="checkbox" id="{{permiso.id}}" (change)="onCheckboxChange($event)" [value]="permiso.id" />
-                            <div>
-                                <label for="{{permiso.id}}"></label>
-                              </div>
-                        </label> -->
                             <div class="container_permiso">
                                 <div class="permiso_nombre">
                                     <label>{{permiso.name}}</label>
@@ -42,5 +35,4 @@
                 Guardar
             </button>
         </div>
-    </mat-card>
 </div>

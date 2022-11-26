@@ -1,28 +1,48 @@
 <div class="body">
-    <div class="recuperar">
-        <form [formGroup]="form">
-            <img src="./assets/img/candado.png" alt="promo.png">
-        <h2>Resetear Contraseña</h2>
-        <mat-form-field class="ancho">
-            <mat-label>Email</mat-label>
-            <input matInput autocomplete="off" formControlName="email">
-        </mat-form-field>
-        <mat-form-field class="ancho" >
-            <mat-label>Código</mat-label>
-            <input matInput autocomplete="off" onkeypress='return event.charCode >= 48 && event.charCode <= 57' formControlName="code">
-        </mat-form-field>
-        <mat-form-field class = "ancho" >
-            <mat-label>Nueva Contraseña</mat-label>
-            <input matInput placeholder="Mínimo 8 caracteres" minlength="8" autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-        </mat-form-field>
-        <br>
-        <button class="ancho boton" (click)="resetear()" mat-raised-button color="primary" [disabled]="form.invalid">Resetear</button>
-        </form>
-        <br>
-        <div class="ancho">
-            <a routerLink="/recuperar">Regresar</a>
+    <div class="card">
+        <div class="reset_container">
+            <div class="recuperar">
+                <form [formGroup]="form">
+                    <div class="candado_img">
+                        <img src="./assets/img/contrasena.png" alt="contrasena.png">
+                    </div>
+                    <h2>CAMBIO DE CONTRASEÑA</h2>
+                    <div class="container_form">
+                        <h2>Correo Electrónico:</h2>
+                        <div class="ancho border_container">
+                            <input matInput autocomplete="off" formControlName="email">
+                        </div>
+                    </div>
+                    <div class="container_form">
+                        <h2>Código:</h2>
+                        <div class="ancho border_container">
+                            <input matInput autocomplete="off" onkeypress='return event.charCode >= 48 && event.charCode <= 57' formControlName="code">
+                        </div>
+                    </div>
+                    <div class="container_form">
+                        <h2>
+                            Nueva contraseña:
+                            Minimo 8 caracteres {{input.value.length || 0}}/8
+                        </h2>
+                        <div class = "ancho password border_container">
+                            <input matInput #input autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
+                                <button class="eye_password" mat-icon-button matSuffix (click)="ocultar = !ocultar"> 
+                                    <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                        </div>
+                    </div>
+                    <div class="button_container" >
+                        <button *ngIf="!form.invalid" class="ancho" (click)="resetear()" mat-raised-button>Resetear</button>
+                        <button class="ancho" (click)="cancel()" mat-raised-button>Cancelar</button>
+                    </div>
+                </form>            
+            </div>
+        </div>
+        <div class="image_container">
+            <div class="back_img">
+                <img src="./assets/img/back.jpg" alt="back.jpg">
         </div>
     </div>
+    
 </div>
 

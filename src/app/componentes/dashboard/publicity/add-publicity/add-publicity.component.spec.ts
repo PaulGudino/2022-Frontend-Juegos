@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AddPublicityComponent } from './add-publicity.component';
+
+describe('AddPublicityComponent', () => {
+  let component: AddPublicityComponent;
+  let fixture: ComponentFixture<AddPublicityComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ AddPublicityComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(AddPublicityComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

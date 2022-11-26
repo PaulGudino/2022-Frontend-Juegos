@@ -1,36 +1,56 @@
 .example-container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .example-is-mobile .example-toolbar {
-    position: fixed;
-    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-    z-index: 2;
-  }
-  
-  h1.example-app-name {
-    margin-left: 8px;
-  }
-  
-  .example-sidenav-container {
-    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-    flex: 1;
-  }
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
-  mat-sidenav{
-    width: 15%;
-  }
-  .icono{
-    margin-right: 10px;
-  }
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
 
-  .example-spacer {
-    flex: 1 1 auto;
-  }
+h1.example-app-name {
+  margin-left: 8px;
+}
+
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.mat-sidenav{
+  width: 15%;
+}
+.icono{
+  margin-right: 10px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.menu{
+  color: #fff;
+}
+.Logout{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  margin-left: 25px;
+}
+.Logout button{
+  background: var(--color-fondo-secundario);
+  color: var(--color-principal);
+  border-radius: 25px;
+  padding-bottom: 15px;
+}
+a:hover{
+  color: var(--color-principal)
+}
+

@@ -1,0 +1,25 @@
+.publicity_container{
+   background-color: aqua;
+   width: 100%;
+   height: 4rem;
+ }
+ .publicity_img-container,img{
+   padding:0;
+   margin: 0;
+ }
+ .publicity_img-container{
+   width: 100%;
+   height: 100%;
+ }
+ .publicity_img{
+   width: 100%;
+   height: 100%;
+ }
+ .top-publicity{
+   border-top-left-radius: 27px;
+   border-top-right-radius: 27px;
+}
+.bottom-publicity{
+   border-bottom-left-radius: 27px;
+   border-bottom-right-radius: 27px;
+}

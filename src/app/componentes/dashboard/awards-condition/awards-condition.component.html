@@ -1,0 +1,134 @@
+<mat-toolbar class="background-navy-primary green-primary">
+    <span>{{ Titulo }}</span>
+    <span class="example-spacer"></span>
+ </mat-toolbar>
+ 
+ <div class="button_container">
+    <button mat-raised-button (click)="agregarPremios()">
+       <div class="add_container">
+          <div class="icon_container">
+             <mat-icon>add</mat-icon>
+          </div>
+          <span>Agregar Premio Condicionado</span>
+       </div>
+    </button>
+ </div>
+ 
+ <div class="filter_search_container">
+    <div class="filter">
+       <mat-select
+          (selectionChange)="filter($event.value)"
+          mat-select
+          placeholder="Filtrar"
+       >
+          <mat-option
+             class="background-navy-primary white-color"
+             *ngFor="let filter of Filters"
+             value="{{ filter.id }}"
+             >{{ filter.name }}</mat-option
+          >
+       </mat-select>
+    </div>
+    <div class="search green-primary">
+       <input
+          class="buscador"
+          matInput
+          (keyup)="aplicarFiltro($event)"
+          placeholder="Buscar"
+          autocomplete="off"
+          #input
+       />
+       <mat-icon class="green-primary"> search </mat-icon>
+    </div>
+ </div>
+ 
+ <div class="container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+       <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let fila">{{ fila.id }}</td>
+       </ng-container>
+ 
+       <ng-container matColumnDef="award">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <td mat-cell *matCellDef="let fila">{{ fila.award }}</td>
+       </ng-container>
+ 
+       <ng-container matColumnDef="game">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Juego</th>
+          <td mat-cell *matCellDef="let fila">{{ fila.game }}</td>
+       </ng-container>
+ 
+       <ng-container matColumnDef="start_date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Inicio</th>
+          <td mat-cell *matCellDef="let fila">{{ fila.start_date }}</td>
+       </ng-container>
+ 
+       <ng-container matColumnDef="end_date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+             Fecha de Fin
+          </th>
+          <td mat-cell *matCellDef="let fila">{{ fila.end_date }}</td>
+       </ng-container>
+ 
+       <ng-container matColumnDef="is_approved">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+          <td mat-cell *matCellDef="let fila">
+             <div *ngIf="fila.is_active; else inactivo">
+                <div class="green-primary">Procesado</div>
+             </div>
+             <ng-template #inactivo>
+                <div>
+                   <div class="green-primary">Sin procesar</div>
+                </div>
+             </ng-template>
+          </td>
+       </ng-container>
+ 
+       <ng-container matColumnDef="Acciones">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let fila">
+             <div>
+                <button
+                   mat-icon-button
+                   (click)="verPremios(fila.id)"
+                   color="primary"
+                   matTooltip="Visualizar"
+                >
+                   <mat-icon class="color-white">remove_red_eye</mat-icon>
+                </button>
+                <button
+                   mat-icon-button
+                   (click)="editarPremios(fila.id)"
+                   color="primary"
+                   matTooltip="Editar"
+                >
+                   <mat-icon class="color-white">edit</mat-icon>
+                </button>
+                <button
+                   mat-icon-button
+                   (click)="eliminarPremios(fila.id)"
+                   color="warn"
+                   matTooltip="Eliminar"
+                >
+                   <mat-icon class="green-primary">delete</mat-icon>
+                </button>
+             </div>
+          </td>
+       </ng-container>
+ 
+       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+       <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+             No hay datos que coincidan con el filtro "{{ input.value }}"
+          </td>
+       </tr>
+    </table>
+    <mat-paginator
+       [pageSizeOptions]="[5, 10, 25, 100]"
+       aria-label="Select page of users"
+    >
+    </mat-paginator>
+ </div>
+ 

@@ -13,7 +13,9 @@ import { ImageService } from 'src/app/servicios/image/image.service';
 })
 export class CreateAwardsComponent implements OnInit {
 
-  public previsulizacion: string = '';
+  img_upload = "assets/img/upload.png";
+
+  public previsulizacion: string = this.img_upload;
   form: FormGroup;
   @ViewChild("takeInput", { static: false })
   InputVar!: ElementRef;
@@ -27,12 +29,12 @@ export class CreateAwardsComponent implements OnInit {
     {id: 'C', name: 'Común'},
   ]
   Juegos = [
-    {id:'T', name: 'Traga Monedas'},
+    {id:'1', name: 'Tragamonedas'},
   ]
 
   constructor(
-    private router: Router, 
-    private fb: FormBuilder, 
+    private router: Router,
+    private fb: FormBuilder,
     private awardSrv: AwardsService,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
@@ -47,34 +49,36 @@ export class CreateAwardsComponent implements OnInit {
       juego: ['', Validators.required],
   })
    }
-  
+
 
   ngOnInit(): void {
   }
+
   capturarFile(event: any): void {
 
     this.fileToUpload = this.imageSrv.captureFile(event);
     if (this.fileToUpload) {
-      this.imagen = this.fileToUpload;
-      this.imageSrv.extraerBase64(this.imagen).then((imagen: any) => {
-        this.previsulizacion = imagen.base;
+      this.imageSrv.extraerBase64(this.fileToUpload).then((imagen: any) => {
+      this.previsulizacion = imagen.base;
       });
     }else{
-      this.previsulizacion = '';
+      this.previsulizacion = this.img_upload;
       this.InputVar.nativeElement.value = "";
       this.snackbar.mensaje('Solo se permiten imagenes');
     }
   }
-  
-  
+
+
 
   deleteImage(){
-    this.previsulizacion = '';
+    this.previsulizacion = this.img_upload;
     this.InputVar.nativeElement.value = "";
+    this.fileToUpload = null;
   }
 
   createAwards(){
     if (this.form.valid && this.fileToUpload) {
+      this.imagen = this.fileToUpload;
       const options = {
         title: 'CREAR PREMIO',
         message: '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO PREMIO?',
@@ -92,9 +96,10 @@ export class CreateAwardsComponent implements OnInit {
           formData.append('initial_stock', this.form.get('initial_stock')?.value);
           formData.append('is_active', this.form.get('is_active')?.value);
           formData.append('category', this.form.get('category')?.value);
-          formData.append('juego', this.form.get('juego')?.value);
+          formData.append('game', this.form.get('juego')?.value);
           formData.append('imagen', this.imagen, this.imagen.name);
           formData.append('user_register', user_register!);
+          formData.append('user_modify', user_register!);
 
           this.awardSrv.postAward(formData).subscribe(
             (res) => {

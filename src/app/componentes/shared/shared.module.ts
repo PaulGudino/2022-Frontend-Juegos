@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {FormsModule} from '@angular/forms'
 //Modulos
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,7 +22,12 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatGridListModule} from '@angular/material/grid-list';
 
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -48,6 +53,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgbModule,
+    MatGridListModule,
+    FormsModule,
   ],
   exports: [
     CommonModule,
@@ -70,6 +80,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatDialogModule,
     MatCheckboxModule,
-  ]
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgbModule,
+    MatGridListModule,
+    FormsModule
+  ],
+
 })
 export class SharedModule { }

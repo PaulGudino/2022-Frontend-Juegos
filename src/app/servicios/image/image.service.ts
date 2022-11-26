@@ -43,4 +43,15 @@ export class ImageService {
     }
   }
 
+  captureVideoFile(event:any):File | null{
+   const archivoCapturado = event.target.files[0];
+    let nombre = archivoCapturado.name;
+    if ( nombre.split('.')[1] == 'mp4') {
+      return archivoCapturado;
+    }else{
+      return null;
+    }
+
+  }
+
 }

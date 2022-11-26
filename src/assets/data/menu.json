@@ -25,8 +25,23 @@
         "ruta": "/dashboard/premios"
     },
     {
+        "nombre": "Premios Condicionados",
+        "icono": "date_range",
+        "ruta": "/dashboard/premios/condicion"
+    },
+    {
         "nombre": "Probabilidades",
         "icono": "assessment",
         "ruta": "/dashboard/probabilidades"
+    },
+    {
+        "nombre": "Tickets",
+        "icono": "confirmation_number",
+        "ruta": "/dashboard/tickets"
+    },
+    {
+        "nombre": "Juegos",
+        "icono": "sports_esports",
+        "ruta": "/dashboard/juego/seleccion"
     }
 ]

@@ -1,28 +1,107 @@
 .body{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     height: 100%;
     align-items: center;
-    
+    background: var(--color-fondo-principal);
+}
+.card{
+    width: 70%;
+    height: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    border-radius: 25px;
+    background: var(--color-fondo-secundario);
+    box-shadow: 4px 4px 20px 0px var(--color-fondo-secundario)
+}
+.reset_container{
+    width: 50%;
+}
+.image_container{
+    width: 50%;
+}
+.back_img{
+    width: 100%;
+    height: 100%;
+}
+.back_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 0 25px 25px 0;
+}
+.candado_img{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    padding-top: 5%;
+    margin-bottom: 5%;
+}
+.candado_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 .ancho{
     width: 100%;
 }
-.recuperar{
+input{
     width: 100%;
-    max-width: 350px;
-    text-align: center;
-}
-
-.recuperar img{
-    width: 50%;
-}
-a{
+    height: 25px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 20px;
     font-size: 1rem;
-    text-decoration: none;
-    color: #000;
+    border:none;
+    outline: none;
+    color: var(--color-letras);
+    background: var(--color-fondo-secundario);
 }
-a:hover {
-    font-weight: bold;
-    color: #3f51b5;
+.container_form{
+    padding: 0 15%;
+}
+.container_form h2{
+    font-size: 1rem;
+    text-align: start;
+}
+.border_container{
+    border: 1px solid var(--color-letras);
+    border-radius: 15px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+h2{
+    color: var(--color-principal);
+}
+input::placeholder {
+    color: #ffffff;
+}
+.password{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.eye_password{
+    color: var(--color-principal);
+    position: relative;
+    bottom: 2px;
+}
+.button_container{
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15%;
+}
+.button_container button{
+    width: 40%;
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--color-fondo);
+    background: var(--color-principal);
+    cursor: pointer;
 }
