@@ -1,10 +1,14 @@
-<!-- Script for QRCode generator -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <!-- Toolbar -->
 <mat-toolbar>
     <span>{{actionName}} {{singularName}} : {{currentTicket.id}} {{currentTicket.invoice_number}} </span>
 </mat-toolbar>
+
+<!-- QRCode Button -->
+<button mat-raised-button (click)="generateQRCode()">
+    Generar código QR
+</button>
+
+<img *ngIf="invoiceNumber && clientId" src={{qrCodePath}} alt="">
 
 <!-- Form -->
 <div class="container">
@@ -42,8 +46,11 @@
             <mat-form-field >
                 <mat-label>Cliente</mat-label>
                 <mat-select formControlName="client" mat-select placeholder="Seleccione una opción">
+                    <mat-option selected >
+                        {{ currentTicket.client.cedula + ' ' + currentTicket.client.names + ' ' + currentTicket.client.surnames }}
+                    </mat-option>
                     <mat-option *ngFor="let client of allClients" [value]="client.id">
-                        {{ client.names + ' ' + client.surnames }}
+                        {{ client.cedula + ' ' + client.names + ' ' + client.surnames }}
                     </mat-option>
                 </mat-select>
                 <mat-hint>Seleccione una opción</mat-hint>
@@ -76,7 +83,7 @@
 
             <button mat-raised-button color="primary" (click)="edit()">
                 <mat-icon>done</mat-icon>
-                Crear
+                {{actionName}}
             </button>
         </div>
     </mat-card>

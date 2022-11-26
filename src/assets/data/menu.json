@@ -42,6 +42,6 @@
     {
         "nombre": "Juegos",
         "icono": "sports_esports",
-        "ruta": "/dashboard/juegos/seleccion"
+        "ruta": "/dashboard/juego/seleccion"
     }
 ]

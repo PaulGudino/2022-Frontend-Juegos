@@ -79,9 +79,9 @@ const routes: Routes = [
     {path: 'tickets', component : TicketsComponent, canActivate : [InicioGuard] },
     {path: 'tickets/crear', component : CreateTicketComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Crear Ticket'}},
-    {path: 'clientes/vizualizar/:id', component: ViewTicketComponent,
+    {path: 'tickets/vizualizar/:id', component: ViewTicketComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Ver Ticket'}},
-    {path: 'clientes/editar/:id', component: EditTicketComponent,
+    {path: 'tickets/editar/:id', component: EditTicketComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Editar Ticket'}},
 
     // Premios

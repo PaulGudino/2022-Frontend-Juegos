@@ -99,6 +99,9 @@ import { WinnerDesignComponent } from './winner-design/winner-design.component';
         ScanCodeComponent,
         DesignComponent,
         WinnerDesignComponent,
+
+        
+
     ],
     imports: [
         SharedModule,

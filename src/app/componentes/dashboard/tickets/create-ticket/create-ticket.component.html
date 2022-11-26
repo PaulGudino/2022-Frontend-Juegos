@@ -1,25 +1,29 @@
-<!-- Script for QRCode generator -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <!-- Toolbar -->
+
 <mat-toolbar>
-    <span>{{actionName}} {{singularName}} </span>
+    <span>Nuevo Ticket</span>
 </mat-toolbar>
 
-<!-- QRCode Button -->
 
+<!-- QRCode Button -->
+<button mat-raised-button (click)="generateQRCode()">
+    Generar código QR
+</button>
+
+<img *ngIf="invoiceNumber && clientId" src={{qrCodePath}} alt="">
 
 <!-- Form -->
 <div class="container">
-    <mat-card>
         <form [formGroup]="formGroup">
 
             <!-- Invoice Number Input--->
             <mat-form-field>
-                <mat-label>Número de Factura</mat-label>
-                <input matInput #input autocomplete="off" formControlName="invoice_number" type="text" required
-                placeholder="0900000000" maxlength="10" minlength="10" onpaste="return false"
-                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <label>Número de Factura</label>
+                <div class="input_form">
+                    <input matInput #input autocomplete="off" formControlName="invoice_number" type="text" required
+                    maxlength="10" minlength="10" onpaste="return false"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                </div>
                 <mat-hint align="end">
                     {{input.value.length || 0}}/10
                 </mat-hint>
@@ -30,8 +34,8 @@
 
             <!-- Select State -->
             <mat-form-field >
-                <mat-label>Estado</mat-label>
-                <mat-select formControlName="state" mat-select placeholder="Seleccione una opción">
+                <label>Estado</label>
+                <mat-select formControlName="state" mat-select>
                     <mat-option value="Disponible">Disponible</mat-option>
                     <mat-option value="Reclamado">Reclamado</mat-option>
                 </mat-select>
@@ -43,10 +47,10 @@
 
             <!-- Select Client -->
             <mat-form-field >
-                <mat-label>Cliente</mat-label>
-                <mat-select formControlName="client" mat-select placeholder="Seleccione una opción">
+                <label>Cliente</label>
+                <mat-select formControlName="client" mat-select>
                     <mat-option *ngFor="let client of allClients" [value]="client.id">
-                        {{ client.names + ' ' + client.surnames }}
+                        {{ client.cedula + ' ' + client.names + ' ' + client.surnames }}
                     </mat-option>
                 </mat-select>
                 <mat-hint>Seleccione una opción</mat-hint>
@@ -57,8 +61,8 @@
 
             <!-- Select Game -->
             <mat-form-field >
-                <mat-label>Juego</mat-label>
-                <mat-select formControlName="game" mat-select placeholder="Seleccione una opción">
+                <label>Juego</label>
+                <mat-select formControlName="game" mat-select>
                     <mat-option *ngFor="let game of allGames" [value]="game.id">
                         {{game.name}}
                     </mat-option>
@@ -82,5 +86,5 @@
                 {{actionName}}
             </button>
         </div>
-    </mat-card>
+
 </div>
