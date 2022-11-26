@@ -22,6 +22,9 @@ export class CreateTicketComponent implements OnInit {
   formGroup : FormGroup;
   allClients : Client[] = [];
   allGames : Game[] = [];
+  invoiceNumber : string = '';
+  qrCodePath : string = '';
+  clientId : string = '';
 
   constructor(
     private router : Router,
@@ -38,6 +41,7 @@ export class CreateTicketComponent implements OnInit {
     // id refers to cedula
 
     this.formGroup = this.formBuilder.group({
+      qr_code : [''],
       invoice_number : ['', Validators.required],
       state : ['', Validators.required],
       client : ['', Validators.required],
@@ -104,10 +108,17 @@ export class CreateTicketComponent implements OnInit {
     formData.append('game', this.formGroup.get('game')?.value);
     formData.append('user_register', user_register!);
     formData.append('user_modifier', user_register!);
+    formData.append('qr_code', this.qrCodePath);
     return formData;
   }
 
   ngOnInit(): void {
+  }
+
+  generateQRCode() {
+    this.invoiceNumber = this.formGroup.get('invoice_number')?.value;
+    this.clientId = this.formGroup.get('client')?.value;
+    this.qrCodePath = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientId}`;
   }
 
 }

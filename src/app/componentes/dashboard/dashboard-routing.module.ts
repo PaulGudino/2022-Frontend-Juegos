@@ -1,3 +1,4 @@
+import { WinnerDesignComponent } from './winner-design/winner-design.component';
 import { EditAwardsConditionComponent } from './awards-condition/edit-awards-condition/edit-awards-condition.component';
 import { AdministrationGuard } from './../../guardianes/Administration/administration.guard';
 import { PermisosRolesComponent } from './permisos/permisos-roles/permisos-roles.component';
@@ -38,6 +39,8 @@ import { AwardsConditionComponent } from './awards-condition/awards-condition.co
 import { CreateAwardsConditionComponent } from './awards-condition/create-awards-condition/create-awards-condition.component';
 import { ViewAwardsConditionComponent } from './awards-condition/view-awards-condition/view-awards-condition.component';
 import { SaveScreenComponent } from './save-screen/save-screen.component';
+import { ScanCodeComponent } from './scan-code/scan-code.component';
+import { DesignComponent } from './design/design.component';
 
 
 const routes: Routes = [
@@ -76,9 +79,9 @@ const routes: Routes = [
     {path: 'tickets', component : TicketsComponent, canActivate : [InicioGuard] },
     {path: 'tickets/crear', component : CreateTicketComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Crear Ticket'}},
-    {path: 'clientes/vizualizar/:id', component: ViewTicketComponent,
+    {path: 'tickets/vizualizar/:id', component: ViewTicketComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Ver Ticket'}},
-    {path: 'clientes/editar/:id', component: EditTicketComponent,
+    {path: 'tickets/editar/:id', component: EditTicketComponent,
     canActivate: [PermissionsGuard, InicioGuard], data: {Permiso_nombre: 'Editar Ticket'}},
 
     // Premios
@@ -108,6 +111,9 @@ const routes: Routes = [
     {path: 'juego/seleccion', component : GameSelectionComponent},
     {path: 'juego/publicidad', component : PublicityComponent},
     {path: 'juego/salvapantallas', component : SaveScreenComponent},
+    {path: 'juego/scan', component : ScanCodeComponent},
+    {path: 'juego/diseno', component : DesignComponent},
+    {path: 'juego/diseno/ganador', component : WinnerDesignComponent},
 
   ]},
 ];

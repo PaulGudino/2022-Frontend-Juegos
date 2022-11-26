@@ -1,14 +1,21 @@
 <!-- Toolbar -->
 <mat-toolbar>
-    <span>{{actionName}} {{singularName}} : {{currentTicket.id}} {{currentTicket.invoice_number} </span>
+    <span>{{actionName}} {{singularName}} : {{currentTicket.id}} {{currentTicket.invoice_number}} </span>
 </mat-toolbar>
+
+<!-- QRCode Button -->
+<button mat-raised-button (click)="generateQRCode()">
+    Generar código QR
+</button>
+
+<img *ngIf="invoiceNumber && clientId" src={{qrCodePath}} alt="">
 
 <!-- Form -->
 <div class="container">
     <mat-card>
         <form [formGroup]="formGroup">
 
-            <!-- Invoice Number Input--->
+            <!-- Invoice Number Input -->
             <mat-form-field>
                 <mat-label>Número de Factura</mat-label>
                 <input matInput #input autocomplete="off" formControlName="invoice_number" type="text" required
@@ -39,8 +46,11 @@
             <mat-form-field >
                 <mat-label>Cliente</mat-label>
                 <mat-select formControlName="client" mat-select placeholder="Seleccione una opción">
+                    <mat-option selected >
+                        {{ currentTicket.client.cedula + ' ' + currentTicket.client.names + ' ' + currentTicket.client.surnames }}
+                    </mat-option>
                     <mat-option *ngFor="let client of allClients" [value]="client.id">
-                        {{ client.names + ' ' + client.surnames }}
+                        {{ client.cedula + ' ' + client.names + ' ' + client.surnames }}
                     </mat-option>
                 </mat-select>
                 <mat-hint>Seleccione una opción</mat-hint>
@@ -73,7 +83,7 @@
 
             <button mat-raised-button color="primary" (click)="edit()">
                 <mat-icon>done</mat-icon>
-                Crear
+                {{actionName}}
             </button>
         </div>
     </mat-card>

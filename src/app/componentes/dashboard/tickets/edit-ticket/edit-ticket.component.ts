@@ -25,6 +25,12 @@ export class EditTicketComponent implements OnInit {
   allClients : Client[] = [];
   allGames : Game[] = [];
 
+  currentClient : any;
+
+  invoiceNumber : string = '';
+  qrCodePath : string = '';
+  clientId : string = '';
+
   constructor(
     private router : Router,
     private formBuilder : FormBuilder,
@@ -39,12 +45,12 @@ export class EditTicketComponent implements OnInit {
     // Building the form with the formBuilder
 
     this.formGroup = this.formBuilder.group({
+      qr_code : [''],
       invoice_number : ['', Validators.required],
       state : ['', Validators.required],
       client : ['', Validators.required],
       game : ['', Validators.required],
     });
-
 
     this.ClientAPI.getAll().subscribe(
       (data) => {
@@ -83,6 +89,7 @@ export class EditTicketComponent implements OnInit {
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
+          this.generateQRCode()
           let formData = this.fillForm();
           this.ticketAPI.put(Number(ticketId), formData).subscribe ({
             next : (res) => {
@@ -106,6 +113,7 @@ export class EditTicketComponent implements OnInit {
     formData.append('client', this.formGroup.get('client')?.value);
     formData.append('game', this.formGroup.get('game')?.value);
     formData.append('user_modifier', user_modifier!);
+    formData.append('qr_code', this.qrCodePath);
     return formData;
   }
 
@@ -114,17 +122,16 @@ export class EditTicketComponent implements OnInit {
     this.ticketAPI.getById(Number(ticketId)).subscribe(
       (res) => {
         this.currentTicket = res;
-        console.log(res)
         this.getInfo();
       },
       (err) => {
-        console.log(err);
       }
     )
   }
 
   getInfo() {
     this.formGroup.patchValue({
+      qr_code : this.currentTicket.qr_code,
       invoice_number : this.currentTicket.invoice_number,
       state : this.currentTicket.state,
       client : this.currentTicket.client,
@@ -132,5 +139,10 @@ export class EditTicketComponent implements OnInit {
     })
   }
 
+  generateQRCode() {
+    this.invoiceNumber = this.formGroup.get('invoice_number')?.value;
+    this.clientId = this.formGroup.get('client')?.value;
+    this.qrCodePath = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientId}`;
+  }
 }
 

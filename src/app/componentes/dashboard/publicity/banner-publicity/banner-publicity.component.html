@@ -8,12 +8,14 @@
          class="publicity_img"
          [src]="dashboardPublicityService.getTopPublicityImage()"
          alt="publicity-img"
+         [ngClass]="{ 'top-publicity': isTop, 'bottom-publicity': !isTop }"
       />
       <img
          *ngIf="!isTop"
          class="publicity_img"
          [src]="dashboardPublicityService.getBottomPublicityImage()"
          alt="publicity-img"
+         [ngClass]="{ 'top-publicity': isTop, 'bottom-publicity': !isTop }"
       />
    </figure>
 </div>

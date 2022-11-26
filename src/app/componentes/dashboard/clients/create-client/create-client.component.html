@@ -19,7 +19,7 @@
                     {{input.value.length || 0}}/10
                 </mat-hint>
                 <mat-error *ngIf="formGroup.controls['cedula'].hasError('required')" >
-                    Campo requerido !!!
+                    Campo requerido
                 </mat-error>
             </mat-form-field>
 
@@ -28,7 +28,7 @@
                 <div class="input_form"><input matInput autocomplete="off" formControlName="names" type="text" required ></div>
                 <mat-hint>Nombre del Cliente</mat-hint>
                 <mat-error *ngIf="formGroup.controls['names'].hasError('required')" >
-                    Campo requerido !!!
+                    Campo requerido
                 </mat-error>
             </mat-form-field>
 
@@ -37,7 +37,7 @@
                 <div class="input_form"><input matInput autocomplete="off" formControlName="surnames" type="text" required ></div>
                 <mat-hint>Apellido paterno y materno</mat-hint>
                 <mat-error *ngIf="formGroup.controls['surnames'].hasError('required')" >
-                    Campo requerido !!!
+                    Campo requerido
                 </mat-error>
             </mat-form-field>
 
@@ -46,7 +46,7 @@
                 <div class="input_form"><input matInput formControlName="email" type="email" required autocomplete="off"></div>
                 <mat-hint>Correo electrónico</mat-hint>
                 <mat-error *ngIf="formGroup.controls['email'].hasError('required')">
-                    Campo requerido !!!
+                    Campo requerido
                 </mat-error>
                 <mat-error *ngIf="formGroup.controls['email'].hasError('email')">
                     Ingresa un correo válido
@@ -64,7 +64,7 @@
                     {{input_tel.value.length || 0}}/10
                 </mat-hint>
                 <mat-error *ngIf="formGroup.controls['phone'].hasError('required')" >
-                    Campo requerido !!!
+                    Campo requerido
                 </mat-error>
             </mat-form-field>
 
@@ -76,7 +76,7 @@
                 </mat-select>
                 <mat-hint>Seleccione una opción</mat-hint>
                 <mat-error *ngIf="formGroup.controls['sex'].hasError('required')">
-                    Campo requerido !!!
+                    Campo requerido
                 </mat-error>
             </mat-form-field>
 
@@ -85,7 +85,7 @@
                 <div class="input_form"><input autocomplete="off" formControlName="address" type="text" matInput></div>
                 <mat-hint>Dirección del usuario</mat-hint>
                 <mat-error *ngIf="formGroup.controls['address'].hasError('required')" >
-                    Campo requerido !!!
+                    Campo requerido
                 </mat-error>
             </mat-form-field>
 
@@ -97,7 +97,7 @@
                 </mat-select>
                 <mat-hint>Seleccione una opción</mat-hint>
                 <mat-error *ngIf="formGroup.controls['state'].hasError('required')">
-                    Campo requerido !!!
+                    Campo requerido
                 </mat-error>
             </mat-form-field>
         </form>
@@ -110,7 +110,7 @@
 
             <button mat-raised-button color="primary" (click)="create()">
                 <mat-icon>done</mat-icon>
-                Crear
+                {{actionName}}
             </button>
         </div>
 </div>

@@ -7,22 +7,37 @@ import{Styles} from '../../../interfaces/styles/Styles'
 export class DashboardStyleService {
    imageBackgroundGameFile!: File
    imageLogoGameFile!: File;
-   videoScreensaverFile!:File
+   imageMachineGameFile!: File;
+   imageWinnerGameFile!: File;
+   videoScreensaverFile!:File;
+   previewFontLetter:string='';
 
    style:Styles = {
       id:1,
-      video_screensaver: '',
-      title_button_screensaver: '',
+      game_id: 1,
+      color_text: '',
+      font_letter:'',
+
+      image_machine_game : '',
       image_background_game: '',
       image_logo_game: '',
       color_background_game:'',
-      color_text: '',
+
+      video_screensaver: '',
+      video_autoplay:true,
+      video_loop:true,
+      title_button_screensaver: '',
+
+      scan_code_title:'',
+      scan_code_description:'',
+
       title_winner: '',
       description_winner: '',
+      image_winner:'',
+
       date_created: new Date(),
       date_modified: new Date(),
       is_active: true,
-      game_id: 1,
    }
 
   constructor() { }
@@ -46,6 +61,12 @@ export class DashboardStyleService {
   setImageBackgroundGameFile(file:any){
    this.imageBackgroundGameFile = file
   }
+  getImageWinnerGameFile(){
+   return this.imageWinnerGameFile;
+  }
+  setImageWinnerGameFile(file:any){
+   this.imageWinnerGameFile = file
+  }
   getImageLogoFile(){
    return this.imageLogoGameFile
   }
@@ -57,6 +78,18 @@ export class DashboardStyleService {
   }
   setVideoScreensaverFile(file:any){
    this.videoScreensaverFile = file
+  }
+  getImageMachineGameFile(){
+   return this.imageMachineGameFile;
+  }
+  setImageMchineGameFile(file:any){
+   this.imageMachineGameFile = file
+  }
+  getPreviewFontLetter(){
+   return this.previewFontLetter;
+  }
+  setPreviewFontLetter(font:string){
+   this.previewFontLetter = font
   }
 
   public get_video_screensaver(): string{
@@ -108,8 +141,26 @@ public  set_title_winner(title:string){
    this.style.title_winner = title;
 }
 
+public get_scan_code_title() {
+   return this.style.scan_code_title
+}
+
+public  set_scan_code_title(title:string){
+   this.style.scan_code_title = title;
+}
+public get_scan_code_description() {
+   return this.style.scan_code_description;
+}
+
+public  set_scan_code_description(description:string){
+   this.style.scan_code_description = description;
+}
+
 public get_description_winner() {
    return this.style.description_winner
+}
+public get_image_machine_game() {
+   return this.style.image_machine_game;
 }
 
 public  set_description_winner(description:string){
@@ -118,6 +169,12 @@ public  set_description_winner(description:string){
 
 public get_date_created(){
    return this.style.date_created
+}
+public get_image_winner(){
+   return this.style.image_winner;
+}
+public get_font_letter(){
+   return this.style.font_letter;
 }
 
 public  set_modified_date(newDate:Date) {

@@ -5,6 +5,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { SharedModule } from 'src/app/componentes/shared/shared.module';
 import { ButtonPrimaryComponent } from './button-primary/button-primary.component';
 import { ButtonGameComponent } from './button-game/button-game/button-game.component';
+import { LogoComponent } from './logo/logo.component';
 
 
 
@@ -13,7 +14,8 @@ import { ButtonGameComponent } from './button-game/button-game/button-game.compo
     LoadingComponent,
     ConfirmDialogComponent,
     ButtonPrimaryComponent,
-    ButtonGameComponent
+    ButtonGameComponent,
+    LogoComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { ButtonGameComponent } from './button-game/button-game/button-game.compo
     LoadingComponent,
     ConfirmDialogComponent,
     ButtonPrimaryComponent,
-    ButtonGameComponent
+    ButtonGameComponent,
+    LogoComponent
   ]
 })
 export class ComponentesCompartidosModule { }

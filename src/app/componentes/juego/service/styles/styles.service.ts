@@ -8,18 +8,30 @@ export class StylesService {
 
    style:Styles = {
       id:1,
-      video_screensaver: '',
-      title_button_screensaver: '',
+      game_id: 1,
+      color_text: '',
+      font_letter:'',
+
+      image_machine_game : '',
       image_background_game: '',
       image_logo_game: '',
       color_background_game:'',
-      color_text: '',
+
+      video_screensaver: '',
+      video_autoplay:true,
+      video_loop:true,
+      title_button_screensaver: '',
+
+      scan_code_title:'',
+      scan_code_description:'',
+
       title_winner: '',
       description_winner: '',
+      image_winner:'',
+
       date_created: new Date(),
       date_modified: new Date(),
       is_active: true,
-      game_id: 1,
    }
 
 
