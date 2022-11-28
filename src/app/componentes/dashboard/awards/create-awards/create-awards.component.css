@@ -61,7 +61,7 @@ mat-form-field{
     height: 40px;
 }
 .mat-hint{
-    color: var(--color-principal);
+    color: var(--color-letras);
 }
 .mat-error{
     color: var(--color-principal);

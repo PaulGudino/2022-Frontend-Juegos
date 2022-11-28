@@ -41,7 +41,7 @@ mat-toolbar {
 }
 
 mat-hint {
-    color: var(--color-principal);
+    color: var(--color-letras);
 }
 
 mat-error {
