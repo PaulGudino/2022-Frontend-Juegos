@@ -15,6 +15,9 @@ export class GameService {
    private http: HttpClient,
    private puente: PuenteDatosService
   ) { }
+  postGame(data: any){
+    return this.http.post(`${this.url}/game`, data);
+  }
 
   getAll():Observable<Game[]>{
     return this.http.get<Game[]>(this.url+'api/game/');
