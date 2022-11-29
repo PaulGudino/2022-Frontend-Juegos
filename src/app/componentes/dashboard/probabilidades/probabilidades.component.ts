@@ -7,6 +7,8 @@ import {Publicity} from '../../../interfaces/publicity/publicity'
 import { FormGroup,FormControl,FormBuilder } from '@angular/forms';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import {SnackbarService} from '../../../servicios/snackbar/snackbar.service'
+import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
+
 
 @Component({
   selector: 'app-probabilidades',
@@ -17,8 +19,6 @@ import {SnackbarService} from '../../../servicios/snackbar/snackbar.service'
 export class ProbabilidadesComponent implements OnInit {
 
   isModalOpen:boolean=false;
-  awardsList:getAwardList[]=[];
-
   awardsGame:getAwardList[]=[];
 
   legendary:getAwardList[]=[];
@@ -39,7 +39,12 @@ export class ProbabilidadesComponent implements OnInit {
 
   totalSquares:number=0;
   limitWinners:number=5;
-  limitMessage:string=`Todavia no ha pasado el limite actual ${this.limitWinners}`
+  limitAttempts:number=5;
+
+
+
+  percentage:number=0;
+  limitMessage:string=''
 
   constructor(
     private awards:AwardsService,
@@ -47,78 +52,65 @@ export class ProbabilidadesComponent implements OnInit {
     private probability:ProbabilityService,
     private fb:FormBuilder,
     private dialog:ConfirmDialogService,
-    private snackBar:SnackbarService
+    private snackBar:SnackbarService,
+    private permisos_api: PermisosService,
+
   ) {
     this.form = this.fb.group({
       percent_win:[''],
       limit_winners:[''],
+      limit_attempts:[''],
 
     })
 
    }
 
   ngOnInit(){
-    this.awards.getAward()
-    .subscribe(data => {
-      this.probability.getAwardsListGame().subscribe(
-        awardGameData =>{
-          this.getAwardsPerCategory(data,awardGameData)
+   this.awards.getAward()
+   .subscribe(data => {
+     this.probability.getAwardsListGame().subscribe(
+       awardGameData =>{
+         this.getAwardsPerCategory(data,awardGameData)
 
-        }
-      )
-    })
-    // this.asyncFunctionAwards();
-    // this.asyncFunctionAwardsGame();
+       })
 
-    // this.probability.getAwardsListGame()
-    // .subscribe(data => {
-    //   this.awardsGame = data
-    // })
-    this.probability.getProbabilites()
-    .subscribe(data =>{
-      this.probabilityData = data[data.length-1]
-      this.limitWinners = this.probabilityData.winners_limit
-      this.limitMessage = `Todavia no ha pasado el limite actual ${this.limitWinners}`
-
-    })
+       this.probability.getProbabilites()
+			.subscribe(data =>{
+            this.probabilityData = data[data.length-1]
+            console.log(this.probabilityData);
+            this.limitWinners = this.probabilityData.winners_limit
+            this.percentage = this.probabilityData.porcent_win
+            this.limitAttempts = this.probabilityData.attempts_limit
+            this.limitMessage = `limite actual Intentos ${this.limitWinners}`
 
 
-  }
+			})
 
-  private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
-    awardsList.forEach((award:getAwardList) => {
-      awardGameList.forEach((awardGame:any) =>{
-        if(award.category=="Legendaria" && awardGame.premio_id == award.id){
-          this.legendary.push(award);
-        }else if(award.category=="Epica" && awardGame.premio_id == award.id){
-          this.epic.push(award);
-        }else if(award.category=="Rara" && awardGame.premio_id == award.id){
-          this.rare.push(award);
-        }else if(awardGame.premio_id == award.id){
-          this.common.push(award);
-        }
-      })
+   })
+}
 
 
-    })
 
-  }
 
-  // asyncFunctionAwards = async () => {
-  //   this.awards.getAward().subscribe((data => {
-  //     this.awardsList = data;
 
-  //   }))
+private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
+   awardsList.forEach((award:getAwardList) => {
+     awardGameList.forEach((awardGame:any) =>{
+       if(award.category=="Legendaria" && awardGame.premio_id == award.id){
+         this.legendary.push(award);
+       }else if(award.category=="Epica" && awardGame.premio_id == award.id){
+         this.epic.push(award);
+       }else if(award.category=="Rara" && awardGame.premio_id == award.id){
+         this.rare.push(award);
+       }else if(awardGame.premio_id == award.id){
+         this.common.push(award);
+       }
+     })
 
-  // }
-  // asyncFunctionAwardsGame = async () => {
-  //   this.probability.getAwardsListGame()
-  //     .subscribe(data => {
-  //       this.awardsGame = data;
-  //       this.getAwardsPerCategory(data);
-  //     })
 
-  // }
+   })
+
+ }
 
   addProbabilityConfig(){
     if(this.form.valid){
@@ -128,9 +120,11 @@ export class ProbabilidadesComponent implements OnInit {
         cancelText: 'CANCELAR',
         confirmText: 'CREAR'
       }
+      // let user_register = localStorage.getItem('user_id');
       let body = {
         porcent_win: this.form.get('percent_win')?.value,
         winners_limit: this.form.get('limit_winners')?.value,
+        attempts_limit: this.form.get('limit_attempts')?.value,
         is_active: true,
         game_id: '1',
       }
@@ -152,9 +146,10 @@ export class ProbabilidadesComponent implements OnInit {
       })
 
 
+    }else{
+      console.log('error al crear form')
+      console.log(this.form.errors)
     }
-
-    //formData.append('',this.form.get('percent_win')?.value);
   }
 
 
@@ -167,6 +162,9 @@ export class ProbabilidadesComponent implements OnInit {
   }
   manageCloseModal(modalChange:boolean):void{
     this.isModalOpen = modalChange;
+  }
+  validateData(){
+
   }
 
 }

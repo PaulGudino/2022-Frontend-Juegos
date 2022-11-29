@@ -57,31 +57,6 @@
    <div class="container-set-categories green-primary">
       <h3 mat-lib-title class="set-categories__title">Editar Probabilidades</h3>
       <div class="container-set-squares">
-         <!-- <app-category-set-square-item
-      category="Legendaria"
-      >
-      </app-category-set-square-item>
-      <app-category-set-square-item
-      category="Epica"
-      >
-      </app-category-set-square-item>
-      <app-category-set-square-item
-      category="Rara"
-      >
-      </app-category-set-square-item>
-      <app-category-set-square-item
-      category="Comun"
-      >
-      </app-category-set-square-item>
-
-      <div class="line"></div> -->
-
-         <!-- <div class="container-total">
-        <p class="total">Total:</p>
-        <p class="total-squares__number">{{totalSquares}} casillas</p>
-
-      </div> -->
-
          <div class="container-total">
             <form
                [formGroup]="form"
@@ -99,7 +74,9 @@
                   required
                />
                %
-
+               <p class="ganadores__limit-message no-pass-limit ms-3">
+                  Porcentaje actual de ganar {{ percentage }}%
+               </p>
                <label class="total col-8 mt-4" for="limit_winners"
                   >Limitar ganadores por dia</label
                >
@@ -111,24 +88,28 @@
                   required
                />
 
-               <p class="ganadores__limit-message no-pass-limit">
+               <p class="ganadores__limit-message no-pass-limit ms-3">
                   {{ limitMessage }}
                </p>
 
-               <label class="total col-8 mt-4" for="limit_winners"
+               <label class="total col-8 mt-4" for="limit_attempts"
                   >Numero de intentos</label
                >
                <input
                   type="number"
                   class="input-global col-4 ms-4"
-                  id="attempts number"
-                  formControlName="attempts_number"
+                  id="limit_attempts"
+                  formControlName="limit_attempts"
                   required
                />
+               <p class="ganadores__limit-message no-pass-limit ms-3">
+                  Numero actual de Intentos {{ limitAttempts }}
+               </p>
             </form>
             <app-button-primary
                (click)="addProbabilityConfig()"
                title="Guardar"
+               class="mt-4 ms-3 btn-save"
             ></app-button-primary>
          </div>
       </div>

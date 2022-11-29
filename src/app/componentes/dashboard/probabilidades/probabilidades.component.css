@@ -71,3 +71,6 @@ img{
   color:red;
 }
 
+.btn-save{
+   align-self: flex-start;
+}

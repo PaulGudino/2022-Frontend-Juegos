@@ -9,7 +9,9 @@ import { AwardsService } from '../../awards/awards.service';
 export class ControllerProbabilityService {
 
   private id_game = '1';
+  private gameName = 'Tragamonedas';
   private newAwards:getAwardList[] =[];
+  private awardsGame:getAwardList[] =[];
   private legendary_box:Number[] = [1];
   private epic_box:Number[] = [1,2];
   private common_box:Number[] = [1,2,4];
@@ -56,10 +58,21 @@ export class ControllerProbabilityService {
 
   }
 
+  setAwardsGame(awards:getAwardList[]):void{
+   this.awardsGame = awards
+  }
+  getAwardsGame(){
+   return this.awardsGame
+  }
+  getIdGame(){
+   return this.id_game;
+  }
+  getGameName(){
+   return this.gameName;
+  }
+
   addProbabilityConfig(form:FormData){
     return;
-
-
   }
   getNewAwards(){
     return this.newAwards;
