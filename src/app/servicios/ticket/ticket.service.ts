@@ -31,5 +31,8 @@ export class TicketService {
   delete(id: number){
     return this.http.delete(this.url+'api/ticket/'+id + '/');
   }
+  getFilter(filter: string){
+    return this.http.get<Ticket[]>(this.url+'api/ticketfilter/'+filter);
+  }
 
 }

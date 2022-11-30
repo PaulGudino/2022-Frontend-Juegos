@@ -51,14 +51,14 @@ export class MenuComponent implements OnInit {
         formData.append('refresh', refresh);
         this.auth.Logout(formData).subscribe(
           res => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/juego']);
             localStorage.clear();
             AuthInterceptor.accessToken = '';
           },
           err => console.log(err)
         );
     }else{
-      this.router.navigate(['/login']);
+      this.router.navigate(['/juego']);
     }
   }
 }
