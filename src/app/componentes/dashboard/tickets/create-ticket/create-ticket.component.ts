@@ -16,8 +16,8 @@ import { Game } from 'src/app/interfaces/game/Game';
 })
 export class CreateTicketComponent implements OnInit {
 
-  singularName : string = 'Ticket'
-  pluralName : string = 'Tickets'
+  singularName : string = 'ticket'
+  pluralName : string = 'tckets'
   actionName : string = 'Crear'
   formGroup : FormGroup;
   allClients : Client[] = [];
@@ -63,7 +63,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   toList() {
-    this.router.navigate(['dashboard/' + this.pluralName]);
+    this.router.navigate(['dashboard/tickets']);
   }
 
   create() {
