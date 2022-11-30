@@ -34,7 +34,7 @@ export class TicketsComponent implements OnInit{
 
   displayedColumns : string[] = [
     'invoice_number',
-    'qr_code',
+    'qr_code_digits',
     'state',
     'client',
     'game',
