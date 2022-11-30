@@ -6,6 +6,8 @@
 .home-image_container {
   position: relative;
   height: 100%;
+  width: 100%;
+  background-color:#3b3b3b;
 }
 .home-logo__container{
    position: absolute;
@@ -33,9 +35,10 @@ img{
 }
 
 .home-btn_container {
+   max-width: 14rem;
   position: absolute;
   bottom: calc(10% + 10px);
-  left: calc(50% - 110px);
+  left: calc(50% - 90px);
 }
 
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PublicityService } from '../../service/publicity/publicity.service';
-import { StylesService } from '../../service/styles/styles.service';
-import {Styles} from '../../../../interfaces/styles/Styles'
+import {DashboardStyleService} from '../../../../servicios/theme/dashboardStyle/dashboard-style.service';
+import {KeyControllerService} from '../../service/keyController/key-controller.service'
 
 
 @Component({
@@ -14,17 +14,16 @@ export class ScanViewComponent implements OnInit {
 
   selectedInputCode:boolean = false;
   scanState:boolean = true;
-  code:string = 'Ingresa tu codigo aqui...';
   explication:String = 'Puedes escanear el codigo QR de tu ticket';
-  top_publicity = this.publicity.getTopPublicity();
-  bottom_publicity = this.publicity.getBottomPublicity();
+  code:string = this.keyController.getCode();
 
-  style:Styles = this.stylesService.getStyles();
 
   constructor(
    private router: Router,
-   private publicity: PublicityService,
-   private stylesService: StylesService
+   public publicity: PublicityService,
+   public styles:DashboardStyleService,
+   public keyController:KeyControllerService
+
 
   ) { }
 
@@ -33,9 +32,12 @@ export class ScanViewComponent implements OnInit {
 
   changeView(){
    this.scanState = false;
+   this.keyController.setCode('')
+
   }
 
   continueToGame(){
    this.router.navigate(['/juego/play']);
   }
+
 }

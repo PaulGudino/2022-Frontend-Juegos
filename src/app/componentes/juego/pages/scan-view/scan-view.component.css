@@ -32,9 +32,9 @@
   margin: 0;
 }
 .menu-container_img-container{
-   width: 12rem;
-   min-height: 6rem;
-   margin: 0;
+   width: 10rem;
+   max-width: 10rem;
+   min-height: 4rem;
    margin: 0 1rem 1rem 0;
 }
 .menu-info{

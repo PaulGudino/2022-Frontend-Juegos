@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PublicityService } from '../../service/publicity/publicity.service';
-import {StylesService } from '../../service/styles/styles.service';
-import {Styles} from '../../../../interfaces/styles/Styles'
+import {DashboardStyleService} from '../../../../servicios/theme/dashboardStyle/dashboard-style.service'
+import {ProbabilityService} from '../../../../servicios/probability/probability/probability.service'
 
 
 @Component({
@@ -11,23 +11,40 @@ import {Styles} from '../../../../interfaces/styles/Styles'
 })
 export class PlayViewComponent implements OnInit {
    informationText:string='A JUGAR!'
-   availableSpin:number=2;
+   availableSpin:number=0;
    informationTextGame:string=`Disponnible ${this.availableSpin} Giro mas`;
    top_publicity:string = this.publicity.getTopPublicity();
    bottom_publicity:string = this.publicity.getTopPublicity();
 
-   style:Styles = this.stylesService.getStyles();
+   probability:any={
+      // id: 1,
+      // porcent_win: 20,
+      // winners_limit: 1,
+      // attempts_limit: 1,
+      // created: "2022-11-29T14:47:30.056806",
+      // modified: "2022-11-29T14:47:30.056806",
+      // is_active: true,
+      // game_id: 1
 
-
+   }
 
   constructor(
-   private publicity: PublicityService,
-   private stylesService: StylesService
+   public publicity: PublicityService,
+   public styles:DashboardStyleService,
+   private probabilityService:ProbabilityService
+
 
 
   ) { }
 
   ngOnInit(): void {
+   this.probabilityService.getProbabilites().subscribe(
+      data=>{
+         console.log(data)
+         this.probability = data[data.length-1]
+         this.availableSpin = this.probability.attempts_limit
+      }
+   )
   }
 
 }

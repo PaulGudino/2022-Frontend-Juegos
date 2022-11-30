@@ -1,19 +1,27 @@
 <app-publicity [urlPublicity]="top_publicity"></app-publicity>
 <div class="container-fluid home_container p-0 m-0">
-   <app-logo [urlImage]="logoImage"></app-logo>
-   <figure class="home-image_container p-0 m-0">
+   <!-- <app-logo [urlImage]="logoImage"></app-logo> -->
+   <!-- <figure class="home-image_container p-0 m-0">
       <img
          src="../../../assets/img/back.jpg"
          alt="home-gif"
          class="home_background p-0 m-0"
       />
       <div class="home-shadow"></div>
-   </figure>
+   </figure> -->
+   <video
+      class="home-image_container"
+      [autoplay]="true"
+      muted
+      [loop]="true"
+      [src]="videoUrl"
+   ></video>
    <div class="home-btn_container">
       <app-generic-button
          class="home_btn"
          routerLink="/juego/scan"
          [title]="buttonTitle"
+         [fontSize]="'1.2rem'"
       ></app-generic-button>
    </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { KeyControllerService } from '../service/keyController/key-controller.service';
 
 @Component({
   selector: 'app-keyboard',
@@ -7,14 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KeyboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+   private KeyControllerService:KeyControllerService
+  ) { }
 
   ngOnInit(): void {
   }
 
   getButtonValue(event:Event){
    let btn = event.target as HTMLElement
-   console.log(btn.textContent);
+   if(btn.textContent)
+      this.KeyControllerService.setCode(this.KeyControllerService.getCode()+btn.textContent)
+      console.log(btn.textContent);
 
   }
 

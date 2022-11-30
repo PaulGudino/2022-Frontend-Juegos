@@ -1,20 +1,20 @@
 <div class="scan_container p-0 m-0">
-   <app-publicity [urlPublicity]="top_publicity"></app-publicity>
+   <app-publicity [urlPublicity]="publicity.getTopPublicity()"></app-publicity>
    <div class="container-menu">
       <app-logo [isBackground]="true" height="12rem"></app-logo>
       <div class="scan-shadow"></div>
       <div class="scan_menu-container">
          <div class="menu-container_img-container">
             <app-logo
-               [urlImage]="style.image_logo_game"
+               [urlImage]="styles.get_image_logo_game()"
                height="6rem"
                [isHome]="false"
             ></app-logo>
          </div>
          <div class="menu-info" *ngIf="scanState">
-            <h2 class="scan_title">Escanea el Codigo</h2>
+            <h2 class="scan_title">{{ styles.get_scan_code_title() }}</h2>
             <p class="explication-text">
-               {{ explication }}
+               {{ styles.get_scan_code_description() }}
             </p>
          </div>
          <div class="menu-info" *ngIf="!scanState">
@@ -34,7 +34,7 @@
             class="btn menu__input"
             type="text"
             #codeInput="ngModel"
-            [(ngModel)]="code"
+            [(ngModel)]="keyController.code"
          />
          <app-generic-button
             (click)="continueToGame()"
@@ -46,5 +46,7 @@
       </div>
    </div>
 
-   <app-publicity [urlPublicity]="bottom_publicity"></app-publicity>
+   <app-publicity
+      [urlPublicity]="publicity.getBottomPublicity()"
+   ></app-publicity>
 </div>

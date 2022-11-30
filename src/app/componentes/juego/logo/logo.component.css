@@ -1,14 +1,15 @@
 .home-logo__container{
    position: absolute;
+   max-width:426px;
    height: 15rem;
-   left: calc(50% - 263px);
+   left: calc(50% - 205px);
    top: calc(0% + 20px);
    z-index: 2;
 }
 .logo__container{
    position: absolute;
    height: 15rem;
-   top: calc(0% + 20px);
+   top: 2px;
    z-index: 2;
 }
 .logo__container-background{

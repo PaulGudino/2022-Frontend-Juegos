@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicityService } from './service/publicity/publicity.service';
 import { ThemeService } from './service/theme/theme.service';
-import {StylesService } from './service/styles/styles.service';
+import {DashboardStyleService} from '../../servicios/theme/dashboardStyle/dashboard-style.service';
 @Component({
   selector: 'app-juego',
   templateUrl: './juego.component.html',
@@ -13,15 +13,16 @@ export class JuegoComponent implements OnInit {
   bottom_publicity:string = '';
   buttonTitle:string = '';
   logoImage:string ='';
+  videoUrl:string = '';
 
 
 
   constructor(
     private publicity: PublicityService,
     private themeService:ThemeService,
-    private styles:StylesService
+    private styles:DashboardStyleService
 
-  ) {this.top_publicity = this.publicity.getTopPublicity(); }
+  ) { }
 
   ngOnInit(): void {
    this.themeService.getPublicityList()
@@ -33,9 +34,9 @@ export class JuegoComponent implements OnInit {
       this.themeService.getDesignInformation()
       .subscribe(data => {
          this.styles.loadData(data[0]);
-         this.buttonTitle = this.styles.getTitleButtonScreensaver();
-         this.logoImage = this.styles.getLogoUrl();
-         console.log(this.logoImage)
+         this.buttonTitle = this.styles.get_title_button_screensaver();
+         this.logoImage = this.styles.get_image_logo_game();
+         this.videoUrl = this.styles.get_video_screensaver();
       })
    })
 

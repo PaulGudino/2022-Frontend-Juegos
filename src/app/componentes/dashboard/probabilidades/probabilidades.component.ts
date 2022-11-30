@@ -113,7 +113,7 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
  }
 
   addProbabilityConfig(){
-    if(this.form.valid){
+    if(this.form.valid && this.validateData()){
       const options = {
         title: 'CAMBIAR CONFIGURACION PROBABILIDADES JUEGO',
         message: '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
@@ -147,8 +147,8 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
 
 
     }else{
-      console.log('error al crear form')
-      console.log(this.form.errors)
+      this.snackBar.mensaje('Debe llenar todos los campos de probabilidad antes de poder guardar cambios');
+
     }
   }
 
@@ -163,7 +163,31 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
   manageCloseModal(modalChange:boolean):void{
     this.isModalOpen = modalChange;
   }
-  validateData(){
+  validateData():Boolean{
+    let percent = this.form.get('percent_win')?.value
+    let limit_winner = this.form.get('limit_winners')?.value
+    let limit_attempts= this.form.get('limit_attempts')?.value
+
+    if(percent>100){
+      this.snackBar.mensaje('El porcentaje de ganar no puede ser mayor a 100');
+      return false;
+
+    }else if (percent<1){
+      this.snackBar.mensaje('El porcentaje de ganar no puede ser menor a 1');
+      return false;
+    }
+
+    if(limit_winner<1){
+      this.snackBar.mensaje('El limite de ganadores no puede ser menor a 1');
+      return false;
+    }
+
+    if(limit_attempts<1){
+      this.snackBar.mensaje('El limite de Intentos no puede ser menor a 1');
+      return false;
+    }
+
+    return true;
 
   }
 
