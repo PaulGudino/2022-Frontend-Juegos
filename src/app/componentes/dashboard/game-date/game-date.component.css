@@ -1,77 +1,53 @@
-.mat-toolbar{
-   background-color: var(--color-fondo-secundario);
-   color: var(--color-principal);
+p{
+   margin: 0;
 }
-.calendar_container{
-   width: 100%;
+.exit-icon{
+   width:3.5rem;
+   height:2rem;
+}
+.exit-container{
+   margin-top:1rem;
+   padding-bottom: 1rem;
+}
+.date-title{
+   margin: 1.5rem 0;
+}
+.calendar-container{
    display: flex;
-   flex-direction: row;
    justify-content: space-around;
-}
-.form{
-   width: 80%;
-   display: flex;
-   justify-content: center;
-}
-.condition_container{
-   width: 100%;
-   display: flex;
-   flex-direction: row;
-}
-.date_container{
-   width: 60%;
-   display: flex;
-   flex-direction: row;
-   justify-content: space-around;
-}
-.container{
-   margin-top: 20px;
-   width: 60%;
-   display: flex;
-   flex-direction: column;
-}
-.register_container{
-   margin-top: 20px;
-   width: 100%;
-   display: flex;
-   flex-direction: row; 
+
 }
 .calendar{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 45%
- }
- .input-date{
-    margin-top: 20px;
-    padding:0.5rem 1.5rem;
-    border:1px solid var(--color-principal);
-    border-radius:15px;
-    text-align: center;
- }
- .calendar__card{
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+   width:40%
+}
+.calendar__card{
    padding: 0 1rem;
 }
-.time_container{
-   display: flex;
-   justify-content: center;
- }
- .time{
-   color: var(--color-principal);
- }
- .container_botones{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin: 15px;
-   margin-top: 10%;
-   flex-direction: column;
+
+.input-date{
+   margin: 1rem 0;
+   padding:0.5rem 1.5rem;
+   border:1px solid #00ffc5;
+   border-radius:15px;
+   font-weight:500;
 }
-.container_botones button{
-  margin: 10px 0;
-  background-color: var(--color-cafe);
+.date-container{
+   height:100%;
 }
-.container_botones button:hover{
-  background-color: var(--color-principal);
-  color: var(--color-fondo-secundario);
+
+.save-button{
+   align-self: flex-end;
+   margin-right: 2rem;
+   margin-bottom: 2rem;
+
 }
+
+.cancel-button{
+   align-self: flex-start;
+   margin-left: 2rem;
+}
+
+

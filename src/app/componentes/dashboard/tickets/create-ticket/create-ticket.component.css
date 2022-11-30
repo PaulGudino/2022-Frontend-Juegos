@@ -62,3 +62,32 @@ mat-select {
     display: flex;
     justify-content: center;
 }
+.ticket_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.form_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.qr_container{
+    margin-top: 20px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.img_container{
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    display: flex;
+}
+.img_container img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

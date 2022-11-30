@@ -32,6 +32,8 @@ mat-label{
     color: var(--color-principal);
 }
 button{
+    margin-left: 50%;
+    margin-bottom: 25px;
     margin-top: 25px;
     background: var(--color-cafe);
     color: var(--color-letras);

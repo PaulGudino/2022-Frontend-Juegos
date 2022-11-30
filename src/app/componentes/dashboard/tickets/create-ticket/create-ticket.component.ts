@@ -16,9 +16,9 @@ import { Game } from 'src/app/interfaces/game/Game';
 })
 export class CreateTicketComponent implements OnInit {
 
-  singularName : string = 'ticket'
-  pluralName : string = 'tickets'
-  actionName : string = 'crear'
+  singularName : string = 'Ticket'
+  pluralName : string = 'Tickets'
+  actionName : string = 'Crear'
   formGroup : FormGroup;
   allClients : Client[] = [];
   allGames : Game[] = [];
