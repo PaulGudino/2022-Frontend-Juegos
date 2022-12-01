@@ -15,7 +15,7 @@ export class WinnerDesignComponent implements OnInit {
 
    availableSpin: string='HAZ GANADO!!!';
 
-   previsulizacion: string = '';
+   previsualizacion: string = '';
    @ViewChild("takeInput", { static: false })
    InputVar!: ElementRef;
    fileToUpload!: File | null;
@@ -42,7 +42,7 @@ export class WinnerDesignComponent implements OnInit {
          this.theme.getDesignInformation().subscribe(
             (designData) => {
                this.dashStyle.loadData(designData[0]);
-               this.previsulizacion= this.dashStyle.get_image_winner();
+               this.previsualizacion= this.dashStyle.get_image_winner();
 
                console.log(designData[0])
             }
@@ -58,7 +58,7 @@ export class WinnerDesignComponent implements OnInit {
    if (this.fileToUpload) {
       this.imagen = this.fileToUpload;
      this.imageSrv.extraerBase64(this.fileToUpload).then((imagen: any) => {
-     this.previsulizacion = imagen.base;
+     this.previsualizacion = imagen.base;
      this.dashStyle.setImageWinnerGameFile(this.fileToUpload)
 
      });
@@ -97,7 +97,7 @@ export class WinnerDesignComponent implements OnInit {
 
   }
   cancel(){
-   this.previsulizacion=this.dashStyle.get_image_winner();
+   this.previsualizacion=this.dashStyle.get_image_winner();
   }
 
 }

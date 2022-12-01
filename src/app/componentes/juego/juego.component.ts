@@ -9,10 +9,10 @@ import {DashboardStyleService} from '../../servicios/theme/dashboardStyle/dashbo
 })
 export class JuegoComponent implements OnInit {
   backgroundImgUrl = '';
-  top_publicity:string = '';
-  bottom_publicity:string = '';
+  top_publicity:string = '../../../assets/img/bannerpublicidad.png';
+  bottom_publicity:string = '../../../assets/img/bannerpublicidad.png';
   buttonTitle:string = '';
-  logoImage:string ='';
+  logoImage?:string ='';
   videoUrl:string = '';
 
 
@@ -27,12 +27,14 @@ export class JuegoComponent implements OnInit {
   ngOnInit(): void {
    this.themeService.getPublicityList()
     .subscribe(dataPublicity => {
-      console.log(dataPublicity);
-      this.publicity.loadData(dataPublicity);
-      this.top_publicity = this.publicity.getTopPublicity();
-      this.bottom_publicity = this.publicity.getBottomPublicity();
+      if(dataPublicity.length>0){
+         this.publicity.loadData(dataPublicity);
+         this.top_publicity = this.publicity.getTopPublicity();
+         this.bottom_publicity = this.publicity.getBottomPublicity();
+      }
       this.themeService.getDesignInformation()
       .subscribe(data => {
+         console.log(data)
          this.styles.loadData(data[0]);
          this.buttonTitle = this.styles.get_title_button_screensaver();
          this.logoImage = this.styles.get_image_logo_game();

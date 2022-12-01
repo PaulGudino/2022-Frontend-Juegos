@@ -69,14 +69,14 @@ export class EditTicketComponent implements OnInit {
   }
 
   edit() {
-    this.formGroup.valid ? this.showDialog() : 
+    this.formGroup.valid ? this.showDialog() :
     this.snackBar.mensaje('Llene el formulario correctamente');
   }
 
   showDialog() {
     const DIALOGINFO = {
       title: this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
-      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + ' ?', 
+      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + ' ?',
       cancelText: 'CANCELAR',
       confirmText: this.actionName.toUpperCase()
     }

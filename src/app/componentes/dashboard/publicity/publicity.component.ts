@@ -26,11 +26,10 @@ export class PublicityComponent implements OnInit {
   ngOnInit(): void {
    this.publicity.getPublicityList().subscribe(
       (data => {
-         console.log(data[0])
-         this.dashboardPublicityService.loadData(data);
-         this.dashboardPublicityService.changeTopPublicityImage(data[0].image)
-         this.dashboardPublicityService.changeBottomPublicityImage(data[1].image)
-
+            console.log(data[0])
+            this.dashboardPublicityService.loadData(data);
+            this.dashboardPublicityService.changeTopPublicityImage(data[0].image)
+            this.dashboardPublicityService.changeBottomPublicityImage(data[1].image)
       })
    )
   }

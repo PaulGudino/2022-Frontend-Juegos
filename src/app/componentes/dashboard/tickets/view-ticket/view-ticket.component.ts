@@ -20,6 +20,7 @@ export class ViewTicketComponent implements OnInit {
   ticket : Ticket = {
     id : '',
     invoice_number : '',
+    qr_code_digits:0,
     qr_code : '',
     state : '',
     client : '',
