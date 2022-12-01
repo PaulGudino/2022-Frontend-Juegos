@@ -14,6 +14,24 @@ mat-form-field{
     margin: 15px;
 }
 
+
+.card {
+    padding: 10rem;
+    border-radius: 10rem;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8rem;
+}
+
+.text {
+    color: #ffffff;
+    padding: 10rem 10rem;
+}
+
+
 .container_botones button{
     margin: 0 10px;
     background-color: var(--color-cafe);

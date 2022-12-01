@@ -16,8 +16,8 @@ import { Game } from 'src/app/interfaces/game/Game';
 })
 export class CreateTicketComponent implements OnInit {
 
-  singularName : string = 'ticket'
-  pluralName : string = 'tckets'
+  singularName : string = 'Ticket'
+  pluralName : string = 'Tickets'
   actionName : string = 'Crear'
   formGroup : FormGroup;
   allClients : Client[] = [];
@@ -86,6 +86,7 @@ export class CreateTicketComponent implements OnInit {
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
+          this.generateQRCode();
           let formData = this.fillForm();
           this.ticketAPI.post(formData).subscribe ({
             next : (res) => {
