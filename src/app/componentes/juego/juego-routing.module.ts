@@ -7,8 +7,6 @@ const routes: Routes = [
     {path:'',component:JuegoComponent},
     {path:'scan',component:ScanViewComponent},
     {path:'play',component:PlayViewComponent},
-
-
 ];
 
 @NgModule({
