@@ -20,7 +20,7 @@ export class DashboardStyleService {
 
       image_machine_game : '',
       image_background_game: '',
-      image_logo_game: '',
+      image_logo_game: '../../../assets/img/logoejemplo.png',
       color_background_game:'',
 
       video_screensaver: '',
@@ -50,7 +50,11 @@ export class DashboardStyleService {
    return this.style.title_button_screensaver;
   }
   getLogoUrl():string{
-   return this.style.image_logo_game;
+   if(this.style.image_logo_game !=undefined){
+      return this.style.image_logo_game;
+
+   }else
+   return '';
   }
   getStyles(){
    return this.style
@@ -113,7 +117,12 @@ public get_image_background_game() {
 }
 
 public get_image_logo_game() {
-   return this.style.image_logo_game;
+   if(this.style.image_logo_game !=undefined){
+      return this.style.image_logo_game;
+
+   }else{
+      return '';
+   }
 }
 
 public get_color_background_game(){

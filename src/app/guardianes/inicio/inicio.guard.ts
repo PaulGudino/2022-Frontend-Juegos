@@ -19,7 +19,7 @@ export class InicioGuard implements CanActivate {
     if (localStorage.getItem('token')) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/juego']);
       return false;
     }
   }

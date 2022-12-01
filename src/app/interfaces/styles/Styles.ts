@@ -5,8 +5,8 @@ export interface Styles{
    font_letter:string;
 
    image_machine_game?: any;
-   image_background_game: string;
-   image_logo_game: string;
+   image_background_game?: string;
+   image_logo_game?: string;
    color_background_game: string;
 
    video_screensaver?: any;

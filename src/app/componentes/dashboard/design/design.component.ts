@@ -122,6 +122,7 @@ export class DesignComponent implements OnInit {
   previewChangeColorLetter(event:Event){
    let element:HTMLSelectElement = event.target as HTMLSelectElement;
    this.colorText = element.value;
+   console.log(this.colorText);
   }
   cancel(){
    this.fontFamily = this.dashStyle.get_font_letter();

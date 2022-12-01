@@ -38,11 +38,8 @@ export class ProbabilidadesComponent implements OnInit {
   probabilityData:any;
 
   totalSquares:number=0;
-  limitWinners:number=5;
-  limitAttempts:number=5;
-
-
-
+  limitWinners:number=0;
+  limitAttempts:number=0;
   percentage:number=0;
   limitMessage:string=''
 
@@ -76,12 +73,16 @@ export class ProbabilidadesComponent implements OnInit {
 
        this.probability.getProbabilites()
 			.subscribe(data =>{
-            this.probabilityData = data[data.length-1]
-            console.log(this.probabilityData);
-            this.limitWinners = this.probabilityData.winners_limit
-            this.percentage = this.probabilityData.porcent_win
-            this.limitAttempts = this.probabilityData.attempts_limit
-            this.limitMessage = `limite actual Intentos ${this.limitWinners}`
+            if(data.length > 0){
+               console.log(data)
+               this.probabilityData = data[data.length-1]
+               console.log(this.probabilityData);
+               this.limitWinners = this.probabilityData.winners_limit
+               this.percentage = this.probabilityData.porcent_win
+               this.limitAttempts = this.probabilityData.attempts_limit
+               this.limitMessage = `limite actual Intentos ${this.limitWinners}`
+
+            }
 
 
 			})
@@ -122,7 +123,7 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
       }
       // let user_register = localStorage.getItem('user_id');
       let body = {
-        porcent_win: this.form.get('percent_win')?.value,
+        percent_win: this.form.get('percent_win')?.value,
         winners_limit: this.form.get('limit_winners')?.value,
         attempts_limit: this.form.get('limit_attempts')?.value,
         is_active: true,
@@ -136,8 +137,9 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
             console.log(res);
             this.snackBar.mensaje('Configuracion Cambiada con exito');
             this.limitWinners = body.winners_limit
-
             this.limitMessage = `Todavia no ha pasado el limite actual ${this.limitWinners}`
+            this.percentage = body.percent_win;
+            this.limitAttempts = body.attempts_limit
 
           })
 
