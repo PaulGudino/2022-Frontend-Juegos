@@ -19,6 +19,17 @@
                aria-label="Archivo"
             />
          </div>
+         <p class="publicity__title white-color">Imagen Logo:</p>
+         <div class="file-select" id="src-file2">
+            <input
+               class="file-input"
+               #takeInputLogo
+               (change)="capturarFileLogo($event)"
+               type="file"
+               name="src-file2"
+               aria-label="Archivo"
+            />
+         </div>
          <p class="publicity__title white-color">Fuente Letra:</p>
          <select
             name="fuentes"
@@ -82,7 +93,7 @@
                height="1.5rem"
                [isHome]="false"
                [isBackground]="false"
-               [urlImage]="dashStyle.get_image_logo_game()"
+               [urlImage]="previsulizacionLogo"
             ></app-logo>
 
             <div class="information-game-container">
@@ -102,7 +113,7 @@
                <figure class="award-box-container">
                   <img
                      class="awards-box"
-                     [src]="previsulizacion"
+                     [src]="previsulizacionMachine"
                      alt="cajon-premios"
                   />
                </figure>

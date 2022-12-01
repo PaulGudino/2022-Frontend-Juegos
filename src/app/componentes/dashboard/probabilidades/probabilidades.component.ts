@@ -78,7 +78,7 @@ export class ProbabilidadesComponent implements OnInit {
                this.probabilityData = data[data.length-1]
                console.log(this.probabilityData);
                this.limitWinners = this.probabilityData.winners_limit
-               this.percentage = this.probabilityData.porcent_win
+               this.percentage = this.probabilityData.percent_win
                this.limitAttempts = this.probabilityData.attempts_limit
                this.limitMessage = `limite actual Intentos ${this.limitWinners}`
 

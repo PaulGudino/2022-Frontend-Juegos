@@ -17,11 +17,19 @@ export class DesignComponent implements OnInit {
    colorText:string=''
 
 
-   previsulizacion: string = '';
+   previsulizacionMachine: string = '';
+   previsulizacionLogo: string = '';
    @ViewChild("takeInput", { static: false })
    InputVar!: ElementRef;
-   fileToUpload!: File | null;
-   imagen!:File;
+
+   @ViewChild("takeInputLogo", { static: false })
+   InputVarLogo!: ElementRef;
+
+   fileToUploadMachine!: File | null;
+   imagenMachine!:File;
+
+   fileToUploadLogo!: File | null;
+   imagenLogo!:File;
 
   constructor(
    private dashboardPublicityService: DashboardPublicityService,
@@ -44,7 +52,8 @@ export class DesignComponent implements OnInit {
          this.theme.getDesignInformation().subscribe(
             (designData) => {
                this.dashStyle.loadData(designData[0]);
-               this.previsulizacion = this.dashStyle.get_image_machine_game();
+               this.previsulizacionMachine = this.dashStyle.get_image_machine_game();
+               this.previsulizacionLogo = this.dashStyle.get_image_logo_game();
                this.fontFamily = this.dashStyle.get_font_letter();
                this.colorText = this.dashStyle.get_color_text();
                console.log(designData[0])
@@ -57,19 +66,38 @@ export class DesignComponent implements OnInit {
 
   capturarFile(event: any): void {
 
-   this.fileToUpload = this.imageSrv.captureFile(event);
+   this.fileToUploadMachine = this.imageSrv.captureFile(event);
 
-   if (this.fileToUpload) {
-      this.imagen = this.fileToUpload;
-     this.imageSrv.extraerBase64(this.fileToUpload).then((imagen: any) => {
-     this.previsulizacion = imagen.base;
-     this.dashStyle.setImageMchineGameFile(this.fileToUpload)
+   if (this.fileToUploadMachine) {
+      this.imagenMachine = this.fileToUploadMachine;
+      this.imageSrv.extraerBase64(this.fileToUploadMachine).then((imagenMachine: any) => {
+      this.previsulizacionMachine = imagenMachine.base;
+      this.dashStyle.setImageMchineGameFile(this.fileToUploadMachine)
 
      });
-   }else{
+   }
+   else{
      this.InputVar.nativeElement.value = "";
+     this.InputVarLogo.nativeElement.value = "";
      this.snackbar.mensaje('Solo se permiten imagenes');
    }
+  }
+  capturarFileLogo(event:any):void{
+   this.fileToUploadLogo = this.imageSrv.captureFile(event);
+   if(this.fileToUploadLogo){
+      this.imagenLogo = this.fileToUploadLogo;
+      this.imageSrv.extraerBase64(this.fileToUploadLogo).then((imagenLogo: any) => {
+         this.previsulizacionLogo = imagenLogo.base;
+         this.dashStyle.setImageLogoFile(this.fileToUploadLogo)
+
+        });
+
+   }else{
+      this.InputVarLogo.nativeElement.value = "";
+      this.snackbar.mensaje('Solo se permiten imagenes');
+    }
+
+
   }
 
   updateDesign(){
@@ -81,7 +109,7 @@ export class DesignComponent implements OnInit {
     };
    this.dialogService.open(options);
    this.dialogService.confirmed().subscribe(confirmed => {
-      if(confirmed && this.fileToUpload){
+      if(confirmed && this.fileToUploadMachine){
          let formData: FormData = new FormData();
          formData.append('id','1')
          formData.append('image_machine_game', this.dashStyle.getImageMachineGameFile(), this.dashStyle.getImageMachineGameFile().name);
@@ -96,7 +124,23 @@ export class DesignComponent implements OnInit {
          //this.router.navigate(['/dashboard/juego/fecha']);
          this.snackbar.mensaje("Salvapantallas Actualizado exitosamente");
 
-      }else if(confirmed && !this.fileToUpload){
+      }else if(confirmed && this.fileToUploadLogo){
+         let formData: FormData = new FormData();
+         formData.append('id','1')
+         formData.append('image_logo_game', this.dashStyle.getImageLogoFile(), this.dashStyle.getImageLogoFile().name);
+         formData.append('color_text',this.colorText)
+         formData.append('font_letter',this.fontFamily)
+         formData.append('date_modified',new Date().toISOString())
+         formData.append('is_active','true')
+         formData.append('game_id','1')
+
+         this.theme.updateDesgin(1,formData);
+
+         //this.router.navigate(['/dashboard/juego/fecha']);
+         this.snackbar.mensaje("Salvapantallas Actualizado exitosamente");
+
+
+      }else if(confirmed && !this.fileToUploadMachine && !this.fileToUploadLogo){
          let formData: FormData = new FormData();
          formData.append('id','1')
          formData.append('color_text',this.colorText)

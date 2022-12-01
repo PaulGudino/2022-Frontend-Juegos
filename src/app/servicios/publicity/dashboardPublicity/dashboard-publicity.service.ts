@@ -11,6 +11,8 @@ export class DashboardPublicityService {
    publicityList:Publicity[]=[]
    topImageFile:any;
    bottomImageFile:any;
+   changeTop:boolean = false;
+   changeBottom:boolean = false;
 
   constructor() { }
 
@@ -18,6 +20,19 @@ export class DashboardPublicityService {
    this.publicityList = data
 
   }
+  getChangeBottom(){
+   return this.changeBottom;
+  }
+  setChangeBottom(change:boolean) {
+   this.changeBottom=change;
+  }
+  getChangeTop(){
+   return this.changeTop;
+  }
+  setChangeTop(change:boolean) {
+   this.changeTop=change
+  }
+
   getTopPublicity():Publicity{
    return this.publicityList[0];
   }
