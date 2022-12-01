@@ -8,6 +8,8 @@ import { GameService } from 'src/app/servicios/game/game.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
 import { Client } from 'src/app/interfaces/client/Client';
 import { Game } from 'src/app/interfaces/game/Game';
+import { Ticket } from 'src/app/interfaces/ticket/Ticket';
+import { ThemeService } from 'src/app/servicios/theme/theme.service';
 
 
 @Component({
@@ -25,11 +27,14 @@ export class EditTicketComponent implements OnInit {
   allClients : Client[] = [];
   allGames : Game[] = [];
 
-  currentClient : any;
+  currentClient !: Client;
+  currentGame !: Game;
 
   invoiceNumber : string = '';
-  qrCodePath : string = '';
-  clientId : string = '';
+  qr_code_url : string = '';
+  qr_code_digits : string = '';
+  clientID : string = '';
+  gameID : string = '';
 
   constructor(
     private router : Router,
@@ -45,13 +50,14 @@ export class EditTicketComponent implements OnInit {
     // Building the form with the formBuilder
 
     this.formGroup = this.formBuilder.group({
-      qr_code : [''],
+      qr_code_url : [''],
+      qr_code_digits : [''],
       invoice_number : ['', Validators.required],
       state : ['', Validators.required],
       client : ['', Validators.required],
       game : ['', Validators.required],
     });
-
+  
     this.ClientAPI.getAll().subscribe(
       (data) => {
         this.allClients = data;
@@ -69,14 +75,14 @@ export class EditTicketComponent implements OnInit {
   }
 
   edit() {
-    this.formGroup.valid ? this.showDialog() :
+    this.formGroup.valid ? this.showDialog() : 
     this.snackBar.mensaje('Llene el formulario correctamente');
   }
 
   showDialog() {
     const DIALOGINFO = {
       title: this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
-      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + ' ?',
+      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + ' ?', 
       cancelText: 'CANCELAR',
       confirmText: this.actionName.toUpperCase()
     }
@@ -89,7 +95,7 @@ export class EditTicketComponent implements OnInit {
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
-          this.generateQRCode()
+          this.generateQRCode();
           let formData = this.fillForm();
           this.ticketAPI.put(Number(ticketId), formData).subscribe ({
             next : (res) => {
@@ -113,36 +119,36 @@ export class EditTicketComponent implements OnInit {
     formData.append('client', this.formGroup.get('client')?.value);
     formData.append('game', this.formGroup.get('game')?.value);
     formData.append('user_modifier', user_modifier!);
-    formData.append('qr_code', this.qrCodePath);
+    formData.append('qr_code_digits', this.qr_code_digits);
+    formData.append('qr_code_url', this.qr_code_url);
     return formData;
   }
 
   ngOnInit(): void {
     let ticketId = this.activatedRoute.snapshot.paramMap.get('id');
+  
     this.ticketAPI.getById(Number(ticketId)).subscribe(
-      (res) => {
-        this.currentTicket = res;
+      (data : Ticket) => {
+        this.currentTicket = data;
         this.getInfo();
-      },
-      (err) => {
       }
     )
   }
 
   getInfo() {
-    this.formGroup.patchValue({
-      qr_code : this.currentTicket.qr_code,
+
+   this.formGroup.patchValue({
+      qr_code_digits : this.currentTicket.qr_code_digits,
+      qr_code_url : this.currentTicket.qr_code_url,
       invoice_number : this.currentTicket.invoice_number,
       state : this.currentTicket.state,
-      client : this.currentTicket.client,
-      game : this.currentTicket.game,
     })
   }
 
   generateQRCode() {
     this.invoiceNumber = this.formGroup.get('invoice_number')?.value;
-    this.clientId = this.formGroup.get('client')?.value;
-    this.qrCodePath = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientId}`;
+    this.clientID = this.formGroup.get('client')?.value;
+    this.qr_code_url = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientID}`;
+    this.qr_code_digits = (Math.floor(Math.random() * (999999999 - 100000000 + 1)) + 100000000).toString(10);
   }
 }
-
