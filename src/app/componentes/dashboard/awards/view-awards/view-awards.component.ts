@@ -16,22 +16,7 @@ export class ViewAwardsComponent implements OnInit {
     private activerouter: ActivatedRoute
   ) { }
 
-  premioget: getAwardList = {
-    id: 0,
-    name: '',
-    description: '',
-    imagen: '',
-    initial_stock: 0,
-    current_stock: 0,
-    prizes_awarded: 0,
-    is_active: true,
-    created: '',
-    modified: '',
-    user_register: '',
-    user_modify: '',
-    category: '',
-    game: ''
-  };
+  premioget: any;
 
   ngOnInit(): void {
     let premioid = this.activerouter.snapshot.paramMap.get('id');

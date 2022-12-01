@@ -36,7 +36,8 @@ export class ImageService {
   captureFile(event: any): File | null {
     const archivoCapturado = event.target.files[0];
     let nombre = archivoCapturado.name;
-    if ( nombre.split('.')[1] == 'png' || nombre.split('.')[1] == 'jpg' || nombre.split('.')[1] == 'jpeg' || nombre.split('.')[1] == 'gif' ) {
+    let archivo = (nombre.split('.').pop()).toLowerCase();
+    if ( archivo == 'png' || archivo == 'jpg' || archivo == 'jpeg' || archivo == 'gif') {
       return archivoCapturado;
     }else{
       return null;
@@ -46,7 +47,8 @@ export class ImageService {
   captureVideoFile(event:any):File | null{
    const archivoCapturado = event.target.files[0];
     let nombre = archivoCapturado.name;
-    if ( nombre.split('.')[1] == 'mp4') {
+    let archivo = (nombre.split('.').pop()).toLowerCase();
+    if ( archivo == 'mp4') {
       return archivoCapturado;
     }else{
       return null;

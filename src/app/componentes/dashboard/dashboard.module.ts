@@ -48,6 +48,7 @@ import { SaveScreenComponent } from './save-screen/save-screen.component';
 import { ScanCodeComponent } from './scan-code/scan-code.component';
 import { DesignComponent } from './design/design.component';
 import { WinnerDesignComponent } from './winner-design/winner-design.component';
+import { CreateGameDateComponent } from './game-date/create-game-date/create-game-date.component';
 
 @NgModule({
     declarations: [
@@ -99,6 +100,7 @@ import { WinnerDesignComponent } from './winner-design/winner-design.component';
         ScanCodeComponent,
         DesignComponent,
         WinnerDesignComponent,
+        CreateGameDateComponent,
 
         
 

@@ -20,6 +20,11 @@
         "ruta": "/dashboard/clientes"
     },
     {
+        "nombre": "Tickets",
+        "icono": "confirmation_number",
+        "ruta": "/dashboard/tickets"
+    },
+    {
         "nombre": "Premios",
         "icono": "card_giftcard",
         "ruta": "/dashboard/premios"
@@ -35,13 +40,33 @@
         "ruta": "/dashboard/probabilidades"
     },
     {
-        "nombre": "Tickets",
-        "icono": "confirmation_number",
-        "ruta": "/dashboard/tickets"
-    },
-    {
         "nombre": "Juegos",
         "icono": "sports_esports",
         "ruta": "/dashboard/juego/seleccion"
+    },
+    {
+        "nombre": "Configuración Publicidad",
+        "icono": "settings",
+        "ruta": "/dashboard/juego/publicidad"
+    },
+    {
+        "nombre": "Configuración Salvapantallas",
+        "icono": "settings",
+        "ruta": "/dashboard/juego/salvapantallas"
+    },
+    {
+        "nombre": "Configuración Scaneo",
+        "icono": "settings",
+        "ruta": "/dashboard/juego/scan"
+    },
+    {
+        "nombre" : "Configuración Diseño",
+        "icono" : "settings",
+        "ruta" : "/dashboard/juego/diseño"
+    },
+    {
+        "nombre": "Configuración Ganadores",
+        "icono": "settings",
+        "ruta": "/dashboard/juego/diseño/ganador"
     }
 ]

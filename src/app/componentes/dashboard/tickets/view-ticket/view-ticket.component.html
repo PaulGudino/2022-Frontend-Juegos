@@ -14,10 +14,16 @@
             <mat-label>Número de Factura</mat-label>
             <mat-list-item>{{ticket.invoice_number}}</mat-list-item>
     
-            <!-- QR Code -->
-            <mat-label>Código QR</mat-label>
-            <mat-list-item>{{ticket.qr_code}}</mat-list-item>
+            <!-- QR Code Digits -->
+            <mat-label>Código QR en digitos</mat-label>
+            <mat-list-item>{{ticket.qr_code_digits}}</mat-list-item>
     
+            <!-- QR Code URl -->
+            <mat-label>Código QR</mat-label>
+            <mat-list-item>
+                <img src={{ticket.qr_code_url}} alt="CodigoQR">
+            </mat-list-item>
+
             <!-- Sate -->
             <mat-label>Estado</mat-label>
             <mat-list-item>{{ticket.state}}</mat-list-item>

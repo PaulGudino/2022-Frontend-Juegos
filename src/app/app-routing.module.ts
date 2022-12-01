@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'dashboard', loadChildren: () => import('./componentes/dashboard/dashboard.module').then(m => m.DashboardModule),
   canActivate: [InicioGuard] },
   { path: 'juego', loadChildren: () => import('./componentes/juego/juego.module').then(m => m.JuegoModule)},
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'juego' }
 ];
 
 @NgModule({

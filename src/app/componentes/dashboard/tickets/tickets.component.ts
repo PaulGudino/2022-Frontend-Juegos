@@ -20,8 +20,8 @@ export class TicketsComponent implements OnInit{
   Filters = [
     {id: '?state=Disponible', name: 'Tickets Activos'},
     {id: '?state=Reclamado', name: 'Tickets Inactivos'},
-    {id: '?ordering=-created', name: 'Ultimos Tickets Creados'},
-    {id: '?ordering=created', name: 'Primeros Tickets Creados'},
+    {id: '?ordering=-date_created', name: 'Ultimos Tickets Creados'},
+    {id: '?ordering=date_created', name: 'Primeros Tickets Creados'},
   ]
 
   filter_default = '?state=Disponible'
@@ -34,7 +34,7 @@ export class TicketsComponent implements OnInit{
 
   displayedColumns : string[] = [
     'invoice_number',
-    'qr_code',
+    'qr_code_digits',
     'state',
     'client',
     'game',
@@ -59,7 +59,7 @@ export class TicketsComponent implements OnInit{
   }
   
   loadAll(filter : string) {
-    this.ticketAPI.getAll().subscribe(
+    this.ticketAPI.getFilter(filter).subscribe(
       (data) => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;

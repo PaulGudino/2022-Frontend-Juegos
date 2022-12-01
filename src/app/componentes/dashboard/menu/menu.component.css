@@ -53,4 +53,7 @@ h1.example-app-name {
 a:hover{
   color: var(--color-principal)
 }
+mat-sidenav{
+  padding-bottom: 70px;
+}
 

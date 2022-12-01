@@ -28,7 +28,7 @@ export class AwardsComponent implements OnInit {
   filter_default = '?ordering=-created'
 
   Titulo = "Premios";
-  displayedColumns: string[] = ['id', 'name', 'description','initial_stock','current_stock','created','juego', 'is_active', 'Acciones']
+  displayedColumns: string[] = ['id', 'name', 'description','initial_stock','condition_stock','total_awards','created','juego', 'is_active', 'Acciones']
   dataSource !: MatTableDataSource<getAwardList>;
   permisos:any = [];
   @ViewChild(MatPaginator) paginator !: MatPaginator;

@@ -15,7 +15,7 @@ export class CreateClientComponent implements OnInit {
 
   singularName : string = 'cliente'
   pluralName : string = 'clientes'
-  actionName : string = 'crear'
+  actionName : string = 'Crear'
   formGroup : FormGroup;
 
   constructor(

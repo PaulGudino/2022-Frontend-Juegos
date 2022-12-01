@@ -17,13 +17,14 @@ import { Game } from 'src/app/interfaces/game/Game';
 export class CreateTicketComponent implements OnInit {
 
   singularName : string = 'ticket'
-  pluralName : string = 'tickets'
-  actionName : string = 'crear'
+  pluralName : string = 'tckets'
+  actionName : string = 'Crear'
   formGroup : FormGroup;
   allClients : Client[] = [];
   allGames : Game[] = [];
   invoiceNumber : string = '';
-  qrCodePath : string = '';
+  qr_code_url : string = '';
+  qr_code_digits : string = '';
   clientId : string = '';
 
   constructor(
@@ -41,7 +42,8 @@ export class CreateTicketComponent implements OnInit {
     // id refers to cedula
 
     this.formGroup = this.formBuilder.group({
-      qr_code : [''],
+      qr_code_url : [''],
+      qr_code_digits : [''],
       invoice_number : ['', Validators.required],
       state : ['', Validators.required],
       client : ['', Validators.required],
@@ -61,7 +63,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   toList() {
-    this.router.navigate(['dashboard/' + this.pluralName]);
+    this.router.navigate(['dashboard/tickets']);
   }
 
   create() {
@@ -108,7 +110,8 @@ export class CreateTicketComponent implements OnInit {
     formData.append('game', this.formGroup.get('game')?.value);
     formData.append('user_register', user_register!);
     formData.append('user_modifier', user_register!);
-    formData.append('qr_code', this.qrCodePath);
+    formData.append('qr_code_digits', this.qr_code_digits);
+    formData.append('qr_code_url', this.qr_code_url);
     return formData;
   }
 
@@ -118,7 +121,8 @@ export class CreateTicketComponent implements OnInit {
   generateQRCode() {
     this.invoiceNumber = this.formGroup.get('invoice_number')?.value;
     this.clientId = this.formGroup.get('client')?.value;
-    this.qrCodePath = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientId}`;
+    this.qr_code_url = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientId}`;
+    this.qr_code_digits = (Math.floor(Math.random() * (999999999 - 100000000 + 1)) + 100000000).toString(10);
   }
 
 }

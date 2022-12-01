@@ -1,0 +1,56 @@
+<mat-toolbar class="green-primary background-navy-primary">
+    <span>Fecha</span>
+    <span class="example-spacer"></span>
+ </mat-toolbar>
+ <div class="container-fluid background-black-primary root-container calendar_container">
+       <form [formGroup]="form" class="form">
+          <div class="date_container">
+             <div class="calendar">
+                <p class="input-date green-primary">Fecha Inicio</p>
+                <div class="calendar__card">
+                   <mat-card
+                      class="demo-inline-calendar-card background-navy-primary green-primary"
+                   >
+                      <mat-calendar
+                         class="green-primary"
+                         [(selected)]="beginDate"
+                         [minDate]="minDate"
+                      ></mat-calendar>
+                   </mat-card>
+                </div>
+                <div class="time_container">
+                   <ngb-timepicker class="time" formControlName="startTime" [meridian]="true"></ngb-timepicker>
+                </div>
+             </div>
+             <div class="calendar">
+                <p class="input-date green-primary">Fecha Fin</p>
+                <div class="calendar__card">
+                   <mat-card
+                      class="demo-inline-calendar-card background-navy-primary green-primary"
+                   >
+                      <mat-calendar
+                         class="green-primary"
+                         [(selected)]="finishDate"
+                         [minDate]="minDatefin"
+                      ></mat-calendar>
+                   </mat-card>
+                </div>
+                <div class="time_container">
+                   <ngb-timepicker formControlName="endTime" [meridian]="true"></ngb-timepicker>
+                </div>
+             </div>
+             <div class="container_botones">
+                <button  mat-raised-button color="warn" (click)="create()">
+                    <mat-icon>close</mat-icon>
+                    Cancelar
+                </button>
+                
+                <button mat-raised-button (click)="cancel()" color="primary">
+                    <mat-icon>done</mat-icon>
+                    Crear
+                </button>
+            </div>
+          </div>
+       </form>  
+ </div>
+ 
