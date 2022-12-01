@@ -10,18 +10,18 @@
          <div class="savescreen-info__video-option">
             <p
                class="green-primary video-option"
-               [ngClass]="{ 'video-option-active': isUpload }"
+               [ngClass]="{ 'video-option-active': false }"
                (click)="toggleUpload()"
             >
                Subir video
             </p>
-            <p
+            <!-- <p
                class="green-primary video-option"
                [ngClass]="{ 'video-option-active': !isUpload }"
                (click)="toggleUpload()"
             >
                Copiar url
-            </p>
+            </p> -->
          </div>
          <div *ngIf="isUpload" class="file-select" id="src-file1">
             <input
