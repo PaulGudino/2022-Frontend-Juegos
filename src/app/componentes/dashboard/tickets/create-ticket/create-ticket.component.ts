@@ -86,6 +86,7 @@ export class CreateTicketComponent implements OnInit {
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
+          this.generateQRCode();
           let formData = this.fillForm();
           this.ticketAPI.post(formData).subscribe ({
             next : (res) => {

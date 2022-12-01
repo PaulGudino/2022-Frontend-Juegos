@@ -25,7 +25,7 @@ mat-form-field {
     color: var(--color-fondo-secundario);
 }
 
-mat-toolbar {
+.mat-toolbar {
     background-color: var(--color-fondo-secundario);
     color: var(--color-principal);
 }
@@ -40,11 +40,11 @@ mat-toolbar {
     height: 40px;
 }
 
-mat-hint {
+.mat-hint {
     color: var(--color-letras);
 }
 
-mat-error {
+.mat-error {
     color: var(--color-principal);
 }
 
@@ -53,7 +53,7 @@ label {
     margin-bottom: 10px;
 }
 
-mat-select {
+.mat-select {
     background: #ffffff;
     border-radius: 10px;
     height: 40px;

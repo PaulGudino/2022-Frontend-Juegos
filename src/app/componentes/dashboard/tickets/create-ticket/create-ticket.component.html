@@ -4,93 +4,89 @@
     <span>Nuevo Ticket</span>
 </mat-toolbar>
 
-<mat-grid-list cols="2" rowHeight="10:10">
-    <mat-grid-tile>
-        <!-- Form -->
-        <div class="container">
-            <form [formGroup]="formGroup">
-                <!-- Invoice Number Input--->
-                <mat-form-field>
-                    <label>Número de Factura</label>
-                    <div class="input_form">
-                        <input matInput #input autocomplete="off" formControlName="invoice_number" type="text" required
-                            maxlength="10" minlength="10" onpaste="return false"
-                            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                    </div>
-                    <mat-hint align="end">
-                        {{input.value.length || 0}}/10
-                    </mat-hint>
-                    <mat-error *ngIf="formGroup.controls['invoice_number'].hasError('required')">
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
 
-                <!-- Select State -->
-                <mat-form-field>
-                    <label>Estado</label>
-                    <mat-select formControlName="state" mat-select>
-                        <mat-option value="Disponible">Disponible</mat-option>
-                        <mat-option value="Reclamado">Reclamado</mat-option>
-                    </mat-select>
-                    <mat-hint>Seleccione una opción</mat-hint>
-                    <mat-error *ngIf="formGroup.controls['state'].hasError('required')">
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
 
-                <!-- Select Client -->
-                <mat-form-field>
-                    <label>Cliente</label>
-                    <mat-select formControlName="client" mat-select>
-                        <mat-option *ngFor="let client of allClients" [value]="client.id">
-                            {{ client.cedula + ' ' + client.names + ' ' + client.surnames }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-hint>Seleccione una opción</mat-hint>
-                    <mat-error *ngIf="formGroup.controls['client'].hasError('required')">
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
-
-                <!-- Select Game -->
-                <mat-form-field>
-                    <label>Juego</label>
-                    <mat-select formControlName="game" mat-select>
-                        <mat-option *ngFor="let game of allGames" [value]="game.id">
-                            {{game.name}}
-                        </mat-option>
-                    </mat-select>
-                    <mat-hint>Seleccione una opción</mat-hint>
-                    <mat-error *ngIf="formGroup.controls['game'].hasError('required')">
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
-
-            </form>
-            <!-- Buttons -->
-            <div class="container_botones">
-                <button (click)="toList()" mat-raised-button color="warn">
-                    <mat-icon>close</mat-icon>
-                    Cancelar
-                </button>
-
-                <button mat-raised-button color="primary" (click)="create()">
-                    <mat-icon>done</mat-icon>
-                    {{actionName}}
-                </button>
+<!-- Form -->
+<div class="container">
+    <form [formGroup]="formGroup">
+        <!-- Invoice Number Input--->
+        <mat-form-field>
+            <label>Número de Factura</label>
+            <div class="input_form">
+                <input matInput #input autocomplete="off" formControlName="invoice_number" type="text" required
+                    maxlength="10" minlength="10" onpaste="return false"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
+            <mat-hint align="end">
+                {{input.value.length || 0}}/10
+            </mat-hint>
+            <mat-error *ngIf="formGroup.controls['invoice_number'].hasError('required')">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
 
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <!-- QRCode Button -->
-                <p *ngIf="!invoiceNumber">Falta ingresar el número de factura</p>
-                <p *ngIf="!clientId">Falta seleccionar el cliente</p>
-                <button mat-raised-button (click)="generateQRCode()">
-                    Generar código QR
-                </button>
+        <!-- Select State -->
+        <mat-form-field>
+            <label>Estado</label>
+            <mat-select formControlName="state" mat-select>
+                <mat-option value="Disponible">Disponible</mat-option>
+                <mat-option value="Reclamado">Reclamado</mat-option>
+            </mat-select>
+            <mat-hint>Seleccione una opción</mat-hint>
+            <mat-error *ngIf="formGroup.controls['state'].hasError('required')">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
 
-                <img *ngIf="invoiceNumber && clientId" src={{qr_code_url}} alt="">
+        <!-- Select Client -->
+        <mat-form-field>
+            <label>Cliente</label>
+            <mat-select formControlName="client" mat-select>
+                <mat-option *ngFor="let client of allClients" [value]="client.id">
+                    {{ client.cedula + ' ' + client.names + ' ' + client.surnames }}
+                </mat-option>
+            </mat-select>
+            <mat-hint>Seleccione una opción</mat-hint>
+            <mat-error *ngIf="formGroup.controls['client'].hasError('required')">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
 
-    </mat-grid-tile>
-</mat-grid-list>
+        <!-- Select Game -->
+        <mat-form-field>
+            <label>Juego</label>
+            <mat-select formControlName="game" mat-select>
+                <mat-option *ngFor="let game of allGames" [value]="game.id">
+                    {{game.name}}
+                </mat-option>
+            </mat-select>
+            <mat-hint>Seleccione una opción</mat-hint>
+            <mat-error *ngIf="formGroup.controls['game'].hasError('required')">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+    <!-- Buttons -->
+    <div class="container_botones">
+        <button (click)="toList()" mat-raised-button color="warn">
+            <mat-icon>close</mat-icon>
+            Cancelar
+        </button>
+
+        <button mat-raised-button color="primary" (click)="create()">
+            <mat-icon>done</mat-icon>
+            {{actionName}}
+        </button>
+    </div>
+
+</div>
+
+<!-- QRCode Button -->
+<p *ngIf="!invoiceNumber">Falta ingresar el número de factura</p>
+<p *ngIf="!clientId">Falta seleccionar el cliente</p>
+<button mat-raised-button (click)="generateQRCode()">
+    Generar código QR
+</button>
+
+<img *ngIf="invoiceNumber && clientId" src={{qr_code_url}} alt="">
