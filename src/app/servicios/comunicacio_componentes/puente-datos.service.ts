@@ -16,12 +16,12 @@ export class PuenteDatosService {
   /**
    * For testing environments
    */
-     url = 'http://localhost:8000/';
+     //url = 'http://localhost:8000/';
   /**
    * For deployment environmnets
    */
   //
-  //  url = 'https://juegos.pythonanywhere.com/';
+  url = 'https://juegos.pythonanywhere.com/';
 
   constructor(
 
