@@ -4,8 +4,6 @@
     <span>Nuevo Ticket</span>
 </mat-toolbar>
 
-
-
 <!-- Form -->
 <div class="container">
     <form [formGroup]="formGroup">
@@ -89,4 +87,4 @@
     Generar código QR
 </button>
 
-<img *ngIf="invoiceNumber && clientId" src={{qr_code_url}} alt="">
+<img *ngIf="invoiceNumber && clientId" [src]=qr_code_url alt="">
