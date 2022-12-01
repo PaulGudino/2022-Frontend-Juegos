@@ -51,6 +51,7 @@ export class PublicityComponent implements OnInit {
       this.dialogService.confirmed().subscribe(confirmed => {
          if(confirmed){
             if(this.dashboardPublicityService.getChangeTop()){
+               console.log('realizara update de publicidad top')
                this.updateTop();
                this.snackbar.mensaje("Publicidad Actualizada exitosamente");
 
