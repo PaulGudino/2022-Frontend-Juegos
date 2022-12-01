@@ -53,6 +53,7 @@ export class PublicityComponent implements OnInit {
             if(this.dashboardPublicityService.getChangeTop()){
                this.updateTop();
                this.snackbar.mensaje("Publicidad Actualizada exitosamente");
+               console.log('se agrega top')
 
 
             }else if(this.dashboardPublicityService.getChangeBottom()){
