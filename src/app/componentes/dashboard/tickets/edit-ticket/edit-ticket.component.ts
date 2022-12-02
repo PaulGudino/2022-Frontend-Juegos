@@ -19,45 +19,45 @@ import { ThemeService } from 'src/app/servicios/theme/theme.service';
 })
 export class EditTicketComponent implements OnInit {
 
-  singularName : string = 'Ticket'
-  pluralName : string = 'Tickets'
-  actionName : string = 'Editar'
-  formGroup : FormGroup;
-  currentTicket : any;
-  allClients : Client[] = [];
-  allGames : Game[] = [];
+  singularName: string = 'Ticket'
+  pluralName: string = 'Tickets'
+  actionName: string = 'Editar'
+  formGroup: FormGroup;
+  currentTicket: any;
+  allClients: Client[] = [];
+  allGames: Game[] = [];
 
   currentClient !: Client;
   currentGame !: Game;
 
-  invoiceNumber : string = '';
-  qr_code_url : string = '';
-  qr_code_digits : string = '';
-  clientID : string = '';
-  gameID : string = '';
+  invoiceNumber: string = '';
+  qr_code_url: string = '';
+  qr_code_digits: string = '';
+  clientID: string = '';
+  gameID: string = '';
 
   constructor(
-    private router : Router,
-    private formBuilder : FormBuilder,
+    private router: Router,
+    private formBuilder: FormBuilder,
     // Dialog and snackBar services
-    private snackBar : SnackbarService,
-    private confirmDialog : ConfirmDialogService,
-    private ticketAPI : TicketService,
-    private activatedRoute : ActivatedRoute,
-    private ClientAPI : ClientService,
-    private GameAPI : GameService,
+    private snackBar: SnackbarService,
+    private confirmDialog: ConfirmDialogService,
+    private ticketAPI: TicketService,
+    private activatedRoute: ActivatedRoute,
+    private ClientAPI: ClientService,
+    private GameAPI: GameService,
   ) {
     // Building the form with the formBuilder
 
     this.formGroup = this.formBuilder.group({
-      qr_code_url : [''],
-      qr_code_digits : [''],
-      invoice_number : ['', Validators.required],
-      state : ['', Validators.required],
-      client : ['', Validators.required],
-      game : ['', Validators.required],
+      qr_code_url: [''],
+      qr_code_digits: [''],
+      invoice_number: ['', Validators.required],
+      state: ['', Validators.required],
+      client: ['', Validators.required],
+      game: ['', Validators.required],
     });
-  
+
     this.ClientAPI.getAll().subscribe(
       (data) => {
         this.allClients = data;
@@ -75,14 +75,14 @@ export class EditTicketComponent implements OnInit {
   }
 
   edit() {
-    this.formGroup.valid ? this.showDialog() : 
-    this.snackBar.mensaje('Llene el formulario correctamente');
+    this.formGroup.valid ? this.showDialog() :
+      this.snackBar.mensaje('Llene el formulario correctamente');
   }
 
   showDialog() {
     const DIALOGINFO = {
       title: this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
-      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + ' ?', 
+      message: '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + ' ' + this.formGroup.get('names')?.value + ' ?',
       cancelText: 'CANCELAR',
       confirmText: this.actionName.toUpperCase()
     }
@@ -90,19 +90,19 @@ export class EditTicketComponent implements OnInit {
     this.sendForm()
   }
 
-  sendForm () {
+  sendForm() {
     let ticketId = this.activatedRoute.snapshot.paramMap.get('id');
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
           this.generateQRCode();
           let formData = this.fillForm();
-          this.ticketAPI.put(Number(ticketId), formData).subscribe ({
-            next : (res) => {
+          this.ticketAPI.put(Number(ticketId), formData).subscribe({
+            next: (res) => {
               this.snackBar.mensaje(this.singularName + ' Actualizado Exitosamente')
               this.toList();
             },
-            error : (res) => {
+            error: (res) => {
               this.confirmDialog.error(res.error);
             }
           })
@@ -113,7 +113,7 @@ export class EditTicketComponent implements OnInit {
 
   fillForm() {
     let user_modifier = localStorage.getItem('user_id');
-    let formData : FormData = new FormData();
+    let formData: FormData = new FormData();
     formData.append('invoice_number', this.formGroup.get('invoice_number')?.value);
     formData.append('state', this.formGroup.get('state')?.value);
     formData.append('client', this.formGroup.get('client')?.value);
@@ -126,26 +126,46 @@ export class EditTicketComponent implements OnInit {
 
   ngOnInit(): void {
     let ticketId = this.activatedRoute.snapshot.paramMap.get('id');
-  
+
     this.ticketAPI.getById(Number(ticketId)).subscribe(
-      (data : Ticket) => {
+      (data: Ticket) => {
         this.currentTicket = data;
         this.getInfo();
       }
     )
+
+    this.allClients.forEach(client => {
+      if (client.id == this.currentTicket.client) {
+        this.currentClient = client;
+      }
+    });
+
+    this.allGames.forEach(game => {
+      if (game.id == this.currentTicket.game) {
+        this.currentGame = game;
+      }
+    });
   }
 
   getInfo() {
-
-   this.formGroup.patchValue({
-      qr_code_digits : this.currentTicket.qr_code_digits,
-      qr_code_url : this.currentTicket.qr_code_url,
-      invoice_number : this.currentTicket.invoice_number,
-      state : this.currentTicket.state,
+    this.formGroup.patchValue({
+      qr_code_digits: this.currentTicket.qr_code_digits,
+      qr_code_url: this.currentTicket.qr_code_url,
+      invoice_number: this.currentTicket.invoice_number,
+      state: this.currentTicket.state,
+      client: this.currentTicket.client,
+      game : this.currentTicket.game,
     })
   }
 
   generateQRCode() {
+
+    let check_qr_code_url = this.qr_code_url == ''
+    let check_qr_code_digits = this.qr_code_digits == ''
+
+    if (!check_qr_code_digits && !check_qr_code_url) {
+      return;
+    }
     this.invoiceNumber = this.formGroup.get('invoice_number')?.value;
     this.clientID = this.formGroup.get('client')?.value;
     this.qr_code_url = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientID}`;
