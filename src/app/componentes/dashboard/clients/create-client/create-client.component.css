@@ -1,32 +1,36 @@
-mat-form-field{
+mat-form-field {
     width: 45%;
     margin: 0 20px;
     margin-bottom: 15px;
 }
-.container{
+
+.container {
     margin-top: 20px;
 }
 
-.container_botones{
+.container_botones {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 15px;
 }
 
-.container_botones button{
+.container_botones button {
     margin: 0 10px;
     background-color: var(--color-cafe);
 }
-.container_botones button:hover{
+
+.container_botones button:hover {
     background-color: var(--color-principal);
     color: var(--color-fondo-secundario);
 }
-.mat-toolbar{
+
+.mat-toolbar {
     background-color: var(--color-fondo-secundario);
     color: var(--color-principal);
 }
-.input_form{
+
+.input_form {
     background: #ffffff;
     display: flex;
     justify-content: center;
@@ -35,17 +39,21 @@ mat-form-field{
     padding: 0 10px;
     height: 40px;
 }
-.mat-hint{
+
+.mat-hint {
     color: var(--color-letras);
 }
-.mat-error{
+
+.mat-error {
     color: var(--color-principal);
 }
-label{
+
+label {
     color: #ffffff;
     margin-bottom: 10px;
 }
-.mat-select{
+
+.mat-select {
     background: #ffffff;
     border-radius: 10px;
     height: 40px;

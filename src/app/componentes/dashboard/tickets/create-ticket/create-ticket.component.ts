@@ -16,8 +16,8 @@ import { Game } from 'src/app/interfaces/game/Game';
 })
 export class CreateTicketComponent implements OnInit {
 
-  singularName : string = 'ticket'
-  pluralName : string = 'tckets'
+  singularName : string = 'Ticket'
+  pluralName : string = 'Tickets'
   actionName : string = 'Crear'
   formGroup : FormGroup;
   allClients : Client[] = [];
@@ -86,6 +86,7 @@ export class CreateTicketComponent implements OnInit {
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
+          this.generateQRCode();
           let formData = this.fillForm();
           this.ticketAPI.post(formData).subscribe ({
             next : (res) => {
@@ -119,6 +120,14 @@ export class CreateTicketComponent implements OnInit {
   }
 
   generateQRCode() {
+
+    let check_qr_code_url = this.qr_code_url == ''
+    let check_qr_code_digits = this.qr_code_digits == ''
+
+    if (!check_qr_code_digits && !check_qr_code_url) {
+      return;
+    }
+    
     this.invoiceNumber = this.formGroup.get('invoice_number')?.value;
     this.clientId = this.formGroup.get('client')?.value;
     this.qr_code_url = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientId}`;
@@ -126,4 +135,3 @@ export class CreateTicketComponent implements OnInit {
   }
 
 }
-
