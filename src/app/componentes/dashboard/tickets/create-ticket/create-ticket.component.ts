@@ -120,6 +120,14 @@ export class CreateTicketComponent implements OnInit {
   }
 
   generateQRCode() {
+
+    let check_qr_code_url = this.qr_code_url == ''
+    let check_qr_code_digits = this.qr_code_digits == ''
+
+    if (!check_qr_code_digits && !check_qr_code_url) {
+      return;
+    }
+    
     this.invoiceNumber = this.formGroup.get('invoice_number')?.value;
     this.clientId = this.formGroup.get('client')?.value;
     this.qr_code_url = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientId}`;

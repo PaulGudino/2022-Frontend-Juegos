@@ -41,7 +41,10 @@
         <mat-form-field>
             <mat-label>Cliente</mat-label>
             <mat-select formControlName="client" mat-select placeholder="Seleccione una opción">
-                <mat-option selected [value]="currentClient.id">
+                <mat-option selected [value]="currentClient.cedula">
+                    {{ currentClient.cedula + ' ' + currentClient.names + ' ' + currentClient.surnames}}
+                </mat-option>
+                <mat-option selected>
                     {{ currentClient.cedula + ' ' + currentClient.names + ' ' + currentClient.surnames}}
                 </mat-option>
             </mat-select>
@@ -56,9 +59,10 @@
         <mat-form-field>
             <mat-label>Juego</mat-label>
             <mat-select formControlName="game" mat-select placeholder="Seleccione una opción">
-                <mat-option selected [value]="currentGame.id">
+                <mat-option [value]="currentGame.name">
                     {{ currentGame.name }}
                 </mat-option>
+                <mat-option selected></mat-option>
             </mat-select>
             <mat-hint>Seleccione una opción</mat-hint>
             <mat-error *ngIf="formGroup.controls['game'].hasError('required')">
