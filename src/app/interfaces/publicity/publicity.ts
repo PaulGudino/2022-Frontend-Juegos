@@ -1,8 +1,5 @@
-export interface Publicity{
-  id: number;
-  image : string;
-  titulo : string;
-  created : string;
-  modified : string;
-  is_active : boolean;
+export interface Publicity {
+   id: number;
+   image: string;
+   time_display: string;
 }

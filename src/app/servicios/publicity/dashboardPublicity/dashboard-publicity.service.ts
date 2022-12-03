@@ -1,74 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Publicity } from 'src/app/interfaces/publicity/publicity';
 
-
 @Injectable({
-  providedIn: 'root'
+   providedIn: 'root',
 })
 export class DashboardPublicityService {
-   top_publicity:string = '';
-   bottom_publicity:string = '';
-   publicityList:Publicity[]=[]
-   topImageFile:any;
-   bottomImageFile:any;
-   changeTop:boolean = false;
-   changeBottom:boolean = false;
+   topPublicityList: Publicity[] = [];
+   bottomPublicityList: Publicity[] = [];
+   topImageFile: any;
+   bottomImageFile: any;
 
-  constructor() { }
+   constructor() {}
 
-  loadData(data:Publicity[]){
-   this.publicityList = data
+   loadData(dataTop: Publicity[], dataBottom: Publicity[]): void {
+      this.topPublicityList = dataTop;
+   }
 
-  }
-  getChangeBottom(){
-   return this.changeBottom;
-  }
-  setChangeBottom(change:boolean) {
-   this.changeBottom=change;
-  }
-  getChangeTop(){
-   return this.changeTop;
-  }
-  setChangeTop(change:boolean) {
-   this.changeTop=change
-  }
+   getTopPublicityList(): Publicity[] {
+      return this.topPublicityList;
+   }
+   getBottomPublicityList(): Publicity[] {
+      return this.bottomPublicityList;
+   }
 
-  getTopPublicity():Publicity{
-   return this.publicityList[0];
-  }
-  getBottomPublicity():Publicity{
-   return this.publicityList[1];
-  }
+   getTopImageFile() {
+      return this.topImageFile;
+   }
 
-  getTopPublicityImage():string {
-   return this.top_publicity;
-  }
+   getBottomImageFile() {
+      return this.bottomImageFile;
+   }
+   setTopImageFile(file: any) {
+      this.topImageFile = file;
+   }
 
-  getBottomPublicityImage():string {
-   return this.bottom_publicity;
-  }
-
-  changeTopPublicityImage(publicity:string) {
-   this.top_publicity = publicity;
-  }
-
-  changeBottomPublicityImage(publicity:string) {
-   this.bottom_publicity = publicity;
-  }
-
-  getTopImageFile(){
-   return this.topImageFile;
-  }
-
-  getBottomImageFile(){
-   return this.bottomImageFile;
-  }
-  setTopImageFile(file:any){
-   this.topImageFile = file;
-  }
-
-  setBottomImageFile(file:any){
-   this.bottomImageFile = file;
-  }
-
+   setBottomImageFile(file: any) {
+      this.bottomImageFile = file;
+   }
 }

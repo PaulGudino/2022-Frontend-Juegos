@@ -1,14 +1,26 @@
 .publicity_container{
   background-color: aqua;
-  width: 100%;
-  height: 15vh;
+   position: relative;
+   height: 15vh;
+   display: flex;
+   overflow: hidden;
+   scroll-behavior: smooth;
+
 }
+.scroll-container{
+   display: flex;
+   width: 100%;
+   overflow: hidden;
+   scroll-behavior: smooth;
+   align-items: center;
+}
+
 .publicity_img-container,img{
   padding:0;
   margin: 0;
 }
 .publicity_img-container{
-  width: 100%;
+  min-width: 100%;
   height: 100%;
 }
 .publicity_img{

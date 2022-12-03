@@ -49,67 +49,66 @@ import { ScanCodeComponent } from './scan-code/scan-code.component';
 import { DesignComponent } from './design/design.component';
 import { WinnerDesignComponent } from './winner-design/winner-design.component';
 import { CreateGameDateComponent } from './game-date/create-game-date/create-game-date.component';
+import { PublicityGameComponent } from './publicity-game/publicity-game.component';
 
 @NgModule({
-    declarations: [
-        DashboardComponent,
-        InicioComponent,
-        MenuComponent,
-        UsuariosComponent,
-        CrearUsuariosComponent,
-        EditarUsuariosComponent,
-        VisualizarUsuariosComponent,
-        MensajesErrorComponent,
-        RolesComponent,
-        RolesCrearComponent,
-        RolesEditarComponent,
-        PermisosRolesComponent,
-        CambiarContraseniaComponent,
-        AwardsComponent,
-        // Client Components
-        ClientsComponent,
-        CreateClientComponent,
-        EditClientComponent,
-        ViewClientComponent,
-        // Ticket Components
-        TicketsComponent,
-        CreateTicketComponent,
-        EditTicketComponent,
-        ViewTicketComponent,
-        // Awards Components
-        ViewAwardsComponent,
-        CreateAwardsComponent,
-        EditAwardsComponent,
-        ProbabilidadesComponent,
-        CategorieComponent,
-        ModalComponent,
-        ModalItemComponent,
-        CategorySetSquareItemComponent,
-        // Game Component
-        GameDateComponent,
-        GameSelectionComponent,
-        CalendarPickerComponent,
-        AwardsConditionComponent,
-        CreateAwardsConditionComponent,
-        PublicityComponent,
-        AddPublicityComponent,
-        BannerPublicityComponent,
-        EditAwardsConditionComponent,
-        ViewAwardsConditionComponent,
-        SaveScreenComponent,
-        ScanCodeComponent,
-        DesignComponent,
-        WinnerDesignComponent,
-        CreateGameDateComponent,
-
-        
-
-    ],
-    imports: [
-        SharedModule,
-        CommonModule,
-        DashboardRoutingModule,
-        ComponentesCompartidosModule,
-    ]
+   declarations: [
+      DashboardComponent,
+      InicioComponent,
+      MenuComponent,
+      UsuariosComponent,
+      CrearUsuariosComponent,
+      EditarUsuariosComponent,
+      VisualizarUsuariosComponent,
+      MensajesErrorComponent,
+      RolesComponent,
+      RolesCrearComponent,
+      RolesEditarComponent,
+      PermisosRolesComponent,
+      CambiarContraseniaComponent,
+      AwardsComponent,
+      // Client Components
+      ClientsComponent,
+      CreateClientComponent,
+      EditClientComponent,
+      ViewClientComponent,
+      // Ticket Components
+      TicketsComponent,
+      CreateTicketComponent,
+      EditTicketComponent,
+      ViewTicketComponent,
+      // Awards Components
+      ViewAwardsComponent,
+      CreateAwardsComponent,
+      EditAwardsComponent,
+      ProbabilidadesComponent,
+      CategorieComponent,
+      ModalComponent,
+      ModalItemComponent,
+      CategorySetSquareItemComponent,
+      // Game Component
+      GameDateComponent,
+      GameSelectionComponent,
+      CalendarPickerComponent,
+      AwardsConditionComponent,
+      CreateAwardsConditionComponent,
+      PublicityComponent,
+      AddPublicityComponent,
+      BannerPublicityComponent,
+      EditAwardsConditionComponent,
+      ViewAwardsConditionComponent,
+      SaveScreenComponent,
+      ScanCodeComponent,
+      DesignComponent,
+      WinnerDesignComponent,
+      CreateGameDateComponent,
+      PublicityGameComponent,
+   ],
+   imports: [
+      SharedModule,
+      CommonModule,
+      DashboardRoutingModule,
+      ComponentesCompartidosModule,
+   ],
 })
-export class DashboardModule { }
+export class DashboardModule {}
