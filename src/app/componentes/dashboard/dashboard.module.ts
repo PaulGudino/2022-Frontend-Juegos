@@ -50,6 +50,9 @@ import { DesignComponent } from './design/design.component';
 import { WinnerDesignComponent } from './winner-design/winner-design.component';
 import { CreateGameDateComponent } from './game-date/create-game-date/create-game-date.component';
 import { PublicityGameComponent } from './publicity-game/publicity-game.component';
+import { TopPublicityComponent } from './publicity/top-publicity/top-publicity.component';
+import { BottomPublicityComponent } from './publicity/bottom-publicity/bottom-publicity.component';
+import { BoxComponent } from './publicity-game/box/box.component';
 
 @NgModule({
    declarations: [
@@ -103,6 +106,9 @@ import { PublicityGameComponent } from './publicity-game/publicity-game.componen
       WinnerDesignComponent,
       CreateGameDateComponent,
       PublicityGameComponent,
+      TopPublicityComponent,
+      BottomPublicityComponent,
+      BoxComponent,
    ],
    imports: [
       SharedModule,

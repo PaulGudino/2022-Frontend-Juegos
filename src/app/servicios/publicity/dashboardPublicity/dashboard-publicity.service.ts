@@ -7,13 +7,18 @@ import { Publicity } from 'src/app/interfaces/publicity/publicity';
 export class DashboardPublicityService {
    topPublicityList: Publicity[] = [];
    bottomPublicityList: Publicity[] = [];
+   secondsShowPublicity: number = 3;
    topImageFile: any;
    bottomImageFile: any;
 
    constructor() {}
 
-   loadData(dataTop: Publicity[], dataBottom: Publicity[]): void {
+   loadTopData(dataTop: Publicity[]): void {
       this.topPublicityList = dataTop;
+   }
+
+   loadBottomData(dataBottom: Publicity[]): void {
+      this.bottomPublicityList = dataBottom;
    }
 
    getTopPublicityList(): Publicity[] {

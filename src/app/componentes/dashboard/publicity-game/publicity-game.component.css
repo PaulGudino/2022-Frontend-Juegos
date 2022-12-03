@@ -1,0 +1,14 @@
+.publicity-container{
+   display:flex;
+   justify-content: center;
+   width:100%;
+   gap: 2rem;
+   flex-wrap: wrap;
+   margin: 2rem 0;
+
+}
+.btn-container{
+   width:100%;
+   display:flex;
+   justify-content: center;
+}

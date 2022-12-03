@@ -16,7 +16,7 @@ export class PublicityService {
       return this.http.get<Publicity[]>(this.url + 'api/Publicity_top/');
    }
    getPublicityBottomList(): Observable<Publicity[]> {
-      return this.http.get<Publicity[]>(this.url + 'api/Publicity_top/');
+      return this.http.get<Publicity[]>(this.url + 'api/Publicity_bottom/');
    }
 
    // updateTopPublicity() {}

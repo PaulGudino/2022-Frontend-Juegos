@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
    selector: 'app-publicity-game',
@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
    styleUrls: ['./publicity-game.component.css'],
 })
 export class PublicityGameComponent implements OnInit {
+   previsulizacion: string = '';
+   @ViewChild('takeInput', { static: false })
+   InputVar!: ElementRef;
+   fileToUpload!: File | null;
+   imagen!: File;
+
    constructor() {}
 
    ngOnInit(): void {}

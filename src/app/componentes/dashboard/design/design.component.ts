@@ -6,6 +6,7 @@ import { ThemeService } from 'src/app/servicios/theme/theme.service';
 import { ImageService } from 'src/app/servicios/image/image.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { DashboardStyleService } from 'src/app/servicios/theme/dashboardStyle/dashboard-style.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Form } from '@angular/forms';
 @Component({
    selector: 'app-design',
@@ -34,7 +35,7 @@ export class DesignComponent implements OnInit {
    constructor(
       private dashboardPublicityService: DashboardPublicityService,
       private publicity: PublicityService,
-      // private router: Router,
+      private router: Router,
       private snackbar: SnackbarService,
       private dialogService: ConfirmDialogService,
       private theme: ThemeService,
@@ -43,24 +44,25 @@ export class DesignComponent implements OnInit {
    ) {}
 
    ngOnInit(): void {
-      this.publicity.getPublicityList().subscribe((data) => {
-         console.log(data[0]);
-         this.dashboardPublicityService.loadData(data);
-         this.dashboardPublicityService.changeTopPublicityImage(data[0].image);
-         this.dashboardPublicityService.changeBottomPublicityImage(
-            data[1].image
-         );
-         this.theme.getDesignInformation().subscribe((designData) => {
-            this.dashStyle.loadData(designData[0]);
-            this.previsulizacionMachine =
-               this.dashStyle.get_image_machine_game();
-            this.previsulizacionLogo = this.dashStyle.get_image_logo_game();
-            this.fontFamily = this.dashStyle.get_font_letter();
-            this.colorText = this.dashStyle.get_color_text();
-            console.log(designData[0]);
-         });
-      });
+      // this.publicity.getPublicityList().subscribe((data) => {
+      //    console.log(data[0]);
+      //    this.dashboardPublicityService.loadData(data);
+      //    this.dashboardPublicityService.changeTopPublicityImage(data[0].image);
+      //    this.dashboardPublicityService.changeBottomPublicityImage(
+      //       data[1].image
+      //    );
+      //    this.theme.getDesignInformation().subscribe((designData) => {
+      //       this.dashStyle.loadData(designData[0]);
+      //       this.previsulizacionMachine =
+      //          this.dashStyle.get_image_machine_game();
+      //       this.previsulizacionLogo = this.dashStyle.get_image_logo_game();
+      //       this.fontFamily = this.dashStyle.get_font_letter();
+      //       this.colorText = this.dashStyle.get_color_text();
+      //       console.log(designData[0]);
+      //    });
+      // });
    }
+   goEditGamePublicity() {}
 
    capturarFile(event: any): void {
       this.fileToUploadMachine = this.imageSrv.captureFile(event);

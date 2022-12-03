@@ -1,4 +1,6 @@
-<app-publicity></app-publicity>
+<app-publicity
+   [publicityList]="dashPublicity.getTopPublicityList()"
+></app-publicity>
 <div class="container-fluid home_container p-0 m-0">
    <!-- <app-logo [urlImage]="logoImage"></app-logo> -->
    <!-- <figure class="home-image_container p-0 m-0">
@@ -25,4 +27,6 @@
       ></app-generic-button>
    </div>
 </div>
-<app-publicity></app-publicity>
+<app-publicity
+   [publicityList]="dashPublicity.getBottomPublicityList()"
+></app-publicity>

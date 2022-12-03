@@ -14,22 +14,28 @@ import { ContentObserver } from '@angular/cdk/observers';
 export class PublicityComponent implements OnInit {
    constructor(
       private publicity: PublicityService,
-      private dashboardPublicityService: DashboardPublicityService,
+      public dashboardPublicityService: DashboardPublicityService,
       // private router: Router,
       private snackbar: SnackbarService,
       private dialogService: ConfirmDialogService
    ) {}
 
    ngOnInit(): void {
-      // this.publicity.getPublicityList().subscribe((data) => {
-      //    console.log(data[0]);
-      //    this.dashboardPublicityService.loadData(data);
-      //    this.dashboardPublicityService.changeTopPublicityImage(data[0].image);
-      //    this.dashboardPublicityService.changeBottomPublicityImage(
-      //       data[1].image
-      //    );
-      // });
+      this.publicity.getPublicityTopList().subscribe((dataTopPublicity) => {
+         if (dataTopPublicity.length > 0) {
+            this.dashboardPublicityService.loadTopData(dataTopPublicity);
+            this.publicity
+               .getPublicityBottomList()
+               .subscribe((dataBottomPublicity) => {
+                  this.dashboardPublicityService.loadBottomData(
+                     dataBottomPublicity
+                  );
+               });
+         }
+      });
    }
+   goEditTopPublicity() {}
+   goEditBottomPublicity() {}
 
    // createPublicity() {}
 

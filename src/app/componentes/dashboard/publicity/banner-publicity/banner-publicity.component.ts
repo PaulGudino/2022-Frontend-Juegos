@@ -1,25 +1,16 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { DashboardPublicityService } from 'src/app/servicios/publicity/dashboardPublicity/dashboard-publicity.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { Publicity } from 'src/app/interfaces/publicity/publicity';
 
 @Component({
-  selector: 'app-banner-publicity',
-  templateUrl: './banner-publicity.component.html',
-  styleUrls: ['./banner-publicity.component.css']
+   selector: 'app-banner-publicity',
+   templateUrl: './banner-publicity.component.html',
+   styleUrls: ['./banner-publicity.component.css'],
 })
 export class BannerPublicityComponent implements OnInit {
+   @Input() isTop: boolean = true;
+   @Input() publicityList: Publicity[] = [];
 
-   @Input() isTop:boolean = true;
+   constructor() {}
 
-  constructor(
-   public dashboardPublicityService:DashboardPublicityService
-  ) {}
-
-  ngOnInit(): void {
-
-  }
-
-
-
-
-
+   ngOnInit(): void {}
 }

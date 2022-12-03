@@ -1,20 +1,33 @@
 .publicity_container{
    background-color: aqua;
-   width: 100%;
-   height: 4rem;
+    position: relative;
+    height: 4rem;
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+
  }
+ .scroll-container{
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    align-items: center;
+ }
+
  .publicity_img-container,img{
    padding:0;
    margin: 0;
  }
  .publicity_img-container{
-   width: 100%;
+   min-width: 100%;
    height: 100%;
  }
  .publicity_img{
    width: 100%;
    height: 100%;
  }
+
  .top-publicity{
    border-top-left-radius: 27px;
    border-top-right-radius: 27px;

@@ -1,17 +1,18 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DashboardPublicityService } from 'src/app/servicios/publicity/dashboardPublicity/dashboard-publicity.service';
+import { Publicity } from '../../../interfaces/publicity/publicity';
 
 @Component({
-  selector: 'app-publicity',
-  templateUrl: './publicity.component.html',
-  styleUrls: ['./publicity.component.css']
+   selector: 'app-publicity',
+   templateUrl: './publicity.component.html',
+   styleUrls: ['./publicity.component.css'],
 })
 export class PublicityComponent implements OnInit {
+   @Input() publicityList: Publicity[] = [];
 
-   @Input() urlPublicity: string = '../../../assets/publicity.png'
+   constructor(public publicity: DashboardPublicityService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+   ngOnInit(): void {
+      console.log(this.publicity.getTopPublicityList());
+   }
 }

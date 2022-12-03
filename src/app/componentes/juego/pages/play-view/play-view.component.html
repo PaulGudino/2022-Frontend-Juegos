@@ -1,5 +1,7 @@
 <div class="container-fullscreen p-0 m-0">
-   <app-publicity [urlPublicity]="publicity.getTopPublicity()"></app-publicity>
+   <app-publicity
+      [publicityList]="publicity.getBottomPublicityList()"
+   ></app-publicity>
    <div class="container-menu">
       <app-logo
          [urlImage]="styles.get_image_logo_game()"
@@ -146,6 +148,6 @@
    </div>
 
    <app-publicity
-      [urlPublicity]="this.publicity.getBottomPublicity()"
+      [publicityList]="publicity.getBottomPublicityList()"
    ></app-publicity>
 </div>

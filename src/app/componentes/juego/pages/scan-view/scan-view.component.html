@@ -1,7 +1,13 @@
 <div class="scan_container p-0 m-0">
-   <app-publicity [urlPublicity]="publicity.getTopPublicity()"></app-publicity>
+   <app-publicity
+      [publicityList]="publicity.getTopPublicityList()"
+   ></app-publicity>
    <div class="container-menu">
-      <app-logo [isBackground]="true" [urlImage]="styles.get_image_logo_game()" height="12rem"></app-logo>
+      <app-logo
+         [isBackground]="true"
+         [urlImage]="styles.get_image_logo_game()"
+         height="12rem"
+      ></app-logo>
       <div class="scan-shadow"></div>
       <div class="scan_menu-container">
          <div class="menu-container_img-container">
@@ -47,6 +53,6 @@
    </div>
 
    <app-publicity
-      [urlPublicity]="publicity.getBottomPublicity()"
+      [publicityList]="publicity.getBottomPublicityList()"
    ></app-publicity>
 </div>

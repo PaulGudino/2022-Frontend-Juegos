@@ -1,3 +1,12 @@
+.view-container{
+   position: relative;
+   border: 1rem solid white;
+   width: 100%;
+   height: 30rem;
+   max-width: 22rem;
+   max-height: 30rem;
+   border-radius: 45px;
+}
 .publicity-container{
    display: flex;
    align-items: center;
@@ -7,20 +16,13 @@
 .publicity__changes{
    width: 50%;
    display: flex;
-   gap: 5rem;
+   gap: 1rem;
    flex-direction: column;
 }
 .publicity__view{
    width: 50%;
 }
-.view-container{
-   border: 1rem solid white;
-   width: 100%;
-   height: 30rem;
-   max-width: 22rem;
-   max-height: 30rem;
-   border-radius: 45px;
-}
+
 .view-menu{
    background-color:gray;
    height:20rem;

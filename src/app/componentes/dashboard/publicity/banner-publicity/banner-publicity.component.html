@@ -1,4 +1,4 @@
-<div
+<!-- <div
    class="container-fluid publicity_container p-0"
    [ngClass]="{ 'top-publicity': isTop, 'bottom-publicity': !isTop }"
 >
@@ -6,16 +6,34 @@
       <img
          *ngIf="isTop"
          class="publicity_img"
-         [src]="dashboardPublicityService.getTopPublicityImage()"
+         [src]="dashboardPublicityService.getTopPublicity().image"
          alt="publicity-img"
          [ngClass]="{ 'top-publicity': isTop, 'bottom-publicity': !isTop }"
       />
       <img
          *ngIf="!isTop"
          class="publicity_img"
-         [src]="dashboardPublicityService.getBottomPublicityImage()"
+         [src]="dashboardPublicityService.getBottomPublicity()"
          alt="publicity-img"
          [ngClass]="{ 'top-publicity': isTop, 'bottom-publicity': !isTop }"
       />
    </figure>
+</div> -->
+
+<div
+   class="container-fluid publicity_container p-0"
+   [ngClass]="{ 'top-publicity': isTop, 'bottom-publicity': !isTop }"
+>
+   <div class="scroll-container">
+      <figure
+         *ngFor="let publicity of publicityList"
+         class="publicity_img-container"
+      >
+         <img
+            class="publicity_img"
+            [src]="publicity.image"
+            alt="publicity-img"
+         />
+      </figure>
+   </div>
 </div>
