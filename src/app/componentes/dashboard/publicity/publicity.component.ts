@@ -21,99 +21,99 @@ export class PublicityComponent implements OnInit {
    ) {}
 
    ngOnInit(): void {
-      this.publicity.getPublicityList().subscribe((data) => {
-         console.log(data[0]);
-         this.dashboardPublicityService.loadData(data);
-         this.dashboardPublicityService.changeTopPublicityImage(data[0].image);
-         this.dashboardPublicityService.changeBottomPublicityImage(
-            data[1].image
-         );
-      });
+      // this.publicity.getPublicityList().subscribe((data) => {
+      //    console.log(data[0]);
+      //    this.dashboardPublicityService.loadData(data);
+      //    this.dashboardPublicityService.changeTopPublicityImage(data[0].image);
+      //    this.dashboardPublicityService.changeBottomPublicityImage(
+      //       data[1].image
+      //    );
+      // });
    }
 
-   createPublicity() {}
+   // createPublicity() {}
 
-   updatePublicity() {
-      const options = {
-         title: 'ACTUALIZAR PUBLICIDAD',
-         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR LA PUBLICIDAD?',
-         cancelText: 'CANCELAR',
-         confirmText: 'CREAR',
-      };
+   // updatePublicity() {
+   //    const options = {
+   //       title: 'ACTUALIZAR PUBLICIDAD',
+   //       message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR LA PUBLICIDAD?',
+   //       cancelText: 'CANCELAR',
+   //       confirmText: 'CREAR',
+   //    };
 
-      this.dialogService.open(options);
-      this.dialogService.confirmed().subscribe((confirmed) => {
-         if (confirmed) {
-            if (
-               this.dashboardPublicityService.getChangeTop() &&
-               this.dashboardPublicityService.getChangeBottom()
-            ) {
-               this.updateTop();
-               this.updateBottom();
-               this.snackbar.mensaje('Publicidad Actualizada exitosamente');
-               console.log('se agrega top y bottom');
-            } else if (this.dashboardPublicityService.getChangeBottom()) {
-               this.updateBottom();
-               this.snackbar.mensaje('Publicidad Actualizada exitosamente');
-            } else if (this.dashboardPublicityService.getChangeTop()) {
-               this.updateTop();
-               this.snackbar.mensaje('Publicidad Actualizada exitosamente');
-            } else if (
-               this.dashboardPublicityService.getTopPublicity().image == null &&
-               this.dashboardPublicityService.getBottomPublicity().image == null
-            ) {
-               this.snackbar.mensaje(
-                  'No existe publicidad para agregar o actualizar'
-               );
-            }
+   //    this.dialogService.open(options);
+   //    this.dialogService.confirmed().subscribe((confirmed) => {
+   //       if (confirmed) {
+   //          if (
+   //             this.dashboardPublicityService.getChangeTop() &&
+   //             this.dashboardPublicityService.getChangeBottom()
+   //          ) {
+   //             this.updateTop();
+   //             this.updateBottom();
+   //             this.snackbar.mensaje('Publicidad Actualizada exitosamente');
+   //             console.log('se agrega top y bottom');
+   //          } else if (this.dashboardPublicityService.getChangeBottom()) {
+   //             this.updateBottom();
+   //             this.snackbar.mensaje('Publicidad Actualizada exitosamente');
+   //          } else if (this.dashboardPublicityService.getChangeTop()) {
+   //             this.updateTop();
+   //             this.snackbar.mensaje('Publicidad Actualizada exitosamente');
+   //          } else if (
+   //             this.dashboardPublicityService.getTopPublicity().image == null &&
+   //             this.dashboardPublicityService.getBottomPublicity().image == null
+   //          ) {
+   //             this.snackbar.mensaje(
+   //                'No existe publicidad para agregar o actualizar'
+   //             );
+   //          }
 
-            // this.publicity.put(1,formDataTop);
-            // this.publicity.put(2,formDataBottom);
-            // //this.router.navigate(['/dashboard/juego/fecha']);
-         }
-      });
-   }
+   //          // this.publicity.put(1,formDataTop);
+   //          // this.publicity.put(2,formDataBottom);
+   //          // //this.router.navigate(['/dashboard/juego/fecha']);
+   //       }
+   //    });
+   // }
 
-   private updateTop() {
-      let formDataTop: FormData = new FormData();
-      formDataTop.append('id', '1');
-      formDataTop.append(
-         'image',
-         this.dashboardPublicityService.getTopImageFile(),
-         this.dashboardPublicityService.getTopImageFile().name
-      );
-      formDataTop.append('titulo', 'Publicidad Superior');
-      formDataTop.append(
-         'created',
-         this.dashboardPublicityService.getTopPublicity().created
-      );
-      formDataTop.append('modified', new Date().toISOString());
-      formDataTop.append('is_active', 'true');
-      this.publicity.put(1, formDataTop);
-      this.dashboardPublicityService.setChangeTop(false);
-   }
-   private updateBottom() {
-      let formDataBottom: FormData = new FormData();
-      formDataBottom.append('id', '2');
-      formDataBottom.append(
-         'image',
-         this.dashboardPublicityService.getBottomImageFile(),
-         this.dashboardPublicityService.getBottomImageFile().name
-      );
-      formDataBottom.append('titulo', 'Publicidad Inferior');
-      formDataBottom.append(
-         'created',
-         this.dashboardPublicityService.getBottomPublicity().created
-      );
-      formDataBottom.append('modified', new Date().toISOString());
-      formDataBottom.append('is_active', 'true');
-      this.publicity.put(2, formDataBottom);
-      this.dashboardPublicityService.setChangeBottom(false);
-   }
-   signalChangeTop() {
-      this.dashboardPublicityService.setChangeTop(true);
-   }
-   signalChangeBottom() {
-      this.dashboardPublicityService.setChangeBottom(true);
-   }
+   // private updateTop() {
+   //    let formDataTop: FormData = new FormData();
+   //    formDataTop.append('id', '1');
+   //    formDataTop.append(
+   //       'image',
+   //       this.dashboardPublicityService.getTopImageFile(),
+   //       this.dashboardPublicityService.getTopImageFile().name
+   //    );
+   //    formDataTop.append('titulo', 'Publicidad Superior');
+   //    formDataTop.append(
+   //       'created',
+   //       this.dashboardPublicityService.getTopPublicity().created
+   //    );
+   //    formDataTop.append('modified', new Date().toISOString());
+   //    formDataTop.append('is_active', 'true');
+   //    this.publicity.put(1, formDataTop);
+   //    this.dashboardPublicityService.setChangeTop(false);
+   // }
+   // private updateBottom() {
+   //    let formDataBottom: FormData = new FormData();
+   //    formDataBottom.append('id', '2');
+   //    formDataBottom.append(
+   //       'image',
+   //       this.dashboardPublicityService.getBottomImageFile(),
+   //       this.dashboardPublicityService.getBottomImageFile().name
+   //    );
+   //    formDataBottom.append('titulo', 'Publicidad Inferior');
+   //    formDataBottom.append(
+   //       'created',
+   //       this.dashboardPublicityService.getBottomPublicity().created
+   //    );
+   //    formDataBottom.append('modified', new Date().toISOString());
+   //    formDataBottom.append('is_active', 'true');
+   //    this.publicity.put(2, formDataBottom);
+   //    this.dashboardPublicityService.setChangeBottom(false);
+   // }
+   // signalChangeTop() {
+   //    this.dashboardPublicityService.setChangeTop(true);
+   // }
+   // signalChangeBottom() {
+   //    this.dashboardPublicityService.setChangeBottom(true);
+   // }
 }
