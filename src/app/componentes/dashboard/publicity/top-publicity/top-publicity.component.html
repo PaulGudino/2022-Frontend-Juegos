@@ -1,4 +1,60 @@
 <mat-toolbar class="background-navy-primary green-primary">
-   <span>Publicidad</span>
+   <span>Publicidad Superior</span>
    <span class="example-spacer"></span>
 </mat-toolbar>
+<div class="container">
+   <div class="container-publicity">
+      <div class="container-add-publicity">
+         <p class="publicity__title green-primary">Agregar Publicidad</p>
+         <app-add-publicity [isTop]="true"></app-add-publicity>
+      </div>
+      <figure class="preview-container">
+         <img
+            *ngIf="dashPublicity.previewTopImage != ''"
+            [src]="dashPublicity.previewTopImage"
+            alt=""
+         />
+      </figure>
+   </div>
+   <!-- <form
+               [formGroup]="form"
+               action=""
+               class="row align-items-center justify-content-start me-2 form"
+            > -->
+   <form class="container-transition" [formGroup]="form" action="">
+      <p class="publicity__title green-primary">Segundos de transición</p>
+      <input
+         type="number"
+         id="transition-seconds"
+         class="input-global"
+         [style.margin-left]="'.5rem'"
+         formControlName="transition"
+      />
+   </form>
+   <div class="container-dimensions">
+      <p class="dimensions-instructions color-white">
+         Agregar imagenes en formato jpg
+      </p>
+   </div>
+   <div class="container-buttons">
+      <app-button-primary
+         title="Regresar"
+         backgroundColor="#d4d4d4"
+         (click)="regresar()"
+      ></app-button-primary>
+      <app-button-primary
+         title="Guardar"
+         (click)="guardarPublicidad()"
+      ></app-button-primary>
+   </div>
+   <div class="images-sections">
+      <p class="publicity__title green-primary">Imágenes</p>
+      <div class="images-container">
+         <app-box-publicity
+            *ngFor="let publicity of dashPublicity.getTopPublicityList()"
+            [imageUrl]="publicity.image"
+            [id]="publicity.id"
+         ></app-box-publicity>
+      </div>
+   </div>
+</div>

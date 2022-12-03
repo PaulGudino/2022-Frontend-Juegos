@@ -20,6 +20,8 @@ import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component
 import { EditTicketComponent } from './tickets/edit-ticket/edit-ticket.component';
 import { GameSelectionComponent } from './game-selection/game-selection.component';
 import { PublicityComponent } from './publicity/publicity.component';
+import { TopPublicityComponent } from './publicity/top-publicity/top-publicity.component';
+import { BottomPublicityComponent } from './publicity/bottom-publicity/bottom-publicity.component';
 
 //Guardianes
 
@@ -201,6 +203,11 @@ const routes: Routes = [
          { path: 'juego/fecha', component: GameDateComponent },
          { path: 'juego/seleccion', component: GameSelectionComponent },
          { path: 'juego/publicidad', component: PublicityComponent },
+         { path: 'juego/publicidad/top', component: TopPublicityComponent },
+         {
+            path: 'juego/publicidad/bottom',
+            component: BottomPublicityComponent,
+         },
          { path: 'juego/salvapantallas', component: SaveScreenComponent },
          { path: 'juego/scan', component: ScanCodeComponent },
          { path: 'juego/diseno', component: DesignComponent },

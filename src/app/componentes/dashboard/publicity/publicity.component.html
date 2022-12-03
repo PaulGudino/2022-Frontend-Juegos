@@ -17,14 +17,14 @@
       ></app-add-publicity> -->
       <p class="publicity__title green-primary">Publicidad Superior:</p>
       <app-button-primary
-         (click)="goEditTopPublicity()"
          title="Editar Publicidad Superior"
          styledPadding=".5rem .2rem"
          [style.marginLeft]="'1rem'"
+         routerLink="/dashboard/juego/publicidad/top"
       ></app-button-primary>
       <p class="publicity__title green-primary">Publicidad Inferior:</p>
       <app-button-primary
-         (click)="goEditBottomPublicity()"
+         routerLink="/dashboard/juego/publicidad/bottom"
          title="Editar Publicidad Inferior"
          styledPadding=".5rem .2rem"
          [style.marginLeft]="'1rem'"

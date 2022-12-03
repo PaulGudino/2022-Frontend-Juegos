@@ -1,0 +1,42 @@
+.container-publicity{
+   display:flex;
+   align-items:center;
+   margin-top:1.5rem;
+
+}
+.container-add-publicity{
+   display:flex;
+   flex-direction: column;
+   gap: .5rem;
+}
+.preview-container{
+   width:9rem;
+   height:5rem;
+}
+img{
+   width: 100%;
+   height: 100%;
+}
+.container-transition{
+   margin-top:1.5rem;
+}
+.container-dimensions{
+   margin-top: 1rem;
+   display: flex;
+
+}
+.dimensions-instructions{
+   display: flex;
+   width:50%;
+   flex-wrap: wrap;
+}
+.container-buttons{
+   width:100%;
+   display: flex;
+   justify-content:space-between;
+}
+.images-container{
+   display: flex;
+   gap: 1rem;
+   flex-wrap: wrap;
+}

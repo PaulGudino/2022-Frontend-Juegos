@@ -44,6 +44,19 @@ export class AddPublicityComponent implements OnInit {
          this.imagen = this.fileToUpload;
          this.imageSrv.extraerBase64(this.fileToUpload).then((imagen: any) => {
             this.previsulizacion = imagen.base;
+            if (this.isTop) {
+               this.dashboardPublicity.setPreviewTopImage(this.previsulizacion);
+               this.dashboardPublicity.setTopImageFileToUpload(
+                  this.fileToUpload
+               );
+            } else {
+               this.dashboardPublicity.setPreviewBottomImage(
+                  this.previsulizacion
+               );
+               this.dashboardPublicity.setBottomImageFileToUpload(
+                  this.fileToUpload
+               );
+            }
          });
       } else {
          this.previsulizacion = this.img_upload;

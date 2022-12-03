@@ -8,8 +8,10 @@ export class DashboardPublicityService {
    topPublicityList: Publicity[] = [];
    bottomPublicityList: Publicity[] = [];
    secondsShowPublicity: number = 3;
-   topImageFile: any;
-   bottomImageFile: any;
+   topImageFileToUpload!: File;
+   bottomImageFileToUpload!: File;
+   previewTopImage: string = '';
+   previewBottomImage: string = '';
 
    constructor() {}
 
@@ -28,18 +30,24 @@ export class DashboardPublicityService {
       return this.bottomPublicityList;
    }
 
-   getTopImageFile() {
-      return this.topImageFile;
+   getTopImageFileToUpload() {
+      return this.topImageFileToUpload;
    }
 
-   getBottomImageFile() {
-      return this.bottomImageFile;
+   getBottomImageFileToUpload() {
+      return this.bottomImageFileToUpload;
    }
-   setTopImageFile(file: any) {
-      this.topImageFile = file;
+   setTopImageFileToUpload(file: any) {
+      this.topImageFileToUpload = file;
    }
 
-   setBottomImageFile(file: any) {
-      this.bottomImageFile = file;
+   setBottomImageFileToUpload(file: any) {
+      this.bottomImageFileToUpload = file;
+   }
+   setPreviewTopImage(url: string) {
+      this.previewTopImage = url;
+   }
+   setPreviewBottomImage(url: string) {
+      this.previewBottomImage = url;
    }
 }

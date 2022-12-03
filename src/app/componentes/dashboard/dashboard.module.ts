@@ -53,6 +53,7 @@ import { PublicityGameComponent } from './publicity-game/publicity-game.componen
 import { TopPublicityComponent } from './publicity/top-publicity/top-publicity.component';
 import { BottomPublicityComponent } from './publicity/bottom-publicity/bottom-publicity.component';
 import { BoxComponent } from './publicity-game/box/box.component';
+import { BoxPublicityComponent } from './publicity/box-publicity/box-publicity.component';
 
 @NgModule({
    declarations: [
@@ -109,6 +110,7 @@ import { BoxComponent } from './publicity-game/box/box.component';
       TopPublicityComponent,
       BottomPublicityComponent,
       BoxComponent,
+      BoxPublicityComponent,
    ],
    imports: [
       SharedModule,

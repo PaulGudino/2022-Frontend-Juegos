@@ -3,7 +3,7 @@ import { PublicityService } from 'src/app/servicios/publicity/publicity.service'
 import { DashboardPublicityService } from '../../../servicios/publicity/dashboardPublicity/dashboard-publicity.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentObserver } from '@angular/cdk/observers';
 
 @Component({
@@ -15,7 +15,7 @@ export class PublicityComponent implements OnInit {
    constructor(
       private publicity: PublicityService,
       public dashboardPublicityService: DashboardPublicityService,
-      // private router: Router,
+      private router: Router,
       private snackbar: SnackbarService,
       private dialogService: ConfirmDialogService
    ) {}
@@ -34,9 +34,6 @@ export class PublicityComponent implements OnInit {
          }
       });
    }
-   goEditTopPublicity() {}
-   goEditBottomPublicity() {}
-
    // createPublicity() {}
 
    // updatePublicity() {

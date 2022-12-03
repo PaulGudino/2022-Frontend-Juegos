@@ -19,7 +19,12 @@ export class PublicityService {
       return this.http.get<Publicity[]>(this.url + 'api/Publicity_bottom/');
    }
 
-   // updateTopPublicity() {}
+   postTopPublicity(form: FormData) {
+      return this.http.post(this.url + 'api/Publicity_top/', form);
+   }
+   postBottomPublicity(form: FormData) {
+      return this.http.post(this.url + 'api/Publicity_bottom/', form);
+   }
    // put(id: number, data: FormData) {
    //    return this.http
    //       .put(this.url + 'api/Publicity/' + id + '/', data)
@@ -27,4 +32,10 @@ export class PublicityService {
    //          console.log(data);
    //       });
    // }
+   deleteTopPublicity(id: number) {
+      return this.http.delete(this.url + 'api/Publicity_top/' + id + '/');
+   }
+   deleteBottomPublicity(id: number) {
+      return this.http.delete(this.url + 'api/Publicity_bottom/' + id + '/');
+   }
 }
