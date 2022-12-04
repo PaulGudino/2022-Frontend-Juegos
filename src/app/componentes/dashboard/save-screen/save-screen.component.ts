@@ -22,7 +22,7 @@ export class SaveScreenComponent implements OnInit {
    previsulizacion: string = '';
 
    constructor(
-      private dashboardPublicityService: DashboardPublicityService,
+      public dashboardPublicityService: DashboardPublicityService,
       private publicity: PublicityService,
       // private router: Router,
       private snackbar: SnackbarService,
@@ -33,22 +33,21 @@ export class SaveScreenComponent implements OnInit {
    ) {}
 
    ngOnInit(): void {
-      // this.publicity.getPublicityList().subscribe(
-      //    (data => {
-      //       console.log(data[0])
-      //       this.dashboardPublicityService.loadData(data);
-      //       this.dashboardPublicityService.changeTopPublicityImage(data[0].image)
-      //       this.dashboardPublicityService.changeBottomPublicityImage(data[1].image)
-      //       this.theme.getDesignInformation().subscribe(
-      //          (designData) => {
-      //             this.dashStyle.loadData(designData[0]);
-      //             this.buttonTitle= this.dashStyle.get_title_button_screensaver();
-      //             this.previsulizacion=this.dashStyle.get_video_screensaver();
-      //             console.log(designData[0])
-      //          }
-      //       )
-      //    })
-      // )
+      this.publicity.getPublicityTopList().subscribe((data) => {
+         this.dashboardPublicityService.loadTopData(data);
+         this.publicity
+            .getPublicityBottomList()
+            .subscribe((bottomPublicityList) => {
+               this.dashboardPublicityService.loadBottomData(
+                  bottomPublicityList
+               );
+            });
+         this.theme.getDesignInformation().subscribe((designData) => {
+            this.dashStyle.loadData(designData[0]);
+            this.buttonTitle = this.dashStyle.get_title_button_screensaver();
+            this.previsulizacion = this.dashStyle.get_video_screensaver();
+         });
+      });
    }
 
    updateSaveScreen() {

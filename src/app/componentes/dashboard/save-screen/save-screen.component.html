@@ -73,7 +73,10 @@
    </div>
    <div class="publicity__view">
       <div class="view-container">
-         <app-banner-publicity [isTop]="true"></app-banner-publicity>
+         <app-banner-publicity
+            [isTop]="true"
+            [publicityList]="dashboardPublicityService.getTopPublicityList()"
+         ></app-banner-publicity>
          <div class="view-menu">
             <video
                class="video"
@@ -89,7 +92,10 @@
                fontSize="1rem"
             ></app-button-game>
          </div>
-         <app-banner-publicity [isTop]="false"></app-banner-publicity>
+         <app-banner-publicity
+            [isTop]="false"
+            [publicityList]="dashboardPublicityService.getBottomPublicityList()"
+         ></app-banner-publicity>
       </div>
    </div>
 </div>

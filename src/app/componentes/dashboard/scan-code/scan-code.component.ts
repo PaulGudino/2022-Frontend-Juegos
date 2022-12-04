@@ -17,7 +17,7 @@ export class ScanCodeComponent implements OnInit {
    description: string = '';
 
    constructor(
-      private dashboardPublicityService: DashboardPublicityService,
+      public dashboardPublicityService: DashboardPublicityService,
       private publicity: PublicityService,
       // private router: Router,
       private snackbar: SnackbarService,
@@ -28,22 +28,22 @@ export class ScanCodeComponent implements OnInit {
    ) {}
 
    ngOnInit(): void {
-      // this.publicity.getPublicityList().subscribe(
-      //    (data => {
-      //       console.log(data[0])
-      //       this.dashboardPublicityService.loadData(data);
-      //       this.dashboardPublicityService.changeTopPublicityImage(data[0].image)
-      //       this.dashboardPublicityService.changeBottomPublicityImage(data[1].image)
-      //       this.theme.getDesignInformation().subscribe(
-      //          (designData) => {
-      //             this.dashStyle.loadData(designData[0]);
-      //             this.title=this.dashStyle.get_scan_code_title()
-      //             this.description=this.dashStyle.get_scan_code_description()
-      //             console.log(designData[0])
-      //          }
-      //       )
-      //    })
-      // )
+      this.publicity.getPublicityTopList().subscribe((data) => {
+         this.dashboardPublicityService.loadTopData(data);
+         this.publicity
+            .getPublicityBottomList()
+            .subscribe((bottomPublicityList) => {
+               this.dashboardPublicityService.loadBottomData(
+                  bottomPublicityList
+               );
+            });
+         this.theme.getDesignInformation().subscribe((designData) => {
+            this.dashStyle.loadData(designData[0]);
+            this.title = this.dashStyle.get_scan_code_title();
+            this.description = this.dashStyle.get_scan_code_description();
+            console.log(designData[0]);
+         });
+      });
    }
    updateScanScreen() {
       const options = {

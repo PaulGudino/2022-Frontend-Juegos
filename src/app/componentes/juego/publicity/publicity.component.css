@@ -10,7 +10,6 @@
 .scroll-container{
    display: flex;
    width: 100%;
-   overflow: hidden;
    scroll-behavior: smooth;
    align-items: center;
 }

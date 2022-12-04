@@ -21,7 +21,7 @@ export class WinnerDesignComponent implements OnInit {
    imagen!: File;
 
    constructor(
-      private dashboardPublicityService: DashboardPublicityService,
+      public dashboardPublicityService: DashboardPublicityService,
       private publicity: PublicityService,
       // private router: Router,
       private snackbar: SnackbarService,
@@ -32,21 +32,21 @@ export class WinnerDesignComponent implements OnInit {
    ) {}
 
    ngOnInit(): void {
-      // this.publicity.getPublicityList().subscribe(
-      //    (data => {
-      //       console.log(data[0])
-      //       this.dashboardPublicityService.loadData(data);
-      //       this.dashboardPublicityService.changeTopPublicityImage(data[0].image)
-      //       this.dashboardPublicityService.changeBottomPublicityImage(data[1].image)
-      //       this.theme.getDesignInformation().subscribe(
-      //          (designData) => {
-      //             this.dashStyle.loadData(designData[0]);
-      //             this.previsualizacion= this.dashStyle.get_image_winner();
-      //             console.log(designData[0])
-      //          }
-      //       )
-      //    })
-      // )
+      this.publicity.getPublicityTopList().subscribe((data) => {
+         this.dashboardPublicityService.loadTopData(data);
+         this.publicity
+            .getPublicityBottomList()
+            .subscribe((bottomPublicityList) => {
+               this.dashboardPublicityService.loadBottomData(
+                  bottomPublicityList
+               );
+            });
+         this.theme.getDesignInformation().subscribe((designData) => {
+            this.dashStyle.loadData(designData[0]);
+            this.previsualizacion = this.dashStyle.get_image_winner();
+            console.log(designData[0]);
+         });
+      });
    }
    capturarFile(event: any): void {
       this.fileToUpload = this.imageSrv.captureFile(event);

@@ -33,7 +33,7 @@ export class DesignComponent implements OnInit {
    imagenLogo!: File;
 
    constructor(
-      private dashboardPublicityService: DashboardPublicityService,
+      public dashboardPublicityService: DashboardPublicityService,
       private publicity: PublicityService,
       private router: Router,
       private snackbar: SnackbarService,
@@ -44,23 +44,25 @@ export class DesignComponent implements OnInit {
    ) {}
 
    ngOnInit(): void {
-      // this.publicity.getPublicityList().subscribe((data) => {
-      //    console.log(data[0]);
-      //    this.dashboardPublicityService.loadData(data);
-      //    this.dashboardPublicityService.changeTopPublicityImage(data[0].image);
-      //    this.dashboardPublicityService.changeBottomPublicityImage(
-      //       data[1].image
-      //    );
-      //    this.theme.getDesignInformation().subscribe((designData) => {
-      //       this.dashStyle.loadData(designData[0]);
-      //       this.previsulizacionMachine =
-      //          this.dashStyle.get_image_machine_game();
-      //       this.previsulizacionLogo = this.dashStyle.get_image_logo_game();
-      //       this.fontFamily = this.dashStyle.get_font_letter();
-      //       this.colorText = this.dashStyle.get_color_text();
-      //       console.log(designData[0]);
-      //    });
-      // });
+      this.publicity.getPublicityTopList().subscribe((data) => {
+         this.dashboardPublicityService.loadTopData(data);
+         this.publicity
+            .getPublicityBottomList()
+            .subscribe((bottomPublicityList) => {
+               this.dashboardPublicityService.loadBottomData(
+                  bottomPublicityList
+               );
+            });
+         this.theme.getDesignInformation().subscribe((designData) => {
+            this.dashStyle.loadData(designData[0]);
+            this.previsulizacionMachine =
+               this.dashStyle.get_image_machine_game();
+            this.previsulizacionLogo = this.dashStyle.get_image_logo_game();
+            this.fontFamily = this.dashStyle.get_font_letter();
+            this.colorText = this.dashStyle.get_color_text();
+            console.log(designData[0]);
+         });
+      });
    }
    goEditGamePublicity() {}
 
