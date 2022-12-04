@@ -1,4 +1,35 @@
 <div class="box-container">
-   <app-add-publicity [title]="number"></app-add-publicity>
-   <div class="box"></div>
+   <div class="color-white publicity-container">
+      <p class="publicity__title green-primary">
+         {{ title + " " + number + ":" }}
+      </p>
+      <div class="publicity-info__container">
+         <p class="">Imagen:</p>
+         <div class="file-select" id="src-file1">
+            <input
+               class="file-input"
+               #takeInput
+               (change)="capturarFile($event)"
+               type="file"
+               name="src-file1"
+               aria-label="Archivo"
+            />
+         </div>
+      </div>
+   </div>
+   <figure class="box">
+      <img [src]="previsulizacion" alt="logo img" />
+   </figure>
+   <p class="white-color">Insertar imagenes png</p>
+   <div class="container-buttons">
+      <app-button-primary
+         title="Cancelar"
+         backgroundColor="#d4d4d4"
+         (click)="cancel()"
+      ></app-button-primary>
+      <app-button-primary
+         title="Guardar"
+         (click)="updatePublicityGame()"
+      ></app-button-primary>
+   </div>
 </div>

@@ -28,6 +28,7 @@ export class AddPublicityComponent implements OnInit {
    @Input() title: string = '';
    @Input() isTop: boolean = true;
    @Output() cambioPrevisualizacion = new EventEmitter<string>();
+   @Input() isGamePublicity: boolean = false;
 
    constructor(
       private imageSrv: ImageService,

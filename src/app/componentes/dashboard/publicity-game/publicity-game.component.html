@@ -5,10 +5,6 @@
 <div class="publicity-container">
    <app-box
       *ngFor="let number of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-      [number]="'Casilla: ' + number.toString()"
+      [number]="number.toString()"
    ></app-box>
 </div>
-<app-button-primary
-   class="btn-container"
-   title="Guardar Cambios"
-></app-button-primary>
