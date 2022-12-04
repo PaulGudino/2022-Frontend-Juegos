@@ -8,6 +8,7 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
 import { DashboardStyleService } from 'src/app/servicios/theme/dashboardStyle/dashboard-style.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Form } from '@angular/forms';
+import { PublicityGameService } from 'src/app/servicios/publicityGame/publicity-game.service';
 @Component({
    selector: 'app-design',
    templateUrl: './design.component.html',
@@ -32,6 +33,10 @@ export class DesignComponent implements OnInit {
    fileToUploadLogo!: File | null;
    imagenLogo!: File;
 
+   urlLogo1: string = '';
+   urlLogo2: string = '';
+   urlLogo3: string = '';
+
    constructor(
       public dashboardPublicityService: DashboardPublicityService,
       private publicity: PublicityService,
@@ -40,7 +45,8 @@ export class DesignComponent implements OnInit {
       private dialogService: ConfirmDialogService,
       private theme: ThemeService,
       public dashStyle: DashboardStyleService,
-      private imageSrv: ImageService
+      private imageSrv: ImageService,
+      private publicityGame: PublicityGameService
    ) {}
 
    ngOnInit(): void {
@@ -60,7 +66,16 @@ export class DesignComponent implements OnInit {
             this.previsulizacionLogo = this.dashStyle.get_image_logo_game();
             this.fontFamily = this.dashStyle.get_font_letter();
             this.colorText = this.dashStyle.get_color_text();
-            console.log(designData[0]);
+
+            this.publicityGame.getPublicityGame('1').subscribe((data) => {
+               this.urlLogo1 = data.image;
+            });
+            this.publicityGame.getPublicityGame('2').subscribe((data) => {
+               this.urlLogo2 = data.image;
+            });
+            this.publicityGame.getPublicityGame('3').subscribe((data) => {
+               this.urlLogo3 = data.image;
+            });
          });
       });
    }
