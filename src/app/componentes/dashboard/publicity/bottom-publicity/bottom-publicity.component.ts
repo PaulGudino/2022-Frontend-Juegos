@@ -13,6 +13,7 @@ import { PublicityService } from 'src/app/servicios/publicity/publicity.service'
 })
 export class BottomPublicityComponent implements OnInit {
    form: FormGroup;
+   transitionTime: number = 0;
 
    constructor(
       public dashPublicity: DashboardPublicityService,
@@ -34,39 +35,96 @@ export class BottomPublicityComponent implements OnInit {
       this.router.navigate(['/dashboard/juego/publicidad']);
    }
    guardarPublicidad() {
-      if (this.form.valid) {
-         const options = {
-            title: 'CAMBIAR CONFIGURACION PROBABILIDADES JUEGO',
-            message:
-               '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
-            cancelText: 'CANCELAR',
-            confirmText: 'CREAR',
-         };
-         // let user_register = localStorage.getItem('user_id');
+      const options = {
+         title: 'CAMBIAR CONFIGURACION PROBABILIDADES JUEGO',
+         message:
+            '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
+         cancelText: 'CANCELAR',
+         confirmText: 'CREAR',
+      };
+      if (
+         !this.dashPublicity.getBottomImageFileToUpload() &&
+         !this.form.valid
+      ) {
+         this.snackBar.mensaje('Agregue cambios antes de guardar');
+      } else if (
+         this.dashPublicity.getBottomImageFileToUpload() &&
+         this.form.valid
+      ) {
          this.dialog.open(options);
          this.dialog.confirmed().subscribe((confirmed) => {
             if (confirmed) {
-               let formDataTop: FormData = new FormData();
-               formDataTop.append(
+               let formDataBottom: FormData = new FormData();
+               let formData: FormData = new FormData();
+               formDataBottom.append(
                   'image',
                   this.dashPublicity.getBottomImageFileToUpload(),
                   this.dashPublicity.getBottomImageFileToUpload().name
                );
-               formDataTop.append(
+               formData.append(
                   'time_display',
                   this.form.get('transition')?.value
                );
                this.publicity
-                  .postBottomPublicity(formDataTop)
+                  .postBottomPublicity(formDataBottom)
+                  .subscribe((data) => {
+                     this.publicity
+                        .updatePublicityConfigBottom(formData)
+                        .subscribe((data) => {
+                           this.chargePublicity();
+                           this.cleanData();
+                        });
+                  });
+
+               this.snackBar.mensaje(
+                  'Publicidad Inferior Agregada exitosamente'
+               );
+            }
+         });
+      } else if (this.dashPublicity.getBottomImageFileToUpload()) {
+         this.dialog.open(options);
+         this.dialog.confirmed().subscribe((confirmed) => {
+            if (confirmed) {
+               let formDataBottom: FormData = new FormData();
+               formDataBottom.append(
+                  'image',
+                  this.dashPublicity.getBottomImageFileToUpload(),
+                  this.dashPublicity.getBottomImageFileToUpload().name
+               );
+
+               this.publicity
+                  .postBottomPublicity(formDataBottom)
                   .subscribe((data) => {
                      this.chargePublicity();
                   });
                this.cleanData();
                this.snackBar.mensaje(
-                  'Publicidad Superior Agregada exitosamente'
+                  'Publicidad Inferior Agregada exitosamente'
                );
             }
          });
+      } else if (this.form.valid) {
+         this.dialog.open(options);
+         this.dialog.confirmed().subscribe((confirmed) => {
+            if (confirmed) {
+               let formData: FormData = new FormData();
+               formData.append(
+                  'time_display',
+                  this.form.get('transition')?.value
+               );
+               this.publicity
+                  .updatePublicityConfigBottom(formData)
+                  .subscribe((data) => {
+                     this.cleanData();
+
+                     this.chargePublicity();
+                  });
+               this.snackBar.mensaje(
+                  'Publicidad Inferior Actualizada exitosamente'
+               );
+            }
+         });
+         // let user_register = localStorage.getItem('user_id');
       }
    }
 
@@ -77,6 +135,9 @@ export class BottomPublicityComponent implements OnInit {
    chargePublicity() {
       this.publicity.getPublicityBottomList().subscribe((data) => {
          this.dashPublicity.loadBottomData(data);
+         this.publicity.getPublicityConfigTop().subscribe((config) => {
+            this.transitionTime = config.time_display;
+         });
       });
    }
 }
