@@ -18,7 +18,8 @@ export class CrearUsuariosComponent implements OnInit {
   ocultar = true;
   listSex = [
     {id: 'M', name: 'Masculino'},
-    {id: 'F', name: 'Femenino'}
+    {id: 'F', name: 'Femenino'},
+    {id: 'O', name: 'Otro'}
   ];
 
   constructor(

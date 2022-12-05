@@ -25,6 +25,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -58,6 +59,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     MatGridListModule,
     FormsModule,
+    MatAutocompleteModule
   ],
   exports: [
     CommonModule,
@@ -84,7 +86,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatNativeDateModule,
     NgbModule,
     MatGridListModule,
-    FormsModule
+    FormsModule,
+    MatAutocompleteModule
   ],
 
 })
