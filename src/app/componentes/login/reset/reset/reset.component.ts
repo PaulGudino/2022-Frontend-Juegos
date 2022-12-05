@@ -35,23 +35,27 @@ export class ResetComponent implements OnInit {
   }
 
   resetear(){
-    const email = this.form.value.email;
-    const code = this.form.value.code;
-    const password = this.form.value.password;
-    this.auth.RecuperarContraseña({email, code, password}).subscribe(
-      (res: any) => {
-        this.snackBar.mensaje('Se ha cambiado la contraseña');
-        this.router.navigate(['login']);
-      }
-      , err => {
-        for(let message in err.error){
-          this.mensaje_error_lista.push(err.error[message])
+    if (this.form.valid){
+      const email = this.form.value.email;
+      const code = this.form.value.code;
+      const password = this.form.value.password;
+      this.auth.RecuperarContraseña({email, code, password}).subscribe(
+        (res: any) => {
+          this.snackBar.mensaje('Se ha cambiado la contraseña');
+          this.router.navigate(['login']);
         }
-        this.mensajes_errores(this.mensaje_error_lista)
-        this.mensaje_error_lista=[]
-        this.form.reset();
-      }
-    );
+        , err => {
+          for(let message in err.error){
+            this.mensaje_error_lista.push(err.error[message])
+          }
+          this.mensajes_errores(this.mensaje_error_lista)
+          this.mensaje_error_lista=[]
+          this.form.reset();
+        }
+      );
+    }else{
+      this.snackBar.mensaje('Llene el formulario correctamente');
+    }
 
   }
   mensajes_errores(mensajes: string[]){

@@ -39,25 +39,21 @@ export class AuthInterceptor implements HttpInterceptor {
                refreshroken = localStorage.getItem('refresh')!;
                formData.append('refresh', refreshroken);
 
-               return this.http
-                  .post('http://localhost:8000/token/refresh/', formData, {
-                     withCredentials: true,
+               return this.http.post('http://localhost:8000/token/refresh/', formData, {withCredentials: true,}).pipe(
+               //  return this.http.post('https://juegos.pythonanywhere.com/token/refresh/', formData, {withCredentials: true}).pipe(
+                  switchMap((data: any) => {
+                     console.log(data);
+                     localStorage.setItem('token', data.access);
+                     localStorage.setItem('refresh', data.refresh);
+                     AuthInterceptor.accessToken = data.access;
+                     const req = request.clone({
+                        setHeaders: {
+                           Authorization: `Bearer ${AuthInterceptor.accessToken}`,
+                        },
+                     });
+                     return next.handle(req);
                   })
-                  .pipe(
-                     //  return this.http.post('https://juegos.pythonanywhere.com/token/refresh/', formData, {withCredentials: true}).pipe(
-                     switchMap((data: any) => {
-                        console.log(data);
-                        localStorage.setItem('token', data.access);
-                        localStorage.setItem('refresh', data.refresh);
-                        AuthInterceptor.accessToken = data.access;
-                        const req = request.clone({
-                           setHeaders: {
-                              Authorization: `Bearer ${AuthInterceptor.accessToken}`,
-                           },
-                        });
-                        return next.handle(req);
-                     })
-                  );
+               );
             }
             this.refresh = false;
             return throwError(() => err);

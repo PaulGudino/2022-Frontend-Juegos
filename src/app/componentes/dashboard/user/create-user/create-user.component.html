@@ -4,7 +4,7 @@
 </mat-toolbar>
 <div class="container">
     <form [formGroup]="form">
-        <mat-form-field>
+        <!-- <mat-form-field>
             <label>Cédula</label>
             <div class="input_form">
                 <input matInput #input autocomplete="off" formControlName="cedula" type="text" required
@@ -17,9 +17,18 @@
             <mat-error *ngIf="form.controls['cedula'].hasError('required')" >
                 Campo requerido !!!
             </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-input-tendigits-form
+        titulo="Cédula"
+        [control]="form.controls['cedula']"
+        ></app-input-tendigits-form>
 
-        <mat-form-field>
+        <app-input-text-form
+        titulo="Username"
+        [control]="form.controls['username']"
+        ></app-input-text-form>
+
+        <!-- <mat-form-field>
             <label>Username</label>
             <div class="input_form">
                 <input autocomplete="off" formControlName="username" type="text" matInput >
@@ -28,7 +37,7 @@
             <mat-error *ngIf="form.controls['username'].hasError('required')" >
                 Campo requerido !!!
             </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field>
             <label>Nombres</label>
@@ -52,7 +61,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <!-- <mat-form-field>
             <label>Correo Electrónico</label>
             <div class="input_form">
                 <input matInput formControlName="email" type="email" required autocomplete="off">
@@ -64,7 +73,11 @@
             <mat-error *ngIf="form.controls['email'].hasError('email')">
                 Ingresa un correo válido
              </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-input-email-form
+        titulo="Correo Electrónico"
+        [control]="form.controls['email']"
+        ></app-input-email-form>
 
 
         <mat-form-field>
@@ -82,7 +95,12 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <app-input-password-form 
+        titulo="Contraseña"
+        [control]="form.controls['password']"
+        ></app-input-password-form>
+
+        <!-- <mat-form-field>
             <label>Contraseña</label>
             <div class="input_form">
                 <input matInput onpaste="return false" autocomplete="off" minlength="8" formControlName="password" [type]="ocultar ? 'password' : 'text'">
@@ -92,9 +110,15 @@
             <mat-error *ngIf="form.controls['password'].hasError('required')" >
                 Campo requerido !!!
             </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
 
-        <mat-form-field>
+        <app-input-select-form
+        titulo="Sexo"
+        [lista]= listSex
+        [control]="form.controls['sex']"
+        ></app-input-select-form>
+
+        <!-- <mat-form-field>
             <label>Sexo</label>
             <mat-select formControlName="sex">
                 <mat-option value="F">Femenino</mat-option>
@@ -104,7 +128,7 @@
             <mat-error *ngIf="form.controls['sex'].hasError('required')" >
                 Campo requerido !!!
             </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field>
             <label>Dirección</label>

@@ -46,7 +46,8 @@
 .ancho{
     width: 100%;
 }
-input{
+.form__input{
+    box-sizing: border-box;
     width: 100%;
     height: 30px;
     margin-bottom: 10px;
@@ -57,7 +58,8 @@ input{
     outline: none;
     color: var(--color-letras);
     background: var(--color-fondo-secundario);
-}
+    text-align: start;
+ }
 .container_form{
     padding: 0 15%;
 }

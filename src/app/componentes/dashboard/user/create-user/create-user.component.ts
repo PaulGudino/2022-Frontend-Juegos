@@ -16,6 +16,11 @@ export class CrearUsuariosComponent implements OnInit {
   roles: Roles[] = [];
   form: FormGroup;
   ocultar = true;
+  listSex = [
+    {id: 'M', name: 'Masculino'},
+    {id: 'F', name: 'Femenino'}
+  ];
+
   constructor(
     private api: ApiService, 
     private router: Router, 

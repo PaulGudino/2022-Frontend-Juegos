@@ -1,0 +1,14 @@
+<mat-form-field>
+    <label>{{titulo}}</label>
+    <div class="input_form">
+        <input matInput #input autocomplete="off" [formControl]="control" type="text" required
+            maxlength="10" minlength="10" onpaste="return false"
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+    </div>
+    <mat-hint align="end">
+        {{input.value.length || 0}}/10
+    </mat-hint>
+    <mat-error *ngIf="control.hasError('required') || input.value.length < 11" >
+        Campo requerido !!! {{input.value.length || 0}}/8
+    </mat-error>
+</mat-form-field>

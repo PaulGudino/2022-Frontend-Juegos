@@ -10,25 +10,24 @@
                     <div class="container_form">
                         <h2>Correo Electrónico:</h2>
                         <div class="ancho border_container">
-                            <input matInput autocomplete="off" formControlName="email">
+                            <input class="form__input" matInput autocomplete="off" formControlName="email">
                         </div>
                     </div>
                     <div class="container_form">
-                        <h2>Código:</h2>
+                        <h2>Código: Contiene 6 digitos {{inputcodigo.value.length || 0}}/6</h2>
                         <div class="ancho border_container">
-                            <input matInput autocomplete="off" onkeypress='return event.charCode >= 48 && event.charCode <= 57' formControlName="code">
+                            <input class="form__input" #inputcodigo matInput minlength="6" maxlength="6" autocomplete="off" onkeypress='return event.charCode >= 48 && event.charCode <= 57' formControlName="code">
                         </div>
                     </div>
+
                     <div class="container_form">
                         <h2>
                             Nueva contraseña:
                             Minimo 8 caracteres {{input.value.length || 0}}/8
                         </h2>
                         <div class = "ancho password border_container">
-                            <input matInput #input autocomplete="off" formControlName="password" [type]="ocultar ? 'password' : 'text'">
-                                <button class="eye_password" mat-icon-button matSuffix (click)="ocultar = !ocultar"> 
-                                    <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
+                            <input class="form__input" #input matInput onpaste="return false" autocomplete="off" minlength="8" formControlName="password" [type]="ocultar ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon class="green-primary">{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
                         </div>
                     </div>
                     <div class="button_container" >
