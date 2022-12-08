@@ -1,3 +1,4 @@
+import { PuenteDatosService } from './../../../../servicios/comunicacio_componentes/puente-datos.service';
 import { SnackbarService } from '../../../../servicios/snackbar/snackbar.service';
 import { FormGroup,FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../../servicios/user/user.service';
@@ -27,7 +28,8 @@ export class CrearUsuariosComponent implements OnInit {
     private router: Router, 
     private fb: FormBuilder, 
     private snackBar: SnackbarService,
-    private dialogService: ConfirmDialogService
+    private dialogService: ConfirmDialogService,
+    private staticData: PuenteDatosService
     ) { 
     this.form = this.fb.group({
       cedula: ['', Validators.required],
@@ -44,6 +46,7 @@ export class CrearUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     this.cargarRoles();
   }
 

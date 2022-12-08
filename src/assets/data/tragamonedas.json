@@ -1,37 +1,44 @@
 [
     {
-        "nombre": "Fecha del Juego",
-        "icono": "date_range",
-        "ruta": "/tragamonedas/fecha_juego"
+        "nombre": "Regresar",
+        "icono": "arrow_back",
+        "ruta": "/dashboard/juego/seleccion"
+
     },
     {
-        "nombre": "Ticket",
-        "icono": "local_activity",
-        "ruta": "/tragamonedas/tickets"
+         "nombre": "Fecha",
+         "icono": "radio_button_checked",
+         "ruta": "/dashboard/juego/fecha"
     },
     {
-        "nombre": "Partidas",
-        "icono": "person",
-        "ruta": "/tragamonedas/partidas"
-    },
-    {
-        "nombre": "Premios",
-        "icono": "redeem",
-        "ruta": "/tragamonedas/premios"
-    },
-    {
-        "nombre": "Premios Condicionados",
-        "icono": "event",
-        "ruta": "/tragamonedas/premios_condicionados"
-    },
-    {
+        "nombre": "Publicidad",
+        "icono": "radio_button_checked",
+        "ruta": "/dashboard/juego/publicidad"
+     },
+     {
+        "nombre": "Salvapantallas",
+        "icono": "radio_button_checked",
+        "ruta": "/dashboard/juego/salvapantallas"
+     },
+     {
+        "nombre": "Scaneo",
+        "icono": "radio_button_checked",
+        "ruta": "/dashboard/juego/scan"
+     },
+     {
+        "nombre": "Diseño Juego",
+        "icono": "radio_button_checked",
+        "ruta": "/dashboard/juego/diseno"
+     },
+     {
+        "nombre": "Diseño Ganadores",
+        "icono": "radio_button_checked",
+        "ruta": "/dashboard/juego/diseno/ganador"
+     },
+     {
         "nombre": "Probabilidades",
-        "icono": "assessment",
-        "ruta": "/tragamonedas/probabilidades"
-    },
-    {
-        "nombre": "Configuración del Juego",
-        "icono": "settings",
-        "ruta": "/tragamonedas/configuracion"
-    }
+        "icono": "radio_button_checked",
+        "ruta": "/dashboard/probabilidades"
+     }
+    
 ]

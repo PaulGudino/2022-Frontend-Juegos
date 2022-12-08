@@ -3,7 +3,6 @@ import { Usuarios } from '../../interfaces/usuarios/usuarios';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Menu } from '../../interfaces/menu';
 import { Roles } from '../../interfaces/roles/roles';
 import { PuenteDatosService } from '../comunicacio_componentes/puente-datos.service';
 
@@ -15,10 +14,6 @@ export class ApiService {
   url = this.puente.geturl();
 
   constructor(private http: HttpClient, private puente: PuenteDatosService) { }
-
-  getMenu():Observable<Menu[]>{
-    return this.http.get<Menu[]>('/assets/data/menu.json');
-  }
 
   getUsuarios(filter: string):Observable<Usuarios[]>{
     return this.http.get<Usuarios[]>(this.url+'api/userfilter/'+filter);

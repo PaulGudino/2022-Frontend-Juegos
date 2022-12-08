@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class CreateClientComponent implements OnInit {
     // Dialog and snackBar services
     private snackBar : SnackbarService,
     private confirmDialog : ConfirmDialogService,
-    private api : ClientService
+    private api : ClientService,
+    private staticData: PuenteDatosService
   ) {
     // Building the form with the formBuilder
 
@@ -98,6 +100,7 @@ export class CreateClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
   }
 
 }

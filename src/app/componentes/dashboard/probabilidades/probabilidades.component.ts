@@ -1,3 +1,4 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { getAwardList } from 'src/app/interfaces/awards/getAwardList';
 import {AwardsService} from "../../../servicios/awards/awards.service";
@@ -7,7 +8,6 @@ import {Publicity} from '../../../interfaces/publicity/publicity'
 import { FormGroup,FormControl,FormBuilder } from '@angular/forms';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import {SnackbarService} from '../../../servicios/snackbar/snackbar.service'
-import { PermisosService } from 'src/app/servicios/permisos/permisos.service';
 
 
 @Component({
@@ -50,7 +50,7 @@ export class ProbabilidadesComponent implements OnInit {
     private fb:FormBuilder,
     private dialog:ConfirmDialogService,
     private snackBar:SnackbarService,
-    private permisos_api: PermisosService,
+    private staticData: PuenteDatosService
 
   ) {
     this.form = this.fb.group({
@@ -63,13 +63,14 @@ export class ProbabilidadesComponent implements OnInit {
    }
 
   ngOnInit(){
-   this.awards.getAward()
-   .subscribe(data => {
-     this.probability.getAwardsListGame().subscribe(
-       awardGameData =>{
+    this.staticData.setMenuTragamonedas();
+    this.awards.getAward()
+      .subscribe(data => {
+        this.probability.getAwardsListGame().subscribe(
+          awardGameData =>{
          this.getAwardsPerCategory(data,awardGameData)
 
-       })
+        })
 
        this.probability.getProbabilites()
 			.subscribe(data =>{

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { RolesService } from 'src/app/servicios/roles/roles.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
   selector: 'app-roles-crear',
@@ -19,7 +20,8 @@ export class RolesCrearComponent implements OnInit {
     private fb: FormBuilder, 
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
-    private rolSrv: RolesService
+    private rolSrv: RolesService,
+    private staticData: PuenteDatosService
   ) { 
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -29,6 +31,7 @@ export class RolesCrearComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
   }
   regresarRoles(){
     this.router.navigate(['/dashboard/roles']);

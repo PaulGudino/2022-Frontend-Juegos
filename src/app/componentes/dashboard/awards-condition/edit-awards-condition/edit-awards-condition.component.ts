@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AwardsConditionService } from 'src/app/servicios/awards-condition/awards-condition.service';
 import { AwardsService } from 'src/app/servicios/awards/awards.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 
@@ -38,6 +39,7 @@ export class EditAwardsConditionComponent implements OnInit {
     private dialogService: ConfirmDialogService,
     private router: Router, 
     private activerouter: ActivatedRoute, 
+    private staticData: PuenteDatosService
   ) {
     this.form = this.fb.group({
       startTime:['', Validators.required],
@@ -47,6 +49,7 @@ export class EditAwardsConditionComponent implements OnInit {
    }
 
   async ngOnInit(): Promise<void> {
+    this.staticData.setMenuGeneral();
     this.getAward();
     await this.getAwardConditionId(this.award_condition_id);
 

@@ -5,6 +5,7 @@ import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { TicketService } from 'src/app/servicios/ticket/ticket.service';
 import { Ticket } from 'src/app/interfaces/ticket/Ticket';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 
 @Component({
@@ -35,13 +36,15 @@ export class ViewTicketComponent implements OnInit {
     private router : Router,
     private activedRoute : ActivatedRoute,
     private ticketAPI : TicketService,
+    private staticData: PuenteDatosService,
   ) {}
 
-  toList() {
+  toList(): void {
     this.router.navigate(['dashboard/' + this.pluralName]);
   }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     let ticketId = this.activedRoute.snapshot.paramMap.get('id');
     this.ticketAPI.getById(Number(ticketId)).subscribe((data) => {
       this.ticket = data;

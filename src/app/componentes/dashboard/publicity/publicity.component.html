@@ -1,46 +1,48 @@
-<mat-toolbar class="background-navy-primary green-primary">
-   <span>Publicidad</span>
-   <span class="example-spacer"></span>
-</mat-toolbar>
-
-<div class="publicity-container">
-   <div class="publicity__changes">
-      <!-- <app-add-publicity
-         [isTop]="true"
-         title="Publicidad Superior"
-         (click)="signalChangeTop()"
-      ></app-add-publicity>
-      <app-add-publicity
-         [isTop]="false"
-         title="Publicidad Inferior"
-         (click)="signalChangeBottom()"
-      ></app-add-publicity> -->
-      <p class="publicity__title green-primary">Publicidad Superior:</p>
-      <app-button-primary
-         title="Editar Publicidad Superior"
-         styledPadding=".5rem .2rem"
-         [style.marginLeft]="'1rem'"
-         routerLink="/dashboard/juego/publicidad/top"
-      ></app-button-primary>
-      <p class="publicity__title green-primary">Publicidad Inferior:</p>
-      <app-button-primary
-         routerLink="/dashboard/juego/publicidad/bottom"
-         title="Editar Publicidad Inferior"
-         styledPadding=".5rem .2rem"
-         [style.marginLeft]="'1rem'"
-      ></app-button-primary>
-   </div>
-   <div class="publicity__view">
-      <div class="view-container">
-         <app-banner-publicity
+<app-menu>
+   <mat-toolbar class="background-navy-primary green-primary">
+      <span>Publicidad</span>
+      <span class="example-spacer"></span>
+   </mat-toolbar>
+   
+   <div class="publicity-container">
+      <div class="publicity__changes">
+         <!-- <app-add-publicity
             [isTop]="true"
-            [publicityList]="dashboardPublicityService.getTopPublicityList()"
-         ></app-banner-publicity>
-         <div class="view-menu"></div>
-         <app-banner-publicity
+            title="Publicidad Superior"
+            (click)="signalChangeTop()"
+         ></app-add-publicity>
+         <app-add-publicity
             [isTop]="false"
-            [publicityList]="dashboardPublicityService.getBottomPublicityList()"
-         ></app-banner-publicity>
+            title="Publicidad Inferior"
+            (click)="signalChangeBottom()"
+         ></app-add-publicity> -->
+         <p class="publicity__title green-primary">Publicidad Superior:</p>
+         <app-button-primary
+            title="Editar Publicidad Superior"
+            styledPadding=".5rem .2rem"
+            [style.marginLeft]="'1rem'"
+            routerLink="/dashboard/juego/publicidad/top"
+         ></app-button-primary>
+         <p class="publicity__title green-primary">Publicidad Inferior:</p>
+         <app-button-primary
+            routerLink="/dashboard/juego/publicidad/bottom"
+            title="Editar Publicidad Inferior"
+            styledPadding=".5rem .2rem"
+            [style.marginLeft]="'1rem'"
+         ></app-button-primary>
+      </div>
+      <div class="publicity__view">
+         <div class="view-container">
+            <app-banner-publicity
+               [isTop]="true"
+               [publicityList]="dashboardPublicityService.getTopPublicityList()"
+            ></app-banner-publicity>
+            <div class="view-menu"></div>
+            <app-banner-publicity
+               [isTop]="false"
+               [publicityList]="dashboardPublicityService.getBottomPublicityList()"
+            ></app-banner-publicity>
+         </div>
       </div>
    </div>
-</div>
+</app-menu>

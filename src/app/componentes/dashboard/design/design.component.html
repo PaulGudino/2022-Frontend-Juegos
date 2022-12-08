@@ -1,162 +1,164 @@
-<mat-toolbar class="background-navy-primary green-primary">
-   <span>Diseño</span>
-   <span class="example-spacer"></span>
-</mat-toolbar>
-
-<div class="publicity-container">
-   <div class="publicity__changes">
-      <p class="publicity__title white-color">Diseño:</p>
-      <div class="savescreen-info__container">
-         <p class="publicity__title white-color">Imagen Máquina:</p>
-         <div class="file-select" id="src-file1">
-            <input
-               class="file-input"
-               #takeInput
-               (change)="capturarFile($event)"
-               type="file"
-               name="src-file1"
-               aria-label="Archivo"
-            />
-         </div>
-         <p class="publicity__title white-color">Imagen Logo:</p>
-         <div class="file-select" id="src-file2">
-            <input
-               class="file-input"
-               #takeInputLogo
-               (change)="capturarFileLogo($event)"
-               type="file"
-               name="src-file2"
-               aria-label="Archivo"
-            />
-         </div>
-         <p class="publicity__title white-color">Logos casillas:</p>
-         <app-button-primary
-            title="Editar logos casillas"
-            styledPadding=".5rem .5rem"
-            routerLink="/dashboard/juego/diseno/publicity"
-         ></app-button-primary>
-         <p class="publicity__title white-color">Fuente Letra:</p>
-         <select
-            name="fuentes"
-            class="input-global"
-            placeholder="seleccione fuente de letra"
-            (change)="previewChangeFontLetter($event)"
-         >
-            <option default value="---">Seleccione fuente de letra</option>
-            <option value="Arial">Arial</option>
-            <option value="Times New Roman">Times New Roman</option>
-            <option value="Helvetica">Helvetica</option>
-            <option value="Cambria">Cambria</option>
-            <option value="Century Gothic">Century Gothic</option>
-            <option value="Didot">Didot</option>
-            <option value="Bodoni">Bodoni</option>
-            <option value="Candara">Candara</option>
-            <option value="Optima">Optima</option>
-            <option value="Quicksand">Quicksand</option>
-            <option value="Courier New">Courier New</option>
-            <option value="Rockwel">Rockwel</option>
-            <option value="Copperplate">Copperplate</option>
-         </select>
-
-         <p class="publicity__title white-color">Color Texto:</p>
-         <select
-            name="colores"
-            class="input-global"
-            placeholder="seleccione color letras"
-            (change)="previewChangeColorLetter($event)"
-         >
-            <option default value="---">Seleccione color de letra</option>
-            <option value="Black">Black</option>
-            <option value="White">White</option>
-            <option value="Blue">Blue</option>
-            <option value="Brown">Brown</option>
-            <option value="Grey">Grey</option>
-            <option value="Green">Green</option>
-            <option value="Purple">Purple</option>
-            <option value="Red">Red</option>
-            <option value="Yellow">Yellow</option>
-         </select>
-         <div class="buttons-container">
+<app-menu>
+   <mat-toolbar class="background-navy-primary green-primary">
+      <span>Diseño Juego</span>
+      <span class="example-spacer"></span>
+   </mat-toolbar>
+   
+   <div class="publicity-container">
+      <div class="publicity__changes">
+         <p class="publicity__title white-color">Diseño:</p>
+         <div class="savescreen-info__container">
+            <p class="publicity__title white-color">Imagen Máquina:</p>
+            <div class="file-select" id="src-file1">
+               <input
+                  class="file-input"
+                  #takeInput
+                  (change)="capturarFile($event)"
+                  type="file"
+                  name="src-file1"
+                  aria-label="Archivo"
+               />
+            </div>
+            <p class="publicity__title white-color">Imagen Logo:</p>
+            <div class="file-select" id="src-file2">
+               <input
+                  class="file-input"
+                  #takeInputLogo
+                  (change)="capturarFileLogo($event)"
+                  type="file"
+                  name="src-file2"
+                  aria-label="Archivo"
+               />
+            </div>
+            <p class="publicity__title white-color">Logos casillas:</p>
             <app-button-primary
-               (click)="updateDesign()"
-               title="Guardar"
+               title="Editar logos casillas"
+               styledPadding=".5rem .5rem"
+               routerLink="/dashboard/juego/diseno/publicity"
             ></app-button-primary>
-            <app-button-primary
-               (click)="cancel()"
-               title="Cancelar"
-               backgroundColor="#d4d4d4"
-            ></app-button-primary>
+            <p class="publicity__title white-color">Fuente Letra:</p>
+            <select
+               name="fuentes"
+               class="input-global"
+               placeholder="seleccione fuente de letra"
+               (change)="previewChangeFontLetter($event)"
+            >
+               <option default value="---">Seleccione fuente de letra</option>
+               <option value="Arial">Arial</option>
+               <option value="Times New Roman">Times New Roman</option>
+               <option value="Helvetica">Helvetica</option>
+               <option value="Cambria">Cambria</option>
+               <option value="Century Gothic">Century Gothic</option>
+               <option value="Didot">Didot</option>
+               <option value="Bodoni">Bodoni</option>
+               <option value="Candara">Candara</option>
+               <option value="Optima">Optima</option>
+               <option value="Quicksand">Quicksand</option>
+               <option value="Courier New">Courier New</option>
+               <option value="Rockwel">Rockwel</option>
+               <option value="Copperplate">Copperplate</option>
+            </select>
+   
+            <p class="publicity__title white-color">Color Texto:</p>
+            <select
+               name="colores"
+               class="input-global"
+               placeholder="seleccione color letras"
+               (change)="previewChangeColorLetter($event)"
+            >
+               <option default value="---">Seleccione color de letra</option>
+               <option value="Black">Black</option>
+               <option value="White">White</option>
+               <option value="Blue">Blue</option>
+               <option value="Brown">Brown</option>
+               <option value="Grey">Grey</option>
+               <option value="Green">Green</option>
+               <option value="Purple">Purple</option>
+               <option value="Red">Red</option>
+               <option value="Yellow">Yellow</option>
+            </select>
+            <div class="buttons-container">
+               <app-button-primary
+                  (click)="updateDesign()"
+                  title="Guardar"
+               ></app-button-primary>
+               <app-button-primary
+                  (click)="cancel()"
+                  title="Cancelar"
+                  backgroundColor="#d4d4d4"
+               ></app-button-primary>
+            </div>
+         </div>
+      </div>
+      <div class="publicity__view">
+         <div class="view-container">
+            <app-banner-publicity
+               [isTop]="true"
+               [publicityList]="dashboardPublicityService.getTopPublicityList()"
+            ></app-banner-publicity>
+            <div class="view-menu">
+               <app-logo
+                  class="logo-container"
+                  height="1.5rem"
+                  [isHome]="false"
+                  [isBackground]="false"
+                  [urlImage]="previsulizacionLogo"
+               ></app-logo>
+   
+               <div class="information-game-container">
+                  <div class="info-game__text">
+                     <p
+                        class="info-game__text"
+                        [ngStyle]="{
+                           'font-family': fontFamily,
+                           color: colorText
+                        }"
+                     >
+                        {{ availableSpin }}
+                     </p>
+                  </div>
+               </div>
+               <div class="spinner__container">
+                  <figure class="award-box-container">
+                     <img
+                        class="awards-box"
+                        [src]="previsulizacionMachine"
+                        alt="cajon-premios"
+                     />
+                  </figure>
+                  <div class="awards-container">
+                     <div class="awards-column">
+                        <figure class="award-image-container">
+                           <img [src]="urlLogo1" alt="" />
+                        </figure>
+                     </div>
+                     <div class="awards-column">
+                        <figure class="award-image-container">
+                           <img [src]="urlLogo2" alt="" />
+                        </figure>
+                     </div>
+                     <div class="awards-column">
+                        <figure class="award-image-container">
+                           <img [src]="urlLogo3" alt="" />
+                        </figure>
+                     </div>
+                  </div>
+                  <!-- <div class="hide-top"></div>
+                  <div class="hide-bottom"></div> -->
+               </div>
+   
+               <app-button-game
+                  class="menu-btn"
+                  title="Girar"
+                  styledPadding=".5rem 1rem"
+                  fontSize="1rem"
+               ></app-button-game>
+            </div>
+            <app-banner-publicity
+               [isTop]="false"
+               [publicityList]="dashboardPublicityService.getBottomPublicityList()"
+            ></app-banner-publicity>
          </div>
       </div>
    </div>
-   <div class="publicity__view">
-      <div class="view-container">
-         <app-banner-publicity
-            [isTop]="true"
-            [publicityList]="dashboardPublicityService.getTopPublicityList()"
-         ></app-banner-publicity>
-         <div class="view-menu">
-            <app-logo
-               class="logo-container"
-               height="1.5rem"
-               [isHome]="false"
-               [isBackground]="false"
-               [urlImage]="previsulizacionLogo"
-            ></app-logo>
-
-            <div class="information-game-container">
-               <div class="info-game__text">
-                  <p
-                     class="info-game__text"
-                     [ngStyle]="{
-                        'font-family': fontFamily,
-                        color: colorText
-                     }"
-                  >
-                     {{ availableSpin }}
-                  </p>
-               </div>
-            </div>
-            <div class="spinner__container">
-               <figure class="award-box-container">
-                  <img
-                     class="awards-box"
-                     [src]="previsulizacionMachine"
-                     alt="cajon-premios"
-                  />
-               </figure>
-               <div class="awards-container">
-                  <div class="awards-column">
-                     <figure class="award-image-container">
-                        <img [src]="urlLogo1" alt="" />
-                     </figure>
-                  </div>
-                  <div class="awards-column">
-                     <figure class="award-image-container">
-                        <img [src]="urlLogo2" alt="" />
-                     </figure>
-                  </div>
-                  <div class="awards-column">
-                     <figure class="award-image-container">
-                        <img [src]="urlLogo3" alt="" />
-                     </figure>
-                  </div>
-               </div>
-               <!-- <div class="hide-top"></div>
-               <div class="hide-bottom"></div> -->
-            </div>
-
-            <app-button-game
-               class="menu-btn"
-               title="Girar"
-               styledPadding=".5rem 1rem"
-               fontSize="1rem"
-            ></app-button-game>
-         </div>
-         <app-banner-publicity
-            [isTop]="false"
-            [publicityList]="dashboardPublicityService.getBottomPublicityList()"
-         ></app-banner-publicity>
-      </div>
-   </div>
-</div>
+</app-menu>

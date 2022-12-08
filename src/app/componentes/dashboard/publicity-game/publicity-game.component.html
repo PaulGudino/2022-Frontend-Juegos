@@ -1,10 +1,12 @@
-<mat-toolbar class="background-navy-primary green-primary">
-   <span>Diseño</span>
-   <span class="example-spacer"></span>
-</mat-toolbar>
-<div class="publicity-container">
-   <app-box
-      *ngFor="let number of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-      [number]="number.toString()"
-   ></app-box>
-</div>
+<app-menu>
+   <mat-toolbar class="background-navy-primary green-primary">
+      <span>Diseño</span>
+      <span class="example-spacer"></span>
+   </mat-toolbar>
+   <div class="publicity-container">
+      <app-box
+         *ngFor="let number of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+         [number]="number.toString()"
+      ></app-box>
+   </div>
+</app-menu>

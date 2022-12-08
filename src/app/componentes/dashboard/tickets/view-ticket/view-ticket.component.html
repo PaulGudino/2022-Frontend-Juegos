@@ -1,91 +1,93 @@
-<!-- Toolbar -->
-<mat-toolbar>
-    <span>
-        {{actionName}} {{singularName}} {{ticket.id}} {{ticket.invoice_number}}
-    </span>
-</mat-toolbar>
-
-<!-- Div -->
-
-<mat-grid-list cols="3" rowHeight="50rem">
-
-    <mat-grid-tile>
-        <!-- QR Code URl -->
-        <mat-list>
-
-            <!-- Invoice Number -->
-            <mat-label>Número de Factura</mat-label>
-            <mat-list-item>{{ticket.invoice_number}}</mat-list-item>
-
-            <mat-divider></mat-divider>
-
-            <!-- QR Code Digits -->
-            <mat-label>Código QR en digitos</mat-label>
-            <mat-list-item>{{ticket.qr_code_digits}}</mat-list-item>
-
-            <mat-divider></mat-divider>
-
-            <!-- Sate -->
-            <mat-label>Estado</mat-label>
-            <mat-list-item>{{ticket.state}}</mat-list-item>
-
-            <mat-divider></mat-divider>
-
-            <!-- Client -->
-            <mat-label>Cliente</mat-label>
-            <mat-list-item>{{ticket.client}}</mat-list-item>
-
-            <mat-divider></mat-divider>
-
-            <!-- Game -->
-            <mat-label>Juego</mat-label>
-            <mat-list-item>{{ticket.game}}</mat-list-item>
-
-            <mat-divider></mat-divider>
-
-            <!-- Fecha de registro -->
-            <mat-label>Fecha de registro</mat-label>
-            <mat-list-item>{{ticket.date_created}}</mat-list-item>
-
-            <mat-divider></mat-divider>
-
-            <!-- Usuario responsable del registro -->
-            <mat-label>Usuario de registro</mat-label>
-            <mat-list-item>{{ticket.user_register}}</mat-list-item>
-
-            <mat-divider></mat-divider>
-
-            <!-- Fecha de última modificación -->
-            <mat-label>Fecha de última modificación</mat-label>
-            <mat-list-item>{{ticket.date_modified}}</mat-list-item>
-
-            <mat-divider></mat-divider>
-
-            <!-- Usuario responsable de la modificación -->
-            <mat-label>Usuario responsable de la modificación</mat-label>
-            <mat-list-item>{{ticket.user_modifier}}</mat-list-item>
-
-        </mat-list>
-
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-
-    <div class="card">
-        <div class="text">
-            <mat-label>
-            Código QR
-            </mat-label>
+<app-menu>
+    <!-- Toolbar -->
+    <mat-toolbar>
+        <span>
+            {{actionName}} {{singularName}} {{ticket.id}} {{ticket.invoice_number}}
+        </span>
+    </mat-toolbar>
+    
+    <!-- Div -->
+    
+    <mat-grid-list cols="3" rowHeight="50rem">
+    
+        <mat-grid-tile>
+            <!-- QR Code URl -->
+            <mat-list>
+    
+                <!-- Invoice Number -->
+                <mat-label>Número de Factura</mat-label>
+                <mat-list-item>{{ticket.invoice_number}}</mat-list-item>
+    
+                <mat-divider></mat-divider>
+    
+                <!-- QR Code Digits -->
+                <mat-label>Código QR en digitos</mat-label>
+                <mat-list-item>{{ticket.qr_code_digits}}</mat-list-item>
+    
+                <mat-divider></mat-divider>
+    
+                <!-- Sate -->
+                <mat-label>Estado</mat-label>
+                <mat-list-item>{{ticket.state}}</mat-list-item>
+    
+                <mat-divider></mat-divider>
+    
+                <!-- Client -->
+                <mat-label>Cliente</mat-label>
+                <mat-list-item>{{ticket.client}}</mat-list-item>
+    
+                <mat-divider></mat-divider>
+    
+                <!-- Game -->
+                <mat-label>Juego</mat-label>
+                <mat-list-item>{{ticket.game}}</mat-list-item>
+    
+                <mat-divider></mat-divider>
+    
+                <!-- Fecha de registro -->
+                <mat-label>Fecha de registro</mat-label>
+                <mat-list-item>{{ticket.date_created}}</mat-list-item>
+    
+                <mat-divider></mat-divider>
+    
+                <!-- Usuario responsable del registro -->
+                <mat-label>Usuario de registro</mat-label>
+                <mat-list-item>{{ticket.user_register}}</mat-list-item>
+    
+                <mat-divider></mat-divider>
+    
+                <!-- Fecha de última modificación -->
+                <mat-label>Fecha de última modificación</mat-label>
+                <mat-list-item>{{ticket.date_modified}}</mat-list-item>
+    
+                <mat-divider></mat-divider>
+    
+                <!-- Usuario responsable de la modificación -->
+                <mat-label>Usuario responsable de la modificación</mat-label>
+                <mat-list-item>{{ticket.user_modifier}}</mat-list-item>
+    
+            </mat-list>
+    
+        </mat-grid-tile>
+    
+        <mat-grid-tile>
+    
+        <div class="card">
+            <div class="text">
+                <mat-label>
+                Código QR
+                </mat-label>
+            </div>
+            <img [src]=ticket.qr_code_url alt="CodigoQR" width="200" height="200">
         </div>
-        <img [src]=ticket.qr_code_url alt="CodigoQR" width="200" height="200">
-    </div>
-
-    </mat-grid-tile>
-
-</mat-grid-list>
-
-<!-- Buttons -->
-<button (click)="toList()" mat-raised-button color="warn">
-    <mat-icon>close</mat-icon>
-    Salir
-</button>
+    
+        </mat-grid-tile>
+    
+    </mat-grid-list>
+    
+    <!-- Buttons -->
+    <button (click)="toList()" mat-raised-button color="warn">
+        <mat-icon>close</mat-icon>
+        Salir
+    </button>
+</app-menu>

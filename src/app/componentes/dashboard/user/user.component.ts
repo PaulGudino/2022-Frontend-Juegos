@@ -1,3 +1,4 @@
+import { PuenteDatosService } from './../../../servicios/comunicacio_componentes/puente-datos.service';
 import { ApiService } from '../../../servicios/user/user.service';
 import { Usuarios } from '../../../interfaces/usuarios/usuarios';
 import { Component, OnInit } from '@angular/core';
@@ -39,11 +40,13 @@ export class UsuariosComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private snackbar: SnackbarService,
-    private dialogService: ConfirmDialogService
+    private dialogService: ConfirmDialogService,
+    private staticData: PuenteDatosService
 
     ) { }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     this.cargarUsuarios(this.filter_default);
   }
 

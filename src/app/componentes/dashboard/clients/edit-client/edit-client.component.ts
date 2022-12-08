@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class EditClientComponent implements OnInit {
     private confirmDialog : ConfirmDialogService,
     private clientAPI : ClientService,
     private activatedRoute : ActivatedRoute,
+    private staticData: PuenteDatosService
   ) {
     // Building the form with the formBuilder
 
@@ -98,6 +100,7 @@ export class EditClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     let clientId = this.activatedRoute.snapshot.paramMap.get('id');
     this.clientAPI.getById(Number(clientId)).subscribe(
       (res) => {

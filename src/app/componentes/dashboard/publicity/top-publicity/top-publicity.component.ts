@@ -10,6 +10,7 @@ import {
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { PublicityService } from 'src/app/servicios/publicity/publicity.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
    selector: 'app-top-publicity',
@@ -25,7 +26,8 @@ export class TopPublicityComponent implements OnInit {
       private router: Router,
       private fb: FormBuilder,
       private dialog: ConfirmDialogService,
-      private snackBar: SnackbarService
+      private snackBar: SnackbarService,
+      private staticData: PuenteDatosService
    ) {
       this.form = this.fb.group({
          transition: ['', [Validators.required]],
@@ -33,6 +35,7 @@ export class TopPublicityComponent implements OnInit {
    }
 
    ngOnInit(): void {
+      this.staticData.setMenuTragamonedas();
       this.chargePublicity();
    }
 
@@ -45,7 +48,7 @@ export class TopPublicityComponent implements OnInit {
          message:
             '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
          cancelText: 'CANCELAR',
-         confirmText: 'CREAR',
+         confirmText: 'GUARDAR',
       };
       if (!this.dashPublicity.getTopImageFileToUpload() && !this.form.valid) {
          this.snackBar.mensaje('Agregue cambios antes de guardar');

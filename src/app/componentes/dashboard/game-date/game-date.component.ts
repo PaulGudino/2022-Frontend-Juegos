@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import {GameService} from './../../../servicios/game/game.service'
 import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
   selector: 'app-game-date',
@@ -16,9 +17,11 @@ export class GameDateComponent implements OnInit {
    constructor(
       private snackbar:SnackbarService,
       private game:GameService,
+      private staticData: PuenteDatosService,
    ) { }
 
    ngOnInit(): void {
+      this.staticData.setMenuTragamonedas();
    }
 
    saveNewDateGame(){

@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Menu } from 'src/app/interfaces/menu';
 
 export interface ID {
    user_id: number;
@@ -8,8 +11,8 @@ export interface ID {
    providedIn: 'root',
 })
 export class PuenteDatosService {
-   usuario_id: number = 0;
-   usuario_permisos: any = [];
+
+   menu = '/assets/data/menu.json';
 
    /**
     * For testing environments
@@ -21,20 +24,17 @@ export class PuenteDatosService {
    //
    // url = 'https://juegos.pythonanywhere.com/';
 
-   constructor() {}
-   getuser_id(): number {
-      return this.usuario_id;
-   }
-   setuser_id(id: number) {
-      this.usuario_id = id;
-   }
-   getuser_permisos(): any {
-      return this.usuario_permisos;
-   }
-   setuser_permisos(permisos: any) {
-      this.usuario_permisos = permisos;
-   }
+   constructor(private http: HttpClient) {}
    geturl(): string {
       return this.url;
+   }
+   getMenu():Observable<Menu[]>{
+      return this.http.get<Menu[]>(this.menu);
+   }
+   setMenuTragamonedas(){
+      this.menu = '/assets/data/tragamonedas.json';
+   }
+   setMenuGeneral(){
+      this.menu = '/assets/data/menu.json';
    }
 }

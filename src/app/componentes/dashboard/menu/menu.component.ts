@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
   constructor(
     private api: ApiService,
     private router: Router,
-    private puente: PuenteDatosService,
+    private staticData: PuenteDatosService,
     private auth: AuthService
     ) {
   }
@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
   }
 
   cargarMenu() {
-    this.api.getMenu().subscribe((data) => {
+    this.staticData.getMenu().subscribe((data) => {
       if (localStorage.getItem('rol_id') != '1'){
         for (let i = 0; i < data.length; i++) {
           if (data[i].nombre != 'Usuarios' && data[i].nombre != 'Roles'){

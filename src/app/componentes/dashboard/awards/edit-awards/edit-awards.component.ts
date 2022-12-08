@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AwardsService } from 'src/app/servicios/awards/awards.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { ImageService } from 'src/app/servicios/image/image.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
@@ -39,12 +39,12 @@ export class EditAwardsComponent implements OnInit {
     private router: Router, 
     private fb: FormBuilder, 
     public dialog: MatDialog,
-    private sanitizer: DomSanitizer,
     private awardSrv: AwardsService,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
     private activerouter: ActivatedRoute, 
-    private imageSrv: ImageService
+    private imageSrv: ImageService,
+    private staticData: PuenteDatosService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -57,6 +57,7 @@ export class EditAwardsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     let award_id = this.activerouter.snapshot.paramMap.get('id');
     this.awardSrv.getAwardbyId(Number(award_id)).subscribe(
       (res) => {

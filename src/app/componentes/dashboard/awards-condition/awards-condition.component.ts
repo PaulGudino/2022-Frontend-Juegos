@@ -1,3 +1,4 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -38,13 +39,14 @@ export class AwardsConditionComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private snackbar: SnackbarService,
-    private premiosSrv: AwardsService,
     private dialogService: ConfirmDialogService,
     private permisos_api: PermisosService,
-    private premiosCondicionSrv: AwardsConditionService
+    private premiosCondicionSrv: AwardsConditionService,
+    private staticData: PuenteDatosService
   ) { }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     this.cargarPremios(this.filter_default);
   }
   cargarPremios(filter:string){

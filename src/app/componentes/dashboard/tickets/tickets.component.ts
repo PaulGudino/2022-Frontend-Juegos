@@ -1,3 +1,4 @@
+import { PuenteDatosService } from './../../../servicios/comunicacio_componentes/puente-datos.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -52,6 +53,7 @@ export class TicketsComponent implements OnInit{
     private permissionsAPI : PermisosService,
     private confirmDialog : ConfirmDialogService,
     private snackBar : SnackbarService,
+    private statickData: PuenteDatosService,
   ) {}
 
   ngOnInit() : void {
@@ -59,6 +61,7 @@ export class TicketsComponent implements OnInit{
   }
   
   loadAll(filter : string) {
+    this.statickData.setMenuGeneral();
     this.ticketAPI.getFilter(filter).subscribe(
       (data) => {
         this.dataSource = new MatTableDataSource(data);

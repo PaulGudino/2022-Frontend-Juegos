@@ -1,3 +1,4 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { Usuarios } from '../../../interfaces/usuarios/usuarios';
 import { ApiService } from '../../../servicios/user/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -29,12 +30,14 @@ export class InicioComponent implements OnInit {
   }; 
   constructor(
     private api: ApiService,
-    private router: Router
+    private router: Router,
+    private staticServer: PuenteDatosService
     ) {
       
      }
 
   ngOnInit(): void {
+    this.staticServer.setMenuGeneral();
     this.obtenerUsuario();
   }
   obtenerUsuario(){

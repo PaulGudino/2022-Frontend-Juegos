@@ -1,86 +1,88 @@
-<mat-toolbar class="background-navy-primary green-primary">
-   <span>Escaneo Código</span>
-   <span class="example-spacer"></span>
-</mat-toolbar>
-
-<div class="publicity-container">
-   <div class="publicity__changes">
-      <p class="publicity__title green-primary">Título:</p>
-      <div class="savescreen-info__container">
-         <div class="url-select">
-            <input
-               class="input-global"
-               type="text"
-               name="titulo"
-               [(ngModel)]="title"
-            />
-         </div>
-      </div>
-      <p class="publicity__title green-primary">Descripción:</p>
-      <div class="savescreen-info__container">
-         <input
-            type="text"
-            class="input-global description-input"
-            placeholder="Nombre del boton"
-            #buttonInput="ngModel"
-            [(ngModel)]="description"
-         />
-         <div class="buttons-container">
-            <app-button-primary
-               (click)="updateScanScreen()"
-               title="Guardar"
-            ></app-button-primary>
-            <app-button-primary
-               (click)="cancel()"
-               title="Cancelar"
-               backgroundColor="#d4d4d4"
-            ></app-button-primary>
-         </div>
-      </div>
-   </div>
-   <div class="publicity__view">
-      <div class="view-container">
-         <app-banner-publicity
-            [isTop]="true"
-            [publicityList]="dashboardPublicityService.getTopPublicityList()"
-         ></app-banner-publicity>
-         <div class="view-menu">
-            <app-logo
-               class="logo-container"
-               height="1.5rem"
-               [isHome]="false"
-               [isBackground]="false"
-               [urlImage]="dashStyle.get_image_logo_game()"
-            ></app-logo>
-            <div class="menu-info color-white">
-               <h2 class="scan_title">{{ title }}</h2>
-               <p class="explication-text">
-                  {{ description }}
-               </p>
-            </div>
-            <figure class="menu-container_scan-img-container">
-               <img
-                  class="menu-container_scan-img"
-                  src="../../../../assets//img//codigoQR.png"
-                  alt="scan-logo"
+<app-menu>
+   <mat-toolbar class="background-navy-primary green-primary">
+      <span>Escaneo Código</span>
+      <span class="example-spacer"></span>
+   </mat-toolbar>
+   
+   <div class="publicity-container">
+      <div class="publicity__changes">
+         <p class="publicity__title green-primary">Título:</p>
+         <div class="savescreen-info__container">
+            <div class="url-select">
+               <input
+                  class="input-global"
+                  type="text"
+                  name="titulo"
+                  [(ngModel)]="title"
                />
-            </figure>
-            <input
-               class="btn menu__input"
-               type="text"
-               placeholder="Ingresar codigo..."
-               disabled
-            />
-            <app-button-game
-               title="continuar"
-               fontSize="1rem"
-               styledPadding=".5rem 1rem"
-            ></app-button-game>
+            </div>
          </div>
-         <app-banner-publicity
-            [isTop]="false"
-            [publicityList]="dashboardPublicityService.getBottomPublicityList()"
-         ></app-banner-publicity>
+         <p class="publicity__title green-primary">Descripción:</p>
+         <div class="savescreen-info__container">
+            <input
+               type="text"
+               class="input-global description-input"
+               placeholder="Nombre del boton"
+               #buttonInput="ngModel"
+               [(ngModel)]="description"
+            />
+            <div class="buttons-container">
+               <app-button-primary
+                  (click)="updateScanScreen()"
+                  title="Guardar"
+               ></app-button-primary>
+               <app-button-primary
+                  (click)="cancel()"
+                  title="Cancelar"
+                  backgroundColor="#d4d4d4"
+               ></app-button-primary>
+            </div>
+         </div>
+      </div>
+      <div class="publicity__view">
+         <div class="view-container">
+            <app-banner-publicity
+               [isTop]="true"
+               [publicityList]="dashboardPublicityService.getTopPublicityList()"
+            ></app-banner-publicity>
+            <div class="view-menu">
+               <app-logo
+                  class="logo-container"
+                  height="1.5rem"
+                  [isHome]="false"
+                  [isBackground]="false"
+                  [urlImage]="dashStyle.get_image_logo_game()"
+               ></app-logo>
+               <div class="menu-info color-white">
+                  <h2 class="scan_title">{{ title }}</h2>
+                  <p class="explication-text">
+                     {{ description }}
+                  </p>
+               </div>
+               <figure class="menu-container_scan-img-container">
+                  <img
+                     class="menu-container_scan-img"
+                     src="../../../../assets//img//codigoQR.png"
+                     alt="scan-logo"
+                  />
+               </figure>
+               <input
+                  class="btn menu__input"
+                  type="text"
+                  placeholder="Ingresar codigo..."
+                  disabled
+               />
+               <app-button-game
+                  title="continuar"
+                  fontSize="1rem"
+                  styledPadding=".5rem 1rem"
+               ></app-button-game>
+            </div>
+            <app-banner-publicity
+               [isTop]="false"
+               [publicityList]="dashboardPublicityService.getBottomPublicityList()"
+            ></app-banner-publicity>
+         </div>
       </div>
    </div>
-</div>
+</app-menu>

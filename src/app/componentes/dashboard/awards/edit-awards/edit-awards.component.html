@@ -1,103 +1,105 @@
-<mat-toolbar>
-    <span>Editar Premio : {{getPremio.name}}</span>
-    <span class="example-spacer"></span>
-</mat-toolbar>
-<div class="container_card" >
- <mat-card class="card">
-    <div class="container_flex">
-        <div>
-            <form [formGroup]="form">
-                <mat-form-field>
-                    <label>Nombre</label>
-                    <div class="input_form"><input autocomplete="off" formControlName="name" type="text" matInput></div>
-                    <mat-hint>Nombre del Premio</mat-hint>
-                    <mat-error *ngIf="form.controls['name'].hasError('required')" >
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
-        
-                <mat-form-field>
-                    <label>Descripción</label>
-                    <div class="input_form"><input autocomplete="off" formControlName="description" type="text" matInput></div>
-                    <mat-hint>Descripción del Premio</mat-hint>
-                    <mat-error *ngIf="form.controls['description'].hasError('required')" >
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
-        
-                <mat-form-field>
-                    <label>Stock Inicial</label>
-                    <div class="input_form">
-                        <input autocomplete="off" formControlName="initial_stock" onpaste="return false" type="number"
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                        oninput="this.value = !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null"  matInput>
+<app-menu>
+    <mat-toolbar>
+        <span>Editar Premio : {{getPremio.name}}</span>
+        <span class="example-spacer"></span>
+    </mat-toolbar>
+    <div class="container_card" >
+     <mat-card class="card">
+        <div class="container_flex">
+            <div>
+                <form [formGroup]="form">
+                    <mat-form-field>
+                        <label>Nombre</label>
+                        <div class="input_form"><input autocomplete="off" formControlName="name" type="text" matInput></div>
+                        <mat-hint>Nombre del Premio</mat-hint>
+                        <mat-error *ngIf="form.controls['name'].hasError('required')" >
+                            Campo requerido
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <label>Descripción</label>
+                        <div class="input_form"><input autocomplete="off" formControlName="description" type="text" matInput></div>
+                        <mat-hint>Descripción del Premio</mat-hint>
+                        <mat-error *ngIf="form.controls['description'].hasError('required')" >
+                            Campo requerido
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <label>Stock Inicial</label>
+                        <div class="input_form">
+                            <input autocomplete="off" formControlName="initial_stock" onpaste="return false" type="number"
+                            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                            oninput="this.value = !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null"  matInput>
+                        </div>
+                        <mat-hint>Stock Inicial del Premio</mat-hint>
+                        <mat-error *ngIf="form.controls['initial_stock'].hasError('required')" >
+                            Campo requerido
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <label>Estado</label>
+                        <mat-select formControlName="is_active" mat-select>
+                            <mat-option value=true>Activo</mat-option>
+                            <mat-option value=false>Inactivo</mat-option>
+                        </mat-select>
+                        <mat-hint>Estado del Premio</mat-hint>
+                        <mat-error *ngIf="form.controls['is_active'].hasError('required')" >
+                            Campo requerido
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <label>Categotría</label>
+                        <mat-select formControlName="category" mat-select>
+                            <mat-option *ngFor="let categoria of Categorias" value={{categoria.id}}>{{categoria.name}}</mat-option>
+                        </mat-select>
+                        <mat-hint>Categoria del Premio</mat-hint>
+                        <mat-error *ngIf="form.controls['category'].hasError('required')" >
+                            Campo requerido
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <label>Juego</label>
+                        <mat-select formControlName="juego" mat-select [disabled]="true">
+                            <mat-option *ngFor="let juego of Juegos" value={{juego.id}}>{{juego.name}}</mat-option>
+                        </mat-select>
+                        <mat-hint>Juego del Premio</mat-hint>
+                        <mat-error *ngIf="form.controls['juego'].hasError('required')" >
+                            Campo requerido
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </div>
+            <div    >
+                <div class="file_container">
+                    <div class="file-select" id="src-file1" >
+                        <input #takeInput (change)="capturarFile($event)" type="file" name="src-file1" aria-label="Archivo">
                     </div>
-                    <mat-hint>Stock Inicial del Premio</mat-hint>
-                    <mat-error *ngIf="form.controls['initial_stock'].hasError('required')" >
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
-        
-                <mat-form-field>
-                    <label>Estado</label>
-                    <mat-select formControlName="is_active" mat-select>
-                        <mat-option value=true>Activo</mat-option>
-                        <mat-option value=false>Inactivo</mat-option>
-                    </mat-select>
-                    <mat-hint>Estado del Premio</mat-hint>
-                    <mat-error *ngIf="form.controls['is_active'].hasError('required')" >
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
-        
-                <mat-form-field>
-                    <label>Categotría</label>
-                    <mat-select formControlName="category" mat-select>
-                        <mat-option *ngFor="let categoria of Categorias" value={{categoria.id}}>{{categoria.name}}</mat-option>
-                    </mat-select>
-                    <mat-hint>Categoria del Premio</mat-hint>
-                    <mat-error *ngIf="form.controls['category'].hasError('required')" >
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
-                
-                <mat-form-field>
-                    <label>Juego</label>
-                    <mat-select formControlName="juego" mat-select [disabled]="true">
-                        <mat-option *ngFor="let juego of Juegos" value={{juego.id}}>{{juego.name}}</mat-option>
-                    </mat-select>
-                    <mat-hint>Juego del Premio</mat-hint>
-                    <mat-error *ngIf="form.controls['juego'].hasError('required')" >
-                        Campo requerido
-                    </mat-error>
-                </mat-form-field>
-            </form>
-        </div>
-        <div    >
-            <div class="file_container">
-                <div class="file-select" id="src-file1" >
-                    <input #takeInput (change)="capturarFile($event)" type="file" name="src-file1" aria-label="Archivo">
+                    <button (click)="deleteImage()" mat-icon-button class="green-primary">
+                        <mat-icon>close</mat-icon>
+                    </button>
                 </div>
-                <button (click)="deleteImage()" mat-icon-button class="green-primary">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </div>
-            <div class="container_img">
-                <img [src]="previsulizacion" alt="Inserte una Imagen">
+                <div class="container_img">
+                    <img [src]="previsulizacion" alt="Inserte una Imagen">
+                </div>
             </div>
         </div>
+        <div class="container_botones">
+            <button  mat-raised-button color="warn" (click)="backAwards()">
+                <mat-icon>close</mat-icon>
+                Cancelar
+            </button>
+    
+            <button mat-raised-button color="primary" (click)="editAwards()" color="primary">
+                <mat-icon>done</mat-icon>
+                Guardar
+            </button>
+        </div>
+     </mat-card>
     </div>
-    <div class="container_botones">
-        <button  mat-raised-button color="warn" (click)="backAwards()">
-            <mat-icon>close</mat-icon>
-            Cancelar
-        </button>
-        
-        <button mat-raised-button color="primary" (click)="editAwards()" color="primary">
-            <mat-icon>done</mat-icon>
-            Guardar
-        </button>
-    </div>
- </mat-card>
-</div>
-
+    
+</app-menu>

@@ -1,3 +1,4 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -38,11 +39,13 @@ export class RolesComponent implements OnInit {
     public dialog: MatDialog,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
-    private rolSrv: RolesService
+    private rolSrv: RolesService,
+    private staticData: PuenteDatosService 
 
   ) { }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     this.cargarRoles(this.filter_default);
   }
   aplicarFiltro(event: Event) {

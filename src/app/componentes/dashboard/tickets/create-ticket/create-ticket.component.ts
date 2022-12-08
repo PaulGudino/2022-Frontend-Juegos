@@ -8,6 +8,7 @@ import { GameService } from 'src/app/servicios/game/game.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
 import { Client } from 'src/app/interfaces/client/Client';
 import { Game } from 'src/app/interfaces/game/Game';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
   selector: 'app-create-ticket',
@@ -36,6 +37,7 @@ export class CreateTicketComponent implements OnInit {
     private ticketAPI : TicketService,
     private ClientAPI : ClientService,
     private GameAPI : GameService,
+    private staticData : PuenteDatosService
   ) {
     // Building the form with the formBuilder
 
@@ -117,6 +119,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
   }
 
   generateQRCode() {

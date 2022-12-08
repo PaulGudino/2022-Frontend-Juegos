@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
   selector: 'app-roles-editar',
@@ -26,7 +27,8 @@ export class RolesEditarComponent implements OnInit {
     private rol: RolesService,
     private activerouter: ActivatedRoute, 
     private snackbar: SnackbarService,
-    private dialogService: ConfirmDialogService
+    private dialogService: ConfirmDialogService,
+    private staticData: PuenteDatosService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -36,6 +38,7 @@ export class RolesEditarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     let editar_rol = this.activerouter.snapshot.paramMap.get('id');
     this.rol.getRolbyId(Number(editar_rol)).subscribe(res =>{
       this.editar_rol = res;

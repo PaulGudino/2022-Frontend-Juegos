@@ -5,6 +5,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { PublicityService } from 'src/app/servicios/publicity/publicity.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
    selector: 'app-bottom-publicity',
@@ -21,7 +22,8 @@ export class BottomPublicityComponent implements OnInit {
       private router: Router,
       private fb: FormBuilder,
       private dialog: ConfirmDialogService,
-      private snackBar: SnackbarService
+      private snackBar: SnackbarService,
+      private staticData: PuenteDatosService
    ) {
       this.form = this.fb.group({
          transition: [''],
@@ -29,6 +31,7 @@ export class BottomPublicityComponent implements OnInit {
    }
 
    ngOnInit(): void {
+      this.staticData.setMenuTragamonedas();
       this.chargePublicity();
    }
    regresar() {

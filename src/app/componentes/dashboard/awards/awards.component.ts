@@ -1,3 +1,4 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { getAwardList } from './../../../interfaces/awards/getAwardList';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -41,9 +42,11 @@ export class AwardsComponent implements OnInit {
     private premiosSrv: AwardsService,
     private dialogService: ConfirmDialogService,
     private permisos_api: PermisosService,
+    private staticData: PuenteDatosService
   ) { }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     this.cargarPremios(this.filter_default);
   }
   agregarPremios(){

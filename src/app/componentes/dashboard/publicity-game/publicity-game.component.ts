@@ -1,3 +1,4 @@
+import { PuenteDatosService } from './../../../servicios/comunicacio_componentes/puente-datos.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
@@ -12,9 +13,13 @@ export class PublicityGameComponent implements OnInit {
    fileToUpload!: File | null;
    imagen!: File;
 
-   constructor() {}
+   constructor(
+      private staticData: PuenteDatosService
+   ) {}
 
-   ngOnInit(): void {}
+   ngOnInit(): void {
+      this.staticData.setMenuTragamonedas();
+   }
    addPublicity() {}
    deletePublicity() {}
 }

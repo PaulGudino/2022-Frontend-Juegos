@@ -1,3 +1,4 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -51,9 +52,11 @@ export class ClientsComponent implements OnInit{
     private permissionAPI : PermisosService,
     private confirmDialog : ConfirmDialogService,
     private snackBar : SnackbarService,
+    private staticData: PuenteDatosService
   ) {}
 
   ngOnInit() : void {
+    this.staticData.setMenuGeneral();
     this.loadAll(this.filter_default);
   }
   

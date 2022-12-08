@@ -1,3 +1,4 @@
+import { PuenteDatosService } from './../../../../servicios/comunicacio_componentes/puente-datos.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -46,6 +47,7 @@ export class EditTicketComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private ClientAPI: ClientService,
     private GameAPI: GameService,
+    private staticData: PuenteDatosService
   ) {
     // Building the form with the formBuilder
 
@@ -125,6 +127,7 @@ export class EditTicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     let ticketId = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.ticketAPI.getById(Number(ticketId)).subscribe(

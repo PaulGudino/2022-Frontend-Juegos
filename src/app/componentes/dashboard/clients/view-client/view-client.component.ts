@@ -1,8 +1,6 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
-import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { ClientService } from 'src/app/servicios/client/client.service';
 import { Client } from 'src/app/interfaces/client/Client';
 
@@ -37,6 +35,7 @@ export class ViewClientComponent implements OnInit {
     private router : Router,
     private activedRoute : ActivatedRoute,
     private clientAPI : ClientService,
+    private staticData: PuenteDatosService
   ) {}
 
   toList() {
@@ -44,6 +43,7 @@ export class ViewClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     let clientId = this.activedRoute.snapshot.paramMap.get('id');
     this.clientAPI.getById(Number(clientId)).subscribe((data) => {
       this.client = data;

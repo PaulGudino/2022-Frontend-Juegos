@@ -1,3 +1,4 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { SnackbarService } from './../../../../servicios/snackbar/snackbar.service';
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -38,7 +39,8 @@ export class CreateAwardsComponent implements OnInit {
     private awardSrv: AwardsService,
     private snackbar: SnackbarService,
     private dialogService: ConfirmDialogService,
-    private imageSrv: ImageService
+    private imageSrv: ImageService,
+    private staticData: PuenteDatosService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -52,6 +54,7 @@ export class CreateAwardsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
   }
 
   capturarFile(event: any): void {

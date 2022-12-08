@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
   selector: 'app-editar-usuarios',
@@ -41,7 +42,8 @@ export class EditarUsuariosComponent implements OnInit {
     private router: Router, 
     private activerouter: ActivatedRoute, 
     private snackBar: SnackbarService,
-    private dialogService: ConfirmDialogService
+    private dialogService: ConfirmDialogService,
+    private staticData: PuenteDatosService
     ) {
 
     this.form = this.fb.group({
@@ -59,6 +61,7 @@ export class EditarUsuariosComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.staticData.setMenuGeneral();
     
     let usuarioid = this.activerouter.snapshot.paramMap.get('id');
     this.cargarRoles();

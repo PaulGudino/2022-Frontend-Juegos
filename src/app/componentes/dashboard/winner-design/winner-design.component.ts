@@ -6,6 +6,7 @@ import { ThemeService } from 'src/app/servicios/theme/theme.service';
 import { ImageService } from 'src/app/servicios/image/image.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { DashboardStyleService } from 'src/app/servicios/theme/dashboardStyle/dashboard-style.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 @Component({
    selector: 'app-winner-design',
    templateUrl: './winner-design.component.html',
@@ -28,10 +29,12 @@ export class WinnerDesignComponent implements OnInit {
       private dialogService: ConfirmDialogService,
       private theme: ThemeService,
       public dashStyle: DashboardStyleService,
-      private imageSrv: ImageService
+      private imageSrv: ImageService,
+      private staticData: PuenteDatosService
    ) {}
 
    ngOnInit(): void {
+      this.staticData.setMenuTragamonedas();
       this.publicity.getPublicityTopList().subscribe((data) => {
          this.dashboardPublicityService.loadTopData(data);
          this.publicity

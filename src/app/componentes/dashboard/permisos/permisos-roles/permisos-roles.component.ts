@@ -1,3 +1,4 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { RolesService } from './../../../../servicios/roles/roles.service';
 import { Component, OnInit } from '@angular/core';
@@ -27,7 +28,8 @@ export class PermisosRolesComponent implements OnInit {
     private router: Router,
     private roles_service: RolesService,
     private snackbar: SnackbarService,
-    private dialogService: ConfirmDialogService
+    private dialogService: ConfirmDialogService,
+    private statickData: PuenteDatosService
     ) {
       this.form = this.fb.group({
         ckeckArray: this.fb.array([])
@@ -35,6 +37,7 @@ export class PermisosRolesComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.statickData.setMenuGeneral();
     let rolid = Number(this.activerouter.snapshot.paramMap.get('id'));
     this.roles_service.getRolbyId(rolid).subscribe(
       (data) => {

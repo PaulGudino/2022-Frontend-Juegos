@@ -1,3 +1,4 @@
+import { PuenteDatosService } from './../../../servicios/comunicacio_componentes/puente-datos.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DashboardPublicityService } from '../../../servicios/publicity/dashboardPublicity/dashboard-publicity.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
@@ -29,10 +30,12 @@ export class SaveScreenComponent implements OnInit {
       private dialogService: ConfirmDialogService,
       private theme: ThemeService,
       private dashStyle: DashboardStyleService,
-      private imageSrv: ImageService
+      private imageSrv: ImageService,
+      private staticData: PuenteDatosService
    ) {}
 
    ngOnInit(): void {
+      this.staticData.setMenuTragamonedas();
       this.publicity.getPublicityTopList().subscribe((data) => {
          this.dashboardPublicityService.loadTopData(data);
          this.publicity

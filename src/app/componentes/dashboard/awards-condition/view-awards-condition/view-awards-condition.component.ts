@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AwardsConditionService } from 'src/app/servicios/awards-condition/awards-condition.service';
 import { AwardsService } from 'src/app/servicios/awards/awards.service';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 
@@ -26,9 +27,11 @@ export class ViewAwardsConditionComponent implements OnInit {
     private dialogService: ConfirmDialogService,
     private router: Router, 
     private activerouter: ActivatedRoute, 
+    private staticData: PuenteDatosService
   ) { }
 
   async ngOnInit(): Promise<void> {
+    this.staticData.setMenuGeneral();
     await this.getAwardConditionId(this.award_condition_id);
   }
   async getAwardConditionId(id:number){

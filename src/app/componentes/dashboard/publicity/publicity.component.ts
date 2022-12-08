@@ -5,6 +5,7 @@ import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentObserver } from '@angular/cdk/observers';
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 
 @Component({
    selector: 'app-publicity',
@@ -17,10 +18,12 @@ export class PublicityComponent implements OnInit {
       public dashboardPublicityService: DashboardPublicityService,
       private router: Router,
       private snackbar: SnackbarService,
-      private dialogService: ConfirmDialogService
+      private dialogService: ConfirmDialogService,
+      private statickData: PuenteDatosService
    ) {}
 
    ngOnInit(): void {
+      this.statickData.setMenuTragamonedas();
       this.publicity.getPublicityTopList().subscribe((dataTopPublicity) => {
          if (dataTopPublicity.length > 0) {
             this.dashboardPublicityService.loadTopData(dataTopPublicity);
