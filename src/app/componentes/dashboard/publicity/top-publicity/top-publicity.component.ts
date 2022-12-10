@@ -44,9 +44,9 @@ export class TopPublicityComponent implements OnInit {
    }
    guardarPublicidad() {
       const options = {
-         title: 'CAMBIAR CONFIGURACION PROBABILIDADES JUEGO',
+         title: 'AGREGAR PUBLICIDAD AL JUEGO',
          message:
-            '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
+            '¿ESTÁ SEGURO QUE QUIERE AGREGAR PUBLICIDAD SUPERIOR AL JUEGO?',
          cancelText: 'CANCELAR',
          confirmText: 'GUARDAR',
       };
@@ -96,10 +96,6 @@ export class TopPublicityComponent implements OnInit {
                   this.dashPublicity.getTopImageFileToUpload(),
                   this.dashPublicity.getTopImageFileToUpload().name
                );
-               formDataTop.append(
-                  'time_display',
-                  this.form.get('transition')?.value
-               );
                this.publicity
                   .postTopPublicity(formDataTop)
                   .subscribe((data) => {
@@ -112,7 +108,6 @@ export class TopPublicityComponent implements OnInit {
             }
          });
       } else if (this.form.valid) {
-         console.log('INgresa condicion solo form');
          this.dialog.open(options);
          this.dialog.confirmed().subscribe((confirmed) => {
             if (confirmed) {
@@ -125,11 +120,10 @@ export class TopPublicityComponent implements OnInit {
                   .updatePublicityConfigTop(1, formData)
                   .subscribe((data) => {
                      this.cleanData();
-
                      this.chargePublicity();
                   });
                this.snackBar.mensaje(
-                  'Publicidad Superior Agregada exitosamente'
+                  'Configuracion Publicidad Superior Agregada exitosamente'
                );
             }
          });
@@ -139,6 +133,7 @@ export class TopPublicityComponent implements OnInit {
 
    cleanData() {
       this.dashPublicity.setPreviewTopImage('');
+      this.dashPublicity.setTopImageFileToUpload(null);
       this.form.controls['transition'].setValue('');
    }
    chargePublicity() {

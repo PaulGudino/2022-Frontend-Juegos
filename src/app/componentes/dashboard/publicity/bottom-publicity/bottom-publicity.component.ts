@@ -1,7 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DashboardPublicityService } from 'src/app/servicios/publicity/dashboardPublicity/dashboard-publicity.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import {
+   FormGroup,
+   FormControl,
+   FormBuilder,
+   Validators,
+} from '@angular/forms';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { PublicityService } from 'src/app/servicios/publicity/publicity.service';
@@ -26,7 +31,7 @@ export class BottomPublicityComponent implements OnInit {
       private staticData: PuenteDatosService
    ) {
       this.form = this.fb.group({
-         transition: [''],
+         transition: ['', Validators.required],
       });
    }
 
@@ -123,7 +128,7 @@ export class BottomPublicityComponent implements OnInit {
                      this.chargePublicity();
                   });
                this.snackBar.mensaje(
-                  'Publicidad Inferior Actualizada exitosamente'
+                  'Configuracion Publicidad Inferior Actualizada exitosamente'
                );
             }
          });
@@ -133,6 +138,7 @@ export class BottomPublicityComponent implements OnInit {
 
    cleanData() {
       this.dashPublicity.setPreviewBottomImage('');
+      this.dashPublicity.setBottomImageFileToUpload(null);
       this.form.controls['transition'].setValue('');
    }
    chargePublicity() {

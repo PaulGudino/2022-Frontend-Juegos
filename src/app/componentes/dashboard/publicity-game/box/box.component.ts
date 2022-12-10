@@ -82,6 +82,8 @@ export class BoxComponent implements OnInit {
                      this.loadData();
                   });
                this.snackbar.mensaje('Publicidad Actualizada exitosamente');
+               this.fileToUpload = null;
+
                return true;
             }
             return false;

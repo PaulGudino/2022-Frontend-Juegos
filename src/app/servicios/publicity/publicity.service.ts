@@ -43,6 +43,9 @@ export class PublicityService {
    getPublicityConfigTop(): Observable<PublicityConfig> {
       return this.http.get<PublicityConfig>(this.url + 'api/publicity/1/');
    }
+   /*
+   updatePublicityConfig is for the time transition
+   */
    updatePublicityConfigTop(id: number, form: FormData) {
       return this.http.put(this.url + 'api/publicity/1/', form);
    }
