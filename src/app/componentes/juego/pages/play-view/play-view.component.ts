@@ -3,6 +3,7 @@ import { DashboardPublicityService } from '../../../../servicios/publicity/dashb
 
 import { DashboardStyleService } from '../../../../servicios/theme/dashboardStyle/dashboard-style.service';
 import { ProbabilityService } from '../../../../servicios/probability/probability/probability.service';
+import { AnimationGameService } from '../../service/animationGame/animation-game.service';
 
 @Component({
    selector: 'app-play-view',
@@ -28,7 +29,8 @@ export class PlayViewComponent implements OnInit {
    constructor(
       public publicity: DashboardPublicityService,
       public styles: DashboardStyleService,
-      private probabilityService: ProbabilityService
+      private probabilityService: ProbabilityService,
+      public animation: AnimationGameService
    ) {}
 
    ngOnInit(): void {
