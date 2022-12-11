@@ -1,33 +1,65 @@
 <app-menu>
-  <!-- Toolbar -->
-  <mat-toolbar>
-    <span>Seleccionar Juego</span>
-  </mat-toolbar>
-  
-  <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile *ngFor="let game of allGames">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>
-            {{game.name}}
-          </mat-card-title>
-  
-        </mat-card-header>
-  
-        <mat-card-content>
-          <p>
-            Jugadores diarios : {{game.players}}
-          </p>
-            {{game.state}}
-          <p>
-            {{game.description}}
-          </p>
-          <button mat-button (click)="tragamonedas_settings()">
-            Continuar
-          </button>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-  
+   <!-- Toolbar -->
+   <mat-toolbar class="background-navy-primary green-primary">
+      <span>Seleccionar Juego</span>
+   </mat-toolbar>
+
+   <!-- <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile *ngFor="let game of allGames">
+         <mat-card>
+            <mat-card-header>
+               <mat-card-title>
+                  {{ game.name }}
+               </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+               <p>Jugadores diarios : {{ game.players }}</p>
+               {{ game.state }}
+               <p>
+                  {{ game.description }}
+               </p>
+               <button mat-button (click)="tragamonedas_settings()">
+                  Continuar
+               </button>
+            </mat-card-content>
+         </mat-card>
+      </mat-grid-tile>
+   </mat-grid-list> -->
+
+   <div class="container p-5">
+      <div
+         *ngFor="let game of allGames"
+         class="container container-juego background-navy-primary green-primary text-center pt-4 pb-1"
+      >
+         <figure class="logo-game-container background-green-primary">
+            <img src="" alt="no image" />
+         </figure>
+         <div class="row mt-5">
+            <h3 class="col">{{ game.name }}</h3>
+         </div>
+         <div class="row">
+            <h3 class="col color-white jugadores-text">Jugadores Diarios: 0</h3>
+         </div>
+         <div class="row mb-4">
+            <app-button-primary
+               class="col"
+               title="Activado"
+            ></app-button-primary>
+         </div>
+         <div class="row">
+            <p class="col color-white">
+               Gira las casillas para ganar el premio.
+            </p>
+         </div>
+         <div class="row mb-2">
+            <app-button-primary
+               class="col"
+               title="Continuar"
+               backgroundColor="#c4c4c4"
+               (click)="tragamonedas_settings(game.id)"
+            ></app-button-primary>
+         </div>
+      </div>
+   </div>
 </app-menu>
