@@ -18,6 +18,9 @@
                 <mat-error *ngIf="form.controls['cedula'].hasError('required')" >
                     Campo requerido !!!
                 </mat-error>
+                <mat-error *ngIf="form.controls['cedula'].hasError('minlength')" >
+                    La longitud de la cédula debe ser de 10, Hay {{input.value.length || 0}} dígitos !!!
+                </mat-error>
             </mat-form-field>
     
             <mat-form-field>
@@ -81,6 +84,9 @@
                 <mat-error *ngIf="form.controls['phone'].hasError('required')" >
                     Campo requerido !!!
                 </mat-error>
+                <mat-error *ngIf="form.controls['phone'].hasError('minlength')" >
+                    La longitud del teléfono debe ser de 10, Hay {{input_tel.value.length || 0}} dígitos !!!
+                </mat-error>
             </mat-form-field>
     
             <mat-form-field>
@@ -105,15 +111,27 @@
                     Campo requerido !!!
                 </mat-error>
             </mat-form-field>
-    
+
             <mat-form-field>
                 <label>Rol</label>
-                <mat-select formControlName="rol" mat-select >
-                    <mat-option *ngFor="let rol of roles" value={{rol.id}}>{{rol.name}}</mat-option>
-                </mat-select>
+                <div class="input_form">
+                    <input #input type="text" matInput 
+                    formControlName="rol" 
+                    [matAutocomplete]="auto">
+                </div>
+                <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayFn">
+                    <mat-option *ngFor="let item of filteredOptions | async" [value]="item">
+                      {{item.name}}
+                    </mat-option>
+                </mat-autocomplete> 
                 <mat-hint>Seleccione una opción</mat-hint>
-                <mat-error *ngIf="form.controls['rol'].hasError('required')" >
+                <mat-error *ngIf="form.controls['rol'].hasError('required')">
                     Campo requerido !!!
+                </mat-error>
+                <mat-error *ngFor="let validation of validation_msgs.contactAutocompleteControl">
+                    <div *ngIf="form.controls['rol'].hasError(validation.type)">
+                      {{validation.message}}
+                    </div>
                 </mat-error>
             </mat-form-field>
     

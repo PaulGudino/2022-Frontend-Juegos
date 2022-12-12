@@ -7,7 +7,20 @@
       <span class="example-spacer"></span>
       <h1 class="example-app-name">{{ Titulo2 }}</h1>
       <span class="example-spacer"></span>
+      <div class="nav-container">
+         <ul class="nav-items">
+           <li class="nav-item nav-item-dropdown">
+            <mat-icon>settings</mat-icon>
+             <ul class="dropdown-menu">
+               <li class="dropdown-menu-item">
+                 <a routerLink="/dashboard/cambiar-contraseña">Cambiar Contraseña</a>
+               </li>
+             </ul>
+           </li>
+         </ul>
+       </div>
    </mat-toolbar>
+   
 
    <mat-sidenav-container
       class="example-sidenav-container background-black-primary"

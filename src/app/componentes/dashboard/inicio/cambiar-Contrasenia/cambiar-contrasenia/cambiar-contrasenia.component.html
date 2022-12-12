@@ -1,62 +1,72 @@
-<mat-toolbar>
-    <span>Cambiar Contraseña</span>
-    <span class="example-spacer"></span>
-</mat-toolbar>
-<div class="container">
-    <mat-card>
-        <form [formGroup]="form">
-            <mat-form-field class = "ancho"  >
-                <label>Contaseña Actual</label>
-                <div class="input_form">
-                    <input matInput autocomplete="off" formControlName="old_password" [type]="ocultar ? 'password' : 'text'">
-                        <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-                </div>
-                <mat-error *ngIf="form.controls['old_password'].hasError('required')" >
-                    Campo requerido !!!
-                </mat-error>
-            </mat-form-field>
+<app-menu>
+    <mat-toolbar>
+        <span>Cambiar Contraseña</span>
+        <span class="example-spacer"></span>
+    </mat-toolbar>
+    <div class="container">
+        <mat-card>
+            <form [formGroup]="form">
+                <mat-form-field class = "ancho"  >
+                    <label>Contaseña Actual</label>
+                    <div class="input_form">
+                        <input matInput autocomplete="off" formControlName="old_password" [type]="ocultar ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="ocultar= !ocultar"> <mat-icon>{{ocultar ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+                    </div>
+                    <mat-error *ngIf="form.controls['old_password'].hasError('required')" >
+                        Campo requerido !!!
+                    </mat-error>
+                </mat-form-field>
     
-            <mat-form-field class = "ancho"  >
-                <label>Nueva Contaseña</label>
-                <div class="input_form">
-                    <input #input_new matInput minlength="8" autocomplete="off" formControlName="new_password" [type]="ocultar2 ? 'password' : 'text'">
-                        <button mat-icon-button matSuffix (click)="ocultar2= !ocultar2"> <mat-icon>{{ocultar2 ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-                </div>
-                <mat-hint align="end">
-                    Minimo 8 caracteres
-                    {{input_new.value.length || 0}}/8
-                </mat-hint>
-                <mat-error *ngIf="form.controls['new_password'].hasError('required')" >
-                    Campo requerido !!!
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field class = "ancho"  >
+                    <label>Nueva Contaseña</label>
+                    <div class="input_form">
+                        <input #input_new matInput minlength="8" autocomplete="off" formControlName="new_password" [type]="ocultar2 ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="ocultar2= !ocultar2"> <mat-icon>{{ocultar2 ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+                    </div>
+                    <mat-hint align="end">
+                        Minimo 8 caracteres
+                        {{input_new.value.length || 0}}/8
+                    </mat-hint>
+                    <mat-error *ngIf="form.controls['new_password'].hasError('required')" >
+                        Campo requerido !!!
+                    </mat-error>
+                    <mat-error *ngIf="form.controls['new_password'].hasError('minlength')" >
+                        La longitud minima es de 8 caracteres, actualmente tiene
+                        {{input_new.value.length || 0}}/8
+                    </mat-error>
+                </mat-form-field>
     
-            <mat-form-field class = "ancho"  >
-                <label>Confirmar Nueva Contaseña</label>
-                <div class="input_form">
-                    <input #input_new_confirm matInput minlength="8" autocomplete="off" formControlName="confirm_password" [type]="ocultar3 ? 'password' : 'text'">
-                        <button mat-icon-button matSuffix (click)="ocultar3= !ocultar3"> <mat-icon>{{ocultar3 ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-                </div>
-                <mat-hint align="end">
-                    Minimo 8 caracteres
-                    {{input_new_confirm.value.length || 0}}/8
-                </mat-hint>
-                <mat-error *ngIf="form.controls['confirm_password'].hasError('required')" >
-                    Campo requerido !!!
-                </mat-error>
-            </mat-form-field>
-        </form>
-        <div class="container_botones">
-            <button (click)="regresarInicio()" mat-raised-button color="warn">
-                <mat-icon>close</mat-icon>
-                Cancelar
-            </button>
-            
-            <button mat-raised-button color="primary" (click)="cambiarContrasenia()">
-                <mat-icon>done</mat-icon>
-                Guardar
-            </button>
-        </div>
-    </mat-card>
-</div>
-
+                <mat-form-field class = "ancho"  >
+                    <label>Confirmar Nueva Contaseña</label>
+                    <div class="input_form">
+                        <input #input_new_confirm matInput minlength="8" autocomplete="off" formControlName="confirm_password" [type]="ocultar3 ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="ocultar3= !ocultar3"> <mat-icon>{{ocultar3 ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+                    </div>
+                    <mat-hint align="end">
+                        Minimo 8 caracteres
+                        {{input_new_confirm.value.length || 0}}/8
+                    </mat-hint>
+                    <mat-error *ngIf="form.controls['confirm_password'].hasError('required')" >
+                        Campo requerido !!!
+                    </mat-error>
+                    <mat-error *ngIf="form.controls['confirm_password'].hasError('minlength')" >
+                        La longitud minima es de 8 caracteres, actualmente tiene
+                        {{input_new_confirm.value.length || 0}}/8
+                    </mat-error>
+                </mat-form-field>
+            </form>
+            <div class="container_botones">
+                <button (click)="regresarInicio()" mat-raised-button color="warn">
+                    <mat-icon>close</mat-icon>
+                    Cancelar
+                </button>
+    
+                <button mat-raised-button color="primary" (click)="cambiarContrasenia()">
+                    <mat-icon>done</mat-icon>
+                    Guardar
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    
+</app-menu>

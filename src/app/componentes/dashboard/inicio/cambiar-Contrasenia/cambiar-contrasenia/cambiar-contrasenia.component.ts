@@ -1,6 +1,7 @@
+import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { SnackbarService } from './../../../../../servicios/snackbar/snackbar.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/servicios/user/user.service';
@@ -27,16 +28,18 @@ export class CambiarContraseniaComponent implements OnInit {
     private fb: FormBuilder, 
     public dialog: MatDialog,
     private snackBar: SnackbarService ,
-    private dialogService: ConfirmDialogService
+    private dialogService: ConfirmDialogService,
+    private StaticData: PuenteDatosService
   ) { 
     this.form = this.fb.group({
       old_password: ['', Validators.required],
-      new_password: ['', Validators.required],
-      confirm_password: ['', Validators.required],
+      new_password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      confirm_password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     })
   }
 
   ngOnInit(): void {
+    this.StaticData.setMenuGeneral();
   }
   regresarInicio(){
     this.router.navigate(['/dashboard']);

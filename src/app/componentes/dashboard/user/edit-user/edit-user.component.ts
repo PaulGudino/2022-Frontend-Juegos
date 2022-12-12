@@ -1,12 +1,22 @@
 import { Usuarios } from '../../../../interfaces/usuarios/usuarios';
 import { ApiService } from '../../../../servicios/user/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Roles } from 'src/app/interfaces/roles/roles';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
+import { map, Observable, startWith } from 'rxjs';
+
+function autocompleteObjectValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (typeof control.value === 'string') {
+      return { 'invalidAutocompleteObject': { value: control.value } }
+    }
+    return null  /* valid option selected */
+  }
+}
 
 @Component({
   selector: 'app-editar-usuarios',
@@ -17,6 +27,7 @@ export class EditarUsuariosComponent implements OnInit {
 
   form: FormGroup;
   roles: Roles[] = [];
+  filteredOptions!: Observable<Roles[]>;
   id_rol: number = 0;
   usuarioget: Usuarios ={
     id: 0,
@@ -47,24 +58,44 @@ export class EditarUsuariosComponent implements OnInit {
     ) {
 
     this.form = this.fb.group({
-      cedula: ['', Validators.required],
+      cedula: new FormControl('', [Validators.required, Validators.minLength(10)]),
       username: ['', Validators.required],
       names: ['', Validators.required],
       surnames: ['', Validators.required],
       email : new FormControl('', [Validators.required, Validators.email]),
-      phone: ['', Validators.required],
+      phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
       sex: ['', Validators.required],
       address: ['', Validators.required],
-      rol: ['', Validators.required],
+      rol: new FormControl('', [Validators.required, autocompleteObjectValidator()]),
       is_active: ['', Validators.required],
   })
    }
 
-  ngOnInit(): void {
+   private _filter(name: string): Roles[] {
+    if (name === '') {
+      return this.roles.slice();
+    }
+    const filterValue = name.toLowerCase();
+    return this.roles.filter(option => option.name.toLowerCase().includes(filterValue));
+  }
+
+  displayFn(rol: Roles): string | undefined {
+    // Muetsra el valor que se asigne en el input
+    const valueshow = rol.name;
+    return rol && rol.name ? valueshow : undefined;
+  }
+
+  public validation_msgs = {
+    'contactAutocompleteControl': [
+      { type: 'invalidAutocompleteObject', message: 'Seleccione una opción del listado !!!' },
+    ]
+  }
+
+  async ngOnInit(): Promise<void> {
     this.staticData.setMenuGeneral();
     
+    await this.cargarRoles();
     let usuarioid = this.activerouter.snapshot.paramMap.get('id');
-    this.cargarRoles();
     this.api.getUsuarioId(Number(usuarioid)).subscribe((data) => {
       this.usuarioget = data;
       this.form.controls['cedula'].setValue(this.usuarioget.cedula);
@@ -76,8 +107,8 @@ export class EditarUsuariosComponent implements OnInit {
       this.form.controls['sex'].setValue(this.usuarioget.sex);
       this.form.controls['address'].setValue(this.usuarioget.address);
       this.api.getRolbyName(this.usuarioget.rol).subscribe(
-        (data)=> { 
-          this.form.controls['rol'].setValue(data[0].id.toString());
+        (data) => {
+          this.form.controls['rol'].setValue(data[0]);
         })
       this.form.controls['is_active'].setValue(this.usuarioget.is_active.toString())
     });
@@ -88,9 +119,16 @@ export class EditarUsuariosComponent implements OnInit {
   }
 
 
-  cargarRoles(){
+  async cargarRoles(){
     this.api.getRoles().subscribe((data) => {
       this.roles = data;
+      this.filteredOptions = this.form.controls['rol'].valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.roles.slice();
+        }),
+      );
     });
   }
   
@@ -115,7 +153,7 @@ export class EditarUsuariosComponent implements OnInit {
           formData.append('phone', this.form.get('phone')?.value);
           formData.append('sex', this.form.get('sex')?.value);
           formData.append('address', this.form.get('address')?.value);
-          formData.append('rol', this.form.get('rol')?.value);
+          formData.append('rol', this.form.get('rol')?.value.id);
           formData.append('is_active', this.form.get('is_active')?.value);
           formData.append('rol_request', localStorage.getItem('rol_id') || '');
 
@@ -131,7 +169,8 @@ export class EditarUsuariosComponent implements OnInit {
         }
       }
     );
-
+  }else{
+    this.snackBar.mensaje('Llene el formulario correctamente');
   }
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
@@ -9,7 +9,16 @@ import { ClientService } from 'src/app/servicios/client/client.service';
 import { Client } from 'src/app/interfaces/client/Client';
 import { Game } from 'src/app/interfaces/game/Game';
 import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
+import { map, Observable, startWith } from 'rxjs';
 
+function autocompleteObjectValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (typeof control.value === 'string') {
+      return { 'invalidAutocompleteObject': { value: control.value } }
+    }
+    return null  /* valid option selected */
+  }
+}
 @Component({
   selector: 'app-create-ticket',
   templateUrl: './create-ticket.component.html',
@@ -21,10 +30,10 @@ export class CreateTicketComponent implements OnInit {
   pluralName : string = 'Tickets'
   actionName : string = 'Crear'
   formGroup : FormGroup;
+  filteredOptions!: Observable<Client[]>;
   allClients : Client[] = [];
   allGames : Game[] = [];
   invoiceNumber : string = '';
-  qr_code_url : string = '';
   qr_code_digits : string = '';
   clientId : string = '';
 
@@ -44,11 +53,9 @@ export class CreateTicketComponent implements OnInit {
     // id refers to cedula
 
     this.formGroup = this.formBuilder.group({
-      qr_code_url : [''],
       qr_code_digits : [''],
       invoice_number : ['', Validators.required],
-      state : ['', Validators.required],
-      client : ['', Validators.required],
+      client : new FormControl('', [Validators.required, autocompleteObjectValidator()]),
       game : ['', Validators.required],
     });
 
@@ -60,8 +67,35 @@ export class CreateTicketComponent implements OnInit {
     this.GameAPI.getAll().subscribe(
       (data) => {
         this.allGames = data;
+        this.filteredOptions = this.formGroup.controls['client'].valueChanges.pipe(
+          startWith(''),
+          map(value => {
+            const name = typeof value === 'string' ? value : value?.name;
+            console.log(name);
+            return name ? this._filter(name as string) : this.allClients.slice();
+          }),
+        );
       }
     );
+  }
+  private _filter(name: string): Client[] {
+    if (name === '') {
+      return this.allClients.slice();
+    }
+    const filterValue = name.toLowerCase();
+    return this.allClients.filter(option => option.cedula.toLowerCase().includes(filterValue));
+  }
+
+  displayFn(client: Client): string | undefined {
+    // Muetsra el valor que se asigne en el input
+    const valueshow = client.cedula + ' - ' + client.names + ' ' + client.surnames;
+    return client && client.cedula ? valueshow : undefined;
+  }
+
+  public validation_msgs = {
+    'contactAutocompleteControl': [
+      { type: 'invalidAutocompleteObject', message: 'Seleccione una opción del listado !!!' },
+    ]
   }
 
   toList() {
@@ -108,13 +142,10 @@ export class CreateTicketComponent implements OnInit {
     let user_register = localStorage.getItem('user_id');
     let formData : FormData = new FormData();
     formData.append('invoice_number', this.formGroup.get('invoice_number')?.value);
-    formData.append('state', this.formGroup.get('state')?.value);
     formData.append('client', this.formGroup.get('client')?.value);
     formData.append('game', this.formGroup.get('game')?.value);
     formData.append('user_register', user_register!);
-    formData.append('user_modifier', user_register!);
     formData.append('qr_code_digits', this.qr_code_digits);
-    formData.append('qr_code_url', this.qr_code_url);
     return formData;
   }
 
@@ -124,16 +155,14 @@ export class CreateTicketComponent implements OnInit {
 
   generateQRCode() {
 
-    let check_qr_code_url = this.qr_code_url == ''
     let check_qr_code_digits = this.qr_code_digits == ''
 
-    if (!check_qr_code_digits && !check_qr_code_url) {
+    if (!check_qr_code_digits) {
       return;
     }
     
     this.invoiceNumber = this.formGroup.get('invoice_number')?.value;
     this.clientId = this.formGroup.get('client')?.value;
-    this.qr_code_url = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${this.invoiceNumber + '-' + this.clientId}`;
     this.qr_code_digits = (Math.floor(Math.random() * (999999999 - 100000000 + 1)) + 100000000).toString(10);
   }
 

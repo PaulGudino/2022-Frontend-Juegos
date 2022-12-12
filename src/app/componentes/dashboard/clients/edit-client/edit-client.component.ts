@@ -33,11 +33,11 @@ export class EditClientComponent implements OnInit {
     // Building the form with the formBuilder
 
     this.formGroup = this.formBuilder.group({
-      cedula : ['', Validators.required],
+      cedula: new FormControl('', [Validators.required, Validators.minLength(10)]),
       names : ['', Validators.required],
       surnames : ['', Validators.required],
       email : new FormControl('', [Validators.required, Validators.email]),
-      phone : ['', Validators.required],
+      phone : new FormControl('', [Validators.required, Validators.minLength(10)]),
       sex: ['', Validators.required],
       address : ['', Validators.required],
       state : ['', Validators.required]

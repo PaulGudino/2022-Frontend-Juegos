@@ -57,3 +57,72 @@ mat-sidenav{
   padding-bottom: 70px;
 }
 
+
+.nav-container {
+  background: var(--color-fondo-principal);
+  border-radius: 4px;
+  padding: 1em;
+  border: none;
+  display: block;
+  max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+ul,
+li {
+  list-style: none;
+  -webkit-padding-start: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.nav-item {
+  padding: 1em;
+  display: inline;
+}
+
+.nav-item-dropdown {
+  position: relative;
+  top: 10px;
+}
+.nav-item-dropdown:hover > .dropdown-menu {
+  display: block;
+  opacity: 1;
+}
+
+.dropdown-trigger {
+  position: relative;
+}
+.dropdown-trigger:focus + .dropdown-menu {
+  display: block;
+  opacity: 1;
+}
+
+.dropdown-menu {
+  background-color: var(--color-fondo-secundario);
+  display: inline-block;
+  text-align: right;
+  position: absolute;
+  top: 4rem;
+  right: -30px;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  width: 180px;
+}
+.dropdown-menu a {
+  color: #fff;
+}
+
+.dropdown-menu-item {
+  cursor: pointer;
+  padding: 5px;
+  text-align: center;
+}
+.dropdown-menu-item a:hover {
+  color: var(--color-principal);
+}
+

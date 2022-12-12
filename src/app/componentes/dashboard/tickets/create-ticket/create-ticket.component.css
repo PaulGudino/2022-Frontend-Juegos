@@ -1,3 +1,7 @@
+.FormContainer{
+    display: flex;
+    flex-direction: row;
+}
 mat-form-field {
     width: 45%;
     margin: 0 20px;
@@ -6,6 +10,11 @@ mat-form-field {
 
 .container {
     margin-top: 20px;
+    width: 70%;
+}
+.QR_container {
+    margin-top: 20px;
+    width: 30%;
 }
 
 .container_botones {

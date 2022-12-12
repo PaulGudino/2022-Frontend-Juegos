@@ -6,7 +6,7 @@ import { SharedModule } from 'src/app/componentes/shared/shared.module';
 import { ButtonPrimaryComponent } from './button-primary/button-primary.component';
 import { ButtonGameComponent } from './button-game/button-game/button-game.component';
 import { LogoComponent } from './logo/logo.component';
-import { InputSelectFormComponent } from './input-select-form/input-select-form.component';
+import { TickectQRComponent } from './tickect-qr/tickect-qr.component';
 
 
 
@@ -17,7 +17,7 @@ import { InputSelectFormComponent } from './input-select-form/input-select-form.
     ButtonPrimaryComponent,
     ButtonGameComponent,
     LogoComponent,
-    InputSelectFormComponent,
+    TickectQRComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +29,7 @@ import { InputSelectFormComponent } from './input-select-form/input-select-form.
     ButtonPrimaryComponent,
     ButtonGameComponent,
     LogoComponent,
-    InputSelectFormComponent,
+    TickectQRComponent,
   ]
 })
 export class ComponentesCompartidosModule { }

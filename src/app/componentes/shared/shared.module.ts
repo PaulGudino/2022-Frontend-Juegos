@@ -26,6 +26,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -59,7 +60,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     MatGridListModule,
     FormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    QRCodeModule
   ],
   exports: [
     CommonModule,
@@ -87,7 +89,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     MatGridListModule,
     FormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    QRCodeModule
   ],
 
 })

@@ -22,6 +22,9 @@
                     <mat-error *ngIf="formGroup.controls['cedula'].hasError('required')" >
                         Campo requerido
                     </mat-error>
+                    <mat-error *ngIf="formGroup.controls['cedula'].hasError('minlength')" >
+                        La longitud de la cédula debe ser de 10, Hay {{input.value.length || 0}} dígitos !!!
+                    </mat-error>
                 </mat-form-field>
     
                 <mat-form-field >
@@ -66,6 +69,9 @@
                     </mat-hint>
                     <mat-error *ngIf="formGroup.controls['phone'].hasError('required')" >
                         Campo requerido
+                    </mat-error>
+                    <mat-error *ngIf="formGroup.controls['phone'].hasError('minlength')" >
+                        La longitud del teléfono debe ser de 10, Hay {{input_tel.value.length || 0}} dígitos !!!
                     </mat-error>
                 </mat-form-field>
     
