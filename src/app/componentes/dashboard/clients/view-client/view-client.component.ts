@@ -29,6 +29,7 @@ export class ViewClientComponent implements OnInit {
     user_client_modify : '',
     created : '',
     modified : '',
+    client: '',
   };
 
   constructor(

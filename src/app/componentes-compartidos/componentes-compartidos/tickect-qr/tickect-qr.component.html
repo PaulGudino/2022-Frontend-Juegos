@@ -1,1 +1,21 @@
-<qrcode colorDark="#fff" colorLight="#000" [width]="200" qrdata="asdsada"></qrcode>
+<!-- <qrcode colorDark="#fff" colorLight="#000" [width]="200" qrdata="asdsada"></qrcode> -->
+<div class="ticket_container">
+    <div class="logo_container">
+        <img src={{logo}} alt="logo">
+    </div>
+    <div class="title_container">
+        <h1>{{title}}</h1>
+        <h3>{{description}}</h3>
+    </div>
+    <div class="text_default">
+        <h2>Código Qr:&nbsp;&nbsp; {{codigoQR}}</h2>
+        <p>
+            Promoción válida del {{startdate}} al {{enddate}}
+            El ticket es de un solo uso y no es acumulable con otras promociones. 
+            Escanee el código en puntos de venta participantes.
+        </p>
+    </div>
+    <div class="QR_container">
+        <qrcode colorDark="#000" colorLight="#fff" [width]="200" [qrdata]="QRdata"></qrcode>
+    </div>
+</div>

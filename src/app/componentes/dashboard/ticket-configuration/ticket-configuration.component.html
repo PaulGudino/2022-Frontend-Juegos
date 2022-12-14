@@ -1,0 +1,61 @@
+<app-menu>
+    <mat-toolbar>
+        <span>Configuracón del Ticket</span>
+        <span class="example-spacer"></span>
+    </mat-toolbar>
+    <div class="container_general">
+        <div class="container_configuration">
+            <div>
+                <div class="file_container">
+                    <label>&nbsp;&nbsp;&nbsp;Logo: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                    <div class="file-select" id="src-file1" >
+                        <input #takeInput (change)="capturarFile($event)" type="file" name="src-file1" aria-label="Archivo">
+                    </div>
+                    <button (click)="deleteImage()" mat-icon-button class="green-primary">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="container_form">
+                <form [formGroup]="form">
+                    <mat-form-field>
+                        <label>Titulo</label>
+                        <div class="input_form"><input autocomplete="off" formControlName="title" type="text" matInput></div>
+                        <mat-hint>Titulo del Ticket</mat-hint>
+                        <mat-error *ngIf="form.controls['title'].hasError('required')" >
+                            Campo requerido
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <label>Descripción</label>
+                        <div class="input_form"><input autocomplete="off" formControlName="description" type="text" matInput></div>
+                        <mat-hint>Descripción del Ticket</mat-hint>
+                        <mat-error *ngIf="form.controls['description'].hasError('required')" >
+                            Campo requerido
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </div>
+            <div class="container_botones">
+                <button  mat-raised-button color="warn" (click)="cancel()">
+                    <mat-icon>close</mat-icon>
+                    Cancelar
+                </button>
+        
+                <button mat-raised-button color="primary" color="primary" (click)="updateTicketConfiguration()">
+                    <mat-icon>done</mat-icon>
+                    Crear
+                </button>
+            </div>
+        </div>
+        <div class="ticket_container">
+            <app-tickect-qr
+                [title]="form.controls['title'].value"
+                [description]="form.controls['description'].value"
+                [logo]="previsulizacion"
+                [codigoQR]="codigoQR"
+                QRdata = "Ticket De Prueba"
+            ></app-tickect-qr>
+        </div>
+    </div>
+</app-menu>

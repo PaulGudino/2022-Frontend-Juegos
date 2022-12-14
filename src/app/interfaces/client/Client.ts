@@ -12,4 +12,5 @@ export interface Client {
     user_client_modify : string;
     created : string;
     modified : string;
+    client : string;
   }

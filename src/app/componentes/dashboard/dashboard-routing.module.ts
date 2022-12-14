@@ -23,7 +23,6 @@ import { PublicityComponent } from './publicity/publicity.component';
 import { TopPublicityComponent } from './publicity/top-publicity/top-publicity.component';
 import { BottomPublicityComponent } from './publicity/bottom-publicity/bottom-publicity.component';
 
-//Guardianes
 
 import { CambiarContraseniaComponent } from './inicio/cambiar-Contrasenia/cambiar-contrasenia/cambiar-contrasenia.component';
 import { ClientsComponent } from './clients/clients.component';
@@ -44,6 +43,7 @@ import { ViewAwardsConditionComponent } from './awards-condition/view-awards-con
 import { SaveScreenComponent } from './save-screen/save-screen.component';
 import { ScanCodeComponent } from './scan-code/scan-code.component';
 import { DesignComponent } from './design/design.component';
+import { TicketConfigurationComponent } from './ticket-configuration/ticket-configuration.component';
 
 const routes: Routes = [
    {
@@ -120,6 +120,11 @@ const routes: Routes = [
          },
 
          // Tickets
+         {
+            path: 'tickets/configuracion',
+            component: TicketConfigurationComponent,
+            canActivate: [InicioGuard],
+         },
          {
             path: 'tickets',
             component: TicketsComponent,

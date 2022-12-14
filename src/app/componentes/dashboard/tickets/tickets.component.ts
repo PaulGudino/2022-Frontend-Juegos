@@ -122,7 +122,8 @@ export class TicketsComponent implements OnInit{
 
   async canDelete() {
     let rolId = Number(localStorage.getItem('rol_id'));
-    let permissionId = 12;
+    let permiso = await lastValueFrom(this.permissionsAPI.getPermisosbyName('Eliminar Ticket'));
+    let permissionId = Number(permiso[0].id);
     const promise = await lastValueFrom(this.permissionsAPI.getPermisosbyRolandPermission(rolId, permissionId));
     this.permissions = promise;
   }

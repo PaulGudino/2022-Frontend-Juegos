@@ -33,9 +33,14 @@ export class CreateTicketComponent implements OnInit {
   filteredOptions!: Observable<Client[]>;
   allClients : Client[] = [];
   allGames : Game[] = [];
+
   invoiceNumber : string = '';
   qr_code_digits : string = '';
   clientId : string = '';
+  gameTragamonendas: string = '1';
+
+  Ticket_data: string = ''
+  CanPrint = false
 
   constructor(
     private router : Router,
@@ -71,7 +76,6 @@ export class CreateTicketComponent implements OnInit {
           startWith(''),
           map(value => {
             const name = typeof value === 'string' ? value : value?.name;
-            console.log(name);
             return name ? this._filter(name as string) : this.allClients.slice();
           }),
         );
@@ -83,13 +87,13 @@ export class CreateTicketComponent implements OnInit {
       return this.allClients.slice();
     }
     const filterValue = name.toLowerCase();
-    return this.allClients.filter(option => option.cedula.toLowerCase().includes(filterValue));
+    return this.allClients.filter(option => option.client.toLowerCase().includes(filterValue));
   }
 
   displayFn(client: Client): string | undefined {
     // Muetsra el valor que se asigne en el input
-    const valueshow = client.cedula + ' - ' + client.names + ' ' + client.surnames;
-    return client && client.cedula ? valueshow : undefined;
+    const valueshow = client.client
+    return client && client.client ? valueshow : undefined;
   }
 
   public validation_msgs = {
@@ -119,6 +123,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   sendForm () {
+    console.log(this.formGroup.value)
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
@@ -126,11 +131,17 @@ export class CreateTicketComponent implements OnInit {
           let formData = this.fillForm();
           this.ticketAPI.post(formData).subscribe ({
             next : (res) => {
+              this.formGroup.get('client')?.disable()
+              this.formGroup.get('invoice_number')?.disable()
+              this.formGroup.get('game')?.disable()
               this.snackBar.mensaje(this.singularName + ' Creado Exitosamente');
-              this.toList();
+              this.CanPrint = true;
+              // this.toList();
             },
             error : (res) => {
               this.confirmDialog.error(res.error);
+              this.Ticket_data = 'Ticket de Prueba';
+              this.qr_code_digits = ''
             }
           })
         }
@@ -142,10 +153,11 @@ export class CreateTicketComponent implements OnInit {
     let user_register = localStorage.getItem('user_id');
     let formData : FormData = new FormData();
     formData.append('invoice_number', this.formGroup.get('invoice_number')?.value);
-    formData.append('client', this.formGroup.get('client')?.value);
+    formData.append('client', this.formGroup.get('client')?.value.id);
     formData.append('game', this.formGroup.get('game')?.value);
     formData.append('user_register', user_register!);
     formData.append('qr_code_digits', this.qr_code_digits);
+    console.log(formData)
     return formData;
   }
 
@@ -162,8 +174,30 @@ export class CreateTicketComponent implements OnInit {
     }
     
     this.invoiceNumber = this.formGroup.get('invoice_number')?.value;
-    this.clientId = this.formGroup.get('client')?.value;
-    this.qr_code_digits = (Math.floor(Math.random() * (999999999 - 100000000 + 1)) + 100000000).toString(10);
+    this.clientId = this.formGroup.get('client')?.value.id;
+
+    
+    let exist_code : any[] = [];
+
+    do{
+      this.qr_code_digits = (Math.floor(Math.random() * (999999999 - 100000000 + 1)) + 100000000).toString(10);
+      let search_code = '?state=Disponible&qr_code_digits='+this.qr_code_digits
+      this.ticketAPI.getFilter(search_code).subscribe({
+        next : (res) => {
+          exist_code = res
+        },
+      });
+    }
+    while(exist_code.length > 0);
+    
+    this.Ticket_data = this.gameTragamonendas+'|'+this.invoiceNumber+'|'+this.clientId+'|'+this.qr_code_digits
+  }
+
+  newForm(){
+    window.location.reload();
+  }
+  print(){
+    alert('imprimiendo')
   }
 
 }
