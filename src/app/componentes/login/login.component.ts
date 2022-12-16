@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('rol_id', res.rol);
         localStorage.setItem('token', res.token);
         localStorage.setItem('refresh', res.refresh);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard/juego/seleccion']);
       }, err => {
         console.log(err);
         this.error();

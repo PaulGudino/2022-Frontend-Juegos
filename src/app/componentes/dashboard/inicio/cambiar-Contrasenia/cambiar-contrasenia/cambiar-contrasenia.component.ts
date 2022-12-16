@@ -42,7 +42,7 @@ export class CambiarContraseniaComponent implements OnInit {
     this.StaticData.setMenuGeneral();
   }
   regresarInicio(){
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard/juego/seleccion']);
   }
   mensajes_errores(mensajes: string[]){
     const dialogref = this.dialog.open(MensajesErrorComponent,{

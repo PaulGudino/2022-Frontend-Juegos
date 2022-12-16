@@ -1,10 +1,5 @@
 [
    {
-      "nombre": "Inicio",
-      "icono": "home",
-      "ruta": "/dashboard"
-   },
-   {
       "nombre": "Usuarios",
       "icono": "person",
       "ruta": "/dashboard/usuarios"

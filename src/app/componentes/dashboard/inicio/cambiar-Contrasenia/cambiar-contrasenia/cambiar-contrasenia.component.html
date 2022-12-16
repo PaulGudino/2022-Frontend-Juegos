@@ -56,15 +56,13 @@
                 </mat-form-field>
             </form>
             <div class="container_botones">
-                <button (click)="regresarInicio()" mat-raised-button color="warn">
-                    <mat-icon>close</mat-icon>
-                    Cancelar
-                </button>
-    
-                <button mat-raised-button color="primary" (click)="cambiarContrasenia()">
-                    <mat-icon>done</mat-icon>
-                    Guardar
-                </button>
+                <app-button-primary (click)="cambiarContrasenia()"
+                title="Guardar"
+                ></app-button-primary>
+                <app-button-primary (click)="regresarInicio()"
+                    backgroundColor="#fff"
+                title="Cancelar"
+                ></app-button-primary>
             </div>
         </mat-card>
     </div>
