@@ -101,7 +101,7 @@ export class TicketConfigurationComponent implements OnInit {
           this.TicketConfigurationSrv.updateTicketConfiguration(formData).subscribe(
             (res) => {
               this.snackbar.mensaje('Configuración Del Ticket Actualizado Exitosamente');
-              this.router.navigate(['/dashboard/tickets/configuracion']);
+              this.router.navigate(['/dashboard/tickets']);
             },
             (err) => {
               this.dialogService.error(err.error);

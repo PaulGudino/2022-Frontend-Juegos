@@ -109,7 +109,3 @@
     margin: 0 10px;
     background-color: var(--color-cafe);
  }
- .container_botones button:hover{
-    background-color: var(--color-principal);
-    color: var(--color-fondo-secundario);
- }

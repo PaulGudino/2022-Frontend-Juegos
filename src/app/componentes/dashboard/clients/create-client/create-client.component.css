@@ -18,12 +18,6 @@ mat-form-field {
 .container_botones app-button-primary{
     margin: 0 10px;
 }
-
-.container_botones button:hover {
-    background-color: var(--color-principal);
-    color: var(--color-fondo-secundario);
-}
-
 .mat-toolbar {
     background-color: var(--color-fondo-secundario);
     color: var(--color-principal);

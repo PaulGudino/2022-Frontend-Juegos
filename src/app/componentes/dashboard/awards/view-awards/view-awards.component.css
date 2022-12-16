@@ -55,12 +55,3 @@ mat-label{
     background-color: var(--color-fondo-secundario);
     color: var(--color-principal);
 }
-button{
-    margin-top: 25px;
-    background: var(--color-cafe);
-    color: var(--color-letras);
-}
-button:hover{
-    background: var(--color-principal);
-    color: var(--color-fondo-secundario);
-}
