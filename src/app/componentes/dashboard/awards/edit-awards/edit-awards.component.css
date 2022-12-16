@@ -41,7 +41,7 @@ mat-form-field{
     align-items: center;
     margin: 20px;
 }
-.container_botones button{
+.container_botones app-button-primary{
     margin: 0 10px;
     background-color: var(--color-cafe);
 }

@@ -154,15 +154,13 @@
     
         </form>
         <div class="container_botones">
-            <button (click)="regresarUsuarios()" mat-raised-button color="warn">
-                <mat-icon>close</mat-icon>
-                Cancelar
-            </button>
-    
-            <button mat-raised-button color="primary" (click)="crearUsuario()">
-                <mat-icon>done</mat-icon>
-                Crear
-            </button>
+            <app-button-primary (click)="crearUsuario()"
+               title="Crear"
+            ></app-button-primary>
+            <app-button-primary (click)="regresarUsuarios()"
+                backgroundColor="#fff"
+               title="Cancelar"
+            ></app-button-primary>
         </div>
     </div>
 </app-menu>

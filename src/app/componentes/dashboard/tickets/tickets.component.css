@@ -24,10 +24,8 @@ table {
 /* Css agregar, filtrado, busqueda */
 .button_container{
   display: flex;
-  justify-content: flex-start;
-  margin-top: 20px;
-  margin-left: 7%;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  margin: 20px 7%;
 }
 .button_container button{
   background: var(--color-fondo-secundario);

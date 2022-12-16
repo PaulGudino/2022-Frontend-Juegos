@@ -34,7 +34,6 @@ import { GameDateComponent } from './game-date/game-date.component';
 import { CalendarPickerComponent } from './game-date/calendar-picker/calendar-picker.component';
 import { CreateTicketComponent } from './tickets/create-ticket/create-ticket.component';
 import { TicketsComponent } from './tickets/tickets.component';
-import { EditTicketComponent } from './tickets/edit-ticket/edit-ticket.component';
 import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component';
 import { GameSelectionComponent } from './game-selection/game-selection.component';
 import { AwardsConditionComponent } from './awards-condition/awards-condition.component';
@@ -80,7 +79,6 @@ import { TicketConfigurationComponent } from './ticket-configuration/ticket-conf
       // Ticket Components
       TicketsComponent,
       CreateTicketComponent,
-      EditTicketComponent,
       ViewTicketComponent,
       // Awards Components
       ViewAwardsComponent,

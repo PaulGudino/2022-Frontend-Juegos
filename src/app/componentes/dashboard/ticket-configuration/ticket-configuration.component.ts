@@ -79,10 +79,10 @@ export class TicketConfigurationComponent implements OnInit {
   updateTicketConfiguration(){
     if (this.form.valid) {
       const options = {
-        title: 'EDITAR TICKET',
-        message: '¿ESTÁ SEGURO QUE QUIERE EDITAR EL TICKET '+'?',
+        title: 'ACTUALIZAR CONFIGURACIÓN DEL TICKET',
+        message: '¿ESTÁ SEGURO QUE QUIERE ACTUALIZAR CONFIGURACIÓN DEL TICKET '+'?',
         cancelText: 'CANCELAR',
-        confirmText: 'EDITAR'
+        confirmText: 'ACTUALIZAR'
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe(confirmed => {
@@ -100,7 +100,7 @@ export class TicketConfigurationComponent implements OnInit {
 
           this.TicketConfigurationSrv.updateTicketConfiguration(formData).subscribe(
             (res) => {
-              this.snackbar.mensaje('Ticket Actualizado Exitosamente');
+              this.snackbar.mensaje('Configuración Del Ticket Actualizado Exitosamente');
               this.router.navigate(['/dashboard/tickets/configuracion']);
             },
             (err) => {

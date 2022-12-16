@@ -2,6 +2,10 @@ img{
    width:100%;
    height:100%;
 }
+.container_juego{
+   margin-top: 5%;
+}
+
 .container-juego{
    position:relative;
    max-width: 26rem;

@@ -89,15 +89,13 @@
             </div>
         </div>
         <div class="container_botones">
-            <button  mat-raised-button color="warn" (click)="backAwards()">
-                <mat-icon>close</mat-icon>
-                Cancelar
-            </button>
-    
-            <button mat-raised-button color="primary" (click)="editAwards()" color="primary">
-                <mat-icon>done</mat-icon>
-                Guardar
-            </button>
+            <app-button-primary (click)="editAwards()"
+               title="Editar"
+            ></app-button-primary>
+            <app-button-primary (click)="backAwards()"
+                backgroundColor="#fff"
+               title="Cancelar"
+            ></app-button-primary>
         </div>
      </mat-card>
     </div>

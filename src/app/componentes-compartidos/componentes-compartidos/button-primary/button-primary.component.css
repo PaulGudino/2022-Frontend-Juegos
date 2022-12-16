@@ -5,6 +5,7 @@
    outline: none;
    border: none;
    border-radius: 6px;
+   font-weight: 500;
 }
 .btn-game__date:hover{
    cursor: pointer

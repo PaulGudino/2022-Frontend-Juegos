@@ -16,6 +16,14 @@
             <span>Agregar {{ singularName }}</span>
          </div>
       </button>
+      <button mat-raised-button (click)="toTicketConfiguration()">
+         <div class="add_container">
+            <div class="icon_container">
+               <mat-icon>confirmation_number</mat-icon>
+            </div>
+            <span>Configuración del Ticket</span>
+         </div>
+      </button>
    </div>
    
    <!--Filter-->
@@ -80,7 +88,7 @@
          <!-- Game Column -->
          <ng-container matColumnDef="game">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Juego</th>
-            <td mat-cell *matCellDef="let row">{{ row.game }}</td>
+            <td mat-cell *matCellDef="let row">{{ row.game_name }}</td>
          </ng-container>
    
          <!-- Actions Column -->

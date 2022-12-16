@@ -18,18 +18,21 @@ export class ViewTicketComponent implements OnInit {
   singularName : string = 'ticket';
   pluralName : string = 'tickets';
   actionName : string = 'visualizar';
+  samedate = false;
+  QRdata : string = '';
   ticket : Ticket = {
     id : '',
     invoice_number : '',
-    qr_code_url : '',
+    date_created : '',
+    date_ticket_played : '',
     qr_code_digits : '',
     state : '',
     client : '',
-    game : '',
+    game_id : '',
+    game_name : '',
     user_register : '',
-    user_modifier : '',
-    date_created : '',
-    date_modified : '',
+    client_cedula : '',
+    client_id : '',
   };
 
   constructor(
@@ -48,7 +51,12 @@ export class ViewTicketComponent implements OnInit {
     let ticketId = this.activedRoute.snapshot.paramMap.get('id');
     this.ticketAPI.getById(Number(ticketId)).subscribe((data) => {
       this.ticket = data;
+      this.QRdata = data.game_id+'|'+data.invoice_number+'|'+data.client_id+'|'+data.qr_code_digits
+      if (this.ticket.date_created == this.ticket.date_ticket_played){
+        this.samedate = true;
+      }
     })
+    
   }
 }
 

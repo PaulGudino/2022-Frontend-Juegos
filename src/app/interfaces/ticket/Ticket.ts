@@ -1,13 +1,14 @@
 export interface Ticket {
     id : string,
     invoice_number : string,
-    qr_code_url: string;
-    qr_code_digits: string;
-    date_created : string;
-    date_modified : string;
-    state : string;
+    date_created : string,
+    date_ticket_played : string,
+    qr_code_digits : string,
+    state : string,
     client : string,
-    game : string;
-    user_register : string;
-    user_modifier : string;
+    game_id : string,
+    game_name : string,
+    user_register : string,
+    client_cedula : string,
+    client_id : string,
   }

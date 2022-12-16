@@ -27,7 +27,7 @@
       </mat-grid-tile>
    </mat-grid-list> -->
 
-   <div class="container p-5">
+   <div class="container p-5 container_juego" >
       <div
          *ngFor="let game of allGames"
          class="container container-juego background-navy-primary green-primary text-center pt-4 pb-1"
@@ -56,7 +56,7 @@
             <app-button-primary
                class="col"
                title="Continuar"
-               backgroundColor="#c4c4c4"
+               backgroundColor="#fff"
                (click)="tragamonedas_settings(game.id)"
             ></app-button-primary>
          </div>

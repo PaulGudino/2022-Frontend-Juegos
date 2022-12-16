@@ -26,15 +26,13 @@
             </div>
     
             <div class="container_botones">
-                <button (click)="regresarRoles()" mat-raised-button color="warn">
-                    <mat-icon>close</mat-icon>
-                    Cancelar
-                </button>
-    
-                <button mat-raised-button color="primary" (click)="guardarPermisos()">
-                    <mat-icon>done</mat-icon>
-                    Guardar
-                </button>
+                <app-button-primary (click)="guardarPermisos()"
+                    title="Guardar"
+                ></app-button-primary>
+                <app-button-primary (click)="regresarRoles()"
+                    backgroundColor="#fff"
+                    title="Cancelar"
+                ></app-button-primary>
             </div>
     </div>
 </app-menu>

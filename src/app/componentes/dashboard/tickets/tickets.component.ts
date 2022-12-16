@@ -139,5 +139,8 @@ export class TicketsComponent implements OnInit{
   filter(filter: string) {
     this.loadAll(filter);
   }
+  toTicketConfiguration(){
+    this.router.navigate(['dashboard/tickets/configuracion']);
+  }
 
 }

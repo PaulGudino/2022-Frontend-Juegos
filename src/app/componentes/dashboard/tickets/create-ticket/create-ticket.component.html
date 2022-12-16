@@ -64,27 +64,23 @@
             </form>
             <!-- Buttons -->
             <div class="container_botones">
-                <button (click)="toList()" mat-raised-button color="warn">
-                    <mat-icon>close</mat-icon>
-                    Cancelar
-                </button>
-        
                 <div *ngIf="CanPrint == false">
-                    <button mat-raised-button color="primary" (click)="create()">
-                        <mat-icon>done</mat-icon>
-                        {{actionName}}
-                    </button>
+                    <app-button-primary (click)="create()"
+                        title="Crear"
+                    ></app-button-primary>
                 </div>
                 <div *ngIf="CanPrint == true">
-                    <button mat-raised-button color="primary" (click)="newForm()">
-                        <mat-icon>done</mat-icon>
-                        Nuevo
-                    </button>
-                    <button mat-raised-button color="primary" (click)="print()">
-                        <mat-icon>done</mat-icon>
-                        Imprimir
-                    </button>
+                    <app-button-primary (click)="newForm()"
+                    title="Nuevo"
+                    ></app-button-primary>
+                    <app-button-primary (click)="print()"
+                    title="Imprimir"
+                    ></app-button-primary>
                 </div>
+                <app-button-primary (click)="toList()"
+                    backgroundColor="#fff"
+                title="Cancelar"
+                ></app-button-primary>
             </div>
         
         </div>

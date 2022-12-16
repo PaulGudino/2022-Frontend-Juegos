@@ -17,7 +17,6 @@ import { RolesCrearComponent } from './roles/roles-crear/roles-crear.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { CreateTicketComponent } from './tickets/create-ticket/create-ticket.component';
 import { ViewTicketComponent } from './tickets/view-ticket/view-ticket.component';
-import { EditTicketComponent } from './tickets/edit-ticket/edit-ticket.component';
 import { GameSelectionComponent } from './game-selection/game-selection.component';
 import { PublicityComponent } from './publicity/publicity.component';
 import { TopPublicityComponent } from './publicity/top-publicity/top-publicity.component';
@@ -141,12 +140,6 @@ const routes: Routes = [
             component: ViewTicketComponent,
             canActivate: [PermissionsGuard, InicioGuard],
             data: { Permiso_nombre: 'Ver Ticket' },
-         },
-         {
-            path: 'tickets/editar/:id',
-            component: EditTicketComponent,
-            canActivate: [PermissionsGuard, InicioGuard],
-            data: { Permiso_nombre: 'Editar Ticket' },
          },
 
          // Premios
