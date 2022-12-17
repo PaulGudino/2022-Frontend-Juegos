@@ -129,7 +129,7 @@ export class CreateAwardsConditionComponent implements OnInit {
     this.awardSrv.getAwardbyId(id).subscribe(
       (data:any) => {
         this.previsulizacion = data.imagen;
-        this.stock_actual = data.current_stock;
+        this.stock_actual = data.initial_stock;
         this.award_name = data.name;
       }
     )
