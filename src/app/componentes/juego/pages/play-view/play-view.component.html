@@ -46,38 +46,26 @@
             <div class="awards-container">
                <div class="awards-column" #col1>
                   <figure
-                     *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                     *ngFor="let name of theme.publicityGameList"
                      class="award-image-container"
-                     id="{{ i }}"
                   >
-                     <img
-                        src="../../../../../assets/img/logoejemplo.png"
-                        alt=""
-                     />
+                     <img [src]="name.image" alt="publicityLogo" />
                   </figure>
                </div>
                <div class="awards-column" #col2>
                   <figure
-                     *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                     *ngFor="let image of theme.publicityGameListCol2"
                      class="award-image-container"
-                     id="{{ i }}"
                   >
-                     <img
-                        src="../../../../../assets/img/logoejemplo.png"
-                        alt=""
-                     />
+                     <img [src]="image.image" alt="publicityLogo" />
                   </figure>
                </div>
                <div class="awards-column" #col3>
                   <figure
-                     *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                     *ngFor="let name of theme.publicityGameListCol3"
                      class="award-image-container"
-                     id="{{ i }}"
                   >
-                     <img
-                        src="../../../../../assets/img/logoejemplo.png"
-                        alt=""
-                     />
+                     <img [src]="name.image" alt="publicityLogo" />
                   </figure>
                </div>
             </div>

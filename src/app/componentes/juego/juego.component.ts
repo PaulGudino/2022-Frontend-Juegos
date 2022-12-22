@@ -34,11 +34,11 @@ export class JuegoComponent implements OnInit {
                });
          }
          this.themeService.getDesignInformation().subscribe((data) => {
-            console.log(data);
             this.styles.loadData(data[0]);
             this.buttonTitle = this.styles.get_title_button_screensaver();
             this.logoImage = this.styles.get_image_logo_game();
             this.videoUrl = this.styles.get_video_screensaver();
+            console.log(this.themeService.publicityGameList);
          });
       });
    }

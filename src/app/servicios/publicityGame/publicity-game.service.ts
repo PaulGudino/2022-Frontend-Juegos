@@ -12,6 +12,10 @@ export class PublicityGameService {
 
    constructor(private http: HttpClient, private puente: PuenteDatosService) {}
 
+   getAllPublicityGame(): Observable<PublicityGame[]> {
+      return this.http.get<PublicityGame[]>(this.url + 'api/Publicity_game/');
+   }
+
    getPublicityGame(id: string): Observable<PublicityGame> {
       return this.http.get<PublicityGame>(
          this.url + 'api/Publicity_game/' + id + '/'
