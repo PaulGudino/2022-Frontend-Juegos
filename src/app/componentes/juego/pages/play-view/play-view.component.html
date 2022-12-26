@@ -17,8 +17,21 @@
                [isHome]="false"
             ></app-logo>
          </div>
-         <p class="info-game__text">A JUGAR!!!</p>
-         <div class="information-game-container" [ngPlural]="availableSpin">
+         <p
+            class="info-game__text"
+            [ngStyle]="{
+               color: 'styles.color_text'
+            }"
+         >
+            A JUGAR!!!
+         </p>
+         <div
+            class="information-game-container"
+            [ngPlural]="availableSpin"
+            [ngStyle]="{
+               color: 'styles.get_color_text()'
+            }"
+         >
             <ng-template ngPluralCase="=0">
                <p class="info-game__text">
                   No te quedan más Giros!
@@ -84,5 +97,6 @@
 
    <app-publicity
       [publicityList]="publicity.getBottomPublicityList()"
+      [isTop]="false"
    ></app-publicity>
 </div>
