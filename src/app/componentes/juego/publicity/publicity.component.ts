@@ -1,3 +1,4 @@
+import { PublicityService } from 'src/app/servicios/publicity/publicity.service';
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { DashboardPublicityService } from 'src/app/servicios/publicity/dashboardPublicity/dashboard-publicity.service';
 import { Publicity } from '../../../interfaces/publicity/publicity';
@@ -12,8 +13,9 @@ export class PublicityComponent implements OnInit {
    scrollContainer!: ElementRef;
    @Input() publicityList: Publicity[] = [];
    animationCount: number = 0;
+   @Input() timeInterval: number = 1000;
 
-   constructor(public publicity: DashboardPublicityService) {
+   constructor() {
       setInterval(() => {
          console.log('interval ' + this.animationCount);
          let width = this.animationCount * -100;
@@ -34,10 +36,8 @@ export class PublicityComponent implements OnInit {
             if (this.animationCount < this.publicityList.length)
                this.animationCount++;
          }
-      }, 4000);
+      }, this.timeInterval);
    }
 
-   ngOnInit(): void {
-      console.log(this.publicity.getTopPublicityList());
-   }
+   ngOnInit(): void {}
 }
