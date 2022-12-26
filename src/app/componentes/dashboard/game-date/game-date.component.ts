@@ -1,69 +1,95 @@
 import { Component, OnInit } from '@angular/core';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
-import {GameService} from './../../../servicios/game/game.service'
+import { GameService } from './../../../servicios/game/game.service';
 import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
 import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { min } from 'moment';
 
 @Component({
-  selector: 'app-game-date',
-  templateUrl: './game-date.component.html',
-  styleUrls: ['./game-date.component.css']
+   selector: 'app-game-date',
+   templateUrl: './game-date.component.html',
+   styleUrls: ['./game-date.component.css'],
 })
 export class GameDateComponent implements OnInit {
-
-   beginDate: Date = new Date(2015,10,30);
+   beginDate: Date = new Date();
    finishDate: Date = new Date();
 
+   minDate: Date = new Date();
+
+   form: FormGroup;
+
    constructor(
-      private snackbar:SnackbarService,
-      private game:GameService,
-      private staticData: PuenteDatosService,
-   ) { }
+      private snackbar: SnackbarService,
+      private fb: FormBuilder,
+
+      private game: GameService,
+      private staticData: PuenteDatosService
+   ) {
+      this.form = this.fb.group({
+         startTime: ['', Validators.required],
+         endTime: ['', Validators.required],
+      });
+      let currentYear = new Date().getFullYear();
+      let currentMonth = new Date().getMonth();
+      let currentDay = new Date().getDate();
+      this.minDate = new Date(currentYear, currentMonth, currentDay);
+      // this.finishDate = new Date(currentYear, currentMonth, currentDay);
+   }
 
    ngOnInit(): void {
       this.staticData.setMenuTragamonedas();
    }
 
-   saveNewDateGame(){
-      if(this.validateDates()){
-         let gamePut:any ={
-            id:'1',
-            start_date:this.beginDate.toISOString(),
-            end_date:this.finishDate.toISOString(),
-            modification_date:new Date().toISOString(),
-            game:'T',
-            is_active:'true'
-
+   saveNewDateGame() {
+      if (this.validateDates()) {
+         let gamePut: any = {
+            id: '1',
+            start_date: this.beginDate.toISOString(),
+            end_date: this.finishDate.toISOString(),
+            modification_date: new Date().toISOString(),
+            game: 'T',
+            is_active: 'true',
          };
-         console.log(gamePut)
+         console.log(gamePut);
 
-         this.game.putGame(1,gamePut).subscribe((res) => {
-            console.log(res)
-         })
-         this.snackbar.mensaje('Se a actualizado la fecha de disponibilidad del juego')
+         this.game.putGame(1, gamePut).subscribe((res) => {
+            console.log(res);
+         });
+         this.snackbar.mensaje(
+            'Se a actualizado la fecha de disponibilidad del juego'
+         );
       }
-
    }
 
-   validateDates(){
-      let compareDate = new Date(2015,10,30);
-      compareDate.setHours(0,0,0,0);
-      this.beginDate.setHours(0,0,0,0);
-      this.finishDate.setHours(0,0,0,0);
-
-      if(this.beginDate.getTime() == compareDate.getTime()){
-         this.snackbar.mensaje('Seleccione un rango de fechas')
-         return false;
+   validateDates() {
+      if (!this.form.valid) {
+         this.snackbar.mensaje('LLene todos los campos');
       }
-      else if(this.beginDate > this.finishDate){
-         this.snackbar.mensaje('La fecha de inicio no puede ser mayor a la fecha final')
+      let hora_inicio = this.form.value.startTime.hour;
+      let minuto_inicio = this.form.value.startTime.minute;
+
+      let hora_fin = this.form.value.endTime.hour;
+      let minuto_fin = this.form.value.endTime.minute;
+
+      this.beginDate.setHours(hora_inicio, minuto_inicio, 0, 0);
+      this.finishDate.setHours(hora_fin, minuto_fin, 0, 0);
+
+      debugger;
+
+      if (this.beginDate.getTime() == this.finishDate.getTime()) {
+         this.snackbar.mensaje(
+            'El rango de fechas de disponibilidad debe ser mayor a un dia'
+         );
+         return false;
+      } else if (this.beginDate > this.finishDate) {
+         this.snackbar.mensaje(
+            'La fecha de inicio no puede ser mayor a la fecha final'
+         );
          return false;
       }
       return true;
    }
 
-   cancel(){
-
-   }
-
+   cancel() {}
 }

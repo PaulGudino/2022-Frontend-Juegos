@@ -9,8 +9,8 @@
             <h2 class="date-title green-primary">JUEGO DISPONIBLE</h2>
          </div>
       </div>
-   
-      <div class="calendar-container">
+
+      <form [formGroup]="form" class="calendar-container">
          <div class="calendar">
             <p class="input-date green-primary">Inicio</p>
             <div class="calendar__card">
@@ -20,10 +20,18 @@
                   <mat-calendar
                      class="green-primary"
                      [(selected)]="beginDate"
+                     [minDate]="minDate"
                   ></mat-calendar>
                </mat-card>
             </div>
-   
+            <div class="time_container">
+               <ngb-timepicker
+                  class="time"
+                  formControlName="startTime"
+                  [meridian]="true"
+               ></ngb-timepicker>
+            </div>
+
             <app-button-primary
                (click)="saveNewDateGame()"
                title="Guardar"
@@ -36,10 +44,20 @@
                <mat-card
                   class="demo-inline-calendar-card background-navy-primary green-primary"
                >
-                  <mat-calendar [(selected)]="finishDate"></mat-calendar>
+                  <mat-calendar
+                     [(selected)]="finishDate"
+                     [minDate]="minDate"
+                  ></mat-calendar>
                </mat-card>
             </div>
-   
+            <div class="time_container">
+               <ngb-timepicker
+                  class="time"
+                  formControlName="endTime"
+                  [meridian]="true"
+               ></ngb-timepicker>
+            </div>
+
             <app-button-primary
                (click)="cancel()"
                title="Cancelar"
@@ -47,6 +65,6 @@
                [backgroundColor]="'#fff'"
             ></app-button-primary>
          </div>
-      </div>
+      </form>
    </div>
 </app-menu>
