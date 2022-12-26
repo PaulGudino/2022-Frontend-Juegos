@@ -1,10 +1,10 @@
+import { AwardsConditionService } from './../../../servicios/awards-condition/awards-condition.service';
 import { Component, OnInit } from '@angular/core';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 import { GameService } from './../../../servicios/game/game.service';
 import { GamePutDate } from 'src/app/interfaces/game/GamePutDate';
 import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { min } from 'moment';
 
 @Component({
    selector: 'app-game-date',
@@ -19,12 +19,15 @@ export class GameDateComponent implements OnInit {
 
    form: FormGroup;
 
+   awardConditionList: any[] = [];
+
    constructor(
       private snackbar: SnackbarService,
       private fb: FormBuilder,
 
       private game: GameService,
-      private staticData: PuenteDatosService
+      private staticData: PuenteDatosService,
+      private awardsConditionService: AwardsConditionService
    ) {
       this.form = this.fb.group({
          startTime: ['', Validators.required],
@@ -34,11 +37,13 @@ export class GameDateComponent implements OnInit {
       let currentMonth = new Date().getMonth();
       let currentDay = new Date().getDate();
       this.minDate = new Date(currentYear, currentMonth, currentDay);
-      // this.finishDate = new Date(currentYear, currentMonth, currentDay);
    }
 
    ngOnInit(): void {
       this.staticData.setMenuTragamonedas();
+      this.awardsConditionService.getAward().subscribe((data: any) => {
+         this.awardConditionList = data;
+      });
    }
 
    saveNewDateGame() {
@@ -65,6 +70,12 @@ export class GameDateComponent implements OnInit {
    validateDates() {
       if (!this.form.valid) {
          this.snackbar.mensaje('LLene todos los campos');
+         return false;
+      } else if (!this.validateConditionalAward()) {
+         this.snackbar.mensaje(
+            'No puede cambiar la fecha del juego mientras existan juegos condicionados en espera.'
+         );
+         return false;
       }
       let hora_inicio = this.form.value.startTime.hour;
       let minuto_inicio = this.form.value.startTime.minute;
@@ -90,6 +101,21 @@ export class GameDateComponent implements OnInit {
       }
       return true;
    }
+   validateConditionalAward() {
+      if (this.awardConditionList.length > 0) {
+         return false;
+      }
+      return true;
+   }
 
-   cancel() {}
+   cancel() {
+      this.beginDate = new Date();
+      this.finishDate = new Date();
+
+      this.form.value.startTime.hour = 0;
+      this.form.value.startTime.minute = 0;
+
+      this.form.controls['startTime'].setValue(0);
+      this.form.controls['endTime'].setValue(0);
+   }
 }
