@@ -28,6 +28,8 @@ img {
 }
 .set-categories__title {
    margin-top: 0.5rem;
+   text-align: center;
+   margin-top: 5%;
 }
 .container-set-squares {
    display: flex;
@@ -70,4 +72,8 @@ img {
 }
 .pass-limit {
    color: red;
+}
+.label{
+   text-align: center;
+   margin-bottom: 10px;
 }

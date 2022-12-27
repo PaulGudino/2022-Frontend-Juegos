@@ -11,6 +11,11 @@
          "ruta": "/dashboard/juego/fecha"
     },
     {
+      "nombre": "Premios Condicionados",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/premios/condicion"
+   },
+    {
         "nombre": "Publicidad",
         "icono": "radio_button_checked",
         "ruta": "/dashboard/juego/publicidad"

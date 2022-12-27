@@ -68,7 +68,7 @@ export class WinnerDesignComponent implements OnInit {
    updateWinner() {
       const options = {
          title: 'ACTUALIZAR RESULTADO',
-         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR INFORMACION DE RESULTADO',
+         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR LA INFORMACIÓN DE RESULTADO GANADOR?',
          cancelText: 'CANCELAR',
          confirmText: 'CREAR',
       };

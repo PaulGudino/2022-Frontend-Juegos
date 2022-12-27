@@ -27,7 +27,7 @@ export class GameService {
     return this.http.get<Game>(this.url+'api/game/'+id + '/');
   }
 
-  put(id: number, data: any){
+  put(id: number, data: FormData){
     return this.http.put(this.url+'api/game/'+id+'/', data);
   }
 

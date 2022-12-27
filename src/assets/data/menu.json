@@ -20,11 +20,6 @@
       "ruta": "/dashboard/premios"
    },
    {
-      "nombre": "Premios Condicionados",
-      "icono": "date_range",
-      "ruta": "/dashboard/premios/condicion"
-   },
-   {
       "nombre": "Tickets",
       "icono": "confirmation_number",
       "ruta": "/dashboard/tickets"

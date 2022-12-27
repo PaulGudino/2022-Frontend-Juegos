@@ -5,6 +5,7 @@ import { AwardsConditionService } from 'src/app/servicios/awards-condition/award
 import { AwardsService } from 'src/app/servicios/awards/awards.service';
 import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
+import { GameDateService } from 'src/app/servicios/game-date/game-date.service';
 import { SnackbarService } from 'src/app/servicios/snackbar/snackbar.service';
 
 @Component({
@@ -39,7 +40,8 @@ export class EditAwardsConditionComponent implements OnInit {
     private dialogService: ConfirmDialogService,
     private router: Router, 
     private activerouter: ActivatedRoute, 
-    private staticData: PuenteDatosService
+    private staticData: PuenteDatosService,
+    private gameDataSrv: GameDateService
   ) {
     this.form = this.fb.group({
       startTime:['', Validators.required],
@@ -49,7 +51,8 @@ export class EditAwardsConditionComponent implements OnInit {
    }
 
   async ngOnInit(): Promise<void> {
-    this.staticData.setMenuGeneral();
+    this.form.get('award')?.disable()
+    this.staticData.setMenuTragamonedas();
     this.getAward();
     await this.getAwardConditionId(this.award_condition_id);
 
@@ -128,12 +131,16 @@ export class EditAwardsConditionComponent implements OnInit {
 
           let game = 1;
           let user_register = localStorage.getItem('user_id');
-          
-          formData.append('start_date', this.startDate.toISOString().split('.')[0]);
-          formData.append('end_date', this.endDate.toISOString().split('.')[0]);
+
+          let start_date = this.gameDataSrv.DateFormat(this.startDate)
+          formData.append('start_date', start_date);
+          let end_date = this.gameDataSrv.DateFormat(this.endDate)
+          formData.append('end_date', end_date);
           formData.append('award', this.form.get('award')?.value);
           formData.append('game', game.toString());
           formData.append('user_modify', user_register!);
+          console.log(start_date)
+          console.log(end_date)
 
           this.awardConditionSrv.putAwardCondition(this.award_condition_id, formData).subscribe(
             (res) => {
@@ -159,4 +166,5 @@ export class EditAwardsConditionComponent implements OnInit {
       }
     )
   }
+
 }

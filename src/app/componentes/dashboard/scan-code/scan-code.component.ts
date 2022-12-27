@@ -51,7 +51,7 @@ export class ScanCodeComponent implements OnInit {
    updateScanScreen() {
       const options = {
          title: 'ACTUALIZAR SCANNER',
-         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR INFORMACION DE ESCANER',
+         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR INFORMACION DE ESCANER?',
          cancelText: 'CANCELAR',
          confirmText: 'CREAR',
       };

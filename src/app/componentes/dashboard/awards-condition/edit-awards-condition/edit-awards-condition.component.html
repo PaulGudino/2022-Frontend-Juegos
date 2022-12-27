@@ -11,7 +11,7 @@
                       <mat-form-field>
                          <label>Premios</label><br>
                          <label>Hay {{stock_actual}} del premio: {{award_name}}</label>
-                         <mat-select formControlName="award" mat-select (selectionChange)="imgAward($event.value)" [disabled]="true">
+                         <mat-select formControlName="award" mat-select (selectionChange)="imgAward($event.value)">
                              <mat-option *ngFor="let premio of award_condition" value={{premio.id}}>{{premio.name}}</mat-option>
                          </mat-select>
                          <mat-hint>Seleccione una opción</mat-hint>
