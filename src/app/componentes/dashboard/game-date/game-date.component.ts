@@ -41,7 +41,7 @@ export class GameDateComponent implements OnInit {
 
    ngOnInit(): void {
       this.staticData.setMenuTragamonedas();
-      this.awardsConditionService.getAward().subscribe((data: any) => {
+      this.awardsConditionService.getAwardConditionFilter('?is_approved=false').subscribe((data: any) => {
          this.awardConditionList = data;
       });
    }

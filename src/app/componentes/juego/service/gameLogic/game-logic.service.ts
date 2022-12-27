@@ -8,17 +8,18 @@ import { MatchService } from 'src/app/servicios/match/match.service';
 })
 export class GameLogicService {
    ticket: Ticket = {
-      id: '',
-      invoice_number: '',
-      qr_code_digits: '',
-      qr_code: '',
-      date_created: '',
-      date_modified: '',
-      state: '',
-      client: '',
-      game: '',
-      user_register: '',
-      user_modifier: '',
+      id : '',
+    invoice_number : '',
+    date_created : '',
+    date_ticket_played : '',
+    qr_code_digits : '',
+    state : '',
+    client : '',
+    game_id : '',
+    game_name : '',
+    user_register : '',
+    client_cedula : '',
+    client_id : '',
    };
 
    constructor(
