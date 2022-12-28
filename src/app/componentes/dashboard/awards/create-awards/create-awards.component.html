@@ -52,11 +52,11 @@
                     </mat-form-field>
     
                     <mat-form-field>
-                        <label>Categotría</label>
+                        <label>Categoría</label>
                         <mat-select formControlName="category" mat-select>
                             <mat-option *ngFor="let categoria of Categorias" value={{categoria.id}}>{{categoria.name}}</mat-option>
                         </mat-select>
-                        <mat-hint>Categoria del Premio</mat-hint>
+                        <mat-hint>Categoría del Premio</mat-hint>
                         <mat-error *ngIf="form.controls['category'].hasError('required')" >
                             Campo requerido
                         </mat-error>

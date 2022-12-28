@@ -23,7 +23,7 @@
                     <div class="container_form">
                         <h2>
                             Nueva contraseña:
-                            Minimo 8 caracteres {{input.value.length || 0}}/8
+                            Mínimo 8 caracteres {{input.value.length || 0}}/8
                         </h2>
                         <div class = "ancho password border_container">
                             <input class="form__input" #input matInput onpaste="return false" autocomplete="off" minlength="8" formControlName="password" [type]="ocultar ? 'password' : 'text'">

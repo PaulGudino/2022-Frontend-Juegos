@@ -24,14 +24,14 @@
                             <button mat-icon-button matSuffix (click)="ocultar2= !ocultar2"> <mat-icon>{{ocultar2 ? 'visibility_off' : 'visibility'}}</mat-icon></button>
                     </div>
                     <mat-hint align="end">
-                        Minimo 8 caracteres
+                        Mínimo 8 caracteres
                         {{input_new.value.length || 0}}/8
                     </mat-hint>
                     <mat-error *ngIf="form.controls['new_password'].hasError('required')" >
                         Campo requerido !!!
                     </mat-error>
                     <mat-error *ngIf="form.controls['new_password'].hasError('minlength')" >
-                        La longitud minima es de 8 caracteres, actualmente tiene
+                        La longitud mínima es de 8 caracteres, actualmente tiene
                         {{input_new.value.length || 0}}/8
                     </mat-error>
                 </mat-form-field>
@@ -43,14 +43,14 @@
                             <button mat-icon-button matSuffix (click)="ocultar3= !ocultar3"> <mat-icon>{{ocultar3 ? 'visibility_off' : 'visibility'}}</mat-icon></button>
                     </div>
                     <mat-hint align="end">
-                        Minimo 8 caracteres
+                        Mínimo 8 caracteres
                         {{input_new_confirm.value.length || 0}}/8
                     </mat-hint>
                     <mat-error *ngIf="form.controls['confirm_password'].hasError('required')" >
                         Campo requerido !!!
                     </mat-error>
                     <mat-error *ngIf="form.controls['confirm_password'].hasError('minlength')" >
-                        La longitud minima es de 8 caracteres, actualmente tiene
+                        La longitud mínima es de 8 caracteres, actualmente tiene
                         {{input_new_confirm.value.length || 0}}/8
                     </mat-error>
                 </mat-form-field>

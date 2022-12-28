@@ -17,6 +17,11 @@
             />
          </figure>
       </div>
+      <div class="container-dimensions">
+         <p class="dimensions-instructions color-white">
+            Agregar imágenes en formato jpg
+         </p>
+      </div>
       <!-- <form
                   [formGroup]="form"
                   action=""
@@ -34,12 +39,11 @@
             [style.margin-left]="'.5rem'"
             formControlName="transition"
          />
-      </form>
-      <div class="container-dimensions">
-         <p class="dimensions-instructions color-white">
-            Agregar imagenes en formato jpg
+         <p class="color-white mt-2">
+            Configuración actual de transición: {{ transitionTime }}
          </p>
-      </div>
+      </form>
+      
       <div class="container-buttons">
          <app-button-primary
             title="Regresar"

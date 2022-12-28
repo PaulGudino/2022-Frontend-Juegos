@@ -41,3 +41,9 @@ img{
    gap: 1rem;
    flex-wrap: wrap;
 }
+.images-sections{
+   margin-top: 15px;
+}
+.images-sections p{
+   text-align: center;
+}
