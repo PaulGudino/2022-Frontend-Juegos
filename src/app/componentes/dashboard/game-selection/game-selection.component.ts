@@ -33,7 +33,7 @@ export class GameSelectionComponent implements OnInit {
    }
 
    tragamonedas_settings() {
-      this.router.navigate(['/dashboard/juego/fecha']);
+      this.router.navigate(['/dashboard/juego/resumen']);
    }
 
    toogleActiveGame(gameId: number) {

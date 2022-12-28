@@ -1,49 +1,53 @@
 [
     {
-        "nombre": "Regresar",
-        "icono": "arrow_back",
-        "ruta": "/dashboard/juego/seleccion"
-
-    },
-    {
-         "nombre": "Fecha",
-         "icono": "radio_button_checked",
-         "ruta": "/dashboard/juego/fecha"
-    },
-    {
+      "nombre": "Regresar",
+      "icono": "arrow_back",
+      "ruta": "/dashboard/juego/seleccion"
+   },
+   {
+      "nombre": "Resumen",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/juego/resumen"
+   },
+   {
+      "nombre": "Fecha",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/juego/fecha"
+   },
+   {
       "nombre": "Premios Condicionados",
       "icono": "radio_button_checked",
       "ruta": "/dashboard/premios/condicion"
    },
-    {
-        "nombre": "Publicidad",
-        "icono": "radio_button_checked",
-        "ruta": "/dashboard/juego/publicidad"
-     },
-     {
-        "nombre": "Salvapantallas",
-        "icono": "radio_button_checked",
-        "ruta": "/dashboard/juego/salvapantallas"
-     },
-     {
-        "nombre": "Scaneo",
-        "icono": "radio_button_checked",
-        "ruta": "/dashboard/juego/scan"
-     },
-     {
-        "nombre": "Diseño Juego",
-        "icono": "radio_button_checked",
-        "ruta": "/dashboard/juego/diseno"
-     },
-     {
-        "nombre": "Diseño Ganadores",
-        "icono": "radio_button_checked",
-        "ruta": "/dashboard/juego/diseno/ganador"
-     },
-     {
-        "nombre": "Probabilidades",
-        "icono": "radio_button_checked",
-        "ruta": "/dashboard/probabilidades"
-     }
+   {
+      "nombre": "Publicidad",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/juego/publicidad"
+   },
+   {
+      "nombre": "Salvapantallas",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/juego/salvapantallas"
+   },
+   {
+      "nombre": "Scaneo",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/juego/scan"
+   },
+   {
+      "nombre": "Diseño Juego",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/juego/diseno"
+   },
+   {
+      "nombre": "Diseño Ganadores",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/juego/diseno/ganador"
+   },
+   {
+      "nombre": "Probabilidades",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/probabilidades"
+   }
     
 ]
