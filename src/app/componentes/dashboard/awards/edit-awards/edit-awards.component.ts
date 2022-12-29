@@ -76,6 +76,7 @@ export class EditAwardsComponent implements OnInit {
         console.log(err);
       }
     )
+    this.form.get('juego')?.disable()
   }
   capturarFile(event: any): void {
     this.fileToUpload = this.imageSrv.captureFile(event);

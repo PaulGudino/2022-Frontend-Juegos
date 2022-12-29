@@ -36,7 +36,7 @@ export class PermisosRolesComponent implements OnInit {
       });
     }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.statickData.setMenuGeneral();
     let rolid = Number(this.activerouter.snapshot.paramMap.get('id'));
     this.roles_service.getRolbyId(rolid).subscribe(
@@ -44,7 +44,7 @@ export class PermisosRolesComponent implements OnInit {
         this.rol = data.name;
     });
     this.cargarPermisos();
-    this.obtenerPermisosbyrol(rolid);
+    await this.obtenerPermisosbyrol(rolid);
   }
 
 
@@ -70,7 +70,7 @@ export class PermisosRolesComponent implements OnInit {
     });
   }
 
-  obtenerPermisosbyrol(id:number){
+  async obtenerPermisosbyrol(id:number){
     this.permisoSrv.getPermisosbyRol(id).subscribe(
       (data) => {
         const checkArray: FormArray = this.form.get('ckeckArray') as FormArray;
