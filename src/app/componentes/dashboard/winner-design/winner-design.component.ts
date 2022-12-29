@@ -70,7 +70,7 @@ export class WinnerDesignComponent implements OnInit {
          title: 'ACTUALIZAR RESULTADO',
          message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR LA INFORMACIÓN DE RESULTADO GANADOR?',
          cancelText: 'CANCELAR',
-         confirmText: 'CREAR',
+         confirmText: 'ACTUALIZAR',
       };
 
       this.dialogService.open(options);
@@ -90,7 +90,7 @@ export class WinnerDesignComponent implements OnInit {
             this.theme.updateDesgin(1, formData);
             //this.router.navigate(['/dashboard/juego/fecha']);
             this.snackbar.mensaje(
-               'Informacion Escaner Actualizada exitosamente'
+               'Informacion Diseño Ganadores Actualizada Exitosamente'
             );
          }
       });

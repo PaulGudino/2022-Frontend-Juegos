@@ -55,10 +55,10 @@ export class SaveScreenComponent implements OnInit {
 
    updateSaveScreen() {
       const options = {
-         title: 'ACTUALIZAR Salvapantallas',
+         title: 'ACTUALIZAR SALVAPANTALLAS',
          message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR EL SALVAPANTALLAS?',
          cancelText: 'CANCELAR',
-         confirmText: 'CREAR',
+         confirmText: 'ACTUALIZAR',
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe((confirmed) => {
@@ -90,7 +90,7 @@ export class SaveScreenComponent implements OnInit {
             this.theme.updateDesgin(1, formData);
 
             //this.router.navigate(['/dashboard/juego/fecha']);
-            this.snackbar.mensaje('Salvapantallas Actualizado exitosamente');
+            this.snackbar.mensaje('Salvapantallas Actualizado Exitosamente');
          } else if (confirmed && !this.fileToUpload) {
             let formData: FormData = new FormData();
             formData.append('id', '1');
@@ -114,7 +114,7 @@ export class SaveScreenComponent implements OnInit {
             this.theme.updateDesgin(1, formData);
 
             //this.router.navigate(['/dashboard/juego/fecha']);
-            this.snackbar.mensaje('Salvapantallas Actualizado exitosamente');
+            this.snackbar.mensaje('Salvapantallas Actualizado Exitosamente');
          }
       });
    }

@@ -120,7 +120,7 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
         title: 'CAMBIAR CONFIGURACION PROBABILIDADES JUEGO',
         message: '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
         cancelText: 'CANCELAR',
-        confirmText: 'CREAR'
+        confirmText: 'ACTUALIZAR'
       }
       // let user_register = localStorage.getItem('user_id');
       let body = {
