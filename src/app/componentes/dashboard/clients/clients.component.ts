@@ -19,13 +19,13 @@ import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-d
 export class ClientsComponent implements OnInit{
 
   Filters = [
-    {id: '?state=Activo', name: 'Clientes Activos'},
-    {id: '?state=Inactivo', name: 'Clientes Inactivos'},
+    // {id: '?state=Activo', name: 'Clientes Activos'},
+    // {id: '?state=Inactivo', name: 'Clientes Inactivos'},
     {id: '?ordering=-created', name: 'Ultimos Clientes Creados'},
     {id: '?ordering=created', name: 'Primeros Clientes Creados'},
   ]
 
-  filter_default = '?state=Activo'
+  filter_default = ''
 
   singularName : string = 'cliente';
   pluralName : string = 'clientes';
@@ -33,11 +33,12 @@ export class ClientsComponent implements OnInit{
   permissions : any = [];
 
   displayedColumns : string[] = [
+    'id',
     'cedula',
     'names',
     'surnames',
     'email',
-    'state',
+    // 'state',
     'actions'
   ]
   dataSource !: MatTableDataSource<Client>;

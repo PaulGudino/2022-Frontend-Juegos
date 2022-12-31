@@ -40,7 +40,7 @@ export class EditClientComponent implements OnInit {
       phone : new FormControl('', [Validators.required, Validators.minLength(10)]),
       sex: ['', Validators.required],
       address : ['', Validators.required],
-      state : ['', Validators.required]
+      // state : ['', Validators.required]
     });
   }
 
@@ -94,7 +94,7 @@ export class EditClientComponent implements OnInit {
     formData.append('phone', this.formGroup.get('phone')?.value);
     formData.append('address', this.formGroup.get('address')?.value);
     formData.append('sex', this.formGroup.get('sex')?.value);
-    formData.append('state', this.formGroup.get('state')?.value);
+    // formData.append('state', this.formGroup.get('state')?.value);
     formData.append('user_client_modify', user_client_modify!);
     return formData;
   }
@@ -121,7 +121,7 @@ export class EditClientComponent implements OnInit {
       phone : this.currentClient.phone,
       address : this.currentClient.address,
       sex : this.currentClient.sex,
-      state : this.currentClient.state
+      // state : this.currentClient.state
     })
   }
 
