@@ -44,7 +44,8 @@
                         <mat-calendar
                            class="green-primary"
                            [(selected)]="beginDate"
-                           [minDate]="minDate"
+                           [minDate]="beginDate"
+                           [maxDate]="beginDate"
                         ></mat-calendar>
                      </mat-card>
                   </div>
@@ -61,7 +62,8 @@
                         <mat-calendar
                            class="green-primary"
                            [(selected)]="finishDate"
-                           [minDate]="minDatefin"
+                           [minDate]="finishDate"
+                           [maxDate]="finishDate"
                         ></mat-calendar>
                      </mat-card>
                   </div>

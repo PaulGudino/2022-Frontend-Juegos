@@ -51,8 +51,8 @@ export class ApiService {
   postCambiarContraseña(id:number, form: FormData){
     return this.http.post(this.url+'api/user/'+id+'/change_password/', form);
   }
-  postCambiarisActivate(id:number){
-    return this.http.post(this.url+'api/user/'+id+'/activate_user/', null);
-  }
+  // postCambiarisActivate(id:number){
+  //   return this.http.post(this.url+'api/user/'+id+'/activate_user/', null);
+  // }
 
 }
