@@ -89,32 +89,50 @@
           <ng-container matColumnDef="Acciones">
              <th mat-header-cell *matHeaderCellDef></th>
              <td mat-cell *matCellDef="let fila">
-                <div>
-                   <button
-                      mat-icon-button
-                      (click)="verPremios(fila.id)"
-                      color="primary"
-                      matTooltip="Visualizar"
-                   >
-                      <mat-icon class="color-white">remove_red_eye</mat-icon>
-                   </button>
-                   <button
-                      mat-icon-button
-                      (click)="editarPremios(fila.id)"
-                      color="primary"
-                      matTooltip="Editar"
-                   >
-                      <mat-icon class="color-white">edit</mat-icon>
-                   </button>
-                   <button
-                      mat-icon-button
-                      (click)="eliminarPremios(fila.id)"
-                      color="warn"
-                      matTooltip="Eliminar"
-                   >
-                      <mat-icon class="green-primary">delete</mat-icon>
-                   </button>
-                </div>
+                <div *ngIf="fila.is_approved; else inactivo">
+                  <button
+                  mat-icon-button
+                  (click)="verPremios(fila.id)"
+                  color="primary"
+                  matTooltip="Visualizar"
+               >
+                  <mat-icon class="color-white">remove_red_eye</mat-icon>
+               </button>
+               <button
+                  mat-icon-button
+                  (click)="eliminarPremios(fila.id)"
+                  color="warn"
+                  matTooltip="Eliminar"
+               >
+                  <mat-icon class="green-primary">delete</mat-icon>
+               </button>
+               </div>
+               <ng-template #inactivo>
+                  <button
+                  mat-icon-button
+                  (click)="verPremios(fila.id)"
+                  color="primary"
+                  matTooltip="Visualizar"
+               >
+                  <mat-icon class="color-white">remove_red_eye</mat-icon>
+               </button>
+               <button
+                  mat-icon-button
+                  (click)="editarPremios(fila.id)"
+                  color="primary"
+                  matTooltip="Editar"
+               >
+                  <mat-icon class="color-white">edit</mat-icon>
+               </button>
+               <button
+                  mat-icon-button
+                  (click)="eliminarPremios(fila.id)"
+                  color="warn"
+                  matTooltip="Eliminar"
+               >
+                  <mat-icon class="green-primary">delete</mat-icon>
+               </button>
+               </ng-template>
              </td>
           </ng-container>
    

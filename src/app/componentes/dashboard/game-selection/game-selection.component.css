@@ -22,4 +22,12 @@ img{
    width:7rem;
    height:7rem;
    left: calc(50% - 56px);
+   display:flex;
+   justify-content: center;
+   align-items: center;
+}
+.logo-game-container img{
+   width: 66px;
+    height: 60px;
+    margin-left: 7px;
 }

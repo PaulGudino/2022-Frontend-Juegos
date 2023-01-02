@@ -36,7 +36,7 @@ export class PermisosRolesComponent implements OnInit {
       });
     }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.statickData.setMenuGeneral();
     let rolid = Number(this.activerouter.snapshot.paramMap.get('id'));
     this.roles_service.getRolbyId(rolid).subscribe(
@@ -44,7 +44,7 @@ export class PermisosRolesComponent implements OnInit {
         this.rol = data.name;
     });
     this.cargarPermisos();
-    this.obtenerPermisosbyrol(rolid);
+    await this.obtenerPermisosbyrol(rolid);
   }
 
 
@@ -70,14 +70,13 @@ export class PermisosRolesComponent implements OnInit {
     });
   }
 
-  obtenerPermisosbyrol(id:number){
+  async obtenerPermisosbyrol(id:number){
     this.permisoSrv.getPermisosbyRol(id).subscribe(
       (data) => {
         const checkArray: FormArray = this.form.get('ckeckArray') as FormArray;
         for (let i = 0; i < data.length; i++) {
           this.cambiarcheckbox(data[i].permission.toString());
-          console.log('Permisos-roles',data[i].permission.toString())
-          checkArray.push(new FormControl(data[i].permission.toString()));
+          checkArray.push(new FormControl(data[i].id_permission.toString()));
           this.Permisos_eliminar.push(data[i].id.toString());
         }
     },
@@ -118,7 +117,7 @@ export class PermisosRolesComponent implements OnInit {
       for( let i = 0; i < permisoseliminar.length; i++){
         this.permisoSrv.deletePermissionRol(Number(permisoseliminar[i])).subscribe(
           (data) => {
-            console.log(data);
+
           });
       }
     }
@@ -133,7 +132,6 @@ export class PermisosRolesComponent implements OnInit {
         let p = Number(permisosnuevos[i]);
         this.permisoSrv.postPermisosbyRol({rol: rol_id, permission: p}).subscribe(
           (data) => {
-            console.log('Permisos actualizados correctamente');
           });
       }
       this.snackbar.mensaje('Permisos actualizados correctamente');

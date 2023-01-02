@@ -24,7 +24,7 @@ export class ViewClientComponent implements OnInit {
     phone : '',
     sex : '',
     address : '',
-    state : '',
+    // state : '',
     user_client_register : '',
     user_client_modify : '',
     created : '',

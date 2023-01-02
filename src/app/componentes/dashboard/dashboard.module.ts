@@ -54,6 +54,7 @@ import { BottomPublicityComponent } from './publicity/bottom-publicity/bottom-pu
 import { BoxComponent } from './publicity-game/box/box.component';
 import { BoxPublicityComponent } from './publicity/box-publicity/box-publicity.component';
 import { TicketConfigurationComponent } from './ticket-configuration/ticket-configuration.component';
+import { GameSummaryComponent } from './game-summary/game-summary.component';
 
 @NgModule({
    declarations: [
@@ -111,6 +112,7 @@ import { TicketConfigurationComponent } from './ticket-configuration/ticket-conf
       BoxComponent,
       BoxPublicityComponent,
       TicketConfigurationComponent,
+      GameSummaryComponent,
    ],
    imports: [
       SharedModule,

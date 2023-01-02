@@ -10,12 +10,13 @@
    gap: .5rem;
 }
 .preview-container{
+   margin-left: 150px;
    width:9rem;
    height:5rem;
 }
 img{
-   width: 100%;
-   height: 100%;
+   width: 350%;
+   height: 350%;
 }
 .container-transition{
    margin-top:1.5rem;
@@ -39,4 +40,10 @@ img{
    display: flex;
    gap: 1rem;
    flex-wrap: wrap;
+}
+.images-sections{
+   margin-top: 15px;
+}
+.images-sections p{
+   text-align: center;
 }

@@ -44,9 +44,8 @@ export class BottomPublicityComponent implements OnInit {
    }
    guardarPublicidad() {
       const options = {
-         title: 'CAMBIAR CONFIGURACION PROBABILIDADES JUEGO',
-         message:
-            '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
+         title: 'AGREGAR PUBLICIDAD INFERIOR JUEGO',
+         message: '¿ESTÁ SEGURO QUE QUIERE AGREGAR PUBLICIDAD INFERIOR?',
          cancelText: 'CANCELAR',
          confirmText: 'CREAR',
       };

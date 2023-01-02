@@ -120,10 +120,10 @@ export class DesignComponent implements OnInit {
 
    updateDesign() {
       const options = {
-         title: 'ACTUALIZAR Salvapantallas',
-         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR EL SALVAPANTALLAS?',
+         title: 'ACTUALIZAR DISEÑO DEL JUEGO',
+         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR EL DISEÑO DEL JUEGO?',
          cancelText: 'CANCELAR',
-         confirmText: 'CREAR',
+         confirmText: 'ACTUALIZAR',
       };
       this.dialogService.open(options);
       this.dialogService.confirmed().subscribe((confirmed) => {

@@ -51,9 +51,9 @@ export class ScanCodeComponent implements OnInit {
    updateScanScreen() {
       const options = {
          title: 'ACTUALIZAR SCANNER',
-         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR INFORMACION DE ESCANER',
+         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR INFORMACION DE ESCANER?',
          cancelText: 'CANCELAR',
-         confirmText: 'CREAR',
+         confirmText: 'ACTUALIZAR',
       };
 
       this.dialogService.open(options);
@@ -69,7 +69,7 @@ export class ScanCodeComponent implements OnInit {
             this.theme.updateDesgin(1, formData);
             //this.router.navigate(['/dashboard/juego/fecha']);
             this.snackbar.mensaje(
-               'Informacion Escaner Actualizada exitosamente'
+               'Informacion Escaner Actualizada Exitosamente'
             );
          }
       });

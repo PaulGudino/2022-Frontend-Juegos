@@ -23,7 +23,7 @@ export class ProbabilityService {
   }
 
   getProbabilites():Observable<any>{
-    return this.http.get<any>(this.url+'api/probabilidad/')
+    return this.http.get<any>(this.url+'api/probabilidad/1')
   }
 
   postItemToCategory(data:any){
@@ -31,7 +31,7 @@ export class ProbabilityService {
 
   }
 
-  postProbabilityConfig(data:any){
-    return this.http.post(this.url+'api/probabilidad/',data)
+  putProbabilityConfig(data:FormData){
+    return this.http.put(this.url+'api/probabilidad/1/',data)
   }
 }

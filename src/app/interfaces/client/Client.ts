@@ -7,7 +7,7 @@ export interface Client {
     phone : string;
     sex : string,
     address : string;
-    state : string;
+    // state : string;
     user_client_register : string;
     user_client_modify : string;
     created : string;

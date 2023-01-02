@@ -72,21 +72,7 @@ export class ProbabilidadesComponent implements OnInit {
 
         })
 
-       this.probability.getProbabilites()
-			.subscribe(data =>{
-            if(data.length > 0){
-               console.log(data)
-               this.probabilityData = data[data.length-1]
-               console.log(this.probabilityData);
-               this.limitWinners = this.probabilityData.winners_limit
-               this.percentage = this.probabilityData.percent_win
-               this.limitAttempts = this.probabilityData.attempts_limit
-               this.limitMessage = `limite actual Intentos ${this.limitWinners}`
-
-            }
-
-
-			})
+      this.getTragamonedasProbability()
 
    })
 }
@@ -115,42 +101,33 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
  }
 
   addProbabilityConfig(){
-    if(this.form.valid && this.validateData()){
+    if(this.validateData()){
       const options = {
         title: 'CAMBIAR CONFIGURACION PROBABILIDADES JUEGO',
         message: '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
         cancelText: 'CANCELAR',
-        confirmText: 'CREAR'
+        confirmText: 'ACTUALIZAR'
       }
       // let user_register = localStorage.getItem('user_id');
-      let body = {
-        percent_win: this.form.get('percent_win')?.value,
-        winners_limit: this.form.get('limit_winners')?.value,
-        attempts_limit: this.form.get('limit_attempts')?.value,
-        is_active: true,
-        game_id: '1',
-      }
+      let formData: FormData = new FormData();
+      formData.append('percent_win', this.form.get('percent_win')?.value);
+      formData.append('winners_limit', this.form.get('limit_winners')?.value);
+      formData.append('attempts_limit', this.form.get('limit_attempts')?.value);
+      formData.append('game_id', '1');
       this.dialog.open(options);
       this.dialog.confirmed().subscribe(confirmed =>{
         if(confirmed){
-          this.probability.postProbabilityConfig(body)
+          this.probability.putProbabilityConfig(formData)
           .subscribe(res =>{
             console.log(res);
             this.snackBar.mensaje('Configuracion Cambiada con exito');
-            this.limitWinners = body.winners_limit
-            this.limitMessage = `Todavia no ha pasado el limite actual ${this.limitWinners}`
-            this.percentage = body.percent_win;
-            this.limitAttempts = body.attempts_limit
-
+            this.getTragamonedasProbability()
           })
 
         }
 
       })
 
-
-    }else{
-      this.snackBar.mensaje('Debe llenar todos los campos de probabilidad antes de poder guardar cambios');
 
     }
   }
@@ -171,17 +148,22 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
     let limit_winner = this.form.get('limit_winners')?.value
     let limit_attempts= this.form.get('limit_attempts')?.value
 
+    if(!this.form.valid){
+      this.snackBar.mensaje('Lleno el formulario correctamente');
+      return false;
+    }
+
     if(percent>100){
       this.snackBar.mensaje('El porcentaje de ganar no puede ser mayor a 100');
       return false;
 
-    }else if (percent<1){
-      this.snackBar.mensaje('El porcentaje de ganar no puede ser menor a 1');
+    }else if (percent<0){
+      this.snackBar.mensaje('El porcentaje de ganar no puede ser menor a 0');
       return false;
     }
 
-    if(limit_winner<1){
-      this.snackBar.mensaje('El limite de ganadores no puede ser menor a 1');
+    if(limit_winner<0){
+      this.snackBar.mensaje('El limite de ganadores no puede ser menor a 0');
       return false;
     }
 
@@ -192,6 +174,18 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
 
     return true;
 
+  }
+  getTragamonedasProbability(){
+    this.probability.getProbabilites()
+    .subscribe(data =>{
+             console.log(data)
+             this.probabilityData = data
+             console.log('sdasdas',this.probabilityData);
+             this.limitWinners = this.probabilityData.winners_limit
+             this.percentage = this.probabilityData.percent_win
+             this.limitAttempts = this.probabilityData.attempts_limit
+             this.limitMessage = `limite actual Intentos ${this.limitWinners}`
+    })
   }
 
 }

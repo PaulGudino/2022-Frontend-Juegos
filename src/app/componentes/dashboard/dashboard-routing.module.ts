@@ -43,6 +43,7 @@ import { SaveScreenComponent } from './save-screen/save-screen.component';
 import { ScanCodeComponent } from './scan-code/scan-code.component';
 import { DesignComponent } from './design/design.component';
 import { TicketConfigurationComponent } from './ticket-configuration/ticket-configuration.component';
+import { GameSummaryComponent } from './game-summary/game-summary.component';
 
 const routes: Routes = [
    {
@@ -122,7 +123,8 @@ const routes: Routes = [
          {
             path: 'tickets/configuracion',
             component: TicketConfigurationComponent,
-            canActivate: [InicioGuard],
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Editar Diseño del Ticket' },
          },
          {
             path: 'tickets',
@@ -169,7 +171,8 @@ const routes: Routes = [
          {
             path: 'probabilidades',
             component: ProbabilidadesComponent,
-            canActivate: [InicioGuard],
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Probabilidades del juego' },
          },
 
          //Premios por condicion
@@ -182,35 +185,76 @@ const routes: Routes = [
             path: 'premios/condicion/crear',
             component: CreateAwardsConditionComponent,
             canActivate: [PermissionsGuard, InicioGuard],
-            data: { Permiso_nombre: 'Crear Condicion de Premio' },
+            data: { Permiso_nombre: 'Crear Condición de Premio' },
          },
          {
             path: 'premios/condicion/visualizar/:id',
             component: ViewAwardsConditionComponent,
             canActivate: [PermissionsGuard, InicioGuard],
-            data: { Permiso_nombre: 'Ver Condicion de Premio' },
+            data: { Permiso_nombre: 'Ver Condición de Premio' },
          },
          {
             path: 'premios/condicion/editar/:id',
             component: EditAwardsConditionComponent,
             canActivate: [PermissionsGuard, InicioGuard],
-            data: { Permiso_nombre: 'Editar Condicion de Premio' },
+            data: { Permiso_nombre: 'Editar Condición de Premio' },
          },
 
          //Game
-         { path: 'juego/fecha', component: GameDateComponent },
-         { path: 'juego/seleccion', component: GameSelectionComponent },
-         { path: 'juego/publicidad', component: PublicityComponent },
-         { path: 'juego/publicidad/top', component: TopPublicityComponent },
+         { 
+            path: 'juego/resumen', component: GameSummaryComponent,
+            canActivate: [InicioGuard],
+         },
+         { 
+            path: 'juego/fecha', component: GameDateComponent,
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Fecha del Juego' }  
+         },
+         { 
+            path: 'juego/seleccion', component: GameSelectionComponent,
+            canActivate: [InicioGuard], 
+         },
+         { 
+            path: 'juego/publicidad', component: PublicityComponent ,
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Publicidad del Juego' } 
+         },
+         { 
+            path: 'juego/publicidad/top', component: TopPublicityComponent,
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Publicidad del Juego' }  
+         },
          {
             path: 'juego/publicidad/bottom',
             component: BottomPublicityComponent,
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Publicidad del Juego' } 
          },
-         { path: 'juego/salvapantallas', component: SaveScreenComponent },
-         { path: 'juego/scan', component: ScanCodeComponent },
-         { path: 'juego/diseno', component: DesignComponent },
-         { path: 'juego/diseno/ganador', component: WinnerDesignComponent },
-         { path: 'juego/diseno/publicity', component: PublicityGameComponent },
+         { 
+            path: 'juego/salvapantallas', component: SaveScreenComponent,
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Salvapantallas del Juego' }  
+         },
+         { 
+            path: 'juego/scan', component: ScanCodeComponent ,
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Presentación de Escaneo del Juego' } 
+         },
+         { 
+            path: 'juego/diseno', component: DesignComponent,
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Diseño del Juego' } 
+         },
+         { 
+            path: 'juego/diseno/ganador', component: WinnerDesignComponent,
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Presentación de Ganadores del Juego' }  
+         },
+         { 
+            path: 'juego/diseno/publicity', component: PublicityGameComponent,
+            canActivate: [PermissionsGuard, InicioGuard],
+            data: { Permiso_nombre: 'Modificar Diseño del Juego' }  
+         },
       ],
    },
 ];

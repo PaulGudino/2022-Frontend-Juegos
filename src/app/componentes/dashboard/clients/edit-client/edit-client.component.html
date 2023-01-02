@@ -2,7 +2,7 @@
     <!-- Toolbar -->
     
     <mat-toolbar>
-        <span>Editar Cliente : {{currentClient.names}} #{{currentClient.cedula}} </span>
+        <span>Editar Cliente : {{currentClient.names}} {{currentClient.surnames}} #{{currentClient.cedula}} </span>
     </mat-toolbar>
     
     <!-- Form -->
@@ -95,7 +95,7 @@
                 </mat-error>
             </mat-form-field>
     
-            <mat-form-field >
+            <!-- <mat-form-field >
                 <label>Estado</label>
                 <mat-select formControlName="state" mat-select >
                     <mat-option value="Activo">Activo</mat-option>
@@ -105,7 +105,7 @@
                 <mat-error *ngIf="formGroup.controls['state'].hasError('required')">
                     Campo requerido !!!
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
         </form>
     
             <!-- Buttons -->

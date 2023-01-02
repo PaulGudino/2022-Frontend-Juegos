@@ -40,7 +40,7 @@ export class CreateClientComponent implements OnInit {
       phone : new FormControl('', [Validators.required, Validators.minLength(10)]),
       sex: ['', Validators.required],
       address : ['', Validators.required],
-      state : ['', Validators.required]
+      // state : ['', Validators.required]
     });
   }
 
@@ -93,7 +93,7 @@ export class CreateClientComponent implements OnInit {
     formData.append('phone', this.formGroup.get('phone')?.value);
     formData.append('address', this.formGroup.get('address')?.value);
     formData.append('sex', this.formGroup.get('sex')?.value);
-    formData.append('state', this.formGroup.get('state')?.value);
+    // formData.append('state', this.formGroup.get('state')?.value);
     formData.append('user_client_register', user_client_register!);
     formData.append('user_client_modify', user_client_register!);
     return formData;

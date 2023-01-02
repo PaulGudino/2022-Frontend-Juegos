@@ -1,5 +1,6 @@
 header, .dialog-message {
     text-transform: lowercase;
+    text-align: center;
 }
 .header::first-letter, .dialog-message::first-letter {
     text-transform: uppercase;
@@ -12,10 +13,12 @@ header, .dialog-message {
     width: 500px;
 }
 h1{
-    color: #fff
+    color: #fff;
+    text-align: center;
 }
 p{
-    color: #fff
+    color: #fff;
+    text-align: center;
 }
 button{
     background: #3f3f43;

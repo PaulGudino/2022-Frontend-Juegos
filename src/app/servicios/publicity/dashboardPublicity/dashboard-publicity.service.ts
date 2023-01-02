@@ -7,7 +7,8 @@ import { Publicity } from 'src/app/interfaces/publicity/publicity';
 export class DashboardPublicityService {
    topPublicityList: Publicity[] = [];
    bottomPublicityList: Publicity[] = [];
-   secondsShowPublicity: number = 3;
+   secondsShowTopPublicity: number = 3;
+   secondsShowBottomPublicity: number = 3;
    topImageFileToUpload!: File;
    bottomImageFileToUpload!: File;
    previewTopImage: string = '';
@@ -49,5 +50,13 @@ export class DashboardPublicityService {
    }
    setPreviewBottomImage(url: string) {
       this.previewBottomImage = url;
+   }
+
+   setSecondsShowTop(seconds: number) {
+      this.secondsShowTopPublicity = seconds;
+   }
+
+   setSecondsShowBottom(seconds: number) {
+      this.secondsShowBottomPublicity = seconds;
    }
 }

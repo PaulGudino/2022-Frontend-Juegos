@@ -5,6 +5,10 @@ import { DashboardStyleService } from '../../../../servicios/theme/dashboardStyl
 import { ProbabilityService } from '../../../../servicios/probability/probability/probability.service';
 import { AnimationGameService } from '../../service/animationGame/animation-game.service';
 
+import { ThemeService } from '../../service/theme/theme.service';
+import { PublicityGameService } from 'src/app/servicios/publicityGame/publicity-game.service';
+import { PublicityGame } from 'src/app/interfaces/publicityGame/PublicityGame';
+
 @Component({
    selector: 'app-play-view',
    templateUrl: './play-view.component.html',
@@ -30,7 +34,9 @@ export class PlayViewComponent implements OnInit {
       public publicity: DashboardPublicityService,
       public styles: DashboardStyleService,
       private probabilityService: ProbabilityService,
-      public animation: AnimationGameService
+      public animation: AnimationGameService,
+      public theme: ThemeService,
+      public publicityGame: PublicityGameService
    ) {}
 
    ngOnInit(): void {

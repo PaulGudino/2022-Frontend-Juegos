@@ -3,7 +3,7 @@
       <span>Probabilidad</span>
       <span class="example-spacer"></span>
    </mat-toolbar>
-   
+
    <app-modal
       *ngIf="isModalOpen"
       (propagar)="manageCloseModal($event)"
@@ -11,9 +11,11 @@
       [publicity]="publicityList"
    >
    </app-modal>
-   
-   <div class="container-premios background-black-primary">
-      <div class="container-categories">
+
+   <div
+      class="container-premios justify-content-center background-black-primary"
+   >
+      <!-- <div class="container-categories">
          <div class="categories-caption green-primary">
             <h3 mat-lib-title>Categorias y Premios</h3>
             <h3 mat-lib-title>Casillas Disponibles</h3>
@@ -46,79 +48,74 @@
             [awards]="common"
             [boxes]="common_box"
          ></app-categorie>
-   
-         <!-- <app-categorie
-            (propagar)="padreOpenModal($event)"
-            color="publicity"
-            title="publicity"
-            [boxes]="common_box"
-         ></app-categorie> -->
+
       </div>
-   
+    -->
       <div class="container-set-categories green-primary">
-         <h3 mat-lib-title class="set-categories__title">Editar Probabilidades</h3>
-         <div class="container-set-squares">
-            <div class="container-total">
-               <form
-                  [formGroup]="form"
-                  action=""
-                  class="row align-items-center justify-content-start me-2 form"
+         <h3 mat-lib-title class="set-categories__title">
+            Editar Probabilidades
+         </h3>
+
+         <div class="container-total">
+            <form
+               [formGroup]="form"
+               action=""
+               class="row justify-content-center align-items-center me-2 form"
+            >
+               <label class="total col-8 label white-color" for="percent_win"
+                  >Porcentaje de ganar un premio</label
                >
-                  <label class="total col-8" for="percent_win"
-                     >Porcentaje de ganar un premio</label
-                  >
-                  <input
-                     onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                     oninput="this.value = !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null"
-                     type="number"
-                     class="input-global col-4 ms-4"
-                     id="percent_win"
-                     formControlName="percent_win"
-                     required
-                  />
-                  %
-                  <p class="ganadores__limit-message no-pass-limit ms-3">
-                     Porcentaje actual de ganar {{ percentage }}%
-                  </p>
-                  <label class="total col-8 mt-4" for="limit_winners"
-                     >Limitar ganadores por dia</label
-                  >
-                  <input
-                     onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                     oninput="this.value = !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null"
-                     type="number"
-                     class="input-global col-4 ms-4"
-                     id="limit_winners"
-                     formControlName="limit_winners"
-                     required
-                  />
-   
-                  <p class="ganadores__limit-message no-pass-limit ms-3">
-                     {{ limitMessage }}
-                  </p>
-   
-                  <label class="total col-8 mt-4" for="limit_attempts"
-                     >Numero de intentos</label
-                  >
-                  <input
-                     onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                     oninput="this.value = !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null"
-                     type="number"
-                     class="input-global col-4 ms-4"
-                     id="limit_attempts"
-                     formControlName="limit_attempts"
-                     required
-                  />
-                  <p class="ganadores__limit-message no-pass-limit ms-3">
-                     Numero actual de Intentos {{ limitAttempts }}
-                  </p>
-               </form>
-               <app-button-primary
-                  (click)="addProbabilityConfig()"
-                  title="Guardar"
-                  class="mt-4 ms-3 btn-save"
-               ></app-button-primary>
-            </div>
+               <input
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                  type="number"
+                  class="input-global col-4 ms-4"
+                  id="percent_win"
+                  formControlName="percent_win"
+                  required
+               />
+               %
+               <p class="ganadores__limit-message mt-2 ms-3 white-color">
+                  Porcentaje actual de ganar {{ percentage }}%
+               </p>
+               <label class="total col-8 mt-4 label" for="limit_winners"
+                  >Limitar ganadores por dia</label
+               >
+               <input
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                  type="number"
+                  class="input-global col-4 ms-4"
+                  id="limit_winners"
+                  formControlName="limit_winners"
+                  required
+               />
+
+               <p class="ganadores__limit-message mt-2 ms-3">
+                  {{ limitMessage }}
+               </p>
+
+               <label class="total col-8 mt-4 label" for="limit_attempts"
+                  >Numero de intentos</label
+               >
+               <input
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  oninput="this.value = !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null"
+                  type="number"
+                  class="input-global col-4 ms-4"
+                  id="limit_attempts"
+                  formControlName="limit_attempts"
+                  required
+               />
+               <p class="ganadores__limit-message mt-2 ms-3 white-color">
+                  Numero actual de Intentos {{ limitAttempts }}
+               </p>
+            </form>
+            <app-button-primary
+               (click)="addProbabilityConfig()"
+               title="Guardar"
+               class="mt-4 ms-3 btn-save"
+            ></app-button-primary>
          </div>
       </div>
    </div>
