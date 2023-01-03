@@ -1,5 +1,5 @@
 [
-    {
+   {
       "nombre": "Regresar",
       "icono": "arrow_back",
       "ruta": "/dashboard/juego/seleccion"
@@ -8,6 +8,11 @@
       "nombre": "Resumen",
       "icono": "radio_button_checked",
       "ruta": "/dashboard/juego/resumen"
+   },
+   {
+      "nombre": "Probabilidades",
+      "icono": "radio_button_checked",
+      "ruta": "/dashboard/probabilidades"
    },
    {
       "nombre": "Fecha",
@@ -43,11 +48,5 @@
       "nombre": "Diseño Ganadores",
       "icono": "radio_button_checked",
       "ruta": "/dashboard/juego/diseno/ganador"
-   },
-   {
-      "nombre": "Probabilidades",
-      "icono": "radio_button_checked",
-      "ruta": "/dashboard/probabilidades"
    }
-    
 ]

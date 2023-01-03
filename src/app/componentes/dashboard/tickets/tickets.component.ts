@@ -20,12 +20,12 @@ export class TicketsComponent implements OnInit{
   
   Filters = [
     {id: '?state=Disponible', name: 'Tickets Activos'},
-    {id: '?state=Reclamado', name: 'Tickets Inactivos'},
+    {id: '?state=Reclamado', name: 'Tickets Reclamados'},
     {id: '?ordering=-date_created', name: 'Ultimos Tickets Creados'},
     {id: '?ordering=date_created', name: 'Primeros Tickets Creados'},
   ]
 
-  filter_default = '?state=Disponible'
+  filter_default = '?ordering=-date_created'
 
   singularName : string = 'ticket';
   pluralName : string = 'tickets';

@@ -103,15 +103,11 @@ export class EditAwardsConditionComponent implements OnInit {
 
     let hora_fin = this.form.value.endTime.hour
     let minuto_fin = this.form.value.endTime.minute
-  
-
-    let inicio_date = this.beginDate.toISOString().split('T')[0];
-    const [year_i, month_i, day_i] = inicio_date.split('-');
 
     let fin_date = this.finishDate.toISOString().split('T')[0];
     const [year_f, month_f, day_f] = fin_date.split('-');
 
-    this.startDate = new Date(parseInt(year_i), parseInt(month_i) - 1, parseInt(day_i), parseInt(hora_inicio), parseInt(minuto_inicio));
+    this.startDate = new Date(parseInt(year_f), parseInt(month_f) - 1, parseInt(day_f), parseInt(hora_inicio), parseInt(minuto_inicio));
     this.endDate = new Date(parseInt(year_f), parseInt(month_f) - 1, parseInt(day_f), parseInt(hora_fin), parseInt(minuto_fin));
   }
   async editAwardCondition(){

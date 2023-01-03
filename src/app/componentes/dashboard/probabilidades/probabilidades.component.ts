@@ -8,6 +8,9 @@ import {Publicity} from '../../../interfaces/publicity/publicity'
 import { FormGroup,FormControl,FormBuilder } from '@angular/forms';
 import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import {SnackbarService} from '../../../servicios/snackbar/snackbar.service'
+import { AwardsConditionService } from 'src/app/servicios/awards-condition/awards-condition.service';
+import { MatchService } from 'src/app/servicios/match/match.service';
+import { GameDateService } from 'src/app/servicios/game-date/game-date.service';
 
 
 @Component({
@@ -43,6 +46,11 @@ export class ProbabilidadesComponent implements OnInit {
   percentage:number=0;
   limitMessage:string=''
 
+  len_award_cond_today : number = 0;
+  len_match_today : number = 0;
+  winner_limit : number = 0;
+  winner_compare : number = 0;
+
   constructor(
     private awards:AwardsService,
     private controller:ControllerProbabilityService,
@@ -50,7 +58,10 @@ export class ProbabilidadesComponent implements OnInit {
     private fb:FormBuilder,
     private dialog:ConfirmDialogService,
     private snackBar:SnackbarService,
-    private staticData: PuenteDatosService
+    private staticData: PuenteDatosService,
+    private matchSrv : MatchService,
+    private awardConditionSrv: AwardsConditionService,
+    private gameDataSrv: GameDateService,
 
   ) {
     this.form = this.fb.group({
@@ -100,8 +111,8 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
 
  }
 
-  addProbabilityConfig(){
-    if(this.validateData()){
+  async addProbabilityConfig(){
+    if(await this.validateData()){
       const options = {
         title: 'CAMBIAR CONFIGURACION PROBABILIDADES JUEGO',
         message: '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
@@ -143,7 +154,8 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
   manageCloseModal(modalChange:boolean):void{
     this.isModalOpen = modalChange;
   }
-  validateData():Boolean{
+  async validateData():Promise<Boolean>{
+    await this.getTodayAwaradCondition()
     let percent = this.form.get('percent_win')?.value
     let limit_winner = this.form.get('limit_winners')?.value
     let limit_attempts= this.form.get('limit_attempts')?.value
@@ -163,12 +175,17 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
     }
 
     if(limit_winner<0){
-      this.snackBar.mensaje('El limite de ganadores no puede ser menor a 0');
+      this.snackBar.mensaje('El límite de ganadores no puede ser menor a 0');
       return false;
     }
 
     if(limit_attempts<1){
-      this.snackBar.mensaje('El limite de Intentos no puede ser menor a 1');
+      this.snackBar.mensaje('El límite de Intentos no puede ser menor a 1');
+      return false;
+    }
+    
+    if(limit_winner<this.winner_compare){
+      this.snackBar.mensaje('El día de hoy va a existir '+this.winner_compare+' ganadores, el límite no puede ser menor')
       return false;
     }
 
@@ -184,8 +201,43 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
              this.limitWinners = this.probabilityData.winners_limit
              this.percentage = this.probabilityData.percent_win
              this.limitAttempts = this.probabilityData.attempts_limit
-             this.limitMessage = `limite actual Intentos ${this.limitWinners}`
+             this.limitMessage = `Límite actual de ganadores  ${this.limitWinners}`
     })
   }
 
+  async getTodayAwaradCondition(){
+    let today = new Date();
+    let current_day = this.gameDataSrv.DateFormat(today).split('T')[0]
+
+    await this.getLenAwardCondToday(current_day)
+    await this.getLenMatchToday(current_day)
+    await this.getWinnerLimit()
+ }
+
+ async getLenAwardCondToday(current_day:string){
+    let filter_today = '?start_date__date__range='+current_day+'%2C'+current_day
+    this.awardConditionSrv.getAwardConditionFilter(filter_today).subscribe(
+       (res) => {
+          this.len_award_cond_today = Object.keys(res).length;
+       }
+    )
+ }
+
+ async getLenMatchToday(current_day:string){
+    let filter_match = '?win_match=true&start_date__date__range='+current_day+'%2C'+current_day
+    this.matchSrv.getMatchFilter(filter_match).subscribe(
+       (res) => {
+          this.len_match_today = Object.keys(res).length;
+       }
+    )
+ }
+
+ async getWinnerLimit(){
+    this.probability.getProbabilites().subscribe(
+       (res) => {
+          this.winner_limit = res.winners_limit;
+          this.winner_compare = this.len_award_cond_today + this.len_match_today
+       }
+    )
+ }
 }
