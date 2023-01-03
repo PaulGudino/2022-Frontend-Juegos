@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardPublicityService } from '../../../../servicios/publicity/dashboardPublicity/dashboard-publicity.service';
 import { DashboardStyleService } from '../../../../servicios/theme/dashboardStyle/dashboard-style.service';
+import { GameLogicService } from '../../service/gameLogic/game-logic.service';
 import { KeyControllerService } from '../../service/keyController/key-controller.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class ScanViewComponent implements OnInit {
       private router: Router,
       public publicity: DashboardPublicityService,
       public styles: DashboardStyleService,
-      public keyController: KeyControllerService
+      public keyController: KeyControllerService,
+      private gameLogic: GameLogicService
    ) {}
 
    ngOnInit(): void {}
@@ -29,7 +31,10 @@ export class ScanViewComponent implements OnInit {
       this.keyController.setCode('');
    }
 
-   continueToGame() {
-      this.router.navigate(['/juego/play']);
+   async continueToGame() {
+      let validateTicket = this.gameLogic.verifyTicket('128971662');
+      if (await validateTicket) {
+         this.router.navigate(['/juego/play']);
+      }
    }
 }
