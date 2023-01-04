@@ -51,6 +51,9 @@ export class ProbabilidadesComponent implements OnInit {
   winner_limit : number = 0;
   winner_compare : number = 0;
 
+  total_awards : number = 0;
+  total_winners : number = 0;
+
   constructor(
     private awards:AwardsService,
     private controller:ControllerProbabilityService,
@@ -68,7 +71,6 @@ export class ProbabilidadesComponent implements OnInit {
       percent_win:[''],
       limit_winners:[''],
       limit_attempts:[''],
-
     })
 
    }
@@ -86,6 +88,18 @@ export class ProbabilidadesComponent implements OnInit {
       this.getTragamonedasProbability()
 
    })
+   this.awards.getFilterAward('?is_active=true').subscribe(
+    data =>{
+      for (let x of data){
+        this.total_awards += x.total_awards
+      }
+    }
+   )
+   this.matchSrv.getMatchFilter('?win_match=true').subscribe(
+    (res) => {
+       this.total_winners = Object.keys(res).length;
+    }
+ )
 }
 
 
@@ -188,6 +202,10 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
       this.snackBar.mensaje('El día de hoy va a existir '+this.winner_compare+' ganadores, el límite no puede ser menor')
       return false;
     }
+    if(limit_winner>this.total_awards){
+      this.snackBar.mensaje('El límite de ganadores debe ser menor al total de premios disponobles')
+      return false;
+    }
 
     return true;
 
@@ -201,7 +219,7 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
              this.limitWinners = this.probabilityData.winners_limit
              this.percentage = this.probabilityData.percent_win
              this.limitAttempts = this.probabilityData.attempts_limit
-             this.limitMessage = `Límite actual de ganadores  ${this.limitWinners}`
+             this.limitMessage = `Límite actual de ganadores es  ${this.limitWinners}`
     })
   }
 
@@ -240,4 +258,5 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
        }
     )
  }
+
 }

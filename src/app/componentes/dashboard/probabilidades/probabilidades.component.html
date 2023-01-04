@@ -1,7 +1,11 @@
 <app-menu>
    <mat-toolbar class="background-navy-primary green-primary">
-      <span>Probabilidad</span>
+      <span>Probabilidad </span>
       <span class="example-spacer"></span>
+      <span></span>
+      <span class="example-spacer"></span>
+      <span>Hay un total de {{total_awards - total_winners}} premios disponibles</span>
+
    </mat-toolbar>
 
    <app-modal
@@ -91,8 +95,8 @@
                   required
                />
 
-               <p class="ganadores__limit-message mt-2 ms-3">
-                  {{ limitMessage }}
+               <p class="ganadores__limit-message mt-2 ms-3 white-color">
+                  {{ limitMessage }} <br>
                </p>
 
                <label class="total col-8 mt-4 label" for="limit_attempts"
