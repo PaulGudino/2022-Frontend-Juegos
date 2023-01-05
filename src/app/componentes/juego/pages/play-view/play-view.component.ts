@@ -42,7 +42,7 @@ export class PlayViewComponent implements OnInit {
    ngOnInit(): void {
       this.probabilityService.getProbabilites().subscribe((data) => {
          console.log(data);
-         this.probability = data[data.length - 1];
+         this.probability = data;
          this.availableSpin = this.probability.attempts_limit;
       });
    }
