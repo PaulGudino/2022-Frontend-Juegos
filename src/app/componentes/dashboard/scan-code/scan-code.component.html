@@ -20,12 +20,17 @@
          <p class="publicity__title green-primary">Descripción:</p>
          <div class="savescreen-info__container">
             <input
+               #input_description
                type="text"
+               maxlength="100"
                class="input-global description-input"
                placeholder="Nombre del boton"
                #buttonInput="ngModel"
                [(ngModel)]="description"
             />
+            <div class="limit_description">
+               Caracteres máximo {{input_description.value.length || 0}}/100
+           </div>
             <div class="buttons-container">
                <app-button-primary
                   (click)="updateScanScreen()"

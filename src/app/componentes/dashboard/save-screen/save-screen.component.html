@@ -53,12 +53,17 @@
          <p class="publicity__title white-color">Nombre del Botón:</p>
          <div class="savescreen-info__container">
             <input
+               #input_button
+               maxlength="20"
                type="text"
                class="input-global"
                placeholder="Nombre del boton"
                #buttonInput="ngModel"
                [(ngModel)]="buttonTitle"
             />
+            <div class="limit_description">
+               Caracteres máximo {{input_button.value.length || 0}}/20
+           </div>
             <div class="buttons-container">
                <app-button-primary
                   (click)="updateSaveScreen()"
