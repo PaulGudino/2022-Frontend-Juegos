@@ -52,7 +52,7 @@ export class ProbabilidadesComponent implements OnInit {
   winner_compare : number = 0;
 
   total_awards : number = 0;
-  total_winners : number = 0;
+
 
   constructor(
     private awards:AwardsService,
@@ -95,11 +95,6 @@ export class ProbabilidadesComponent implements OnInit {
       }
     }
    )
-   this.matchSrv.getMatchFilter('?win_match=true').subscribe(
-    (res) => {
-       this.total_winners = Object.keys(res).length;
-    }
- )
 }
 
 

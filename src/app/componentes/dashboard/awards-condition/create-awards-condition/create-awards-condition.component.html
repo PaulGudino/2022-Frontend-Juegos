@@ -8,17 +8,29 @@
             <div class="container">
                <div class="register_container">
                   <div class="form_container">
-                     <mat-form-field>
-                        <label>Premios</label><br>
-                        <label>Hay {{stock_actual}} del premio: {{award_name}}</label>
-                        <mat-select formControlName="award" mat-select (selectionChange)="imgAward($event.value)" >
-                            <mat-option *ngFor="let premio of award_condition" value={{premio.id}}>{{premio.name}}</mat-option>
-                        </mat-select>
-                        <mat-hint>Seleccione una opción</mat-hint>
-                        <mat-error *ngIf="form.controls['award'].hasError('required')" >
-                            Campo requerido !!!
-                        </mat-error>
-                    </mat-form-field>
+                    <mat-form-field>
+                     <label>Premios</label><br>
+                     <label>Hay {{stock_actual}} del premio: {{award_name}}</label>
+                     <div class="input_form"  mat-select >
+                         <input #input type="text" matInput 
+                         formControlName="award" 
+                         [matAutocomplete]="auto">
+                     </div>
+                     <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayFn" (optionSelected)="imgAward($event.value)">
+                         <mat-option *ngFor="let item of filteredOptions | async" [value]="item" >
+                           {{item.name}}
+                         </mat-option>
+                     </mat-autocomplete> 
+                     <mat-hint>Seleccione una opción</mat-hint>
+                     <mat-error *ngIf="form.controls['award'].hasError('required')">
+                         Campo requerido !!!
+                     </mat-error>
+                     <mat-error *ngFor="let validation of validation_msgs.contactAutocompleteControl">
+                         <div *ngIf="form.controls['award'].hasError(validation.type)">
+                           {{validation.message}}
+                         </div>
+                     </mat-error>
+                 </mat-form-field>
                   </div>
                   <div class="img_container">
                      <img [src]="previsulizacion" alt="Inserte una Imagen">
