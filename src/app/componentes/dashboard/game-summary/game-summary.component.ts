@@ -12,7 +12,7 @@ export class GameSummaryComponent implements OnInit {
 
   total_tickets : number = 0;
   total_winners : number = 0;
-  total_played : number = 0;
+  total_losers : number = 0;
 
   constructor(
     private staticData: PuenteDatosService,
@@ -32,9 +32,9 @@ export class GameSummaryComponent implements OnInit {
          this.total_winners = Object.keys(res).length;
       }
     )
-   this.matchSrv.getAllMatch().subscribe(
+    this.matchSrv.getMatchFilter('?win_match=false').subscribe(
       res =>{
-        this.total_played = Object.keys(res).length;
+        this.total_losers = Object.keys(res).length;
       }
     )
   }

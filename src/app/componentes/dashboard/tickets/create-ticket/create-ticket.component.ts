@@ -67,6 +67,10 @@ export class CreateTicketComponent implements OnInit {
     this.ClientAPI.getAll().subscribe(
       (data) => {
         this.allClients = data;
+        if (data.length == 0){
+          let client_message = ['No hay un cliente creado']
+          this.confirmDialog.error(client_message);
+       }
       }
     );
     this.GameAPI.getAll().subscribe(
