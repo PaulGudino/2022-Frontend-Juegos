@@ -65,7 +65,7 @@ export class EditAwardsConditionComponent implements OnInit {
     this.router.navigate(['/dashboard/premios/condicion']);
   }
   getAward(){
-    this.awardConditionSrv.getAward().subscribe(
+    this.awardConditionSrv.getAwardEdit().subscribe(
       (data:any) => {
         this.award_condition = data;
       }
@@ -79,6 +79,8 @@ export class EditAwardsConditionComponent implements OnInit {
         let minute_inicio = res.start_date.split(" ")[1].split(":")[1];
         let hora_fin = res.end_date.split(" ")[1].split(":")[0];
         let minute_fin = res.end_date.split(" ")[1].split(":")[1];
+
+        console.log(res.award.toString())
 
         this.form.controls['award'].setValue(res.award.toString());
         this.form.controls['startTime'].setValue({

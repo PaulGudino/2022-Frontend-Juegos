@@ -74,7 +74,18 @@ export class AwardsConditionComponent implements OnInit {
     this.router.navigate(['dashboard/premios/condicion/visualizar', id]);
   }
   editarPremios(id: number){
-    this.router.navigate(['dashboard/premios/condicion/editar', id]);
+    let canEdit
+    this.premiosCondicionSrv.getAwardConditionbyId(id).subscribe(
+      (data: any) => {
+        canEdit = data.is_approved
+        if (canEdit){
+          this.dialogService.error(['No se puede editar un premio condicionado ya reclamado'])
+        }else{
+          this.router.navigate(['dashboard/premios/condicion/editar', id]);
+        }
+      }
+    )
+    
   }
   async eliminarPremios(id: number){
     await this.Permisoeliminar();

@@ -17,4 +17,7 @@ export class MatchService {
   getMatchFilter(filter:string){
     return this.http.get(this.url+'api/matchfilter/'+filter);
   }
+  getAllMatch(){
+    return this.http.get(this.url+'api/match/');
+  }
 }

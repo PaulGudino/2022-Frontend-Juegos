@@ -98,6 +98,9 @@ export class TicketsComponent implements OnInit{
             (data) => {
               this.snackBar.mensaje(this.singularName + ' eliminado exitosamente');
               this.loadAll(this.filter_default);
+            },
+            err => {
+              this.confirmDialog.error(err.error)
             }
           )
         }

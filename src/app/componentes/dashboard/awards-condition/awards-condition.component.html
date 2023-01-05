@@ -89,25 +89,7 @@
           <ng-container matColumnDef="Acciones">
              <th mat-header-cell *matHeaderCellDef></th>
              <td mat-cell *matCellDef="let fila">
-                <div *ngIf="fila.is_approved; else inactivo">
-                  <button
-                  mat-icon-button
-                  (click)="verPremios(fila.id)"
-                  color="primary"
-                  matTooltip="Visualizar"
-               >
-                  <mat-icon class="color-white">remove_red_eye</mat-icon>
-               </button>
-               <button
-                  mat-icon-button
-                  (click)="eliminarPremios(fila.id)"
-                  color="warn"
-                  matTooltip="Eliminar"
-               >
-                  <mat-icon class="green-primary">delete</mat-icon>
-               </button>
-               </div>
-               <ng-template #inactivo>
+                <div>
                   <button
                   mat-icon-button
                   (click)="verPremios(fila.id)"
@@ -124,7 +106,7 @@
                >
                   <mat-icon class="color-white">edit</mat-icon>
                </button>
-               <button
+               <button 
                   mat-icon-button
                   (click)="eliminarPremios(fila.id)"
                   color="warn"
@@ -132,7 +114,7 @@
                >
                   <mat-icon class="green-primary">delete</mat-icon>
                </button>
-               </ng-template>
+               </div>
              </td>
           </ng-container>
    

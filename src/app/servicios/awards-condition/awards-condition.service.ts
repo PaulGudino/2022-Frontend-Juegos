@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { getAwardList } from 'src/app/interfaces/awards/getAwardList';
 import { PuenteDatosService } from '../comunicacio_componentes/puente-datos.service';
 
 @Injectable({
@@ -31,5 +33,8 @@ export class AwardsConditionService {
   }
   deleteAwardCondition(id: number){
     return this.http.delete(this.url+'api/awardcondition/'+id + '/');
+  }
+  getAwardEdit():Observable<getAwardList[]>{
+    return this.http.get<getAwardList[]>(this.url+'api/awardlist/');
   }
 }
