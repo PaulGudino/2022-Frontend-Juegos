@@ -1,4 +1,4 @@
-<div class="scan_container p-0 m-0">
+<div class="scan_container p-0 m-0" contenteditable="true" (window:beforeunload)="doSomething()">
    <app-publicity
       [publicityList]="publicity.getTopPublicityList()"
    ></app-publicity>

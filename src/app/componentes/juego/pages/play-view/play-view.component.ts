@@ -46,4 +46,7 @@ export class PlayViewComponent implements OnInit {
          this.availableSpin = this.probability.attempts_limit;
       });
    }
+   doSomething(){
+      localStorage.removeItem('juego_play');
+   }
 }
