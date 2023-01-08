@@ -76,7 +76,7 @@ export class RolesComponent implements OnInit {
     if(sessionStorage.getItem('rol_id') == '1'){
       const options = {
         title: 'ELIMINAR ROL',
-        message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL ROL?',
+        message: '¿ESTA SEGURO QUE DESEA ELIMINAR EL ROL?',
         cancelText: 'CANCELAR',
         confirmText: 'CONFIRMAR'
       };

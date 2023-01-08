@@ -54,8 +54,8 @@ export class BoxComponent implements OnInit {
    }
    updatePublicityGame(): boolean {
       const options = {
-         title: 'ACTUALIZAR LOGO CASILLA',
-         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR EL lOGO?',
+         title: 'ACTUALIZAR CASILLA',
+         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR LA IMAGEN DE LA CASILLA?',
          cancelText: 'CANCELAR',
          confirmText: 'ACTUALIZAR',
       };

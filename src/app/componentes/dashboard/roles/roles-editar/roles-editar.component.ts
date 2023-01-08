@@ -56,7 +56,7 @@ export class RolesEditarComponent implements OnInit {
     if(this.form.valid){
       const options = {
         title: 'EDITAR ROLES',
-        message: '¿ESTÁ SEGURO QUE QUIERE EDITAR EL ROL '+ this.form.get('name')?.value +'?',
+        message: '¿ESTÁ SEGURO QUE DESEA EDITAR EL ROL '+ this.form.get('name')?.value +'?',
         cancelText: 'CANCELAR',
         confirmText: 'EDITAR'
       };

@@ -99,7 +99,7 @@ export class PermisosRolesComponent implements OnInit {
   guardarPermisos(){
     const options = {
       title: 'GUARDAR PERMISOS',
-      message: 'ESTA SEGURO QUE QUIERE CAMBIAR LOS PERMISOS DEL ROL?',
+      message: 'ESTA SEGURO QUE DESEA CAMBIAR LOS PERMISOS DEL ROL?',
       cancelText: 'CANCELAR',
       confirmText: 'CONFIRMAR'
     };

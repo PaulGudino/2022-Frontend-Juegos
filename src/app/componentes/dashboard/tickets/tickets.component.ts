@@ -117,7 +117,7 @@ export class TicketsComponent implements OnInit{
   showDeleteDialog() {
       const DIALOGINFO = {
         title : this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
-        message : '¿Está seguro de que quiere eliminar el ' + this.singularName + ' ?',
+        message : '¿Está seguro de que desea eliminar el ' + this.singularName + ' ?',
         cancelText : 'CANCELAR',
         confirmText : this.actionName.toUpperCase()
       };

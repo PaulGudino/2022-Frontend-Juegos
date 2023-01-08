@@ -46,7 +46,7 @@ export class TopPublicityComponent implements OnInit {
       const options = {
          title: 'AGREGAR PUBLICIDAD AL JUEGO',
          message:
-            '¿ESTÁ SEGURO QUE QUIERE AGREGAR PUBLICIDAD SUPERIOR AL JUEGO?',
+            '¿ESTÁ SEGURO QUE DESEA AGREGAR PUBLICIDAD SUPERIOR AL JUEGO?',
          cancelText: 'CANCELAR',
          confirmText: 'GUARDAR',
       };

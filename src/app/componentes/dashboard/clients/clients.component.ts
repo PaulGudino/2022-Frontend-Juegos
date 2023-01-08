@@ -114,7 +114,7 @@ export class ClientsComponent implements OnInit{
   showDeleteDialog() {
       const DIALOGINFO = {
         title : this.actionName.toUpperCase() + ' ' + this.singularName.toUpperCase(),
-        message : '¿Está seguro de que quiere ' + this.actionName + ' el ' + this.singularName + '?',
+        message : '¿Está seguro de que desea ' + this.actionName + ' el ' + this.singularName + '?',
         cancelText : 'CANCELAR',
         confirmText : this.actionName.toUpperCase()
       };

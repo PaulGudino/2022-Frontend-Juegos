@@ -80,7 +80,7 @@ export class TicketConfigurationComponent implements OnInit {
     if (this.form.valid) {
       const options = {
         title: 'ACTUALIZAR CONFIGURACIÓN DEL TICKET',
-        message: '¿ESTÁ SEGURO QUE QUIERE ACTUALIZAR CONFIGURACIÓN DEL TICKET '+'?',
+        message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR CONFIGURACIÓN DEL TICKET'+'?',
         cancelText: 'CANCELAR',
         confirmText: 'ACTUALIZAR'
       };

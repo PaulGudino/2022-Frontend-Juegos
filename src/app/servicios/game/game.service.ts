@@ -33,5 +33,11 @@ export class GameService {
 
   putGame(id: number, data: any){
    return this.http.put(this.url+'api/game/'+id+'/', data);
- }
+  }
+  getPublicityGame(){
+    return this.http.get(this.url+'api/Publicity_game/');
+  }
+  getDesign(){
+    return this.http.get(this.url+'api/design/');
+  }
 }

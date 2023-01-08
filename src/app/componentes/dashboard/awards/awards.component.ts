@@ -78,7 +78,7 @@ export class AwardsComponent implements OnInit {
     if (this.permisos.length > 0) {
       const options = {
         title: 'ELIMINAR PREMIO',
-        message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL PREMIO?',
+        message: '¿ESTÁ SEGURO QUE DESEA ELIMINAR EL PREMIO?',
         cancelText: 'CANCELAR',
         confirmText: 'CONFIRMAR'
       };
@@ -102,7 +102,7 @@ export class AwardsComponent implements OnInit {
   }
 
   async Permisoeliminar(){
-    let rolId = Number(localStorage.getItem('rol_id'));
+    let rolId = Number(sessionStorage.getItem('rol_id'));
     let permiso = await lastValueFrom(this.permisos_api.getPermisosbyName('Eliminar Premio'));
     let permissionId = Number(permiso[0].id);
     const promise = await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rolId, permissionId));

@@ -118,7 +118,7 @@ export class EditAwardsConditionComponent implements OnInit {
       await this.changetime();
       const options = {
         title: 'CREAR PREMIO CONDICIONADO',
-        message: '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO PREMIO CONDICIONADO?',
+        message: '¿ESTÁ SEGURO QUE DESEA CREAR EL NUEVO PREMIO CONDICIONADO?',
         cancelText: 'CANCELAR',
         confirmText: 'EDITAR'
       };

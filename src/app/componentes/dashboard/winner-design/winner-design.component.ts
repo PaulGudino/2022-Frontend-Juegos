@@ -68,7 +68,7 @@ export class WinnerDesignComponent implements OnInit {
    updateWinner() {
       const options = {
          title: 'ACTUALIZAR RESULTADO',
-         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR LA INFORMACIÓN DE RESULTADO GANADOR?',
+         message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR LA IMAGEN DE RESULTADO GANADOR?',
          cancelText: 'CANCELAR',
          confirmText: 'ACTUALIZAR',
       };
@@ -96,6 +96,7 @@ export class WinnerDesignComponent implements OnInit {
       });
    }
    cancel() {
-      this.previsualizacion = this.dashStyle.get_image_winner();
+      // this.previsualizacion = this.dashStyle.get_image_winner();
+      window.location.reload();
    }
 }

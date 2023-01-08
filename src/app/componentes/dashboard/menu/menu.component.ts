@@ -32,7 +32,7 @@ export class MenuComponent implements OnInit {
 
   cargarMenu() {
     this.staticData.getMenu().subscribe((data) => {
-      if (localStorage.getItem('rol_id') != '1'){
+      if (sessionStorage.getItem('rol_id') != '1'){
         for (let i = 0; i < data.length; i++) {
           if (data[i].nombre != 'Usuarios' && data[i].nombre != 'Roles'){
             this.menu.push(data[i]);
@@ -45,14 +45,15 @@ export class MenuComponent implements OnInit {
   }
   logout(){
     let refresh !: string
-    if (localStorage.getItem('token')){
+    if (sessionStorage.getItem('token')){
         let formData: FormData = new FormData();
-        refresh = localStorage.getItem('refresh')!;
+        refresh = sessionStorage.getItem('refresh')!;
         formData.append('refresh', refresh);
         this.auth.Logout(formData).subscribe(
           res => {
             this.router.navigate(['/juego']);
-            localStorage.clear();
+            sessionStorage.removeItem('user_id')
+            sessionStorage.removeItem('rol_id')
           },
           err => console.log(err)
         );

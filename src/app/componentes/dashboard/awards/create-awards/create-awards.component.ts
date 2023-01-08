@@ -84,7 +84,7 @@ export class CreateAwardsComponent implements OnInit {
       this.imagen = this.fileToUpload;
       const options = {
         title: 'CREAR PREMIO',
-        message: '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO PREMIO?',
+        message: '¿ESTÁ SEGURO QUE DESEA CREAR EL NUEVO PREMIO?',
         cancelText: 'CANCELAR',
         confirmText: 'CREAR'
       };

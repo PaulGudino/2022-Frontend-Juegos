@@ -89,7 +89,7 @@ export class CrearUsuariosComponent implements OnInit {
     if(this.form.valid){
       const options = {
         title: 'CREAR USUARIO',
-        message: '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO USUARIO?',
+        message: '¿ESTÁ SEGURO QUE DESEA CREAR EL NUEVO USUARIO?',
         cancelText: 'CANCELAR',
         confirmText: 'CREAR'
       };

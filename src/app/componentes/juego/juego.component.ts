@@ -1,3 +1,5 @@
+import { GameLogicService } from './service/gameLogic/game-logic.service';
+import { GameService } from 'src/app/servicios/game/game.service';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from './service/theme/theme.service';
@@ -7,6 +9,7 @@ import { PublicityService } from '../../servicios/publicity/publicity.service';
 import { Subscription } from 'rxjs';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs/operators'
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 
 @Component({
    selector: 'app-juego',
@@ -21,6 +24,8 @@ export class JuegoComponent implements OnInit {
    logoImage?: string = '';
    videoUrl: string = '';
    
+   boxes_images : number = 0
+   design_images : number = 0
 
    constructor(
       public dashPublicity: DashboardPublicityService,
@@ -28,12 +33,16 @@ export class JuegoComponent implements OnInit {
       private styles: DashboardStyleService,
       private publicity: PublicityService,
       private router: Router,
-      private AuthSrv: AuthService
+      private AuthSrv: AuthService,
+      private GameSrv: GameService,
+      private confirmDialog : ConfirmDialogService,
+      private Gamelogic: GameLogicService
    ) {}
 
 
    async ngOnInit(): Promise<void> {
       await this.auth()
+      this.validateSlot()
       sessionStorage.removeItem('juego_scan');
       sessionStorage.removeItem('juego_play');
       this.publicity.getPublicityTopList().subscribe((dataTopPublicity) => {
@@ -56,9 +65,22 @@ export class JuegoComponent implements OnInit {
       });
       
    }
-   goScan(){
-      this.router.navigate(['/juego/scan']);
-      sessionStorage.setItem('juego_scan', 'juego_scan');
+   async goScan(){
+      this.Gamelogic.getAwardConditionToday()
+      await this.validateSlot()
+      if (this.boxes_images == 10 && this.design_images == 3){
+         this.router.navigate(['/juego/scan']);
+         sessionStorage.setItem('juego_scan', 'juego_scan');
+      }else{
+         let game_message = [
+            'Revise que esten todas las imágenes de las casillas',
+            'Revise que este el contenedor del juego',
+            'Revise que este el logo del juego',
+            'Revise que este la imagen al ganar'
+         ]
+         this.confirmDialog.error(game_message);
+      }
+      
    }
    async auth(){
       let formData: FormData = new FormData();
@@ -71,4 +93,32 @@ export class JuegoComponent implements OnInit {
          }
       )
    }
+
+   async validateSlot(){
+      this.GameSrv.getPublicityGame().subscribe(
+         (data:any) =>{
+            for (let clave of data){
+               if(clave.image){
+                  this.boxes_images +=1
+               }
+            }
+         }
+      )
+      this.GameSrv.getDesign().subscribe(
+         (data:any) =>{
+            for (let clave of data){
+               if(clave.image_machine_game){
+                  this.design_images +=1
+               }
+               if(clave.image_logo_game){
+                  this.design_images +=1
+               }
+               if(clave.image_winner){
+                  this.design_images +=1
+               }
+            }
+         }
+      )
+   }
+   
 }

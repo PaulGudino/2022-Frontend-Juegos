@@ -120,8 +120,8 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
   async addProbabilityConfig(){
     if(await this.validateData()){
       const options = {
-        title: 'CAMBIAR CONFIGURACION PROBABILIDADES JUEGO',
-        message: '¿ESTÁ SEGURO QUE QUIERE CAMBIAR LA CONFIGURACION DE PROBABILIDADES?',
+        title: 'CONFIGURAR PROBABILIDADES DEL JUEGO',
+        message: '¿ESTÁ SEGURO QUE DESEA CAMBIAR LA CONFIGURACION DE LAS PROBABILIDADES?',
         cancelText: 'CANCELAR',
         confirmText: 'ACTUALIZAR'
       }

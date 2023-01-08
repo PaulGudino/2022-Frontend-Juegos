@@ -4,7 +4,7 @@
     </div>
     <h1 mat-dialog-title>!!!! ATENCIÓN !!!!</h1>
     <div mat-dialog-content *ngFor="let msg of errores">
-        <h2>{{msg}}</h2><br>
+        <p>{{msg}}</p><br>
     </div>
     <div mat-dialog-actions class="button_container">
       <button mat-button (click)="cerrar()">Cerrar</button>

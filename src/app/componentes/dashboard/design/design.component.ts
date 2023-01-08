@@ -217,7 +217,8 @@ export class DesignComponent implements OnInit {
       console.log(this.colorText);
    }
    cancel() {
-      this.fontFamily = this.dashStyle.get_font_letter();
-      this.colorText = this.dashStyle.get_color_text();
+      // this.fontFamily = this.dashStyle.get_font_letter();
+      // this.colorText = this.dashStyle.get_color_text();
+      window.location.reload();
    }
 }

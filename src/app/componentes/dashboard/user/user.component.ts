@@ -83,7 +83,7 @@ export class UsuariosComponent implements OnInit {
     if(sessionStorage.getItem('rol_id') == '1'){
       const options = {
         title: 'ELIMINAR USUARIO',
-        message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL USUARIO?',
+        message: 'ESTA SEGURO QUE DESEA ELIMINAR EL USUARIO?',
         cancelText: 'CANCELAR',
         confirmText: 'CONFIRMAR'
       };

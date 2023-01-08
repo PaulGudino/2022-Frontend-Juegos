@@ -137,7 +137,7 @@ export class CreateAwardsConditionComponent implements OnInit {
             const options = {
                title: 'CREAR PREMIO CONDICIONADO',
                message:
-                  '¿ESTÁ SEGURO QUE QUIERE CREAR EL NUEVO PREMIO CONDICIONADO?',
+                  '¿ESTÁ SEGURO QUE DESEA CREAR EL NUEVO PREMIO CONDICIONADO?',
                cancelText: 'CANCELAR',
                confirmText: 'CREAR',
             };
@@ -194,6 +194,7 @@ export class CreateAwardsConditionComponent implements OnInit {
       this.awardConditionSrv.getAward().subscribe((data: any) => {
          this.allAwards = data;
          if (data.length == 0){
+            // let award_message = ['No hay un premio activo disponible']
             let award_message = ['No hay un premio activo disponible']
             this.dialogService.error(award_message);
          }

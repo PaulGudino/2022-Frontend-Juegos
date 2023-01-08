@@ -28,7 +28,7 @@ export class BoxPublicityComponent implements OnInit {
       } else {
          const options = {
             title: 'ELIMINAR PUBLICIDAD',
-            message: '¿ESTÁ SEGURO QUE QUIERE ELIMINAR ESTA PUBLICIDAD?',
+            message: '¿ESTÁ SEGURO QUE DESEA ELIMINAR ESTA PUBLICIDAD?',
             cancelText: 'CANCELAR',
             confirmText: 'ELIMINAR',
          };

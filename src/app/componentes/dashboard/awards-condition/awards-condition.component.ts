@@ -93,7 +93,7 @@ export class AwardsConditionComponent implements OnInit {
     if (this.permisos.length > 0) {
       const options = {
         title: 'ELIMINAR PREMIO',
-        message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL PREMIO?',
+        message: '¿ESTA SEGURO QUE DESEA ELIMINAR EL PREMIO?',
         cancelText: 'CANCELAR',
         confirmText: 'CONFIRMAR'
       };

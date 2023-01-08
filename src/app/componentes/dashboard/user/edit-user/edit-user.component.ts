@@ -137,7 +137,7 @@ export class EditarUsuariosComponent implements OnInit {
     if (this.form.valid){
       const options = {
         title: 'EDITAR USUARIO',
-        message: '¿ESTÁ SEGURO QUE QUIERE ACTUALIZAR EL USUARIO '+ this.form.get('names')?.value+ ' '+this.form.get('surnames')?.value +'?',
+        message: '¿ESTÁ SEGURO QUE DESEA ACTUALIZAR EL USUARIO '+ this.form.get('names')?.value+ ' '+this.form.get('surnames')?.value +'?',
         cancelText: 'CANCELAR',
         confirmText: 'EDITAR'
       };

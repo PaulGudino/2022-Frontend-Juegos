@@ -44,10 +44,10 @@ export class BottomPublicityComponent implements OnInit {
    }
    guardarPublicidad() {
       const options = {
-         title: 'AGREGAR PUBLICIDAD INFERIOR JUEGO',
-         message: '¿ESTÁ SEGURO QUE QUIERE AGREGAR PUBLICIDAD INFERIOR?',
+         title: 'AGREGAR PUBLICIDAD AL JUEGO',
+         message: '¿ESTÁ SEGURO QUE DESEA AGREGAR PUBLICIDAD INFERIOR?',
          cancelText: 'CANCELAR',
-         confirmText: 'CREAR',
+         confirmText: 'GUARDAR',
       };
       if (
          !this.dashPublicity.getBottomImageFileToUpload() &&
@@ -131,7 +131,7 @@ export class BottomPublicityComponent implements OnInit {
                );
             }
          });
-         // let user_register = localStorage.getItem('user_id');
+         // let user_register = sessionStorage.getItem('user_id');
       }
    }
 

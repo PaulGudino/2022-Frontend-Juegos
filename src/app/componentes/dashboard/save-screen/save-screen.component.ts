@@ -144,7 +144,8 @@ export class SaveScreenComponent implements OnInit {
    }
 
    cancel() {
-      this.previsulizacion = this.dashStyle.get_video_screensaver();
-      this.buttonTitle = this.dashStyle.get_title_button_screensaver();
+      // this.previsulizacion = this.dashStyle.get_video_screensaver();
+      // this.buttonTitle = this.dashStyle.get_title_button_screensaver();
+      window.location.reload();
    }
 }

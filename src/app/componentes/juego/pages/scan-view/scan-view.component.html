@@ -41,6 +41,7 @@
             type="text"
             #codeInput="ngModel"
             [(ngModel)]="keyController.code"
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
          />
          <app-generic-button
             (click)="continueToGame()"
