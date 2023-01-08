@@ -75,7 +75,8 @@ export class ScanCodeComponent implements OnInit {
       });
    }
    cancel() {
-      this.title = this.dashStyle.get_scan_code_title();
-      this.description = this.dashStyle.get_scan_code_description();
+      // this.title = this.dashStyle.get_scan_code_title();
+      // this.description = this.dashStyle.get_scan_code_description();
+      window.location.reload();
    }
 }

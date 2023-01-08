@@ -110,6 +110,8 @@ export class TicketConfigurationComponent implements OnInit {
           )
         }
       });
+    }else{
+      this.snackbar.mensaje('Llene el formulario correctamente')
     }
   }
 

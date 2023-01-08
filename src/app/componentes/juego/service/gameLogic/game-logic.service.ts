@@ -7,6 +7,7 @@ import { MatchService } from 'src/app/servicios/match/match.service';
 import { lastValueFrom } from 'rxjs';
 import { GameDateService } from 'src/app/servicios/game-date/game-date.service';
 import { GameService } from 'src/app/servicios/game/game.service';
+import { ProbabilityService } from 'src/app/servicios/probability/probability/probability.service';
 
 @Injectable({
    providedIn: 'root',
@@ -72,8 +73,10 @@ export class GameLogicService {
    async getAwardConditionToday(){
       let today = new Date();
       let current_day = this.gameDataSrv.DateFormat(today)
+      // let current_day = '2023-01-08 11:00:00'
       let filter_today = '?is_approved=false&start_date__lte='+current_day+'&end_date__gte='+current_day
-      await lastValueFrom(this.awardConditionSrv.getAwardConditionFilter(filter_today))
+      let promise = await lastValueFrom(this.awardConditionSrv.getAwardConditionFilter(filter_today))
+      return promise
    }
    async wonAward(id:number){
       let formData: FormData = new FormData();
@@ -132,8 +135,12 @@ async getPrize() : Promise<string> {
                //console.log("Lengendary prize");
                result = "Lengendary prize";
                return result;
+            }else{
+               return result;
             }
 
+         }else{
+            return result;
          }
          
          // Loser

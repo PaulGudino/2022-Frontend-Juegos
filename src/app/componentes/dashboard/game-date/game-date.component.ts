@@ -24,6 +24,9 @@ export class GameDateComponent implements OnInit {
 
    form: FormGroup;
 
+   game_start_date: string = ''
+   game_end_date: string = ''
+
    awardConditionList: any[] = [];
 
    constructor(
@@ -147,7 +150,8 @@ export class GameDateComponent implements OnInit {
    async getDate(){
       this.game.getById(1).subscribe(
          (res:any) => {
-            console.log(res)
+            this.game_start_date = res.start_date
+            this.game_end_date = res.end_date
 
             let hora_inicio = res.start_date.split(" ")[1].split(":")[0];
             let minute_inicio = res.start_date.split(" ")[1].split(":")[1];
