@@ -1,3 +1,4 @@
+import { AwardsService } from 'src/app/servicios/awards/awards.service';
 import { AwardsConditionService } from 'src/app/servicios/awards-condition/awards-condition.service';
 import { Injectable } from '@angular/core';
 import { TicketService } from '../../../../servicios/ticket/ticket.service';
@@ -31,7 +32,8 @@ export class GameLogicService {
       private ticketService: TicketService,
       private matchService: MatchService,
       private gameDataSrv: GameDateService,
-      private awardConditionSrv: AwardsConditionService
+      private awardConditionSrv: AwardsConditionService,
+      private awardSrv: AwardsService
    ) {}
 
    public async verifyTicket(qrCodeDigits: string) {
@@ -59,6 +61,32 @@ export class GameLogicService {
       this.awardConditionSrv.getAwardConditionFilter(filter_today).subscribe(
          (res:any) => {
             console.log(res)
+         }
+      )
+   }
+   wonAward(id:number){
+      let formData: FormData = new FormData();
+      formData.append('won_award', 'true'); 
+      this.awardSrv.winAward(id, formData).subscribe(
+         data =>{
+            console.log(data)
+         }
+      )
+   }
+
+   wonAwardCondition(id_award:number,id_condition:number){
+      let formData: FormData = new FormData();
+      formData.append('won_award', 'true'); 
+      this.awardSrv.winAwardCondition(id_award, formData).subscribe(
+         data =>{
+            console.log(data)
+         }
+      )
+      let formData2: FormData = new FormData();
+      formData2.append('state', 'true'); 
+      this.awardConditionSrv.changeState(id_condition, formData2).subscribe(
+         data =>{
+            console.log(data)
          }
       )
    }

@@ -39,5 +39,10 @@ export class AwardsService {
   getFilterAward(filter: string):Observable<getAwardList[]>{ 
     return this.http.get<getAwardList[]>(this.url+'api/awardfilter/'+filter);
   }
-
+  winAward(id: number, data: FormData){
+    return this.http.post(this.url+'api/award/'+id+'/won_award/', data);
+  }
+  winAwardCondition(id: number, data: FormData){
+    return this.http.post(this.url+'api/award/'+id+'/won_award_condition/', data);
+  }
 }

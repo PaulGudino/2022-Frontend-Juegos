@@ -1,3 +1,4 @@
+import { AwardsService } from 'src/app/servicios/awards/awards.service';
 import { GameLogicService } from './service/gameLogic/game-logic.service';
 import { GameService } from 'src/app/servicios/game/game.service';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
@@ -36,7 +37,8 @@ export class JuegoComponent implements OnInit {
       private AuthSrv: AuthService,
       private GameSrv: GameService,
       private confirmDialog : ConfirmDialogService,
-      private Gamelogic: GameLogicService
+
+      private Gamelogic: GameLogicService,
    ) {}
 
 
@@ -67,6 +69,7 @@ export class JuegoComponent implements OnInit {
    }
    async goScan(){
       this.Gamelogic.getAwardConditionToday()
+      this.Gamelogic.wonAward(1)
       await this.validateSlot()
       if (this.boxes_images == 10 && this.design_images == 3){
          this.router.navigate(['/juego/scan']);

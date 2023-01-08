@@ -37,4 +37,7 @@ export class AwardsConditionService {
   getAwardEdit():Observable<getAwardList[]>{
     return this.http.get<getAwardList[]>(this.url+'api/awardlist/');
   }
+  changeState(id: number, data: FormData){
+    return this.http.post(this.url+'api/awardcondition/'+id+'/change_state/', data);
+  }
 }
