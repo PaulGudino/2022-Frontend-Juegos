@@ -107,9 +107,11 @@ async getPrize() : Promise<string> {
       this.probabilityService.getProbabilites().subscribe(data => {
          
          win_prob = data;
-         rd_number = Math.floor(Math.random() * (max - min + 1)) + min;
 
-         if (rd_number < win_prob) {
+         if (rd_number <= win_prob) {
+            
+            // Winner
+            rd_number = Math.floor(Math.random() * (max - min + 1)) + min;
             
             if (rd_number <= 60) {
                //console.log("Common prize");
@@ -133,6 +135,8 @@ async getPrize() : Promise<string> {
             }
 
          }
+         
+         // Loser
       });
      
       return result;
