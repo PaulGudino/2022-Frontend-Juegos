@@ -36,6 +36,9 @@ export class GameLogicService {
       private awardConditionSrv: AwardsConditionService,
       private awardSrv: AwardsService,
       private game: GameService,
+       
+      // Added for getPrize()
+      private probabilityService: ProbabilityService,
    ) {}
 
    public async verifyTicket(qrCodeDigits: string) {
@@ -93,6 +96,46 @@ export class GameLogicService {
       await lastValueFrom(this.ticketService.changeStateTicket(id, formData))   
    }
 
+async getPrize() : Promise<string> {
 
+      let min : number = 0 ;
+      let max : number = 100;
+      let rd_number = Math.floor(Math.random() * (max - min + 1)) + min;
+      let win_prob : number;
+      let result : string = "None";
+
+      this.probabilityService.getProbabilites().subscribe(data => {
+         
+         win_prob = data;
+         rd_number = Math.floor(Math.random() * (max - min + 1)) + min;
+
+         if (rd_number < win_prob) {
+            
+            if (rd_number <= 60) {
+               //console.log("Common prize");
+               result = "Common prize";
+               return result;
+            }
+            else if (rd_number <= 85) {
+               //console.log("Rare prize");
+               result = "Rare prize";
+               return result;
+            }
+            else if (rd_number <= 95) {
+               //console.log("Epic prize");
+               result = "Epic prize";
+               return result;
+            }
+            else if (rd_number <= 100) {
+               //console.log("Lengendary prize");
+               result = "Lengendary prize";
+               return result;
+            }
+
+         }
+      });
+     
+      return result;
+   }
 
 }
