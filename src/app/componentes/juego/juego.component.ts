@@ -37,8 +37,6 @@ export class JuegoComponent implements OnInit {
       private AuthSrv: AuthService,
       private GameSrv: GameService,
       private confirmDialog : ConfirmDialogService,
-
-      private Gamelogic: GameLogicService,
    ) {}
 
 
@@ -68,8 +66,6 @@ export class JuegoComponent implements OnInit {
       
    }
    async goScan(){
-      this.Gamelogic.getAwardConditionToday()
-      this.Gamelogic.wonAward(1)
       await this.validateSlot()
       if (this.boxes_images == 10 && this.design_images == 3){
          this.router.navigate(['/juego/scan']);

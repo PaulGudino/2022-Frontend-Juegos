@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmDialogService } from 'src/app/servicios/confirm-dialog/confirm-dialog.service';
 import { DashboardPublicityService } from '../../../../servicios/publicity/dashboardPublicity/dashboard-publicity.service';
 import { DashboardStyleService } from '../../../../servicios/theme/dashboardStyle/dashboard-style.service';
 import { GameLogicService } from '../../service/gameLogic/game-logic.service';
@@ -21,7 +22,8 @@ export class ScanViewComponent implements OnInit {
       public publicity: DashboardPublicityService,
       public styles: DashboardStyleService,
       public keyController: KeyControllerService,
-      private gameLogic: GameLogicService
+      private gameLogic: GameLogicService,
+      private confirmDialog : ConfirmDialogService,
    ) {}
 
    ngOnInit(): void {}
@@ -32,10 +34,17 @@ export class ScanViewComponent implements OnInit {
    }
 
    async continueToGame() {
-      let validateTicket = this.gameLogic.verifyTicket('128971662');
+      let validateTicket = this.gameLogic.verifyTicket('720195227');
       if (await validateTicket) {
          this.router.navigate(['/juego/play']);
          sessionStorage.setItem('juego_play', 'juego_play');
+      }else{
+         let game_message = [
+            'El ticket que ingresó no existe, revise si la informacion ingresada es correcta',
+            'Ó',
+            'La fecha disponible del ticket está fuera del rango de disponibilidad del juego'
+         ]
+         this.confirmDialog.error(game_message);
       }
    }
    doSomething(){

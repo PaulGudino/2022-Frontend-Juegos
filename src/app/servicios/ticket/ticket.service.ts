@@ -33,4 +33,7 @@ export class TicketService {
    getFilter(filter: string) {
       return this.http.get<Ticket[]>(this.url + 'api/ticketfilter/' + filter);
    }
+   changeStateTicket(id:number, form: FormData){
+      return this.http.put(this.url + 'api/ticket/' + id + '/change_state/', form);
+   }
 }
