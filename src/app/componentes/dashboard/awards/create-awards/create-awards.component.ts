@@ -92,7 +92,7 @@ export class CreateAwardsComponent implements OnInit {
       this.dialogService.confirmed().subscribe(confirmed => {
         if (confirmed) {
           let formData: FormData = new FormData();
-          let user_register = localStorage.getItem('user_id');
+          let user_register = sessionStorage.getItem('user_id');
 
           formData.append('name', this.form.get('name')?.value);
           formData.append('description', this.form.get('description')?.value);

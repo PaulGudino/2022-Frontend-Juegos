@@ -73,7 +73,7 @@ export class RolesComponent implements OnInit {
     this.router.navigate(['dashboard/roles/permisos', id]);
   }
   eliminarRol(id:number){
-    if(localStorage.getItem('rol_id') == '1'){
+    if(sessionStorage.getItem('rol_id') == '1'){
       const options = {
         title: 'ELIMINAR ROL',
         message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL ROL?',

@@ -155,7 +155,7 @@ export class EditarUsuariosComponent implements OnInit {
           formData.append('address', this.form.get('address')?.value);
           formData.append('rol', this.form.get('rol')?.value.id);
           formData.append('is_active', this.form.get('is_active')?.value);
-          formData.append('rol_request', localStorage.getItem('rol_id') || '');
+          formData.append('rol_request', sessionStorage.getItem('rol_id') || '');
 
           this.api.putUsuario(Number(usuarioid), formData).subscribe(
             (data) => {

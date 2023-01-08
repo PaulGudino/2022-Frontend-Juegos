@@ -52,7 +52,7 @@ export class RolesCrearComponent implements OnInit {
           formData.append('name', this.form.get('name')?.value);
           formData.append('description', this.form.get('description')?.value);
           formData.append('is_active', this.form.get('is_active')?.value);
-          formData.append('rol_request', localStorage.getItem('rol_id') || '');
+          formData.append('rol_request', sessionStorage.getItem('rol_id') || '');
           this.rolSrv.postRoles(formData).subscribe(
             (res) => {
               this.snackbar.mensaje('Rol Creado Exitosamente');

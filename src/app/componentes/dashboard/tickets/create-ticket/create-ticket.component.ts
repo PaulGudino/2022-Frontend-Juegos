@@ -10,6 +10,7 @@ import { Client } from 'src/app/interfaces/client/Client';
 import { Game } from 'src/app/interfaces/game/Game';
 import { PuenteDatosService } from 'src/app/servicios/comunicacio_componentes/puente-datos.service';
 import { map, Observable, startWith } from 'rxjs';
+import { GameDateService } from 'src/app/servicios/game-date/game-date.service';
 
 function autocompleteObjectValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -42,6 +43,9 @@ export class CreateTicketComponent implements OnInit {
   Ticket_data: string = ''
   CanPrint = false
 
+  start_date_game : Date = new Date();
+  end_date_game : Date = new Date();
+
   constructor(
     private router : Router,
     private formBuilder : FormBuilder,
@@ -51,7 +55,8 @@ export class CreateTicketComponent implements OnInit {
     private ticketAPI : TicketService,
     private ClientAPI : ClientService,
     private GameAPI : GameService,
-    private staticData : PuenteDatosService
+    private staticData : PuenteDatosService,
+    private gameDataSrv: GameDateService,
   ) {
     // Building the form with the formBuilder
 
@@ -127,7 +132,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   sendForm () {
-    console.log(this.formGroup.value)
+    this.dateGame();
     this.confirmDialog.confirmed().subscribe(
       confirmed => {
         if (confirmed) {
@@ -153,15 +158,19 @@ export class CreateTicketComponent implements OnInit {
     )
   }
 
-  fillForm() {
-    let user_register = localStorage.getItem('user_id');
+   fillForm() {
+    let user_register = sessionStorage.getItem('user_id');
     let formData : FormData = new FormData();
     formData.append('invoice_number', this.formGroup.get('invoice_number')?.value);
     formData.append('client', this.formGroup.get('client')?.value.id);
     formData.append('game', this.formGroup.get('game')?.value);
     formData.append('user_register', user_register!);
     formData.append('qr_code_digits', this.qr_code_digits);
-    console.log(formData)
+    let start_date = this.gameDataSrv.DateFormat(this.start_date_game)
+    formData.append('game_start', start_date);
+    let end_date = this.gameDataSrv.DateFormat(this.end_date_game)
+    formData.append('game_end', end_date);
+
     return formData;
   }
 
@@ -203,5 +212,28 @@ export class CreateTicketComponent implements OnInit {
   print(){
     alert('imprimiendo')
   }
+
+  async dateGame(){
+  this.GameAPI.getById(1).subscribe(
+    (data:any) => {
+      let [dia_i, mes_i , año_i] = data.start_date.split(' ')[0].split('/')
+      this.start_date_game = new Date(
+        parseInt(año_i),
+        parseInt(mes_i) - 1,
+        parseInt(dia_i),
+        parseInt('00'),
+        parseInt('00')
+      );
+      let [dia_f, mes_f , año_f] = data.end_date.split(' ')[0].split('/')
+      this.end_date_game = new Date(
+        parseInt(año_f),
+        parseInt(mes_f) - 1,
+        parseInt(dia_f),
+        parseInt('00'),
+        parseInt('00')
+      );
+    }
+  )
+}
 
 }

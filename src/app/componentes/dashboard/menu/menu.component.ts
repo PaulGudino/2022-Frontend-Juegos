@@ -53,7 +53,6 @@ export class MenuComponent implements OnInit {
           res => {
             this.router.navigate(['/juego']);
             localStorage.clear();
-            AuthInterceptor.accessToken = '';
           },
           err => console.log(err)
         );

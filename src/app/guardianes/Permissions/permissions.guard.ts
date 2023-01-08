@@ -25,7 +25,7 @@ export class PermissionsGuard implements CanActivate {
 
     let Permiso_id = Number(permiso[0].id);
     
-    let rol = Number(localStorage.getItem('rol_id'));
+    let rol = Number(sessionStorage.getItem('rol_id'));
     const promesa =  await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rol, Permiso_id));
     if (promesa.length > 0) {
       return true;

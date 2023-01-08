@@ -11,7 +11,7 @@ import { catchError, Observable, switchMap, throwError } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-   static accessToken = localStorage.getItem('token');
+   static accessToken = sessionStorage.getItem('token');
    refresh = false;
 
    constructor(private http: HttpClient) {}
@@ -36,15 +36,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
                let formData: FormData = new FormData();
                let refreshroken!: string;
-               refreshroken = localStorage.getItem('refresh')!;
+               refreshroken = sessionStorage.getItem('refresh')!;
                formData.append('refresh', refreshroken);
 
                return this.http.post('http://localhost:8000/token/refresh/', formData, {withCredentials: true,}).pipe(
                //  return this.http.post('https://juegos.pythonanywhere.com/token/refresh/', formData, {withCredentials: true}).pipe(
                   switchMap((data: any) => {
                      console.log(data);
-                     localStorage.setItem('token', data.access);
-                     localStorage.setItem('refresh', data.refresh);
+                     sessionStorage.setItem('token', data.access);
+                     sessionStorage.setItem('refresh', data.refresh);
                      AuthInterceptor.accessToken = data.access;
                      const req = request.clone({
                         setHeaders: {

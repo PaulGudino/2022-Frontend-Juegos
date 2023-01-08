@@ -125,7 +125,7 @@ private getAwardsPerCategory(awardsList:getAwardList[],awardGameList:any){
         cancelText: 'CANCELAR',
         confirmText: 'ACTUALIZAR'
       }
-      // let user_register = localStorage.getItem('user_id');
+      // let user_register = sessionStorage.getItem('user_id');
       let formData: FormData = new FormData();
       formData.append('percent_win', this.form.get('percent_win')?.value);
       formData.append('winners_limit', this.form.get('limit_winners')?.value);

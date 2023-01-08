@@ -147,7 +147,7 @@ export class CreateAwardsConditionComponent implements OnInit {
                   let formData: FormData = new FormData();
    
                   let game = 1;
-                  let user_register = localStorage.getItem('user_id');
+                  let user_register = sessionStorage.getItem('user_id');
                   
                   console.log(this.startDate)
                   console.log(this.endDate)

@@ -116,7 +116,7 @@ export class AwardsConditionComponent implements OnInit {
     }
   }
   async Permisoeliminar(){
-    let rolId = Number(localStorage.getItem('rol_id'));
+    let rolId = Number(sessionStorage.getItem('rol_id'));
     let permiso = await lastValueFrom(this.permisos_api.getPermisosbyName('Eliminar Condicion de Premio'));
     let permissionId = Number(permiso[0].id);
     const promise = await lastValueFrom(this.permisos_api.getPermisosbyRolandPermission(rolId, permissionId));

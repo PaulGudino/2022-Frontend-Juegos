@@ -32,7 +32,7 @@ export class BoxPublicityComponent implements OnInit {
             cancelText: 'CANCELAR',
             confirmText: 'ELIMINAR',
          };
-         // let user_register = localStorage.getItem('user_id');
+         // let user_register = sessionStorage.getItem('user_id');
          this.dialog.open(options);
          this.dialog.confirmed().subscribe((confirmed) => {
             if (confirmed) {

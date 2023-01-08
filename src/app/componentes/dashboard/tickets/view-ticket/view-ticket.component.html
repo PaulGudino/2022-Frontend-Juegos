@@ -60,6 +60,18 @@
                             <mat-list-item role="listitem">{{ticket.user_register}}</mat-list-item>
                         </div>
                     </div>
+                    <div class="container">
+                        <div class="datos">
+                            <mat-label>Fecha inicial del juego</mat-label>
+                            <br>
+                            <mat-list-item role="listitem">{{ticket.game_start}}</mat-list-item>
+                        </div>
+                        <div class="datos">
+                            <mat-label>Fecha final del juego</mat-label>
+                            <br>
+                            <mat-list-item role="listitem">{{ticket.game_end}}</mat-list-item>
+                        </div>
+                    </div>
                 </div>
                 <div class="container_img">
                     <qrcode colorDark="#fff" colorLight="#000" [width]="350" [qrdata]="QRdata"></qrcode>

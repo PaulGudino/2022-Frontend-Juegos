@@ -107,7 +107,7 @@ export class CrearUsuariosComponent implements OnInit {
           formData.append('sex', this.form.get('sex')?.value);
           formData.append('rol', this.form.get('rol')?.value.id);
           formData.append('address', this.form.get('address')?.value);
-          formData.append('rol_request', localStorage.getItem('rol_id') || '');
+          formData.append('rol_request', sessionStorage.getItem('rol_id') || '');
           this.api.postUsuarios(formData).subscribe({
             next: (res) => {
               this.snackBar.mensaje('Usuario Creado Exitosamente')

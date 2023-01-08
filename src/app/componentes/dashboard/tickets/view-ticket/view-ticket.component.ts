@@ -33,6 +33,8 @@ export class ViewTicketComponent implements OnInit {
     user_register : '',
     client_cedula : '',
     client_id : '',
+    game_start : '',
+    game_end : ''
   };
 
   constructor(

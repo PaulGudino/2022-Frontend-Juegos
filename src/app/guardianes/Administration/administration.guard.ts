@@ -14,7 +14,7 @@ export class AdministrationGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (localStorage.getItem('rol_id') == '1') {
+    if (sessionStorage.getItem('rol_id') == '1') {
       return true;
     } else {
       this.router.navigate(['/dashboard']);

@@ -128,7 +128,7 @@ export class EditAwardsConditionComponent implements OnInit {
           let formData: FormData = new FormData();
 
           let game = 1;
-          let user_register = localStorage.getItem('user_id');
+          let user_register = sessionStorage.getItem('user_id');
 
           let start_date = this.gameDataSrv.DateFormat(this.startDate)
           formData.append('start_date', start_date);

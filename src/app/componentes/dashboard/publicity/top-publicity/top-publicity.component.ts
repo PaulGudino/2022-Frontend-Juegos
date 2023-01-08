@@ -127,7 +127,7 @@ export class TopPublicityComponent implements OnInit {
                );
             }
          });
-         // let user_register = localStorage.getItem('user_id');
+         // let user_register = sessionStorage.getItem('user_id');
       }
    }
 

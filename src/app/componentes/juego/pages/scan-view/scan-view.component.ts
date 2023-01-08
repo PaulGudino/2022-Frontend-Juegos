@@ -35,10 +35,10 @@ export class ScanViewComponent implements OnInit {
       let validateTicket = this.gameLogic.verifyTicket('128971662');
       if (await validateTicket) {
          this.router.navigate(['/juego/play']);
-         localStorage.setItem('juego_play', 'juego_play');
+         sessionStorage.setItem('juego_play', 'juego_play');
       }
    }
    doSomething(){
-      localStorage.removeItem('juego_scan');
+      sessionStorage.removeItem('juego_scan');
    }
 }

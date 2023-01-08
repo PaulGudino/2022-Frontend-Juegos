@@ -30,7 +30,7 @@ export class UsuariosComponent implements OnInit {
   Titulo = 'Usuarios';
   displayedColumns: string[] = ['cedula', 'names', 'surnames', 'email', 'phone', 'sex', 'rol', 'Acciones']
   dataSource !: MatTableDataSource<Usuarios>;
-  user_id = Number(localStorage.getItem('user_id'));
+  user_id = Number(sessionStorage.getItem('user_id'));
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -80,7 +80,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   eliminarUsuario(id:number){
-    if(localStorage.getItem('rol_id') == '1'){
+    if(sessionStorage.getItem('rol_id') == '1'){
       const options = {
         title: 'ELIMINAR USUARIO',
         message: 'ESTA SEGURO QUE QUIERE ELIMINAR EL USUARIO?',

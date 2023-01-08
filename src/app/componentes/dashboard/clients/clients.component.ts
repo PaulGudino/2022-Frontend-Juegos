@@ -124,7 +124,7 @@ export class ClientsComponent implements OnInit{
   }
 
   async canDelete() {
-    let rolId = Number(localStorage.getItem('rol_id'));
+    let rolId = Number(sessionStorage.getItem('rol_id'));
     let permiso = await lastValueFrom(this.permissionAPI.getPermisosbyName('Eliminar Cliente'));
     let permissionId = Number(permiso[0].id);
     const promise = await lastValueFrom(this.permissionAPI.getPermisosbyRolandPermission(rolId, permissionId));
@@ -141,6 +141,9 @@ export class ClientsComponent implements OnInit{
 
   filter(filter: string) {
     this.loadAll(filter);
+  }
+  toTicket(){
+    this.router.navigate(['dashboard/tickets/crear']);
   }
 
 }

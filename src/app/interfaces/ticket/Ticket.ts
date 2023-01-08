@@ -11,4 +11,6 @@ export interface Ticket {
     user_register : string,
     client_cedula : string,
     client_id : string,
+    game_start : string,
+    game_end : string,
   }

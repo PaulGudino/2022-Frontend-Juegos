@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    localStorage.clear();
+    // sessionStorage.clear();
   }
 
   ingresar(){
@@ -44,10 +44,10 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log(res);
         AuthInterceptor.accessToken = res.token;     
-        localStorage.setItem('user_id', res.user.id);
-        localStorage.setItem('rol_id', res.rol);
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('refresh', res.refresh);
+        sessionStorage.setItem('user_id', res.user.id);
+        sessionStorage.setItem('rol_id', res.rol);
+        sessionStorage.setItem('token', res.token);
+        sessionStorage.setItem('refresh', res.refresh);
         this.router.navigate(['/dashboard/juego/seleccion']);
       }, err => {
         console.log(err);

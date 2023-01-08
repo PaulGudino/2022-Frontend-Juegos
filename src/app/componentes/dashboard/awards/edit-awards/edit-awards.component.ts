@@ -111,7 +111,7 @@ export class EditAwardsComponent implements OnInit {
 
         if (confirmed) {
           let formData: FormData = new FormData();
-          let user_modify = localStorage.getItem('user_id');
+          let user_modify = sessionStorage.getItem('user_id');
 
           formData.append('name', this.form.get('name')?.value);
           formData.append('description', this.form.get('description')?.value);

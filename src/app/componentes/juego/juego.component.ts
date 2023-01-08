@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from './service/theme/theme.service';
 import { DashboardStyleService } from '../../servicios/theme/dashboardStyle/dashboard-style.service';
@@ -26,13 +27,15 @@ export class JuegoComponent implements OnInit {
       private themeService: ThemeService,
       private styles: DashboardStyleService,
       private publicity: PublicityService,
-      private router: Router
+      private router: Router,
+      private AuthSrv: AuthService
    ) {}
 
 
-   ngOnInit(): void {
-      localStorage.removeItem('juego_scan');
-      localStorage.removeItem('juego_play');
+   async ngOnInit(): Promise<void> {
+      await this.auth()
+      sessionStorage.removeItem('juego_scan');
+      sessionStorage.removeItem('juego_play');
       this.publicity.getPublicityTopList().subscribe((dataTopPublicity) => {
          if (dataTopPublicity.length > 0) {
             this.dashPublicity.loadTopData(dataTopPublicity);
@@ -55,6 +58,17 @@ export class JuegoComponent implements OnInit {
    }
    goScan(){
       this.router.navigate(['/juego/scan']);
-      localStorage.setItem('juego_scan', 'juego_scan');
+      sessionStorage.setItem('juego_scan', 'juego_scan');
+   }
+   async auth(){
+      let formData: FormData = new FormData();
+      formData.append('username', 'admin');
+      formData.append('password', 'admin');
+      this.AuthSrv.auth_token(formData).subscribe(
+         (data:any) =>{
+            sessionStorage.setItem('token', data.access);
+            sessionStorage.setItem('refresh', data.refresh);
+         }
+      )
    }
 }

@@ -74,7 +74,7 @@ export class CreateGameDateComponent implements OnInit {
      //       let formData: FormData = new FormData();
  
      //       let game = 1;
-     //       let user_register = localStorage.getItem('user_id');
+     //       let user_register = sessionStorage.getItem('user_id');
  
      //       formData.append('start_date', this.startDate.toISOString().split('.')[0]);
      //       formData.append('end_date', this.endDate.toISOString().split('.')[0]);

@@ -42,8 +42,8 @@ export class InicioComponent implements OnInit {
   }
   obtenerUsuario(){
     // const id = this.puente.getuser_id();
-    const id = localStorage.getItem('user_id');
-    // JSON.parse(); para convetir a objeto lo del localstorage
+    const id = sessionStorage.getItem('user_id');
+    // JSON.parse(); para convetir a objeto lo del sessionStorage
     if (id) {
       this.api.getUsuarioId(Number(id)).subscribe(
         res => {

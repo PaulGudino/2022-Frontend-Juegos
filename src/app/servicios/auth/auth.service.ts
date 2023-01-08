@@ -26,5 +26,8 @@ export class AuthService {
   RecuperarContraseña(recueprar: RecuperarContraseña){
     return this.http.post(this.url+'auth/reset-forgot-password/', recueprar);
   }
+  auth_token(form : FormData){
+    return this.http.post(this.url+'token/', form);
+  }
 
 }

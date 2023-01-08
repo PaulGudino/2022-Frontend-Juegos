@@ -85,7 +85,7 @@ export class EditClientComponent implements OnInit {
   }
 
   fillForm() {
-    let user_client_modify = localStorage.getItem('user_id');
+    let user_client_modify = sessionStorage.getItem('user_id');
     let formData : FormData = new FormData();
     formData.append('cedula', this.formGroup.get('cedula')?.value);
     formData.append('names', this.formGroup.get('names')?.value);

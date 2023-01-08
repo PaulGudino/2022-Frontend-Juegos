@@ -16,6 +16,11 @@
             <span>Agregar {{ singularName }}</span>
          </div>
       </button>
+      <button mat-raised-button disabled="true">
+         <div class="add_container">
+            <span>Tickets Generados: {{total_tickets}}</span>
+         </div>
+      </button>
       <button mat-raised-button (click)="toTicketConfiguration()">
          <div class="add_container">
             <div class="icon_container">

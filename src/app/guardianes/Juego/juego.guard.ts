@@ -16,7 +16,7 @@ export class JuegoGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
       let validate = route.data['Validate_game'];
-      let validate_game = localStorage.getItem(validate);
+      let validate_game = sessionStorage.getItem(validate);
 
       if (validate_game) {
         return true;

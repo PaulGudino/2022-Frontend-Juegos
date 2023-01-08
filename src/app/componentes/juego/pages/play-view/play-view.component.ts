@@ -47,6 +47,6 @@ export class PlayViewComponent implements OnInit {
       });
    }
    doSomething(){
-      localStorage.removeItem('juego_play');
+      sessionStorage.removeItem('juego_play');
    }
 }

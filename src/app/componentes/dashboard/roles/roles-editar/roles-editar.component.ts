@@ -67,7 +67,7 @@ export class RolesEditarComponent implements OnInit {
           formData.append('name', this.form.get('name')?.value);
           formData.append('description', this.form.get('description')?.value);
           formData.append('is_active', this.form.get('is_active')?.value);
-          formData.append('rol_request', localStorage.getItem('rol_id') || '');
+          formData.append('rol_request', sessionStorage.getItem('rol_id') || '');
           this.rol.putRol(Number(id_rol), formData).subscribe(
             res => {
               this.snackbar.mensaje('Rol Actualizado Exitosamente');

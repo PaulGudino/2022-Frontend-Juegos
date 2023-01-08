@@ -52,7 +52,7 @@ export class CambiarContraseniaComponent implements OnInit {
   }
   cambiarContrasenia(){
     if(this.form.valid){
-      let id_usuario = Number(localStorage.getItem('user_id'));
+      let id_usuario = Number(sessionStorage.getItem('user_id'));
       let formData: FormData = new FormData();
       formData.append('old_password', this.form.get('old_password')?.value);
       formData.append('new_password', this.form.get('new_password')?.value);

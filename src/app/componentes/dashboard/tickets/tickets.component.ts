@@ -33,6 +33,8 @@ export class TicketsComponent implements OnInit{
   actionName : string = 'eliminar';
   permissions : any = [];
 
+  total_tickets : number = 0
+
   displayedColumns : string[] = [
     'invoice_number',
     'qr_code_digits',
@@ -67,6 +69,7 @@ export class TicketsComponent implements OnInit{
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.total_tickets = data.length
       }
     )
   }
@@ -124,7 +127,7 @@ export class TicketsComponent implements OnInit{
   }
 
   async canDelete() {
-    let rolId = Number(localStorage.getItem('rol_id'));
+    let rolId = Number(sessionStorage.getItem('rol_id'));
     let permiso = await lastValueFrom(this.permissionsAPI.getPermisosbyName('Eliminar Ticket'));
     let permissionId = Number(permiso[0].id);
     const promise = await lastValueFrom(this.permissionsAPI.getPermisosbyRolandPermission(rolId, permissionId));
