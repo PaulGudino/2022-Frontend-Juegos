@@ -13,22 +13,7 @@ import { ProbabilityService } from 'src/app/servicios/probability/probability/pr
    providedIn: 'root',
 })
 export class GameLogicService {
-   ticket: Ticket = {
-      id: '',
-      invoice_number: '',
-      date_created: '',
-      date_ticket_played: '',
-      qr_code_digits: '',
-      state: '',
-      client: '',
-      game_id: '',
-      game_name: '',
-      user_register: '',
-      client_cedula: '',
-      client_id: '',
-      game_start :'',
-      game_end : ''
-   };
+   ticket: any
 
    constructor(
       private ticketService: TicketService,
@@ -56,9 +41,20 @@ export class GameLogicService {
 
          const res:any = await lastValueFrom(this.game.getById(1))
 
-         ticket_created = new Date(this.ticket.date_created);
-         start_game = new Date(res.start_date);
-         end_game = new Date(res.end_date)
+         // let [dc, mc, yc] = this.ticket.date_created.split(' ')[0].split('/')
+         // let [hc, minc, sc] = this.ticket.date_created.split(' ')[1].split(':')
+
+         ticket_created = new Date(this.ticket.date_created_nf);
+            // parseInt(yc),
+            // parseInt(mc) - 1,
+            // parseInt(dc),
+            // parseInt(hc),
+            // parseInt(minc),
+            // parseInt(sc),
+         // );
+         console.log(ticket_created)
+         start_game = new Date(res.start_date_nf);
+         end_game = new Date(res.end_date_nf)
 
          if(start_game<=ticket_created && end_game>=ticket_created){
             return true;
@@ -75,7 +71,7 @@ export class GameLogicService {
       let current_day = this.gameDataSrv.DateFormat(today)
       // let current_day = '2023-01-08 11:00:00'
       let filter_today = '?is_approved=false&start_date__lte='+current_day+'&end_date__gte='+current_day
-      let promise = await lastValueFrom(this.awardConditionSrv.getAwardConditionFilter(filter_today))
+      let promise:any = await lastValueFrom(this.awardConditionSrv.getAwardConditionFilter(filter_today))
       return promise
    }
    async wonAward(id:number){
@@ -97,6 +93,18 @@ export class GameLogicService {
       let formData: FormData = new FormData();
       formData.append('state', 'true'); 
       await lastValueFrom(this.ticketService.changeStateTicket(id, formData))   
+   }
+
+   async deleteAwardConditionPast(){
+      let filter_today = '?is_approved=false'
+      let promise:any = await lastValueFrom(this.awardConditionSrv.getAwardConditionFilter(filter_today))
+      let today = new Date();
+      for(let clave in promise){
+         let end_date = new Date(promise[clave].end_date_nf);
+         if(end_date<today){
+            await lastValueFrom(this.awardConditionSrv.deleteAwardCondition(promise[clave].id))
+         }
+      }
    }
 
 async getPrize() : Promise<string> {

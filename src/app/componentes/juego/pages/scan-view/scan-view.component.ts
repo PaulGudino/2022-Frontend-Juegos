@@ -34,13 +34,13 @@ export class ScanViewComponent implements OnInit {
    }
 
    async continueToGame() {
-      let validateTicket = this.gameLogic.verifyTicket('720195227');
+      let validateTicket = this.gameLogic.verifyTicket('720195228');
       if (await validateTicket) {
          this.router.navigate(['/juego/play']);
          sessionStorage.setItem('juego_play', 'juego_play');
       }else{
          let game_message = [
-            'El ticket que ingresó no existe, revise si la informacion ingresada es correcta',
+            'El ticket que ingresó no existe o ya fué reclamado, revise si la informacion ingresada es correcta',
             'Ó',
             'La fecha disponible del ticket está fuera del rango de disponibilidad del juego'
          ]

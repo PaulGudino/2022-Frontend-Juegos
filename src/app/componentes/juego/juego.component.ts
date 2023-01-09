@@ -42,6 +42,8 @@ export class JuegoComponent implements OnInit {
 
 
    async ngOnInit(): Promise<void> {
+      // let today = new Date();
+      // console.log(today)
       await this.auth()
       this.validateSlot()
       sessionStorage.removeItem('juego_scan');
@@ -67,7 +69,7 @@ export class JuegoComponent implements OnInit {
       
    }
    async goScan(){
-      // this.Gamelogic.getAwardConditionToday()
+      // this.Gamelogic.deleteAwardConditionPast()
       await this.validateSlot()
       if (this.boxes_images == 10 && this.design_images == 3){
          this.router.navigate(['/juego/scan']);
