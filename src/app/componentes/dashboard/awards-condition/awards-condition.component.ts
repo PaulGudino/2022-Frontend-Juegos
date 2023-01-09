@@ -22,11 +22,11 @@ export class AwardsConditionComponent implements OnInit {
   Filters = [
     {id: '?is_approved=false', name: 'Premios Condicionados Pendientes'},
     {id: '?is_approved=true', name: 'Premios Condicionados Finalizados'},
-    {id: '?ordering=start_date', name: 'Premios Condicionados por Fecha de Inicio'},
-    {id: '?ordering=end_date', name: 'Premios Condicionados por Fecha de Finalización'},
+    {id: '?ordering=created', name: 'Ultimos Premios Condicionados Creados'},
+    {id: '?ordering=-created', name: 'Primeros Premios Condicionados Creados'}
   ]
 
-  filter_default = '?ordering=start_date'
+  filter_default = '?ordering=created'
 
   Titulo = "Premios Condicionados";
   displayedColumns: string[] = ['id', 'award', 'game','start_date','end_date', 'is_approved', 'Acciones']

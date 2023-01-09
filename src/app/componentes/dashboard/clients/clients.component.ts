@@ -25,7 +25,7 @@ export class ClientsComponent implements OnInit{
     {id: '?ordering=created', name: 'Primeros Clientes Creados'},
   ]
 
-  filter_default = ''
+  filter_default = '?ordering=-created'
 
   singularName : string = 'cliente';
   pluralName : string = 'clientes';
