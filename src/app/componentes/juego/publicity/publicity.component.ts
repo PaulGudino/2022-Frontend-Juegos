@@ -45,7 +45,7 @@ export class PublicityComponent implements OnInit {
                this.scrollContainer.nativeElement.style.transform =
                   'translateX(0px)';
                this.scrollContainer.nativeElement.style.transition =
-                  'transform 0s';
+                  'transform 0.3s';
 
                this.animationCount = 0;
             });

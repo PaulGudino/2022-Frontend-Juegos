@@ -106,7 +106,7 @@ figure,p{
    justify-content: center;
    align-items: center;
    border-radius: 3px;
-   content: 'Selecciona una imagen (png, jpg, jpeg)'; /* testo por defecto */
+   content: 'Selecciona una imagen (png, jpg, jpeg ,gif)'; /* testo por defecto */
    position: absolute;
    left: 0;
    right: 0;

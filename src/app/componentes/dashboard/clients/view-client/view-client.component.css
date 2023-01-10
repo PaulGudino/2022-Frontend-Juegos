@@ -1,21 +1,39 @@
-.container_botones{
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px;
-}
-
-.container_botones button{
-    margin: 0 10px;
-}
-.card{
-    width: 100%;
-    border-radius: 10px;
-    background: var(--color-fondo-principal);
+    flex-direction: column;
 }
 mat-label{
     font-size: 1.25rem;
     color: var(--color-principal);
+}
+.card{
+    width: 33%;
+    border-radius: 10px;
+    background: var(--color-fondo-principal);
+}
+.history{
+    width: 33%;
+    border-radius: 10px;
+    background: red;
+    color: white
+}
+.summary{
+    width: 33%;
+    border-radius: 10px;
+    background: green;
+    color: white
+}
+.datos{
+    width: 100%;
+    margin-bottom: 25px;
+}
+.container_botones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
 }
 .container_card{
     display: flex;
@@ -30,7 +48,4 @@ mat-label{
 .mat-toolbar{
     background-color: var(--color-fondo-secundario);
     color: var(--color-principal);
-}
-.exit{
-    margin-left: 45%;
 }

@@ -9,13 +9,14 @@
          <p class="publicity__title white-color">Video:</p>
          <div class="savescreen-info__container">
             <div class="savescreen-info__video-option">
-               <p
+               <!-- <p
                   class="green-primary video-option"
                   [ngClass]="{ 'video-option-active': false }"
                   (click)="toggleUpload()"
                >
                   Subir video
-               </p>
+               </p> -->
+               <p class="green-primary">Subir Video</p>
                <!-- <p
                   class="green-primary video-option"
                   [ngClass]="{ 'video-option-active': !isUpload }"
@@ -34,7 +35,7 @@
                   aria-label="Archivo"
                />
             </div>
-            <div class="url-select" *ngIf="!isUpload">
+            <!-- <div class="url-select" *ngIf="!isUpload">
                <label
                   for="url"
                   class="savescree-infor__text-label"
@@ -48,7 +49,7 @@
                   name="url"
                   placeholder="url video"
                />
-            </div>
+            </div> -->
          </div>
          <p class="publicity__title white-color">Nombre del Botón:</p>
          <div class="savescreen-info__container">
