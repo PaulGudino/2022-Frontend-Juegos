@@ -14,7 +14,7 @@ import { KeyControllerService } from '../../service/keyController/key-controller
 export class ScanViewComponent implements OnInit {
    selectedInputCode: boolean = false;
    scanState: boolean = true;
-   explication: String = 'Puedes escanear el codigo QR de tu ticket';
+   explication: String = 'Puedes escanear el código QR de tu ticket';
    code: string = this.keyController.getCode();
 
    constructor(
@@ -34,7 +34,7 @@ export class ScanViewComponent implements OnInit {
    }
 
    async continueToGame() {
-      let validateTicket = this.gameLogic.verifyTicket('720195228');
+      let validateTicket = this.gameLogic.verifyTicket('123456789');
       if (await validateTicket) {
          this.router.navigate(['/juego/play']);
          sessionStorage.setItem('juego_play', 'juego_play');

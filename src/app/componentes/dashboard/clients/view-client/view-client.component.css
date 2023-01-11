@@ -10,20 +10,31 @@ mat-label{
 }
 .card{
     width: 33%;
+    height: 800px;
     border-radius: 10px;
     background: var(--color-fondo-principal);
 }
 .history{
     width: 33%;
-    border-radius: 10px;
-    background: red;
-    color: white
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+}
+.history_content{
+    display: flex;
+    flex-direction: column;
+	flex-flow: wrap;
+    justify-content: space-evenly;
+	overflow-y: scroll;
+	overflow-x: hidden;
+    border-color:var(--color-principal) ;
+    border-style: none solid none solid;
 }
 .summary{
     width: 33%;
     border-radius: 10px;
     background: green;
-    color: white
+    color: white;
 }
 .datos{
     width: 100%;
@@ -49,3 +60,26 @@ mat-label{
     background-color: var(--color-fondo-secundario);
     color: var(--color-principal);
 }
+.separate{
+    height: 15px;
+    margin-bottom: 30px;
+    color: var(--color-principal);
+    border-color:var(--color-principal) ;
+    border-style: none none solid none;
+}
+h2{
+    color: var(--color-principal);
+    text-align: center;
+}
+.history_head{
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.filter {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--color-principal) 1px solid;
+    border-radius: 25px;
+  }

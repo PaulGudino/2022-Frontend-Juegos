@@ -20,4 +20,10 @@ export class MatchService {
   getAllMatch(){
     return this.http.get(this.url+'api/match/');
   }
+  getMatchFilterClientHistory(filter:string){
+    return this.http.get(this.url+'api/matchfilterhistory/'+filter);
+  }
+  changeDelivered(id:string, form: FormData){
+    return this.http.post(this.url+'api/match/'+id+'/award_delivered/',form);
+  }
 }
