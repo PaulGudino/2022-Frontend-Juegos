@@ -1,19 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core"
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: "root",
 })
 export class KeyControllerService {
+	code: string = ""
 
-   code:string = 'Ingresa tu codigo aqui...';
+	constructor() {}
 
-  constructor() { }
-
-  getCode(){
-   return this.code;
-  }
-  setCode(code:string){
-   this.code=code;
-  }
-
+	getCode() {
+		return this.code
+	}
+	setCode(code: string) {
+		this.code = this.code + code
+	}
+	deleteLastValue() {
+		this.code = this.code.substring(0, this.code.length - 1)
+	}
 }
